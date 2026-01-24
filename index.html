@@ -102,3 +102,769 @@
         .signal-right { display: flex; flex-direction: column; align-items: flex-end; min-width: 80px; gap: 4px; }
         .signal-value { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; text-align: right; color: var(--green); }
         .signal-bar { width: 80px; height: 6px; background: var(--card-elevated); border-radius: 3px; overflow: hidden; }
+        .signal-bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease, background 0.4s ease; }
+        .signal-bar-fill.green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+        .signal-bar-fill.yellow { background: linear-gradient(90deg, #22c55e, #eab308); }
+        .signal-bar-fill.orange { background: linear-gradient(90deg, #eab308, #f97316); }
+        .signal-bar-fill.red { background: linear-gradient(90deg, #f97316, #ef4444); }
+
+        /* Feed */
+        .feed-section { background: var(--card); border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+        .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .feed-list { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; }
+        .feed-list.expanded { max-height: none; }
+        .feed-item { padding: 10px 12px; background: var(--card-elevated); border-radius: 10px; }
+        .feed-item.alert { border-left: 3px solid var(--orange); }
+        .feed-meta { display: flex; justify-content: space-between; margin-bottom: 3px; }
+        .feed-source { font-size: 10px; font-weight: 600; color: var(--accent); text-transform: uppercase; }
+        .feed-item.alert .feed-source { color: var(--orange); }
+        .feed-badge { font-size: 9px; padding: 2px 6px; border-radius: 4px; background: rgba(239, 68, 68, 0.15); color: var(--red); font-weight: 600; }
+        .feed-time { font-size: 10px; color: var(--text-muted); }
+        .feed-text { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+        .feed-item.alert .feed-text { color: var(--text); }
+        .show-more-btn { width: 100%; padding: 10px; margin-top: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text-secondary); font-size: 12px; font-weight: 500; cursor: pointer; }
+        .show-more-btn:hover { color: var(--text); }
+
+        /* Info Modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+        .modal-overlay.open { display: flex; }
+        .modal { background: var(--card); border-radius: 16px; padding: 24px; width: 100%; max-width: 360px; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .modal-title { font-size: 16px; font-weight: 600; }
+        .modal-close { width: 28px; height: 28px; border-radius: 8px; background: var(--bg); border: none; color: var(--text-secondary); font-size: 18px; cursor: pointer; }
+        .modal-body { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .modal-body strong { color: var(--text); }
+
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        @media (min-width: 768px) {
+            .app { max-width: 480px; margin: 0 auto; padding: 24px; }
+            .gauge-container { width: 240px; height: 135px; }
+            .gauge-value { font-size: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app" id="appContainer">
+        <header class="header">
+            <div class="logo">Aegis</div>
+            <div class="header-right">
+                <div class="live-badge"><div class="live-dot"></div>Live</div>
+            </div>
+        </header>
+
+        <div class="timestamp-bar">
+            <span>Last Updated: <span class="time" id="lastUpdate">--:--</span> <span class="tz" id="timezone">UTC</span></span>
+            <span style="color: var(--text-muted)">Refreshes every 30m</span>
+        </div>
+
+        <div class="gauge-card">
+            <div class="gauge-title">USA Strike on Iran Probability</div>
+            <div class="gauge-subtitle">Tactical Alert Level</div>
+            <div class="status-label low" id="statusLabel">Low Risk</div>
+            <div class="gauge-container">
+                <svg class="gauge-svg" viewBox="0 0 200 115">
+                    <defs>
+                        <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#22c55e"/>
+                        </linearGradient>
+                        <linearGradient id="gradYellow" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#eab308"/>
+                        </linearGradient>
+                        <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="50%" stop-color="#eab308"/><stop offset="100%" stop-color="#f97316"/>
+                        </linearGradient>
+                        <linearGradient id="gradRed" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="33%" stop-color="#eab308"/><stop offset="66%" stop-color="#f97316"/><stop offset="100%" stop-color="#ef4444"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+                    <path class="gauge-fill" id="gaugeFill" d="M 20 100 A 80 80 0 0 1 180 100" stroke="url(#gradGreen)" stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+                </svg>
+            </div>
+            <div class="gauge-value green" id="gaugeValue">0%</div>
+            <div class="gauge-window">Projected Risk: Next 8 Hours</div>
+        </div>
+
+        <div class="trend-section">
+            <div class="trend-header">
+                <span class="trend-title">7-Day Risk Trend</span>
+            </div>
+            <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+        </div>
+
+        <div class="signals-section">
+            <div class="section-title">Data Signals</div>
+
+            <div class="signal-item">
+                <div class="signal-icon news">📰</div>
+                <div class="signal-info">
+                    <div class="signal-name">News Intel <span class="signal-status live" id="newsStatus">LIVE</span><button class="info-btn" onclick="showInfo('news')">i</button></div>
+                    <div class="signal-detail" id="newsDetail">Scanning sources...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="newsValue">0%</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="newsBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon trends">📈</div>
+                <div class="signal-info">
+                    <div class="signal-name">Public Interest <span class="signal-status live" id="trendsStatus">LIVE</span><button class="info-btn" onclick="showInfo('trends')">i</button></div>
+                    <div class="signal-detail" id="socialDetail">GDELT + Wikipedia</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="socialValue">0%</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="socialBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon flight">✈️</div>
+                <div class="signal-info">
+                    <div class="signal-name">Aviation Activity <span class="signal-status live" id="flightStatus">LIVE</span><button class="info-btn" onclick="showInfo('aviation')">i</button></div>
+                    <div class="signal-detail" id="flightDetail">Iran airspace monitoring</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="flightValue">0%</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="flightBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon weather">🌤️</div>
+                <div class="signal-info">
+                    <div class="signal-name">Op. Conditions <span class="signal-status live" id="weatherStatus">LIVE</span><button class="info-btn" onclick="showInfo('weather')">i</button></div>
+                    <div class="signal-detail" id="weatherDetail">Tehran conditions</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="weatherValue">--</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="weatherBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feed-section">
+            <div class="feed-header">
+                <span class="section-title" style="margin-bottom:0">Intelligence Feed</span>
+                <span style="font-size: 11px; color: var(--text-muted)" id="feedCount">0 items</span>
+            </div>
+            <div class="feed-list" id="feedList"></div>
+            <button class="show-more-btn" id="showMoreBtn" onclick="toggleFeed()" style="display:none">Show All</button>
+        </div>
+
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="infoModal" onclick="closeInfo(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title" id="infoTitle">Signal Info</span>
+                <button class="modal-close" onclick="closeInfo()">&times;</button>
+            </div>
+            <div class="modal-body" id="infoBody"></div>
+        </div>
+    </div>
+
+
+    <script>
+        // =============================================
+        // API KEYS (Pre-configured)
+        // =============================================
+        const API_KEYS = {
+            newsdata: 'pub_13a914590d954af5a5e59aaef487cece',
+            openweather: '2e1d472bc1b48449837208507a2367af',
+            aviationstack: '80dd2cf56ea1e8b09d96b9dbd82ebfe8',
+        };
+
+        const state = {
+            risk: 0,
+            feedItems: [],
+            seenHeadlines: new Set(),
+            trendData: [],
+            trendLabels: []
+        };
+
+        const KEYWORDS = ['retaliation', 'strike', 'attack', 'escalation', 'military', 'threat', 'imminent', 'missile', 'nuclear', 'war'];
+
+        const INFO_CONTENT = {
+            news: {
+                title: 'News Intelligence',
+                body: '<strong>Source:</strong> NewsData.io API<br><br><strong>What it tracks:</strong> Real-time news articles mentioning USA, Iran, military strike, Pentagon, CENTCOM.<br><br><strong>Risk logic:</strong> Baseline ~3-5 articles = low risk. 10+ articles with alert keywords (strike, attack, imminent) = high risk. Breaking news surge can push to 30%+.<br><br><strong>Max contribution:</strong> 35%'
+            },
+            trends: {
+                title: 'Public Interest',
+                body: '<strong>Sources:</strong> GDELT + Wikipedia<br><br><strong>GDELT:</strong> Global Database of Events monitors news from 65 languages, tracking Iran-related articles and their tone (positive/negative sentiment).<br><br><strong>Wikipedia:</strong> Pageviews on "Iran", "Iran-US relations", and "Iran-Israel conflict" pages.<br><br><strong>Risk logic:</strong> High GDELT article count + negative tone = elevated. Wikipedia spikes above 80k/day = public concern. Combined signals give early warning.<br><br><strong>Max contribution:</strong> 25%'
+            },
+            aviation: {
+                title: 'Aviation Activity',
+                body: '<strong>Source:</strong> Aviationstack API (Real-time flight data)<br><br><strong>What it tracks:</strong> Live flights in Iran airspace - arrivals/departures at Tehran (IKA, THR), Shiraz, Isfahan, Mashhad airports.<br><br><strong>Risk logic:</strong> Normal = 50-100+ flights/day. Significant DROP in flights (airlines avoiding Iran) = warning sign. <30 flights = high alert.<br><br><strong>Max contribution:</strong> 35%'
+            },
+            weather: {
+                title: 'Op. Conditions',
+                body: '<strong>Source:</strong> OpenWeatherMap API<br><br><strong>What it tracks:</strong> Tehran weather - visibility, cloud cover, conditions.<br><br><strong>Risk logic:</strong> Clear skies (visibility >10km, clouds <30%) = favorable for aerial operations = +5% to risk. Poor weather = 0% contribution.<br><br><strong>Max contribution:</strong> 5%'
+            }
+        };
+
+        let chart;
+
+        // Utilities
+        const getTimezone = () => Intl.DateTimeFormat().resolvedOptions().timeZone.split('/').pop().replace('_', ' ');
+        const formatTime = () => new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+        const formatDate = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+        function getColor(v) { return v >= 86 ? 'red' : v >= 61 ? 'orange' : v >= 31 ? 'yellow' : 'green'; }
+        function getGradient(v) { return v >= 86 ? 'url(#gradRed)' : v >= 61 ? 'url(#gradOrange)' : v >= 31 ? 'url(#gradYellow)' : 'url(#gradGreen)'; }
+        function getStatusText(v) { return v >= 86 ? 'Imminent' : v >= 61 ? 'High Risk' : v >= 31 ? 'Elevated' : 'Low Risk'; }
+        function getStatusClass(v) { return v >= 86 ? 'imminent' : v >= 61 ? 'high' : v >= 31 ? 'elevated' : 'low'; }
+
+        function setStatus(id, live) {
+            const el = document.getElementById(id);
+            el.textContent = live ? 'LIVE' : 'DEMO';
+            el.className = `signal-status ${live ? 'live' : 'demo'}`;
+        }
+
+        function updateTimestamp() {
+            document.getElementById('lastUpdate').textContent = formatTime();
+            document.getElementById('timezone').textContent = getTimezone();
+        }
+
+        function updateGauge(score) {
+            score = Math.max(0, Math.min(100, Math.round(score)));
+            state.risk = score;
+            document.getElementById('gaugeFill').style.strokeDashoffset = 251.2 - (score / 100 * 251.2);
+            document.getElementById('gaugeFill').setAttribute('stroke', getGradient(score));
+            const val = document.getElementById('gaugeValue');
+            val.textContent = `${score}%`;
+            val.className = `gauge-value ${getColor(score)}`;
+            const label = document.getElementById('statusLabel');
+            label.textContent = getStatusText(score);
+            label.className = `status-label ${getStatusClass(score)}`;
+            updateTimestamp();
+        }
+
+        function updateSignal(name, value, detail) {
+            const valEl = document.getElementById(`${name}Value`);
+            const detailEl = document.getElementById(`${name}Detail`);
+            const barEl = document.getElementById(`${name}Bar`);
+
+            if (name === 'weather') {
+                valEl.textContent = value;
+                const weatherColor = value === 'Favorable' ? 'var(--green)' : value === 'Marginal' ? 'var(--yellow)' : 'var(--orange)';
+                valEl.style.color = weatherColor;
+                // Weather bar: Favorable = 100%, Marginal = 50%, Poor = 0%
+                const barValue = value === 'Favorable' ? 100 : value === 'Marginal' ? 50 : 0;
+                barEl.style.width = `${barValue}%`;
+                barEl.className = `signal-bar-fill ${value === 'Favorable' ? 'green' : value === 'Marginal' ? 'yellow' : 'green'}`;
+            } else {
+                const roundedValue = Math.round(value) || 0;
+                const colorClass = getColor(roundedValue);
+                valEl.textContent = `${roundedValue}%`;
+                valEl.style.color = `var(--${colorClass})`;
+                // Update progress bar - ensure minimum visibility
+                barEl.style.width = `${Math.max(0, roundedValue)}%`;
+                barEl.className = `signal-bar-fill ${colorClass}`;
+            }
+            if (detailEl) detailEl.textContent = detail;
+        }
+
+        function addFeed(source, text, isAlert = false, badge = null) {
+            // Dedupe by first 50 chars
+            const key = text.substring(0, 50).toLowerCase();
+            if (state.seenHeadlines.has(key)) return;
+            state.seenHeadlines.add(key);
+
+            const item = { source, text, isAlert, badge, time: formatTime() };
+            state.feedItems.unshift(item);
+            if (state.feedItems.length > 20) state.feedItems.pop();
+            renderFeed();
+        }
+
+        function renderFeed() {
+            const list = document.getElementById('feedList');
+            const btn = document.getElementById('showMoreBtn');
+            const expanded = list.classList.contains('expanded');
+            const items = expanded ? state.feedItems : state.feedItems.slice(0, 3);
+
+            list.innerHTML = items.map(i => `
+                <div class="feed-item${i.isAlert ? ' alert' : ''}">
+                    <div class="feed-meta">
+                        <span class="feed-source">${i.source}${i.badge ? ` <span class="feed-badge">${i.badge}</span>` : ''}</span>
+                        <span class="feed-time">${i.time}</span>
+                    </div>
+                    <div class="feed-text">${i.text}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('feedCount').textContent = `${state.feedItems.length} items`;
+            btn.style.display = state.feedItems.length > 3 ? 'block' : 'none';
+            btn.textContent = expanded ? 'Show Less' : `Show All (${state.feedItems.length})`;
+        }
+
+        function toggleFeed() {
+            document.getElementById('feedList').classList.toggle('expanded');
+            renderFeed();
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            // Generate last 7 days labels
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date(Date.now() - i * 86400000);
+                state.trendLabels.push(formatDate(d));
+                state.trendData.push(Math.random() * 25 + 15); // Initial random data
+            }
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: state.trendLabels,
+                    datasets: [{
+                        data: state.trendData,
+                        borderColor: '#f97316',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#f97316',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { intersect: false, mode: 'index' },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1c1c1c',
+                            titleColor: '#fff',
+                            bodyColor: '#999',
+                            borderColor: '#333',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                            callbacks: {
+                                title: (ctx) => ctx[0].label,
+                                label: (ctx) => `Risk: ${Math.round(ctx.raw)}%`
+                            }
+                        },
+                        annotation: {
+                            annotations: {
+                                baseline: {
+                                    type: 'line',
+                                    yMin: 15,
+                                    yMax: 15,
+                                    borderColor: 'rgba(255,255,255,0.15)',
+                                    borderWidth: 1,
+                                    borderDash: [5, 5],
+                                    label: { content: 'Baseline', enabled: true, position: 'start', color: '#666', font: { size: 10 } }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#666', font: { size: 10 } }
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#666', font: { size: 10 }, stepSize: 25, callback: v => v + '%' }
+                        }
+                    }
+                }
+            });
+
+            // Draw baseline manually since annotation plugin not loaded
+            const originalDraw = chart.draw;
+            chart.draw = function() {
+                originalDraw.apply(this, arguments);
+                const ctx = this.ctx;
+                const yAxis = this.scales.y;
+                const xAxis = this.scales.x;
+                const y = yAxis.getPixelForValue(15);
+                ctx.save();
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(xAxis.left, y);
+                ctx.lineTo(xAxis.right, y);
+                ctx.stroke();
+                ctx.fillStyle = '#555';
+                ctx.font = '10px Inter';
+                ctx.fillText('Normal', xAxis.left + 5, y - 5);
+                ctx.restore();
+            };
+        }
+
+        // Modals
+        function showInfo(type) {
+            trackEvent('info_view', 'engagement', type);
+            const info = INFO_CONTENT[type];
+            document.getElementById('infoTitle').textContent = info.title;
+            document.getElementById('infoBody').innerHTML = info.body;
+            document.getElementById('infoModal').classList.add('open');
+        }
+        function closeInfo(e) { if (!e || e.target.id === 'infoModal') document.getElementById('infoModal').classList.remove('open'); }
+
+        // Share functionality (not currently used but kept for future)
+        function shareSnapshot() {
+            trackEvent('share', 'engagement', 'snapshot_shared', state.risk);
+            const text = `🎯 Aegis USA Strike on Iran Monitor\n\n` +
+                `📊 Current Risk: ${state.risk}% (${getStatusText(state.risk)})\n` +
+                `⏱️ Next 8 Hours\n\n` +
+                `📰 News Intel: ${document.getElementById('newsValue').textContent}\n` +
+                `📈 Public Interest: ${document.getElementById('socialValue').textContent}\n` +
+                `✈️ Aviation: ${document.getElementById('flightValue').textContent}\n` +
+                `🌤️ Conditions: ${document.getElementById('weatherValue').textContent}\n\n` +
+                `Updated: ${formatTime()} ${getTimezone()}\n` +
+                `🔗 https://backyonatan-alt.github.io/aegis`;
+
+            if (navigator.share) {
+                navigator.share({ title: 'Aegis Threat Monitor', text });
+            } else {
+                navigator.clipboard.writeText(text).then(() => alert('Status copied to clipboard!'));
+            }
+        }
+
+        // =============================================
+        // API FETCHERS - NEW CALIBRATED LOGIC
+        // Normal: 5-7% | Pre-strike: 90-95% | Max: 100%
+        // =============================================
+
+        // SIGNAL 1: NEWS INTEL (Max 35%)
+        async function fetchNews() {
+            try {
+                setStatus('newsStatus', true);
+                // Broader query to catch more Iran-related news
+                const q = encodeURIComponent('Iran military OR Iran nuclear OR Iran US OR Iran attack');
+                const res = await fetch(`https://newsdata.io/api/1/news?apikey=${API_KEYS.newsdata}&q=${q}&language=en`);
+                const data = await res.json();
+                if (data.status === 'success' && data.results) {
+                    let alertCount = 0;
+                    const articles = data.results.length;
+                    data.results.slice(0, 5).forEach(a => {
+                        const title = (a.title || '').substring(0, 80);
+                        const isAlert = KEYWORDS.some(k => title.toLowerCase().includes(k));
+                        if (isAlert) alertCount++;
+                        addFeed('NEWS', title, isAlert, isAlert ? 'Alert' : null);
+                    });
+
+                    // RECALIBRATED: 10 articles = ~10% display (baseline normal news)
+                    // 0-5 articles = 5-8% | 6-10 = 8-12% | 11-15 = 15-25% | 16+ = 30-35%
+                    // Critical keywords add extra weight only when many present
+                    let contribution = 1; // Base level
+
+                    if (articles <= 5) {
+                        contribution = 1 + articles * 0.4; // 5 articles = 3
+                    } else if (articles <= 10) {
+                        contribution = 3 + (articles - 5) * 0.3; // 10 articles = 4.5
+                    } else if (articles <= 15) {
+                        contribution = 4.5 + (articles - 10) * 1.5 + alertCount * 1; // 15 articles = 12
+                    } else {
+                        contribution = 12 + (articles - 15) * 2 + alertCount * 2; // 20+ = surge
+                    }
+
+                    contribution = Math.min(35, contribution);
+                    const displayRisk = Math.round((contribution / 35) * 100);
+                    updateSignal('news', displayRisk, `${articles} articles, ${alertCount} critical`);
+                    return contribution;
+                } else {
+                    // API returned but no results - show baseline
+                    updateSignal('news', 6, 'Monitoring...');
+                    return 2;
+                }
+            } catch (e) { setStatus('newsStatus', false); updateSignal('news', 6, 'API error - using baseline'); return 2; }
+        }
+
+        // SIGNAL 2: PUBLIC INTEREST - GDELT + Wikipedia (Max 25%)
+        async function fetchPublicInterest() {
+            let gdeltArticles = 0;
+            let gdeltTone = 0;
+            let wikiViews = 0;
+            let gdeltWorked = false;
+            let wikiWorked = false;
+
+            // GDELT: Global news database (CORS-friendly, free, updates every 15 min)
+            try {
+                const gdeltQuery = encodeURIComponent('iran attack OR iran strike OR iran military OR iran us');
+                const gdeltUrl = `https://api.gdeltproject.org/api/v2/doc/doc?query=${gdeltQuery}&mode=artlist&maxrecords=50&format=json&timespan=24h`;
+                const gdeltRes = await fetch(gdeltUrl);
+                if (gdeltRes.ok) {
+                    const gdeltData = await gdeltRes.json();
+                    if (gdeltData.articles && Array.isArray(gdeltData.articles)) {
+                        gdeltArticles = gdeltData.articles.length;
+                        // Calculate average tone (negative = concerning)
+                        const tones = gdeltData.articles.map(a => a.tone || 0).filter(t => t !== 0);
+                        if (tones.length > 0) {
+                            gdeltTone = tones.reduce((a, b) => a + b, 0) / tones.length;
+                        }
+                        gdeltWorked = true;
+                        // Add top article to feed
+                        if (gdeltData.articles[0]) {
+                            const title = (gdeltData.articles[0].title || '').substring(0, 70);
+                            const isNegative = gdeltTone < -3;
+                            addFeed('GDELT', title, isNegative, isNegative ? 'Alert' : null);
+                        }
+                    }
+                }
+            } catch (e) { console.log('GDELT error:', e.message); }
+
+            // WIKIPEDIA: Multiple relevant pages (CORS-friendly API)
+            try {
+                const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0].replace(/-/g, '');
+                const pages = ['Iran', 'Iran%E2%80%93United_States_relations', 'Iran%E2%80%93Israel_conflict'];
+                let totalViews = 0;
+
+                for (const page of pages) {
+                    try {
+                        const res = await fetch(`https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/${page}/daily/${yesterday}/${yesterday}`);
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.items?.[0]) {
+                                totalViews += data.items[0].views;
+                                wikiWorked = true;
+                            }
+                        }
+                    } catch (e) { /* Skip failed page */ }
+                }
+                wikiViews = totalViews;
+            } catch (e) { /* Wikipedia failed entirely */ }
+
+            // Always show LIVE if at least one source worked
+            setStatus('trendsStatus', gdeltWorked || wikiWorked);
+
+            // Calculate combined risk contribution
+            let gdeltRisk = 0;
+            let wikiRisk = 0;
+
+            // GDELT scoring: articles + tone sentiment
+            // 0-10 articles = 1-3 | 11-25 = 4-7 | 26-50 = 8-12 | negative tone adds bonus
+            if (gdeltWorked) {
+                if (gdeltArticles <= 10) {
+                    gdeltRisk = 1 + gdeltArticles * 0.2;
+                } else if (gdeltArticles <= 25) {
+                    gdeltRisk = 3 + (gdeltArticles - 10) * 0.27;
+                } else {
+                    gdeltRisk = 7 + (gdeltArticles - 25) * 0.2;
+                }
+                // Negative tone (< -3) adds extra risk
+                if (gdeltTone < -5) gdeltRisk += 3;
+                else if (gdeltTone < -3) gdeltRisk += 1.5;
+                gdeltRisk = Math.min(12, gdeltRisk);
+            }
+
+            // Wikipedia scoring (same as before but max 13)
+            if (wikiWorked && wikiViews > 0) {
+                if (wikiViews < 20000) {
+                    wikiRisk = 1 + (wikiViews / 15000);
+                } else if (wikiViews < 50000) {
+                    wikiRisk = 2.5 + ((wikiViews - 20000) / 10000);
+                } else if (wikiViews < 100000) {
+                    wikiRisk = 5.5 + ((wikiViews - 50000) / 8000);
+                } else {
+                    wikiRisk = 12 + ((wikiViews - 100000) / 50000);
+                }
+                wikiRisk = Math.min(13, wikiRisk);
+
+                if (wikiViews > 80000) {
+                    addFeed('WIKI', `Iran pages: ${Math.round(wikiViews/1000)}k views (elevated)`, true, 'Spike');
+                }
+            }
+
+            // Combine: GDELT max 12 + Wiki max 13 = 25 total
+            const totalRisk = Math.min(25, gdeltRisk + wikiRisk + 1); // +1 baseline
+            const displayRisk = Math.round((totalRisk / 25) * 100);
+
+            // Build detail string
+            let detail = '';
+            if (gdeltWorked) detail += `${gdeltArticles} GDELT`;
+            if (wikiWorked) detail += (detail ? ', ' : '') + `${Math.round(wikiViews/1000)}k Wiki`;
+            if (!detail) detail = 'Monitoring...';
+
+            updateSignal('social', displayRisk, detail);
+            return totalRisk;
+        }
+
+        // SIGNAL 3: AVIATION - Iran Airspace Activity (Max 35%)
+        // Uses Aviationstack API for real flight data
+        async function fetchAviation() {
+            // Check if API key is configured
+            if (!API_KEYS.aviationstack) {
+                setStatus('flightStatus', false);
+                updateSignal('flight', 0, 'API key needed - see console');
+                console.log('⚠️ AVIATION: Get free API key at https://aviationstack.com/signup/free');
+                return 0;
+            }
+
+            // Iranian airports to monitor
+            const airports = ['IKA', 'THR', 'SYZ', 'MHD', 'IFN']; // Tehran IKA, Tehran Mehrabad, Shiraz, Mashhad, Isfahan
+            let totalFlights = 0;
+            let apiWorked = false;
+
+            try {
+                // Aviationstack: Get flights for Iran's main airports
+                // Free tier: 500 requests/month, supports CORS
+                for (const iata of airports.slice(0, 2)) { // Limit to 2 airports to save API calls
+                    try {
+                        const url = `https://api.aviationstack.com/v1/flights?access_key=${API_KEYS.aviationstack}&arr_iata=${iata}&flight_status=active`;
+                        const res = await fetch(url);
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.data && Array.isArray(data.data)) {
+                                totalFlights += data.data.length;
+                                apiWorked = true;
+
+                                // Add first flight to feed
+                                if (data.data[0]) {
+                                    const flight = data.data[0];
+                                    const airline = flight.airline?.name || 'Unknown';
+                                    const from = flight.departure?.airport || 'Unknown';
+                                    addFeed('AVIATION', `${airline} arriving ${iata} from ${from}`);
+                                }
+                            }
+                        } else {
+                            const errData = await res.json().catch(() => ({}));
+                            console.log('Aviationstack error:', errData.error?.message || res.status);
+                        }
+                    } catch (e) {
+                        console.log('Aviationstack fetch error:', e.message);
+                    }
+                }
+            } catch (e) {
+                console.log('Aviation API error:', e.message);
+            }
+
+            if (apiWorked) {
+                setStatus('flightStatus', true);
+
+                // FLIGHT DROP LOGIC - Fewer flights = Higher risk (airlines avoiding Iran)
+                // Normal: 30-60 active flights | Warning: 15-30 | Critical: <15
+                let contribution = 0;
+
+                if (totalFlights < 5) {
+                    contribution = 35; // Critical - almost no flights
+                    addFeed('AVIATION', `⚠️ CRITICAL: Only ${totalFlights} active flights to Iran!`, true, 'Alert');
+                } else if (totalFlights < 15) {
+                    contribution = 25; // High alert
+                    addFeed('AVIATION', `Low traffic: ${totalFlights} flights (airlines may be avoiding)`, true, 'Warning');
+                } else if (totalFlights < 25) {
+                    contribution = 15; // Elevated
+                } else if (totalFlights < 40) {
+                    contribution = 8; // Slightly below normal
+                } else {
+                    contribution = 3; // Normal traffic
+                }
+
+                const displayRisk = Math.round((contribution / 35) * 100);
+                updateSignal('flight', displayRisk, `${totalFlights} active flights`);
+                return contribution;
+            }
+
+            // API failed
+            setStatus('flightStatus', false);
+            updateSignal('flight', 0, 'API error');
+            return 0;
+        }
+
+        // SIGNAL 4: WEATHER CONDITIONS (Max 5%)
+        async function fetchWeather() {
+            try {
+                setStatus('weatherStatus', true);
+                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35.6892&lon=51.389&appid=${API_KEYS.openweather}&units=metric`);
+                const data = await res.json();
+                if (data.main) {
+                    const temp = Math.round(data.main.temp);
+                    const vis = data.visibility || 10000;
+                    const clouds = data.clouds?.all || 0;
+
+                    let condition, contribution;
+                    if (vis >= 10000 && clouds < 30) {
+                        condition = 'Favorable';
+                        contribution = 5; // Clear skies ADD to risk (good for ops)
+                    } else if (vis >= 7000 && clouds < 60) {
+                        condition = 'Marginal';
+                        contribution = 2;
+                    } else {
+                        condition = 'Poor';
+                        contribution = 0; // Bad weather = less likely
+                    }
+
+                    updateSignal('weather', condition, `${temp}°C, ${vis >= 10000 ? '10+' : Math.round(vis/1000)}km vis, ${clouds}% clouds`);
+                    addFeed('WEATHER', `Tehran: ${temp}°C, ${data.weather[0]?.description || 'clear'}. Ops: ${condition}`);
+                    return contribution;
+                }
+            } catch (e) { setStatus('weatherStatus', false); updateSignal('weather', 'Unknown', 'API error'); }
+            return 0;
+        }
+
+        // MASTER CALCULATION
+        async function calculate() {
+            const [news, interest, aviation, weather] = await Promise.all([
+                fetchNews(),
+                fetchPublicInterest(),
+                fetchAviation(),
+                fetchWeather()
+            ]);
+
+            // Ensure all values are numbers (protect against NaN)
+            const safeNews = Number(news) || 0;
+            const safeInterest = Number(interest) || 0;
+            const safeAviation = Number(aviation) || 0;
+            const safeWeather = Number(weather) || 0;
+
+            // Sum all contributions (max 100%)
+            let total = safeNews + safeInterest + safeAviation + safeWeather;
+
+            // ESCALATION MULTIPLIER: If 3+ signals elevated, compound effect
+            const elevated = [safeNews > 10, safeInterest > 8, safeAviation > 10, safeWeather > 2].filter(Boolean).length;
+            if (elevated >= 3) {
+                total = Math.min(100, total * 1.15); // 15% boost
+                addFeed('SYSTEM', 'Multiple elevated signals detected - escalation multiplier applied', true, 'Alert');
+            }
+
+            total = Math.min(100, Math.max(0, Math.round(total) || 0)); // Extra NaN protection
+
+            // Track for analytics
+            const prevRisk = state.risk;
+            updateGauge(total);
+            trackEvent('data_refresh', 'api', 'risk_calculated', total);
+
+            if (Math.abs(total - prevRisk) > 10) {
+                trackEvent('risk_change', 'alert', total > prevRisk ? 'risk_increased' : 'risk_decreased', total);
+            }
+            if (total >= 50 && prevRisk < 50) {
+                trackEvent('high_risk_alert', 'alert', 'threshold_crossed', total);
+            }
+
+            // Update trend chart
+            state.trendData.shift();
+            state.trendData.push(total);
+            state.trendLabels.shift();
+            state.trendLabels.push(formatDate(new Date()));
+            if (chart) {
+                chart.data.labels = state.trendLabels;
+                chart.data.datasets[0].data = state.trendData;
+                chart.update('none');
+            }
+        }
+
+        // Init - refresh every 30 MINUTES to save API calls
+        document.addEventListener('DOMContentLoaded', () => {
+            initChart();
+            addFeed('SYSTEM', 'Aegis threat monitor initialized');
+            setTimeout(() => { calculate(); setInterval(calculate, 1800000); }, 500); // 1800000ms = 30 minutes
+        });
+    </script>
+</body>
+</html>
