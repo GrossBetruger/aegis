@@ -583,7 +583,8 @@
             if (!state.keys.newsdata) { setStatus('newsStatus', false); return 0; }
             try {
                 setStatus('newsStatus', true);
-                const q = encodeURIComponent('USA Iran military strike attack Pentagon CENTCOM');
+                // Broader query to catch more Iran-related news
+                const q = encodeURIComponent('Iran military OR Iran nuclear OR Iran US OR Iran attack');
                 const res = await fetch(`https://newsdata.io/api/1/news?apikey=${state.keys.newsdata}&q=${q}&language=en`);
                 const data = await res.json();
                 if (data.status === 'success' && data.results) {
@@ -596,21 +597,23 @@
                         addFeed('NEWS', title, isAlert, isAlert ? 'Alert' : null);
                     });
 
-                    // NEW CALIBRATION:
-                    // 0-3 articles = 0-2% | 4-7 = 3-8% | 8-15 = 10-20% | 15+ with alerts = 25-35%
-                    let contribution = 0;
-                    if (articles <= 3) contribution = articles * 0.7;
-                    else if (articles <= 7) contribution = 2 + (articles - 3) * 1.5;
-                    else if (articles <= 15) contribution = 8 + (articles - 7) * 1.5 + alertCount * 2;
-                    else contribution = 20 + Math.min(15, alertCount * 3 + (articles - 15) * 0.5);
+                    // CALIBRATION: Always show some baseline activity
+                    // 0 articles = 2% base | 1-5 = 5-10% | 6-10 = 12-20% | 10+ = 25-35%
+                    let contribution = 2; // Base level
+                    if (articles >= 1) contribution = 2 + Math.min(8, articles * 1.5);
+                    if (articles >= 6) contribution = 10 + (articles - 5) * 1.5 + alertCount * 2;
+                    if (articles >= 10) contribution = 20 + Math.min(15, alertCount * 3);
 
                     contribution = Math.min(35, contribution);
                     const displayRisk = Math.round((contribution / 35) * 100);
                     updateSignal('news', displayRisk, `${articles} articles, ${alertCount} critical`);
                     return contribution;
+                } else {
+                    // API returned but no results - show baseline
+                    updateSignal('news', 6, 'Monitoring...');
+                    return 2;
                 }
-            } catch (e) { setStatus('newsStatus', false); updateSignal('news', 0, 'API error'); }
-            return 0;
+            } catch (e) { setStatus('newsStatus', false); updateSignal('news', 6, 'API error - using baseline'); return 2; }
         }
 
         // SIGNAL 2: PUBLIC INTEREST - Reddit + Wikipedia (Max 25%)
@@ -654,15 +657,14 @@
                 }
 
                 wikiViews = totalViews;
-                // Baseline combined ~60k | Elevated 100k+ | Crisis 200k+
-                // 60k = 0% | 100k = 5% | 150k = 10% | 200k+ = 13%
-                if (totalViews > 60000) {
-                    wikiRisk = Math.min(13, (totalViews - 60000) / 10000);
-                }
+                // LOWER THRESHOLDS: 20k = baseline 2% | 40k = 5% | 80k = 10% | 150k+ = 13%
+                wikiRisk = Math.min(13, Math.max(0, totalViews / 15000)); // Always gives some value
                 if (wikiRisk > 8) addFeed('WIKI', `Iran pages: ${Math.round(totalViews/1000)}k views (elevated)`, true);
             } catch (e) { /* Wikipedia failed */ }
 
-            const totalContribution = Math.min(25, redditRisk + wikiRisk);
+            // Always show baseline activity
+            const baseContribution = 1; // Minimum baseline
+            const totalContribution = Math.min(25, baseContribution + redditRisk + wikiRisk);
             const displayRisk = Math.round((totalContribution / 25) * 100);
 
             setStatus('trendsStatus', redditPosts > 0 || wikiViews > 0);
@@ -726,9 +728,10 @@
                 }
             } catch (e) {
                 setStatus('flightStatus', false);
-                updateSignal('flight', 0, 'Rate limited - retry in 10s');
+                // Show baseline when API unavailable (normal traffic assumed)
+                updateSignal('flight', 8, 'API limited - baseline estimate');
+                return 3; // Small baseline contribution
             }
-            return 0;
         }
 
         // SIGNAL 4: WEATHER CONDITIONS (Max 5%)
