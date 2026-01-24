@@ -725,6 +725,11 @@
 
                     updateSignal('flight', displayRisk, detail);
                     return totalContribution;
+                } else {
+                    // No states data - return baseline
+                    setStatus('flightStatus', false);
+                    updateSignal('flight', 8, 'No data - baseline estimate');
+                    return 3;
                 }
             } catch (e) {
                 setStatus('flightStatus', false);
@@ -775,17 +780,23 @@
                 fetchWeather()
             ]);
 
+            // Ensure all values are numbers (protect against NaN)
+            const safeNews = Number(news) || 0;
+            const safeInterest = Number(interest) || 0;
+            const safeAviation = Number(aviation) || 0;
+            const safeWeather = Number(weather) || 0;
+
             // Sum all contributions (max 100%)
-            let total = news + interest + aviation + weather;
+            let total = safeNews + safeInterest + safeAviation + safeWeather;
 
             // ESCALATION MULTIPLIER: If 3+ signals elevated, compound effect
-            const elevated = [news > 10, interest > 8, aviation > 10, weather > 2].filter(Boolean).length;
+            const elevated = [safeNews > 10, safeInterest > 8, safeAviation > 10, safeWeather > 2].filter(Boolean).length;
             if (elevated >= 3) {
                 total = Math.min(100, total * 1.15); // 15% boost
                 addFeed('SYSTEM', 'Multiple elevated signals detected - escalation multiplier applied', true, 'Alert');
             }
 
-            total = Math.min(100, Math.round(total));
+            total = Math.min(100, Math.max(0, Math.round(total) || 0)); // Extra NaN protection
 
             // Track for analytics
             const prevRisk = state.risk;
