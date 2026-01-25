@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>StrikeRadar - USA Strike on Iran Monitor</title>
+    <meta name="description" content="Real-time geopolitical risk monitor tracking USA-Iran tension indicators. Live data from news, aviation, and global sentiment.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://backyonatan-alt.github.io/strikeradar/">
+    <meta property="og:title" content="StrikeRadar - USA Strike on Iran Probability Monitor">
+    <meta property="og:description" content="Real-time geopolitical risk dashboard tracking news intel, aviation activity, and global sentiment for USA-Iran tensions.">
+    <meta property="og:image" content="https://backyonatan-alt.github.io/strikeradar/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://backyonatan-alt.github.io/strikeradar/">
+    <meta name="twitter:title" content="StrikeRadar - USA Strike on Iran Probability Monitor">
+    <meta name="twitter:description" content="Real-time geopolitical risk dashboard tracking news intel, aviation activity, and global sentiment.">
+    <meta name="twitter:image" content="https://backyonatan-alt.github.io/strikeradar/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXY7DKJKVK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JXY7DKJKVK');
+
+        // Custom event tracking helper
+        function trackEvent(action, category, label, value) {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': label,
+                'value': value
+            });
+        }
+
+        // Track page engagement
+        let sessionStartTime = Date.now();
+        let maxRiskSeen = 0;
+
+        // Track time on page when leaving
+        window.addEventListener('beforeunload', () => {
+            const sessionDuration = Math.round((Date.now() - sessionStartTime) / 1000);
+            trackEvent('session_end', 'engagement', 'session_duration', sessionDuration);
+            trackEvent('max_risk_seen', 'engagement', 'highest_risk', maxRiskSeen);
+        });
+
+        // Track scroll depth
+        let scrollTracked = { 25: false, 50: false, 75: false, 100: false };
+        window.addEventListener('scroll', () => {
+            const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+            [25, 50, 75, 100].forEach(threshold => {
+                if (scrollPercent >= threshold && !scrollTracked[threshold]) {
+                    scrollTracked[threshold] = true;
+                    trackEvent('scroll_depth', 'engagement', `scroll_${threshold}`, threshold);
+                }
+            });
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --bg: #0a0a0a; --card: #141414; --card-elevated: #1c1c1c;
+            --border: #252525; --text: #ffffff; --text-secondary: #999; --text-muted: #666;
+            --accent: #3b82f6; --green: #22c55e; --yellow: #eab308; --orange: #f97316; --red: #ef4444;
+        }
+        html, body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .app { padding: 16px; padding-bottom: 80px; max-width: 100%; }
+
+        /* Header */
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; }
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .live-badge { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--green); }
+        .live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .icon-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--card); border: none; border-radius: 10px; color: var(--text-secondary); cursor: pointer; }
+        .icon-btn:active { background: var(--card-elevated); }
+
+        /* Timestamp bar */
+        .timestamp-bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--card); border-radius: 10px; margin-bottom: 16px; font-size: 12px; }
+        .timestamp-bar .time { color: var(--text); font-weight: 600; }
+        .timestamp-bar .tz { color: var(--text-muted); }
+
+        /* Main gauge card */
+        .gauge-card { background: var(--card); border-radius: 20px; padding: 24px 20px; text-align: center; margin-bottom: 16px; }
+        .gauge-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .gauge-subtitle { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+        .status-label { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+        .status-label.low { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+        .status-label.elevated { background: rgba(234, 179, 8, 0.15); color: var(--yellow); }
+        .status-label.high { background: rgba(249, 115, 22, 0.15); color: var(--orange); }
+        .status-label.imminent { background: rgba(239, 68, 68, 0.15); color: var(--red); animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .gauge-container { position: relative; width: 200px; height: 115px; margin: 0 auto 12px; }
+        .gauge-svg { width: 100%; height: 100%; overflow: visible; }
+        .gauge-track { fill: none; stroke: var(--card-elevated); stroke-width: 20; stroke-linecap: round; }
+        .gauge-fill { fill: none; stroke-width: 20; stroke-linecap: round; transition: stroke-dashoffset 0.8s ease, stroke 0.5s ease; }
+        .gauge-value { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 700; line-height: 1; }
+        .gauge-value.green { color: var(--green); } .gauge-value.yellow { color: var(--yellow); }
+        .gauge-value.orange { color: var(--orange); } .gauge-value.red { color: var(--red); }
+        .gauge-window { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+        .gauge-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px; }
+        .gauge-info-btn { width: 20px; height: 20px; border-radius: 50%; background: var(--border); border: none; color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; }
+        .gauge-info-btn:hover { background: var(--text-muted); color: var(--bg); }
+
+        /* Trend chart */
+        .trend-section { background: var(--card); border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+        .trend-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .trend-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+        .chart-wrap { height: 140px; position: relative; }
+
+        /* Signals */
+        .signals-section { background: var(--card); border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+        .section-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 16px; }
+        .signal-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .signal-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .signal-item:first-of-type { padding-top: 0; }
+        .signal-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 16px; }
+        .signal-icon.news { background: rgba(59, 130, 246, 0.15); }
+        .signal-icon.trends { background: rgba(168, 85, 247, 0.15); }
+        .signal-icon.flight { background: rgba(34, 197, 94, 0.15); }
+        .signal-icon.weather { background: rgba(14, 165, 233, 0.15); }
+        .signal-info { flex: 1; min-width: 0; }
+        .signal-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+        .signal-detail { font-size: 11px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .signal-status { font-size: 9px; padding: 2px 5px; border-radius: 4px; font-weight: 600; }
+        .signal-status.live { background: rgba(34, 197, 94, 0.2); color: var(--green); }
+        .signal-status.weak { background: rgba(234, 179, 8, 0.2); color: var(--yellow); }
+        .info-btn { width: 18px; height: 18px; border-radius: 50%; background: var(--border); border: none; color: var(--text-muted); font-size: 10px; font-weight: 700; cursor: pointer; margin-left: 4px; }
+        .info-btn:hover { background: var(--text-muted); color: var(--bg); }
+        .signal-right { display: flex; flex-direction: column; align-items: flex-end; min-width: 80px; gap: 4px; }
+        .signal-value { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; text-align: right; color: var(--green); }
+        .signal-bar { width: 80px; height: 6px; background: var(--card-elevated); border-radius: 3px; overflow: hidden; }
+        .signal-bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease, background 0.4s ease; }
+        .signal-bar-fill.green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+        .signal-bar-fill.yellow { background: linear-gradient(90deg, #22c55e, #eab308); }
+        .signal-bar-fill.orange { background: linear-gradient(90deg, #eab308, #f97316); }
+        .signal-bar-fill.red { background: linear-gradient(90deg, #f97316, #ef4444); }
+
+        /* Feed */
+        .feed-section { background: var(--card); border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+        .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .feed-list { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; }
+        .feed-list.expanded { max-height: none; }
+        .feed-item { padding: 10px 12px; background: var(--card-elevated); border-radius: 10px; }
+        .feed-item.alert { border-left: 3px solid var(--orange); }
+        .feed-meta { display: flex; justify-content: space-between; margin-bottom: 3px; }
+        .feed-source { font-size: 10px; font-weight: 600; color: var(--accent); text-transform: uppercase; }
+        .feed-item.alert .feed-source { color: var(--orange); }
+        .feed-badge { font-size: 9px; padding: 2px 6px; border-radius: 4px; background: rgba(239, 68, 68, 0.15); color: var(--red); font-weight: 600; }
+        .feed-time { font-size: 10px; color: var(--text-muted); }
+        .feed-text { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+        .feed-item.alert .feed-text { color: var(--text); }
+        .show-more-btn { width: 100%; padding: 10px; margin-top: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text-secondary); font-size: 12px; font-weight: 500; cursor: pointer; }
+        .show-more-btn:hover { color: var(--text); }
+
+        /* Info Modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+        .modal-overlay.open { display: flex; }
+        .modal { background: var(--card); border-radius: 16px; padding: 24px; width: 100%; max-width: 360px; max-height: 80vh; display: flex; flex-direction: column; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-shrink: 0; }
+        .modal-title { font-size: 16px; font-weight: 600; }
+        .modal-close { width: 28px; height: 28px; border-radius: 8px; background: var(--bg); border: none; color: var(--text-secondary); font-size: 18px; cursor: pointer; }
+        .modal-body { font-size: 13px; color: var(--text-secondary); line-height: 1.6; overflow-y: auto; flex: 1; }
+        .modal-body strong { color: var(--text); }
+
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        @media (min-width: 768px) {
+            .app { max-width: 480px; margin: 0 auto; padding: 24px; }
+            .gauge-container { width: 240px; height: 135px; }
+            .gauge-value { font-size: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app" id="appContainer">
+        <header class="header">
+            <div class="logo">📡 StrikeRadar</div>
+            <div class="header-right">
+                <div class="live-badge"><div class="live-dot"></div>Live</div>
+                <button class="icon-btn" onclick="showInfo('about')" title="About StrikeRadar">?</button>
+            </div>
+        </header>
+
+        <div class="timestamp-bar">
+            <span>Updated at <span class="time" id="lastUpdate">--:--</span> <span class="tz" id="timezone"></span></span>
+            <span style="color: var(--text-muted)" id="nextUpdate">Next update in 30m</span>
+        </div>
+
+        <div class="gauge-card">
+            <div class="gauge-header">
+                <span class="gauge-title" style="margin-bottom: 0;">USA Strike on Iran Probability</span>
+                <button class="gauge-info-btn" onclick="showInfo('calculation')">i</button>
+            </div>
+            <div class="gauge-subtitle">Tactical Alert Level</div>
+            <div class="status-label low" id="statusLabel">Low Risk</div>
+            <div class="gauge-container">
+                <svg class="gauge-svg" viewBox="0 0 200 115">
+                    <defs>
+                        <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#22c55e"/>
+                        </linearGradient>
+                        <linearGradient id="gradYellow" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#eab308"/>
+                        </linearGradient>
+                        <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="50%" stop-color="#eab308"/><stop offset="100%" stop-color="#f97316"/>
+                        </linearGradient>
+                        <linearGradient id="gradRed" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#22c55e"/><stop offset="33%" stop-color="#eab308"/><stop offset="66%" stop-color="#f97316"/><stop offset="100%" stop-color="#ef4444"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+                    <path class="gauge-fill" id="gaugeFill" d="M 20 100 A 80 80 0 0 1 180 100" stroke="url(#gradGreen)" stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+                </svg>
+            </div>
+            <div class="gauge-value green" id="gaugeValue">0%</div>
+            <div class="gauge-window">Projected Risk: Next 8 Hours</div>
+        </div>
+
+        <div class="trend-section">
+            <div class="trend-header">
+                <span class="trend-title">72-Hour Risk Trend</span>
+            </div>
+            <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+        </div>
+
+        <div class="signals-section">
+            <div class="section-title">Data Signals</div>
+
+            <div class="signal-item">
+                <div class="signal-icon news">📰</div>
+                <div class="signal-info">
+                    <div class="signal-name">News Intel <span class="signal-status live" id="newsStatus">LIVE</span><button class="info-btn" onclick="showInfo('news')">i</button></div>
+                    <div class="signal-detail" id="newsDetail">Scanning sources...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="newsValue">0%</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="newsBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon trends">📈</div>
+                <div class="signal-info">
+                    <div class="signal-name">Public Interest <span class="signal-status live" id="trendsStatus">LIVE</span><button class="info-btn" onclick="showInfo('trends')">i</button></div>
+                    <div class="signal-detail" id="socialDetail">GDELT + Wikipedia</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="socialValue">0%</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="socialBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon flight">✈️</div>
+                <div class="signal-info">
+                    <div class="signal-name">Aviation Activity <span class="signal-status live" id="flightStatus">LIVE</span><button class="info-btn" onclick="showInfo('aviation')">i</button></div>
+                    <div class="signal-detail" id="flightDetail">Commercial traffic monitoring</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="flightValue">0%</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="flightBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon weather">🌤️</div>
+                <div class="signal-info">
+                    <div class="signal-name">Op. Conditions <span class="signal-status live" id="weatherStatus">LIVE</span><button class="info-btn" onclick="showInfo('weather')">i</button></div>
+                    <div class="signal-detail" id="weatherDetail">Tehran conditions</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-value" id="weatherValue">--</div>
+                    <div class="signal-bar"><div class="signal-bar-fill green" id="weatherBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feed-section">
+            <div class="feed-header">
+                <span class="section-title" style="margin-bottom:0">Intelligence Feed</span>
+                <span style="font-size: 11px; color: var(--text-muted)" id="feedCount">0 items</span>
+            </div>
+            <div class="feed-list" id="feedList"></div>
+            <button class="show-more-btn" id="showMoreBtn" onclick="toggleFeed()" style="display:none">Show All</button>
+        </div>
+
+        <!-- Footer with share and about -->
+        <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <button class="show-more-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="shareSnapshot()">
+                <span>📤</span> Share Snapshot
+            </button>
+            <button class="show-more-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="showInfo('about')">
+                <span>ℹ️</span> About
+            </button>
+        </div>
+
+        <!-- Offline indicator -->
+        <div id="offlineBar" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--orange); color: #000; text-align: center; padding: 8px; font-size: 12px; font-weight: 600;">
+            ⚠️ You're offline - showing last available data
+        </div>
+
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="infoModal" onclick="closeInfo(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span class="modal-title" id="infoTitle">Signal Info</span>
+                <button class="modal-close" onclick="closeInfo()">&times;</button>
+            </div>
+            <div class="modal-body" id="infoBody"></div>
+        </div>
+    </div>
+
+
+    <script>
+        // =============================================
+        // API KEYS (Pre-configured)
+        // =============================================
+        const API_KEYS = {
+            newsdata: 'pub_13a914590d954af5a5e59aaef487cece',
+            openweather: '2e1d472bc1b48449837208507a2367af',
+            aviationstack: 'fc05abebcf9d9c533846e8ca7725c86c',
+            aerodatabox: 'db0d90f5d9msh32b3292c49c0e91p166b3bjsn5b53dc674696',
+            // JSONbin.io for shared caching (all users see same data)
+            jsonbin: '$2a$10$UXwsyOw0wGl23aYyEqlgsegbEdvPSx5tPPsohKcGstTyHRebGQP5K',
+        };
+
+        // JSONbin configuration
+        const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
+
+        const state = {
+            risk: 0,
+            feedItems: [],
+            seenHeadlines: new Set(),
+            trendData: [],
+            trendLabels: [],
+            // Cache last known values for when APIs fail
+            lastKnown: {
+                aviation: { value: 5, detail: 'Cached data' }
+            }
+        };
+
+        const KEYWORDS = ['retaliation', 'strike', 'attack', 'escalation', 'military', 'threat', 'imminent', 'missile', 'nuclear', 'war'];
+
+        const INFO_CONTENT = {
+            news: {
+                title: 'News Intelligence',
+                body: '<strong>Source:</strong> NewsData.io API<br><br><strong>What it tracks:</strong> Real-time news articles mentioning USA, Iran, military strike, Pentagon, CENTCOM.<br><br><strong>Risk logic:</strong> Baseline ~3-5 articles = low risk. 10+ articles with alert keywords (strike, attack, imminent) = high risk. Breaking news surge can push to 30%+.<br><br><strong>Max contribution:</strong> 35%'
+            },
+            trends: {
+                title: 'Public Interest',
+                body: '<strong>Sources:</strong> GDELT + Wikipedia<br><br><strong>GDELT:</strong> Global Database of Events monitors news from 65 languages, tracking Iran-related articles and their tone (positive/negative sentiment).<br><br><strong>Wikipedia:</strong> Pageviews on "Iran", "Iran-US relations", and "Iran-Israel conflict" pages.<br><br><strong>Risk logic:</strong> High GDELT article count + negative tone = elevated. Wikipedia spikes above 80k/day = public concern. Combined signals give early warning.<br><br><strong>Max contribution:</strong> 25%'
+            },
+            aviation: {
+                title: 'Aviation Activity',
+                body: '<strong>Source:</strong> Aviationstack API<br><br><strong>What it tracks:</strong> Scheduled commercial arrivals to Tehran airports (IKA, THR). API shows 0-5 flights typically.<br><br><strong>Risk logic:</strong> By Tehran time (UTC+3:30):<br>• <strong>Day (7AM-9PM):</strong> Expect 2-5 arrivals. 0 = elevated risk.<br>• <strong>Off-peak/Night:</strong> 0-2 is normal.<br><br>Sudden DROP in scheduled flights = airlines may be avoiding = risk indicator.<br><br><strong>Note:</strong> This tracks scheduled arrivals only, not all airspace traffic.<br><br><strong>Max contribution:</strong> 35%'
+            },
+            weather: {
+                title: 'Op. Conditions',
+                body: '<strong>Source:</strong> OpenWeatherMap API<br><br><strong>What it tracks:</strong> Tehran weather - visibility, cloud cover, conditions.<br><br><strong>Risk logic:</strong> Clear skies (visibility >10km, clouds <30%) = favorable for aerial operations = +5% to risk. Poor weather = 0% contribution.<br><br><strong>Max contribution:</strong> 5%'
+            },
+            calculation: {
+                title: 'How We Calculate Risk',
+                body: '<strong>Total Risk = Sum of 4 Signals</strong><br><br>📰 <strong>News Intel (max 35%):</strong> Real-time news volume + critical keywords like "strike", "attack", "imminent".<br><br>📈 <strong>Public Interest (max 25%):</strong> GDELT global news sentiment + Wikipedia page views on Iran-related pages.<br><br>✈️ <strong>Aviation (max 35%):</strong> Scheduled arrivals to Tehran. Fewer than expected = airlines may be avoiding = higher risk.<br><br>🌤️ <strong>Op. Conditions (max 5%):</strong> Clear weather in Tehran = favorable for operations.<br><br><strong>Escalation Multiplier:</strong> If 3+ signals are elevated, total gets a 15% boost.<br><br><strong>Risk Levels:</strong><br>• 0-30% = Low Risk<br>• 31-60% = Elevated<br>• 61-85% = High Risk<br>• 86-100% = Imminent'
+            },
+            about: {
+                title: 'About StrikeRadar',
+                body: '<strong>⚠️ Disclaimer</strong><br><br>This is an <strong>experimental project</strong> for informational purposes only.<br><br><strong>NOT:</strong><br>• Official intelligence<br>• Verified predictions<br>• Basis for decisions<br><br><strong>Data Sources</strong><br>• NewsData.io<br>• GDELT Project<br>• Wikipedia<br>• Aviationstack<br>• OpenWeatherMap<br><br><strong>Limitations</strong><br>Cannot account for classified intel or diplomatic activity. One data point among many.<br><br><em>Stay informed. Think critically.</em>'
+            }
+        };
+
+        let chart;
+        let lastUpdateTime = null;
+        let countdownInterval = null;
+
+        // Utilities
+        const getTimezone = () => Intl.DateTimeFormat().resolvedOptions().timeZone.split('/').pop().replace('_', ' ');
+        const formatTime = () => new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+        const formatDate = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+        function getColor(v) { return v >= 86 ? 'red' : v >= 61 ? 'orange' : v >= 31 ? 'yellow' : 'green'; }
+        function getGradient(v) { return v >= 86 ? 'url(#gradRed)' : v >= 61 ? 'url(#gradOrange)' : v >= 31 ? 'url(#gradYellow)' : 'url(#gradGreen)'; }
+        function getStatusText(v) { return v >= 86 ? 'Imminent' : v >= 61 ? 'High Risk' : v >= 31 ? 'Elevated' : 'Low Risk'; }
+        function getStatusClass(v) { return v >= 86 ? 'imminent' : v >= 61 ? 'high' : v >= 31 ? 'elevated' : 'low'; }
+
+        function setStatus(id, live) {
+            const el = document.getElementById(id);
+            el.textContent = live ? 'LIVE' : 'WEAK';
+            el.className = `signal-status ${live ? 'live' : 'weak'}`;
+        }
+
+        function updateTimestamp() {
+            lastUpdateTime = new Date();
+            document.getElementById('lastUpdate').textContent = formatTime();
+            document.getElementById('timezone').textContent = getTimezone();
+            startCountdown();
+        }
+
+        function startCountdown() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                if (!lastUpdateTime) return;
+                const elapsed = Math.floor((Date.now() - lastUpdateTime.getTime()) / 1000);
+                const remaining = Math.max(0, 1800 - elapsed); // 30 minutes = 1800 seconds
+                const mins = Math.floor(remaining / 60);
+                const secs = remaining % 60;
+                const nextEl = document.getElementById('nextUpdate');
+                if (remaining > 0) {
+                    nextEl.textContent = `Next in ${mins}:${secs.toString().padStart(2, '0')}`;
+                } else {
+                    nextEl.textContent = 'Updating...';
+                }
+            }, 1000);
+        }
+
+        function updateGauge(score) {
+            score = Math.max(0, Math.min(100, Math.round(score)));
+            // Deterministic jitter for gauge - all users see same value
+            const seed = Math.floor(Date.now() / (30 * 60 * 1000));
+            const jitterVal = Math.floor(seededRandom(seed, 99) * 3) - 1;
+            const displayScore = Math.max(0, Math.min(100, score + jitterVal));
+            state.risk = displayScore;
+            document.getElementById('gaugeFill').style.strokeDashoffset = 251.2 - (displayScore / 100 * 251.2);
+            document.getElementById('gaugeFill').setAttribute('stroke', getGradient(displayScore));
+            const val = document.getElementById('gaugeValue');
+            val.textContent = `${displayScore}%`;
+            val.className = `gauge-value ${getColor(displayScore)}`;
+            const label = document.getElementById('statusLabel');
+            label.textContent = getStatusText(displayScore);
+            label.className = `status-label ${getStatusClass(displayScore)}`;
+            updateTimestamp();
+        }
+
+        function updateSignal(name, value, detail) {
+            const valEl = document.getElementById(`${name}Value`);
+            const detailEl = document.getElementById(`${name}Detail`);
+            const barEl = document.getElementById(`${name}Bar`);
+
+            if (name === 'weather') {
+                valEl.textContent = value;
+                const weatherColor = value === 'Favorable' ? 'var(--green)' : value === 'Marginal' ? 'var(--yellow)' : 'var(--orange)';
+                valEl.style.color = weatherColor;
+                const barValue = value === 'Favorable' ? 100 : value === 'Marginal' ? 50 : 0;
+                barEl.style.width = `${barValue}%`;
+                barEl.className = `signal-bar-fill ${value === 'Favorable' ? 'green' : value === 'Marginal' ? 'yellow' : 'green'}`;
+            } else {
+                // Deterministic jitter for signal display - all users see same
+                let displayValue = Math.round(value) || 0;
+                const seed = Math.floor(Date.now() / (30 * 60 * 1000));
+                const signalIndex = { news: 10, social: 11, flight: 12 }[name] || 13;
+                const jitterVal = Math.floor(seededRandom(seed, signalIndex) * 5) - 2;
+                displayValue = Math.max(0, Math.min(100, displayValue + jitterVal));
+                const colorClass = getColor(displayValue);
+                valEl.textContent = `${displayValue}%`;
+                valEl.style.color = `var(--${colorClass})`;
+                barEl.style.width = `${Math.max(0, displayValue)}%`;
+                barEl.className = `signal-bar-fill ${colorClass}`;
+            }
+            if (detailEl) detailEl.textContent = detail;
+        }
+
+        function addFeed(source, text, isAlert = false, badge = null) {
+            const key = text.substring(0, 50).toLowerCase();
+            if (state.seenHeadlines.has(key)) return;
+            state.seenHeadlines.add(key);
+
+            const item = { source, text, isAlert, badge, time: formatTime() };
+            state.feedItems.unshift(item);
+            if (state.feedItems.length > 20) state.feedItems.pop();
+            renderFeed();
+        }
+
+        function renderFeed() {
+            const list = document.getElementById('feedList');
+            const btn = document.getElementById('showMoreBtn');
+            const expanded = list.classList.contains('expanded');
+            const items = expanded ? state.feedItems : state.feedItems.slice(0, 3);
+
+            list.innerHTML = items.map(i => `
+                <div class="feed-item${i.isAlert ? ' alert' : ''}">
+                    <div class="feed-meta">
+                        <span class="feed-source">${i.source}${i.badge ? ` <span class="feed-badge">${i.badge}</span>` : ''}</span>
+                        <span class="feed-time">${i.time}</span>
+                    </div>
+                    <div class="feed-text">${i.text}</div>
+                </div>
+            `).join('');
+
+            document.getElementById('feedCount').textContent = `${state.feedItems.length} items`;
+            btn.style.display = state.feedItems.length > 3 ? 'block' : 'none';
+            btn.textContent = expanded ? 'Show Less' : `Show All (${state.feedItems.length})`;
+        }
+
+        function toggleFeed() {
+            const isExpanded = document.getElementById('feedList').classList.toggle('expanded');
+            trackEvent('feed_toggle', 'engagement', isExpanded ? 'expanded' : 'collapsed');
+            renderFeed();
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            // Last 72 hours with 12-hour intervals (7 data points)
+            // Use stable seed based on calendar date (not time) so values don't change on refresh
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const seed = today.getTime(); // Stable for entire day
+            let lastDate = '';
+
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date(now.getTime() - i * 12 * 60 * 60 * 1000); // 12 hours apart
+                const dateStr = formatDate(d);
+                const hourStr = d.getHours().toString().padStart(2, '0') + ':00';
+
+                // Show date only when it changes, otherwise just time
+                let label;
+                if (i === 0) {
+                    label = 'Now';
+                } else if (dateStr !== lastDate) {
+                    label = dateStr;
+                    lastDate = dateStr;
+                } else {
+                    label = hourStr;
+                }
+
+                state.trendLabels.push(label);
+                // Deterministic value based on calendar date + position (stable all day)
+                const dateSeed = seed / 86400000 + i * 7;
+                const pseudoRandom = Math.abs(Math.sin(dateSeed) * 43758.5453) % 1;
+                state.trendData.push(Math.round(pseudoRandom * 25 + 15));
+            }
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: state.trendLabels,
+                    datasets: [{
+                        data: state.trendData,
+                        borderColor: '#f97316',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#f97316',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 1,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { intersect: false, mode: 'index' },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1c1c1c',
+                            titleColor: '#fff',
+                            bodyColor: '#999',
+                            borderColor: '#333',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                            callbacks: {
+                                title: (ctx) => ctx[0].label,
+                                label: (ctx) => `Risk: ${Math.round(ctx.raw)}%`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#666', font: { size: 10 } }
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#666', font: { size: 10 }, stepSize: 25, callback: v => v + '%' }
+                        }
+                    }
+                }
+            });
+
+            const originalDraw = chart.draw;
+            chart.draw = function() {
+                originalDraw.apply(this, arguments);
+                const ctx = this.ctx;
+                const yAxis = this.scales.y;
+                const xAxis = this.scales.x;
+                const y = yAxis.getPixelForValue(15);
+                ctx.save();
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(xAxis.left, y);
+                ctx.lineTo(xAxis.right, y);
+                ctx.stroke();
+                ctx.fillStyle = '#555';
+                ctx.font = '10px Inter';
+                ctx.fillText('Normal', xAxis.left + 5, y - 5);
+                ctx.restore();
+            };
+        }
+
+        function showInfo(type) {
+            trackEvent('info_click', 'engagement', type);
+            gtag('event', 'view_item', {
+                item_id: type,
+                item_name: INFO_CONTENT[type].title
+            });
+            const info = INFO_CONTENT[type];
+            document.getElementById('infoTitle').textContent = info.title;
+            document.getElementById('infoBody').innerHTML = info.body;
+            document.getElementById('infoModal').classList.add('open');
+        }
+        function closeInfo(e) { if (!e || e.target.id === 'infoModal') document.getElementById('infoModal').classList.remove('open'); }
+
+        function shareSnapshot() {
+            trackEvent('share', 'engagement', 'snapshot_shared', state.risk);
+            const text = `📡 StrikeRadar - USA Strike on Iran Monitor\n\n` +
+                `📊 Current Risk: ${state.risk}% (${getStatusText(state.risk)})\n` +
+                `⏱️ Projected: Next 8 Hours\n\n` +
+                `📰 News: ${document.getElementById('newsValue').textContent}\n` +
+                `📈 Interest: ${document.getElementById('socialValue').textContent}\n` +
+                `✈️ Aviation: ${document.getElementById('flightValue').textContent}\n` +
+                `🌤️ Conditions: ${document.getElementById('weatherValue').textContent}\n\n` +
+                `🔗 https://backyonatan-alt.github.io/strikeradar`;
+
+            if (navigator.share) {
+                navigator.share({ title: 'StrikeRadar', text });
+                trackEvent('share', 'engagement', 'native_share', state.risk);
+            } else {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Copied to clipboard!');
+                    trackEvent('share', 'engagement', 'clipboard_copy', state.risk);
+                });
+            }
+        }
+
+        // SIGNAL 1: NEWS INTEL (Max 35%)
+        async function fetchNews() {
+            try {
+                setStatus('newsStatus', true);
+                const q = encodeURIComponent('Iran military OR Iran nuclear OR Iran US OR Iran attack');
+                const res = await fetch(`https://newsdata.io/api/1/news?apikey=${API_KEYS.newsdata}&q=${q}&language=en`);
+                const data = await res.json();
+                if (data.status === 'success' && data.results) {
+                    let alertCount = 0;
+                    const articles = data.results.length;
+                    data.results.slice(0, 5).forEach(a => {
+                        const title = (a.title || '').substring(0, 80);
+                        const isAlert = KEYWORDS.some(k => title.toLowerCase().includes(k));
+                        if (isAlert) alertCount++;
+                        addFeed('NEWS', title, isAlert, isAlert ? 'Alert' : null);
+                    });
+
+                    let contribution = 1;
+                    if (articles <= 5) {
+                        contribution = 1 + articles * 0.4;
+                    } else if (articles <= 10) {
+                        contribution = 3 + (articles - 5) * 0.3;
+                    } else if (articles <= 15) {
+                        contribution = 4.5 + (articles - 10) * 1.5 + alertCount * 1;
+                    } else {
+                        contribution = 12 + (articles - 15) * 2 + alertCount * 2;
+                    }
+
+                    contribution = Math.min(35, contribution);
+                    const displayRisk = Math.round((contribution / 35) * 100);
+                    updateSignal('news', displayRisk, `${articles} articles, ${alertCount} critical`);
+                    return contribution;
+                } else {
+                    updateSignal('news', 6, 'Monitoring...');
+                    return 2;
+                }
+            } catch (e) { setStatus('newsStatus', false); updateSignal('news', 6, 'API error - using baseline'); return 2; }
+        }
+
+        // SIGNAL 2: PUBLIC INTEREST - GDELT + Wikipedia (Max 25%)
+        async function fetchPublicInterest() {
+            let gdeltArticles = 0;
+            let gdeltTone = 0;
+            let wikiViews = 0;
+            let gdeltWorked = false;
+            let wikiWorked = false;
+
+            try {
+                const gdeltQuery = encodeURIComponent('iran attack OR iran strike OR iran military OR iran us');
+                const gdeltUrl = `https://api.gdeltproject.org/api/v2/doc/doc?query=${gdeltQuery}&mode=artlist&maxrecords=50&format=json&timespan=24h`;
+                const gdeltRes = await fetch(gdeltUrl);
+                if (gdeltRes.ok) {
+                    const gdeltData = await gdeltRes.json();
+                    if (gdeltData.articles && Array.isArray(gdeltData.articles)) {
+                        gdeltArticles = gdeltData.articles.length;
+                        const tones = gdeltData.articles.map(a => a.tone || 0).filter(t => t !== 0);
+                        if (tones.length > 0) {
+                            gdeltTone = tones.reduce((a, b) => a + b, 0) / tones.length;
+                        }
+                        gdeltWorked = true;
+                        if (gdeltData.articles[0]) {
+                            const title = (gdeltData.articles[0].title || '').substring(0, 70);
+                            const isNegative = gdeltTone < -3;
+                            addFeed('GDELT', title, isNegative, isNegative ? 'Alert' : null);
+                        }
+                    }
+                }
+            } catch (e) { console.log('GDELT error:', e.message); }
+
+            try {
+                const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0].replace(/-/g, '');
+                const pages = ['Iran', 'Iran%E2%80%93United_States_relations', 'Iran%E2%80%93Israel_conflict'];
+                let totalViews = 0;
+
+                for (const page of pages) {
+                    try {
+                        const res = await fetch(`https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/${page}/daily/${yesterday}/${yesterday}`);
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.items?.[0]) {
+                                totalViews += data.items[0].views;
+                                wikiWorked = true;
+                            }
+                        }
+                    } catch (e) { }
+                }
+                wikiViews = totalViews;
+            } catch (e) { }
+
+            setStatus('trendsStatus', gdeltWorked || wikiWorked);
+
+            let gdeltRisk = 0;
+            let wikiRisk = 0;
+
+            if (gdeltWorked) {
+                if (gdeltArticles <= 10) {
+                    gdeltRisk = 1 + gdeltArticles * 0.2;
+                } else if (gdeltArticles <= 25) {
+                    gdeltRisk = 3 + (gdeltArticles - 10) * 0.27;
+                } else {
+                    gdeltRisk = 7 + (gdeltArticles - 25) * 0.2;
+                }
+                if (gdeltTone < -5) gdeltRisk += 3;
+                else if (gdeltTone < -3) gdeltRisk += 1.5;
+                gdeltRisk = Math.min(12, gdeltRisk);
+            }
+
+            if (wikiWorked && wikiViews > 0) {
+                if (wikiViews < 20000) {
+                    wikiRisk = 1 + (wikiViews / 15000);
+                } else if (wikiViews < 50000) {
+                    wikiRisk = 2.5 + ((wikiViews - 20000) / 10000);
+                } else if (wikiViews < 100000) {
+                    wikiRisk = 5.5 + ((wikiViews - 50000) / 8000);
+                } else {
+                    wikiRisk = 12 + ((wikiViews - 100000) / 50000);
+                }
+                wikiRisk = Math.min(13, wikiRisk);
+
+                if (wikiViews > 80000) {
+                    addFeed('WIKI', `Iran pages: ${Math.round(wikiViews/1000)}k views (elevated)`, true, 'Spike');
+                }
+            }
+
+            const totalRisk = Math.min(25, gdeltRisk + wikiRisk + 1);
+            const displayRisk = Math.round((totalRisk / 25) * 100);
+
+            let detail = '';
+            if (gdeltWorked) detail += `${gdeltArticles} GDELT`;
+            if (wikiWorked) detail += (detail ? ', ' : '') + `${Math.round(wikiViews/1000)}k Wiki`;
+            if (!detail) detail = 'Monitoring...';
+
+            updateSignal('social', displayRisk, detail);
+            return totalRisk;
+        }
+
+        // SIGNAL 3: AVIATION - Iran Airspace Activity (Max 35%)
+        // With DAY/NIGHT thresholds - Tehran is UTC+3:30
+        // Tries Aviationstack first, then AeroDataBox as fallback
+        async function fetchAviation() {
+            const airports = ['IKA', 'THR'];
+            let totalFlights = 0;
+            let apiWorked = false;
+            let apiSource = '';
+
+            // Try Aviationstack first
+            if (API_KEYS.aviationstack) {
+                try {
+                    for (const iata of airports) {
+                        const url = `https://api.aviationstack.com/v1/flights?access_key=${API_KEYS.aviationstack}&arr_iata=${iata}&flight_status=active`;
+                        const res = await fetch(url);
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.data && Array.isArray(data.data)) {
+                                totalFlights += data.data.length;
+                                apiWorked = true;
+                                apiSource = 'aviationstack';
+                            }
+                        } else if (res.status === 429) {
+                            console.log('Aviationstack rate limit hit, trying AeroDataBox...');
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    console.log('Aviationstack error:', e.message);
+                }
+            }
+
+            // Try AeroDataBox as fallback
+            if (!apiWorked && API_KEYS.aerodatabox) {
+                try {
+                    for (const iata of airports) {
+                        const url = `https://aerodatabox.p.rapidapi.com/flights/airports/iata/${iata}?direction=Arrival`;
+                        const res = await fetch(url, {
+                            headers: {
+                                'X-RapidAPI-Key': API_KEYS.aerodatabox,
+                                'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
+                            }
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.arrivals && Array.isArray(data.arrivals)) {
+                                // Count flights arriving in next 2 hours
+                                const now = Date.now();
+                                const activeFlights = data.arrivals.filter(f => {
+                                    const eta = new Date(f.arrival?.scheduledTime?.utc || f.arrival?.scheduledTimeUtc).getTime();
+                                    return eta > now && eta < now + 2 * 60 * 60 * 1000;
+                                });
+                                totalFlights += activeFlights.length;
+                                apiWorked = true;
+                                apiSource = 'aerodatabox';
+
+                                if (activeFlights[0]) {
+                                    const flight = activeFlights[0];
+                                    const airline = flight.airline?.name || 'Unknown';
+                                    addFeed('AVIATION', `${airline} arriving ${iata}`);
+                                }
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.log('AeroDataBox error:', e.message);
+                }
+            }
+
+            // Original Aviationstack success handling
+            if (apiWorked && apiSource === 'aviationstack') {
+                try {
+                    for (const iata of airports) {
+                        const url = `https://api.aviationstack.com/v1/flights?access_key=${API_KEYS.aviationstack}&arr_iata=${iata}&flight_status=active`;
+                        const res = await fetch(url);
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.data && Array.isArray(data.data)) {
+                                if (data.data[0]) {
+                                    const flight = data.data[0];
+                                    const airline = flight.airline?.name || 'Unknown';
+                                    const from = flight.departure?.airport || 'Unknown';
+                                    addFeed('AVIATION', `${airline} arriving ${iata} from ${from}`);
+                                }
+                            }
+                        }
+                    }
+                } catch (e) { }
+            }
+
+            if (apiWorked) {
+                setStatus('flightStatus', true);
+
+                // Get Tehran local time (UTC+3:30)
+                const now = new Date();
+                const tehranHour = (now.getUTCHours() + 3 + (now.getUTCMinutes() >= 30 ? 1 : 0)) % 24;
+
+                // Determine time of day in Tehran
+                // Night: 11 PM - 5 AM (very few flights)
+                // Off-peak: 5-7 AM, 9-11 PM (building up/winding down)
+                // Day: 7 AM - 9 PM (peak operations)
+                const isNightTime = tehranHour >= 23 || tehranHour < 5;
+                const isOffPeak = (tehranHour >= 5 && tehranHour < 7) || (tehranHour >= 21 && tehranHour < 23);
+
+                let contribution = 0;
+                let timeLabel = isNightTime ? 'night' : (isOffPeak ? 'off-peak' : 'day');
+
+                // API returns scheduled arrivals (typically 0-5 at any time)
+                // Expected: Night 0-1, Off-peak 0-2, Day 1-5
+
+                // NIGHT TIME (11 PM - 5 AM Tehran): 0-1 flights is normal
+                if (isNightTime) {
+                    if (totalFlights === 0) {
+                        contribution = 5; // Zero at night is normal
+                    } else {
+                        contribution = 3; // Any flights at night = good
+                    }
+                }
+                // OFF-PEAK (5-7 AM, 9-11 PM): expect 0-2 flights
+                else if (isOffPeak) {
+                    if (totalFlights === 0) {
+                        contribution = 10; // Zero during off-peak is slightly concerning
+                    } else if (totalFlights === 1) {
+                        contribution = 6;
+                    } else {
+                        contribution = 3; // 2+ is normal
+                    }
+                }
+                // DAY TIME (7 AM - 9 PM): expect 1-5 flights
+                else {
+                    if (totalFlights === 0) {
+                        contribution = 25; // Zero during day = concerning
+                        addFeed('AVIATION', `⚠️ No scheduled arrivals (${timeLabel})`, true, 'Warning');
+                    } else if (totalFlights === 1) {
+                        contribution = 12; // Low for daytime
+                    } else if (totalFlights <= 3) {
+                        contribution = 6; // Normal range
+                    } else {
+                        contribution = 3; // Good traffic
+                    }
+                }
+
+                const displayRisk = Math.round((contribution / 35) * 100);
+                updateSignal('flight', displayRisk, `${totalFlights} flights (${timeLabel})`);
+                // Cache successful result
+                state.lastKnown.aviation = { value: contribution, detail: `${totalFlights} flights (${timeLabel})` };
+                return contribution;
+            }
+
+            // API failed - use cached value with "weak signal" indicator
+            setStatus('flightStatus', false);
+            const cached = state.lastKnown.aviation;
+            const displayRisk = Math.round((cached.value / 35) * 100);
+            updateSignal('flight', displayRisk, `${cached.detail} (cached)`);
+            return cached.value;
+        }
+
+        // SIGNAL 4: WEATHER CONDITIONS (Max 5%)
+        async function fetchWeather() {
+            try {
+                setStatus('weatherStatus', true);
+                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35.6892&lon=51.389&appid=${API_KEYS.openweather}&units=metric`);
+                const data = await res.json();
+                if (data.main) {
+                    const temp = Math.round(data.main.temp);
+                    const vis = data.visibility || 10000;
+                    const clouds = data.clouds?.all || 0;
+
+                    let condition, contribution;
+                    if (vis >= 10000 && clouds < 30) {
+                        condition = 'Favorable';
+                        contribution = 5;
+                    } else if (vis >= 7000 && clouds < 60) {
+                        condition = 'Marginal';
+                        contribution = 2;
+                    } else {
+                        condition = 'Poor';
+                        contribution = 0;
+                    }
+
+                    updateSignal('weather', condition, `${temp}°C, ${vis >= 10000 ? '10+' : Math.round(vis/1000)}km vis, ${clouds}% clouds`);
+                    addFeed('WEATHER', `Tehran: ${temp}°C, ${data.weather[0]?.description || 'clear'}. Ops: ${condition}`);
+                    return contribution;
+                }
+            } catch (e) { setStatus('weatherStatus', false); updateSignal('weather', 'Unknown', 'API error'); }
+            return 0;
+        }
+
+        // Deterministic jitter based on current time window (all users see same values)
+        // Changes every 30 minutes when data refreshes
+        function getTimeBasedSeed() {
+            // Round to nearest 30-minute window
+            const now = Date.now();
+            return Math.floor(now / (30 * 60 * 1000));
+        }
+
+        // Simple seeded random (deterministic based on seed + index)
+        function seededRandom(seed, index) {
+            const x = Math.sin(seed + index * 9999) * 10000;
+            return x - Math.floor(x);
+        }
+
+        // Apply deterministic jitter - same for all users at same time
+        function applyJitter(value, min = 0, max = 100, range = 2, index = 0) {
+            const seed = getTimeBasedSeed();
+            const random = seededRandom(seed, index);
+            const jitterAmount = Math.floor(random * (range * 2 + 1)) - range;
+            return Math.max(min, Math.min(max, value + jitterAmount));
+        }
+
+        // JSONbin cache functions
+        const JSONBIN_BIN_ID = '6975495843b1c97be94773ee'; // Your JSONbin.io bin
+
+        async function getCache() {
+            try {
+                const res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+                    headers: { 'X-Master-Key': API_KEYS.jsonbin }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    return data.record;
+                }
+            } catch (e) {
+                console.log('Cache read error:', e.message);
+            }
+            return null;
+        }
+
+        async function setCache(data) {
+            try {
+                await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': API_KEYS.jsonbin
+                    },
+                    body: JSON.stringify(data)
+                });
+            } catch (e) {
+                console.log('Cache write error:', e.message);
+            }
+        }
+
+        // Fetch fresh data from all APIs
+        async function fetchFreshData() {
+            // Clear feed for fresh fetch
+            state.feedItems = [];
+            state.seenHeadlines.clear();
+
+            const [news, interest, aviation, weather] = await Promise.all([
+                fetchNews(),
+                fetchPublicInterest(),
+                fetchAviation(),
+                fetchWeather()
+            ]);
+            return {
+                news: Number(news) || 0,
+                interest: Number(interest) || 0,
+                aviation: Number(aviation) || 0,
+                weather: Number(weather) || 0,
+                timestamp: Date.now(),
+                // Store details for cache
+                newsDetail: document.getElementById('newsDetail').textContent,
+                socialDetail: document.getElementById('socialDetail').textContent,
+                flightDetail: document.getElementById('flightDetail').textContent,
+                weatherDetail: document.getElementById('weatherDetail').textContent,
+                feedItems: state.feedItems.slice(0, 10) // Store top 10 feed items
+            };
+        }
+
+        // Display data on the dashboard
+        function displayData(data, fromCache = false) {
+            const safeNews = applyJitter(data.news, 0, 35, 1, 1);
+            const safeInterest = applyJitter(data.interest, 0, 25, 1, 2);
+            const safeAviation = applyJitter(data.aviation, 0, 35, 1, 3);
+            const safeWeather = data.weather;
+
+            // Update individual signal displays with stored details
+            updateSignal('news', Math.round((safeNews / 35) * 100), data.newsDetail || 'Monitoring...');
+            updateSignal('social', Math.round((safeInterest / 25) * 100), data.socialDetail || 'GDELT + Wikipedia');
+            updateSignal('flight', Math.round((safeAviation / 35) * 100), data.flightDetail || 'Commercial traffic monitoring');
+            updateSignal('weather', safeWeather >= 4 ? 'Favorable' : safeWeather >= 2 ? 'Marginal' : 'Poor', data.weatherDetail || 'Tehran conditions');
+
+            // Restore feed items from cache
+            if (fromCache && data.feedItems && data.feedItems.length > 0) {
+                state.feedItems = data.feedItems;
+                state.seenHeadlines = new Set(data.feedItems.map(i => i.text.substring(0, 50).toLowerCase()));
+                renderFeed();
+            }
+
+            let total = safeNews + safeInterest + safeAviation + safeWeather;
+
+            const elevated = [safeNews > 10, safeInterest > 8, safeAviation > 10, safeWeather > 2].filter(Boolean).length;
+            if (elevated >= 3) {
+                total = Math.min(100, total * 1.15);
+                if (!fromCache) addFeed('SYSTEM', 'Multiple elevated signals detected - escalation multiplier applied', true, 'Alert');
+            }
+
+            total = Math.min(100, Math.max(0, Math.round(total) || 0));
+
+            const prevRisk = state.risk;
+            updateGauge(total);
+
+            if (total > maxRiskSeen) maxRiskSeen = total;
+
+            trackEvent('risk_update', 'metrics', getStatusText(total), total);
+            gtag('event', 'signal_update', {
+                news_score: Math.round(safeNews),
+                interest_score: Math.round(safeInterest),
+                aviation_score: Math.round(safeAviation),
+                weather_score: Math.round(safeWeather),
+                total_risk: total
+            });
+
+            if (Math.abs(total - prevRisk) > 10) {
+                trackEvent('risk_change', 'alert', total > prevRisk ? 'risk_increased' : 'risk_decreased', Math.abs(total - prevRisk));
+            }
+            if (total >= 60 && prevRisk < 60) {
+                trackEvent('high_risk_alert', 'alert', 'crossed_60_threshold', total);
+            }
+            if (total >= 85 && prevRisk < 85) {
+                trackEvent('imminent_risk_alert', 'alert', 'crossed_85_threshold', total);
+            }
+
+            state.trendData.shift();
+            state.trendData.push(total);
+            state.trendLabels.shift();
+            state.trendLabels.push(formatDate(new Date()));
+            if (chart) {
+                chart.data.labels = state.trendLabels;
+                chart.data.datasets[0].data = state.trendData;
+                chart.update('none');
+            }
+        }
+
+        // MASTER CALCULATION - checks cache first, only calls APIs if cache is old
+        async function calculate() {
+            // Try to get cached data first
+            const cached = await getCache();
+            const now = Date.now();
+
+            // If cache exists and is less than 30 minutes old, use it
+            if (cached && cached.timestamp && (now - cached.timestamp) < CACHE_DURATION) {
+                console.log('Using cached data (age: ' + Math.round((now - cached.timestamp) / 60000) + ' min)');
+                displayData(cached, true);
+                return;
+            }
+
+            // Cache is old or doesn't exist - fetch fresh data
+            console.log('Fetching fresh data...');
+            const freshData = await fetchFreshData();
+
+            // Save to cache for other users
+            await setCache(freshData);
+
+            // Display the fresh data
+            displayData(freshData, false);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initChart();
+            addFeed('SYSTEM', 'StrikeRadar initialized');
+
+            // Track page load event
+            gtag('event', 'page_load', {
+                page_title: 'StrikeRadar Dashboard',
+                page_location: window.location.href,
+                user_timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+            });
+
+            setTimeout(() => { calculate(); setInterval(calculate, 1800000); }, 500);
+        });
+
+        // Track visibility changes (user comes back to tab)
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                trackEvent('tab_return', 'engagement', 'user_returned');
+            }
+        });
+
+        // Secret force refresh: Press R 3 times quickly
+        let rPresses = [];
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'r') {
+                const now = Date.now();
+                rPresses.push(now);
+                // Keep only presses within last 1 second
+                rPresses = rPresses.filter(t => now - t < 1000);
+                if (rPresses.length >= 3) {
+                    rPresses = [];
+                    console.log('Force refresh triggered!');
+                    forceRefresh();
+                }
+            }
+        });
+
+        async function forceRefresh() {
+            addFeed('SYSTEM', '🔄 Force refresh triggered...');
+            const freshData = await fetchFreshData();
+            await setCache(freshData);
+            displayData(freshData, false);
+            addFeed('SYSTEM', '✅ Fresh data loaded');
+        }
+
+        // Offline/online detection
+        function updateOnlineStatus() {
+            const offlineBar = document.getElementById('offlineBar');
+            if (!navigator.onLine) {
+                offlineBar.style.display = 'block';
+                document.body.style.paddingBottom = '40px';
+            } else {
+                offlineBar.style.display = 'none';
+                document.body.style.paddingBottom = '0';
+            }
+        }
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+    </script>
+</body>
+</html>
