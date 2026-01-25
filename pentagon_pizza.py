@@ -71,11 +71,11 @@ def get_live_busyness_scrape(place_name, address):
         elif "As busy as it gets" in response.text:
             return {"status": "peak", "score": 100}
         else:
-            return {"status": "normal", "score": 50}
+            return {"status": "normal", "score": 30}
 
     except Exception as e:
         print(f"Error scraping: {e}")
-        return {"status": "unknown", "score": 50}
+        return {"status": "unknown", "score": 30}
 
 def calculate_pentagon_activity_score(busyness_data):
     """
