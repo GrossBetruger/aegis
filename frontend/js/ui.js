@@ -2,16 +2,13 @@
 // UI UPDATE FUNCTIONS
 // =============================================
 
-function updateTimestamp(timestamp = null) {
+function updateTimestamp(timestamp) {
+    console.log('Updating timestamp:', timestamp);
     const el = document.getElementById('lastUpdate');
     const tz = document.getElementById('timezone');
     
-    if (timestamp) {
-        const age = Math.floor((Date.now() - timestamp) / 60000);
-        el.textContent = age < 1 ? 'Just now' : `${age} min ago`;
-    } else {
-        el.textContent = formatTime();
-    }
+    const age = Math.floor((Date.now() - timestamp) / 60000);
+    el.textContent = age < 1 ? 'Just now' : `${age} min ago`;
     
     tz.textContent = getTimezone();
 }
@@ -22,9 +19,14 @@ function startCountdown() {
         if (!nextUpdate) return;
         
         const now = new Date();
-        const nextHour = new Date(now);
-        nextHour.setHours(now.getHours() + 1, 0, 0, 0);
-        const diff = nextHour - now;
+        const nextHalfHour = new Date(now);
+        // Calculate next :00 or :30
+        if (now.getMinutes() < 30) {
+            nextHalfHour.setMinutes(30, 0, 0);
+        } else {
+            nextHalfHour.setHours(now.getHours() + 1, 0, 0, 0);
+        }
+        const diff = nextHalfHour - now;
         const mins = Math.floor(diff / 60000);
         const secs = Math.floor((diff % 60000) / 1000);
         nextUpdate.textContent = `Next update in ${mins}:${secs.toString().padStart(2, '0')}`;

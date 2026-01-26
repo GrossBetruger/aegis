@@ -79,7 +79,7 @@ function displayData(data) {
     }
 
     updateGauge(total);
-    updateTimestamp(data.last_updated);
+    updateTimestamp(new Date(data.last_updated)).getTime();
 
     return total;
 }
