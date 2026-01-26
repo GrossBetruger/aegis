@@ -25,5 +25,14 @@ jobs:
       - name: Run Pentagon Pizza Meter
         env:
           JSONBIN_API_KEY: ${{ secrets.JSONBIN_API_KEY }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
         run: |
           python pentagon_pizza.py
+
+      - name: Commit and push data.json
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add frontend/data.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update data.json - $(date -u +"%Y-%m-%d %H:%M UTC")"
+          git push

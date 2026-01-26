@@ -2,12 +2,6 @@
 // API KEYS (Pre-configured)
 // =============================================
 const API_KEYS = {
-    newsdata: 'pub_13a914590d954af5a5e59aaef487cece',
-    openweather: '2e1d472bc1b48449837208507a2367af',
-    aviationstack: 'd2d07ed1b949906c12da683a816baa1b',
-    aerodatabox: '3c52c3801dmshb70129bb162afaep1c0e03jsn4315c008bb36',
-    // npoint.io for shared caching (all users see same data) - free, no rate limits
-    npoint: '3ce6e5b71ace9e172061',
     // Telegram bot for alerts
     telegram: '8407070441:AAEk7XWXyL5rMOVmGIkp_461bUJSw_6QaSc',
 };
@@ -86,31 +80,33 @@ function generateSparkline(data, color = '#22c55e') {
 }
 
 // Update sparkline for a signal
-function updateSparkline(name, value, color) {
+function updateSparkline(name, value, color, addToHistory = false) {
     const container = document.getElementById(`${name}Sparkline`);
     if (!container) return;
 
     // Get history or generate mimicked data
     let history = state.signalHistory[name] || [];
+    
+    console.log(`updateSparkline(${name}, ${value}, addToHistory=${addToHistory}), existing history: ${history.length} points`);
 
-    // Add current value if different from last
-    if (history.length === 0 || history[history.length - 1] !== value) {
+    // Only add current value if explicitly requested (for fresh data updates)
+    if (addToHistory && (history.length === 0 || history[history.length - 1] !== value)) {
         history.push(value);
+        console.log(`  -> Added ${value} to ${name} history (now ${history.length} points)`);
+        // Keep only last 20 points
+        if (history.length > 20) {
+            history = history.slice(-20);
+        }
+        state.signalHistory[name] = history;
     }
 
-    // Keep only last 20 points
-    if (history.length > 20) {
-        history = history.slice(-20);
-    }
-
-    state.signalHistory[name] = history;
-
-    // If we don't have enough data yet, generate mimicked historical data
-    if (history.length < 5) {
-        const mimickedData = generateMimickedHistory(value, 20, name);
-        container.innerHTML = generateSparkline(mimickedData, color);
-    } else {
+    // Only render real data from data.json - no fake/mimicked data
+    if (history.length >= 2) {
+        console.log(`  -> Rendering ${history.length} real points for ${name}`);
         container.innerHTML = generateSparkline(history, color);
+    } else {
+        console.log(`  -> Not enough data for ${name} sparkline (${history.length} points)`);
+        container.innerHTML = ''; // Show nothing until we have at least 2 points
     }
 }
 
@@ -260,7 +256,7 @@ function updateGauge(score) {
     label.className = `status-label ${getStatusClass(displayScore)}`;
 }
 
-function updateSignal(name, value, detail) {
+function updateSignal(name, value, detail, addToHistory = false) {
     const valEl = document.getElementById(`${name}Value`);
     const detailEl = document.getElementById(`${name}Detail`);
 
@@ -274,7 +270,7 @@ function updateSignal(name, value, detail) {
         // Update sparkline for weather - Clear (good attack conditions) = high, Poor = low
         const weatherNum = value === 'Favorable' ? 100 : value === 'Marginal' ? 50 : 20;
         const sparkColor = value === 'Favorable' ? '#f97316' : value === 'Marginal' ? '#eab308' : '#22c55e';
-        updateSparkline(name, weatherNum, sparkColor);
+        updateSparkline(name, weatherNum, sparkColor, addToHistory);
     } else {
         // Deterministic jitter for signal display - all users see same
         let displayValue = Math.round(value) || 0;
@@ -287,7 +283,7 @@ function updateSignal(name, value, detail) {
         valEl.style.color = `var(--${colorClass})`;
         // Update sparkline with color based on value
         const sparkColor = getSparklineColor(displayValue);
-        updateSparkline(name, displayValue, sparkColor);
+        updateSparkline(name, displayValue, sparkColor, addToHistory);
     }
     if (detailEl) detailEl.textContent = detail;
 }
@@ -482,42 +478,35 @@ async function fetchNews() {
     try {
         setStatus('newsStatus', true);
 
-        // First, try to get cached news from npoint.io (set by GitHub Action)
+        // All data comes from local data.json (updated by Python job)
+        const cacheRes = await fetch('./data.json');
+        if (!cacheRes.ok) {
+            throw new Error('Data file unavailable');
+        }
+        
+        const cache = await cacheRes.json();
         let articles = 0;
         let alertCount = 0;
-        let newsArticles = [];
+        
+        if (cache.news_intel && cache.news_intel.articles) {
+            const newsArticles = cache.news_intel.articles;
+            articles = cache.news_intel.total_count || newsArticles.length;
+            alertCount = cache.news_intel.alert_count || 0;
 
-        try {
-            const cacheRes = await fetch(`https://api.npoint.io/${API_KEYS.npoint}`);
-            if (cacheRes.ok) {
-                const cache = await cacheRes.json();
-                if (cache.news_intel && cache.news_intel.articles) {
-                    newsArticles = cache.news_intel.articles;
-                    articles = cache.news_intel.total_count || newsArticles.length;
-                    alertCount = cache.news_intel.alert_count || 0;
+            // Add articles to feed
+            newsArticles.slice(0, 8).forEach(a => {
+                const title = (a.title || '').substring(0, 80);
+                addFeed('NEWS', title, a.is_alert, a.is_alert ? 'Alert' : null);
+            });
 
-                    // Add articles to feed
-                    newsArticles.slice(0, 8).forEach(a => {
-                        const title = (a.title || '').substring(0, 80);
-                        addFeed('NEWS', title, a.is_alert, a.is_alert ? 'Alert' : null);
-                    });
-
-                    console.log(`News Intel from cache: ${articles} articles, ${alertCount} alerts`);
-                }
-            }
-        } catch (e) {
-            console.log('Cache read failed, using fallback');
-        }
-
-        // If no cached data, use fallback baseline
-        if (articles === 0) {
+            console.log(`News Intel from cache: ${articles} articles, ${alertCount} alerts`);
+        } else {
             console.log('No cached news data, using baseline');
-            updateSignal('news', 10, 'Awaiting data...');
+            updateSignal('news', 10, 'Awaiting data...', false);
             return 3; // baseline contribution
         }
 
         // Calculate contribution based on article count and alerts
-        // With 2 RSS feeds (BBC + Al Jazeera), typical Iran articles = 0-10
         let contribution = 2; // baseline
         if (articles === 0) {
             contribution = 2;
@@ -539,158 +528,127 @@ async function fetchNews() {
     } catch (e) {
         console.log('News fetch error:', e.message);
         setStatus('newsStatus', false);
-        updateSignal('news', 6, 'Feed error - using baseline');
+        updateSignal('news', 6, 'Feed error - using baseline', false);
         return 2;
     }
 }
 
 // SIGNAL 2: PUBLIC INTEREST - GDELT + Wikipedia (Max 25%)
+// NOW READS FROM CACHED DATA (Python job fetches these)
 async function fetchPublicInterest() {
-    let gdeltArticles = 0;
-    let gdeltTone = 0;
-    let wikiViews = 0;
-    let gdeltWorked = false;
-    let wikiWorked = false;
-
     try {
-        const gdeltQuery = encodeURIComponent('iran attack OR iran strike OR iran military OR iran us');
-        const gdeltUrl = `https://api.gdeltproject.org/api/v2/doc/doc?query=${gdeltQuery}&mode=artlist&maxrecords=50&format=json&timespan=24h`;
-        const gdeltRes = await fetch(gdeltUrl);
-        if (gdeltRes.ok) {
-            const text = await gdeltRes.text();
-            // GDELT sometimes returns error messages instead of JSON
-            if (text.startsWith('{') || text.startsWith('[')) {
-                const gdeltData = JSON.parse(text);
-                if (gdeltData.articles && Array.isArray(gdeltData.articles)) {
-                    gdeltArticles = gdeltData.articles.length;
-                    const tones = gdeltData.articles.map(a => a.tone || 0).filter(t => t !== 0);
-                    if (tones.length > 0) {
-                        gdeltTone = tones.reduce((a, b) => a + b, 0) / tones.length;
-                    }
-                    gdeltWorked = true;
-                    if (gdeltData.articles[0]) {
-                        const title = (gdeltData.articles[0].title || '').substring(0, 70);
-                        const isNegative = gdeltTone < -3;
-                        addFeed('GDELT', title, isNegative, isNegative ? 'Alert' : null);
-                    }
-                }
+        setStatus('trendsStatus', true);
+        
+        // Read from local data.json
+        const cacheRes = await fetch('./data.json');
+        if (!cacheRes.ok) {
+            throw new Error('Data file unavailable');
+        }
+        
+        const cache = await cacheRes.json();
+        let gdeltArticles = 0;
+        let gdeltTone = 0;
+        let wikiViews = 0;
+        let gdeltWorked = false;
+        let wikiWorked = false;
+        
+        // Use GDELT data from cache
+        if (cache.gdelt && cache.gdelt.article_count !== undefined) {
+            gdeltArticles = cache.gdelt.article_count;
+            gdeltTone = cache.gdelt.avg_tone || 0;
+            gdeltWorked = true;
+            
+            if (cache.gdelt.top_article) {
+                const isNegative = gdeltTone < -3;
+                addFeed('GDELT', cache.gdelt.top_article, isNegative, isNegative ? 'Alert' : null);
+            }
+            console.log(`GDELT from cache: ${gdeltArticles} articles, tone: ${gdeltTone.toFixed(2)}`);
+        }
+        
+        // Use Wikipedia data from cache
+        if (cache.wikipedia && cache.wikipedia.total_views !== undefined) {
+            wikiViews = cache.wikipedia.total_views;
+            wikiWorked = true;
+            console.log(`Wikipedia from cache: ${wikiViews} views`);
+            
+            if (wikiViews > 80000) {
+                addFeed('WIKI', `Iran pages: ${Math.round(wikiViews/1000)}k views (elevated)`, true, 'Spike');
             }
         }
-    } catch (e) { /* GDELT unavailable - will use Wikipedia only */ }
 
-    try {
-        const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0].replace(/-/g, '');
-        const pages = ['Iran', 'Iran%E2%80%93United_States_relations', 'Iran%E2%80%93Israel_conflict'];
-        let totalViews = 0;
+        setStatus('trendsStatus', gdeltWorked || wikiWorked);
 
-        for (const page of pages) {
-            try {
-                const res = await fetch(`https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/${page}/daily/${yesterday}/${yesterday}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.items?.[0]) {
-                        totalViews += data.items[0].views;
-                        wikiWorked = true;
-                    }
-                }
-            } catch (e) { }
+        let gdeltRisk = 0;
+        let wikiRisk = 0;
+
+        if (gdeltWorked) {
+            if (gdeltArticles <= 10) {
+                gdeltRisk = 1 + gdeltArticles * 0.2;
+            } else if (gdeltArticles <= 25) {
+                gdeltRisk = 3 + (gdeltArticles - 10) * 0.27;
+            } else {
+                gdeltRisk = 7 + (gdeltArticles - 25) * 0.2;
+            }
+            if (gdeltTone < -5) gdeltRisk += 3;
+            else if (gdeltTone < -3) gdeltRisk += 1.5;
+            gdeltRisk = Math.min(12, gdeltRisk);
         }
-        wikiViews = totalViews;
-    } catch (e) { }
 
-    setStatus('trendsStatus', gdeltWorked || wikiWorked);
-
-    let gdeltRisk = 0;
-    let wikiRisk = 0;
-
-    if (gdeltWorked) {
-        if (gdeltArticles <= 10) {
-            gdeltRisk = 1 + gdeltArticles * 0.2;
-        } else if (gdeltArticles <= 25) {
-            gdeltRisk = 3 + (gdeltArticles - 10) * 0.27;
-        } else {
-            gdeltRisk = 7 + (gdeltArticles - 25) * 0.2;
+        if (wikiWorked && wikiViews > 0) {
+            if (wikiViews < 20000) {
+                wikiRisk = 1 + (wikiViews / 15000);
+            } else if (wikiViews < 50000) {
+                wikiRisk = 2.5 + ((wikiViews - 20000) / 10000);
+            } else if (wikiViews < 100000) {
+                wikiRisk = 5.5 + ((wikiViews - 50000) / 8000);
+            } else {
+                wikiRisk = 12 + ((wikiViews - 100000) / 50000);
+            }
+            wikiRisk = Math.min(13, wikiRisk);
         }
-        if (gdeltTone < -5) gdeltRisk += 3;
-        else if (gdeltTone < -3) gdeltRisk += 1.5;
-        gdeltRisk = Math.min(12, gdeltRisk);
+
+        const totalRisk = Math.min(25, gdeltRisk + wikiRisk + 1);
+        const displayRisk = Math.round((totalRisk / 25) * 100);
+
+        let detail = '';
+        if (gdeltWorked) detail += `${gdeltArticles} GDELT`;
+        if (wikiWorked) detail += (detail ? ', ' : '') + `${Math.round(wikiViews/1000)}k Wiki`;
+        if (!detail) detail = 'Monitoring...';
+
+        updateSignal('social', displayRisk, detail);
+        return totalRisk;
+        
+    } catch (e) {
+        console.log('Public interest error:', e.message);
+        setStatus('trendsStatus', false);
+        updateSignal('social', 8, 'Data unavailable');
+        return 2;
     }
-
-    if (wikiWorked && wikiViews > 0) {
-        if (wikiViews < 20000) {
-            wikiRisk = 1 + (wikiViews / 15000);
-        } else if (wikiViews < 50000) {
-            wikiRisk = 2.5 + ((wikiViews - 20000) / 10000);
-        } else if (wikiViews < 100000) {
-            wikiRisk = 5.5 + ((wikiViews - 50000) / 8000);
-        } else {
-            wikiRisk = 12 + ((wikiViews - 100000) / 50000);
-        }
-        wikiRisk = Math.min(13, wikiRisk);
-
-        if (wikiViews > 80000) {
-            addFeed('WIKI', `Iran pages: ${Math.round(wikiViews/1000)}k views (elevated)`, true, 'Spike');
-        }
-    }
-
-    const totalRisk = Math.min(25, gdeltRisk + wikiRisk + 1);
-    const displayRisk = Math.round((totalRisk / 25) * 100);
-
-    let detail = '';
-    if (gdeltWorked) detail += `${gdeltArticles} GDELT`;
-    if (wikiWorked) detail += (detail ? ', ' : '') + `${Math.round(wikiViews/1000)}k Wiki`;
-    if (!detail) detail = 'Monitoring...';
-
-    updateSignal('social', displayRisk, detail);
-    return totalRisk;
 }
 
 // SIGNAL 3: AVIATION - Iran Airspace Activity (Max 35%)
-// Uses OpenSky Network API - counts aircraft in Iran airspace in real-time
+// NOW READS FROM CACHED DATA (Python job fetches from OpenSky)
 async function fetchAviation() {
     try {
         setStatus('flightStatus', true);
 
-        // Iran airspace bounding box (covers Tehran and surrounding area)
-        // lat 25-40, lon 44-64 covers most of Iran
-        const url = `https://opensky-network.org/api/states/all?lamin=25&lomin=44&lamax=40&lomax=64`;
-
-        const res = await fetch(url);
-        if (!res.ok) {
-            throw new Error('OpenSky API error');
+        // Read from local data.json
+        const cacheRes = await fetch('./data.json');
+        if (!cacheRes.ok) {
+            throw new Error('Data file unavailable');
         }
-
-        const data = await res.json();
-        let civilCount = 0;
-        let airlines = [];
-
-        if (data.states && Array.isArray(data.states)) {
-            data.states.forEach(aircraft => {
-                const icao = aircraft[0]; // ICAO24 hex
-                const callsign = (aircraft[1] || '').trim();
-                const onGround = aircraft[8];
-
-                // Skip aircraft on ground
-                if (onGround) return;
-
-                // Skip military (US military ICAO range)
-                const icaoNum = parseInt(icao, 16);
-                const usafHexStart = parseInt('AE0000', 16);
-                const usafHexEnd = parseInt('AE7FFF', 16);
-                if (icaoNum >= usafHexStart && icaoNum <= usafHexEnd) return;
-
-                // Count as civil aviation
-                civilCount++;
-
-                // Extract airline code from callsign (first 3 letters usually)
-                if (callsign && callsign.length >= 3) {
-                    const airlineCode = callsign.substring(0, 3);
-                    if (!airlines.includes(airlineCode)) {
-                        airlines.push(airlineCode);
-                    }
-                }
-            });
+        
+        const cache = await cacheRes.json();
+        
+        if (!cache.aviation || cache.aviation.aircraft_count === undefined) {
+            throw new Error('No aviation data in cache');
         }
+        
+        const civilCount = cache.aviation.aircraft_count;
+        const airlines = cache.aviation.airlines || [];
+        const airlineCount = cache.aviation.airline_count || airlines.length;
+        
+        console.log(`Aviation from cache: ${civilCount} aircraft, ${airlineCount} airlines`);
 
         // Risk logic: Normal traffic = 20-50 aircraft over Iran
         // Lower than normal = concerning (airlines avoiding area)
@@ -713,103 +671,91 @@ async function fetchAviation() {
 
         const displayRisk = Math.round((contribution / 35) * 100);
         const detail = `${civilCount} aircraft over Iran`;
-        updateSignal('flight', displayRisk, detail);
+        updateSignal('flight', displayRisk, detail, false);
 
         if (civilCount >= 15) {
-            addFeed('AVIATION', `${civilCount} commercial aircraft in Iran airspace (${airlines.length} airlines)`);
+            addFeed('AVIATION', `${civilCount} commercial aircraft in Iran airspace (${airlineCount} airlines)`);
         }
 
         return contribution;
 
     } catch (e) {
-        console.log('Aviation API error:', e.message);
+        console.log('Aviation error:', e.message);
         setStatus('flightStatus', false);
-        updateSignal('flight', 15, 'Scanning...');
-        return 5; // Baseline when API fails
+        updateSignal('flight', 15, 'Data unavailable', false);
+        return 5; // Baseline when data fails
     }
 }
 
 // SIGNAL 4: WEATHER CONDITIONS (Max 5%)
+// NOW READS FROM CACHED DATA (Python job fetches from OpenWeatherMap)
 async function fetchWeather() {
     try {
         setStatus('weatherStatus', true);
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35.6892&lon=51.389&appid=${API_KEYS.openweather}&units=metric`);
-        const data = await res.json();
-        if (data.main) {
-            const temp = Math.round(data.main.temp);
-            const vis = data.visibility || 10000;
-            const clouds = data.clouds?.all || 0;
-
-            let condition, contribution;
-            if (vis >= 10000 && clouds < 30) {
-                condition = 'Favorable';
-                contribution = 5;
-            } else if (vis >= 7000 && clouds < 60) {
-                condition = 'Marginal';
-                contribution = 2;
-            } else {
-                condition = 'Poor';
-                contribution = 0;
-            }
-
-            updateSignal('weather', condition, `${temp}°C, ${vis >= 10000 ? '10+' : Math.round(vis/1000)}km vis, ${clouds}% clouds`);
-            addFeed('WEATHER', `Tehran: ${temp}°C, ${data.weather[0]?.description || 'clear'}. Ops: ${condition}`);
-            return contribution;
+        
+        // Read from local data.json
+        const cacheRes = await fetch('./data.json');
+        if (!cacheRes.ok) {
+            throw new Error('Data file unavailable');
         }
-    } catch (e) { setStatus('weatherStatus', false); updateSignal('weather', 'Unknown', 'API error'); }
-    return 0;
+        
+        const cache = await cacheRes.json();
+        
+        if (!cache.weather || !cache.weather.temp) {
+            throw new Error('No weather data in cache');
+        }
+        
+        const temp = cache.weather.temp;
+        const vis = cache.weather.visibility || 10000;
+        const clouds = cache.weather.clouds || 0;
+        const description = cache.weather.description || 'clear';
+        const condition = cache.weather.condition || 'Unknown';
+        
+        console.log(`Weather from cache: ${temp}°C, ${condition}`);
+        
+        let contribution;
+        if (condition === 'Favorable') {
+            contribution = 5;
+        } else if (condition === 'Marginal') {
+            contribution = 2;
+        } else {
+            contribution = 0;
+        }
+
+        updateSignal('weather', condition, `${temp}°C, ${vis >= 10000 ? '10+' : Math.round(vis/1000)}km vis, ${clouds}% clouds`);
+        addFeed('WEATHER', `Tehran: ${temp}°C, ${description}. Ops: ${condition}`);
+        return contribution;
+        
+    } catch (e) {
+        console.log('Weather error:', e.message);
+        setStatus('weatherStatus', false);
+        updateSignal('weather', 'Unknown', 'Data unavailable', false);
+        return 0;
+    }
 }
 
 // SIGNAL 5: TANKER ACTIVITY - KC-135/KC-10/KC-46 in Middle East (Max 15%)
-// Uses OpenSky Network API (free, no key required for anonymous access)
+// NOW READS FROM CACHED DATA (Python job fetches from OpenSky)
 async function fetchTanker() {
     try {
         setStatus('tankerStatus', true);
 
-        // Middle East bounding box (Persian Gulf region)
-        // lamin, lomin, lamax, lomax
-        const bbox = '20,40,40,65'; // Covers Persian Gulf, Arabian Sea, parts of Middle East
-
-        // OpenSky API - get all aircraft in the region
-        const url = `https://opensky-network.org/api/states/all?lamin=20&lomin=40&lamax=40&lomax=65`;
-
-        const res = await fetch(url);
-        if (!res.ok) {
-            throw new Error('OpenSky API error');
+        // Read from local data.json
+        const cacheRes = await fetch('./data.json');
+        if (!cacheRes.ok) {
+            throw new Error('Data file unavailable');
         }
-
-        const data = await res.json();
-        let tankerCount = 0;
-        const tankerCallsigns = [];
-
-        // Known US military tanker callsign prefixes and ICAO hex ranges
-        // KC-135: callsigns often start with IRON, SHELL, TEXAN, ETHYL, etc.
-        // US military ICAO hex: AE0000-AE7FFF (Air Force)
-        const tankerPrefixes = ['IRON', 'SHELL', 'TEXAN', 'ETHYL', 'PEARL', 'ARCO', 'ESSO', 'MOBIL', 'GULF', 'TOPAZ', 'PACK', 'DOOM', 'TREK', 'REACH'];
-        const usafHexStart = parseInt('AE0000', 16);
-        const usafHexEnd = parseInt('AE7FFF', 16);
-
-        if (data.states && Array.isArray(data.states)) {
-            data.states.forEach(aircraft => {
-                const icao = aircraft[0]; // ICAO24 hex
-                const callsign = (aircraft[1] || '').trim().toUpperCase();
-
-                // Check if it's a US military aircraft
-                const icaoNum = parseInt(icao, 16);
-                const isUSMilitary = icaoNum >= usafHexStart && icaoNum <= usafHexEnd;
-
-                // Check callsign for tanker patterns
-                const isTankerCallsign = tankerPrefixes.some(prefix => callsign.startsWith(prefix));
-
-                // Also check for KC- in callsign or STRATOTANKER type
-                const hasKCPattern = callsign.includes('KC') || callsign.includes('TANKER');
-
-                if (isUSMilitary && (isTankerCallsign || hasKCPattern)) {
-                    tankerCount++;
-                    if (callsign) tankerCallsigns.push(callsign);
-                }
-            });
+        
+        const cache = await cacheRes.json();
+        
+        if (!cache.tanker || cache.tanker.tanker_count === undefined) {
+            throw new Error('No tanker data in cache');
         }
+        
+        const tankerCount = cache.tanker.tanker_count;
+        const tankerCallsigns = cache.tanker.callsigns || [];
+        
+        console.log(`Tanker from cache: ${tankerCount} detected`);
 
         // Calculate risk contribution (max 15%)
         let contribution = 0;
@@ -838,19 +784,19 @@ async function fetchTanker() {
         return contribution;
 
     } catch (e) {
-        console.log('Tanker API error:', e.message);
+        console.log('Tanker error:', e.message);
         setStatus('tankerStatus', false);
-        updateSignal('tanker', 5, 'API unavailable');
-        return 1; // Baseline when API fails
+        updateSignal('tanker', 5, 'Data unavailable');
+        return 1; // Baseline when data fails
     }
 }
 
 // SIGNAL: POLYMARKET ODDS (Max 10%)
-// Note: Real data is fetched by GitHub Action and stored in npoint.io cache
+// Note: Real data is fetched by GitHub Action and stored in data.json
 // This function returns baseline - actual display comes from cached data in displayData()
 async function fetchPolymarket() {
     // Polymarket data is fetched server-side by GitHub Action every 30 min
-    // and stored in npoint.io cache. We just return baseline here.
+    // and stored in data.json. We just return baseline here.
     // The displayData() function will read the cached polymarket odds.
     setStatus('polymarketStatus', true);
     return 1; // Baseline - real value comes from cache
@@ -878,160 +824,59 @@ function applyJitter(value, min = 0, max = 100, range = 2, index = 0) {
     return Math.max(min, Math.min(max, value + jitterAmount));
 }
 
-// npoint.io cache functions (free, no rate limits!)
-const NPOINT_ID = API_KEYS.npoint;
-
+// Local data.json file (updated by GitHub Actions)
 async function getCache() {
     try {
-        const res = await fetch(`https://api.npoint.io/${NPOINT_ID}`);
+        const res = await fetch('./data.json');
         if (res.ok) {
             return await res.json();
         }
     } catch (e) {
-        console.log('Cache read error:', e.message);
+        console.log('Data file read error:', e.message);
     }
     return null;
 }
 
 async function setCache(data, totalRisk = null) {
+    // Frontend no longer writes data - data.json is updated by GitHub Actions
+    // This function now just saves to localStorage as backup
     try {
-        // Get existing cache to preserve history AND GitHub Action data
-        const existing = await getCache();
-        let history = (existing && existing.history) ? existing.history : [];
-        let signalHistoryCache = (existing && existing.signalHistory) ? existing.signalHistory : {
-            news: [], social: [], flight: [], tanker: [], pentagon: [], polymarket: [], weather: []
-        };
-
-        // IMPORTANT: Preserve GitHub Action data (polymarket, pentagon, news_intel)
-        // These are set by the server-side script and should not be overwritten
-        if (existing) {
-            if (existing.polymarket) data.polymarket = existing.polymarket;
-            if (existing.pentagon) data.pentagon = existing.pentagon;
-            if (existing.news_intel) data.news_intel = existing.news_intel;
-            if (existing.pentagon_updated) data.pentagon_updated = existing.pentagon_updated;
-        }
-
-        // Add new history point if we have a risk value
-        if (totalRisk !== null) {
-            history.push({
-                timestamp: Date.now(),
-                risk: totalRisk
-            });
-
-            // Keep only last 72 hours of history (max ~144 points at 30-min intervals)
-            const cutoff = Date.now() - 72 * 60 * 60 * 1000;
-            history = history.filter(h => h.timestamp > cutoff);
-
-            // Add signal values to signal history (for sparklines)
-            if (data.signalValues) {
-                ['news', 'social', 'flight', 'tanker', 'weather'].forEach(sig => {
-                    if (data.signalValues[sig] !== undefined) {
-                        signalHistoryCache[sig] = signalHistoryCache[sig] || [];
-                        signalHistoryCache[sig].push(data.signalValues[sig]);
-                        // Keep only last 20 points
-                        if (signalHistoryCache[sig].length > 20) {
-                            signalHistoryCache[sig] = signalHistoryCache[sig].slice(-20);
-                        }
-                    }
-                });
-            }
-
-            // Handle pentagon separately from cached data
-            if (data.pentagon && data.pentagon.score !== undefined) {
-                const pentagonDisplay = Math.round((data.pentagon.score < 40 ? 10 :
-                    data.pentagon.score <= 60 ? 20 + (data.pentagon.score - 40) :
-                    data.pentagon.score <= 80 ? 40 + (data.pentagon.score - 60) * 1.5 :
-                    70 + (data.pentagon.score - 80) * 1.5));
-                signalHistoryCache.pentagon = signalHistoryCache.pentagon || [];
-                signalHistoryCache.pentagon.push(Math.min(100, pentagonDisplay));
-                if (signalHistoryCache.pentagon.length > 20) {
-                    signalHistoryCache.pentagon = signalHistoryCache.pentagon.slice(-20);
-                }
-            }
-        }
-
-        // Save data with history
-        data.history = history;
-        data.signalHistory = signalHistoryCache;
-
-        await fetch(`https://api.npoint.io/${NPOINT_ID}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+        localStorage.setItem('strikeradar_cache', JSON.stringify(data));
     } catch (e) {
-        console.log('Cache write error:', e.message);
+        console.log('localStorage save error:', e.message);
     }
 }
 
 // Fetch fresh data from all APIs
 async function fetchFreshData() {
-    // Clear feed for fresh fetch
-    state.feedItems = [];
-    state.seenHeadlines.clear();
-
-    // First, get cached data for polymarket and pentagon (set by GitHub Action)
-    let cachedData = {};
+    // Frontend now just reads from data.json - no actual API calls
+    // The Python script does all the real API fetching
     try {
-        const cacheRes = await fetch(`https://api.npoint.io/${API_KEYS.npoint}`);
-        if (cacheRes.ok) {
-            cachedData = await cacheRes.json();
+        const res = await fetch('./data.json');
+        if (res.ok) {
+            const data = await res.json();
+            // Return the data as-is from the file
+            return data;
         }
     } catch (e) {
-        console.log('Cache fetch error:', e.message);
+        console.log('Error reading data.json:', e.message);
     }
-
-    const [news, interest, aviation, tanker, polymarket, weather] = await Promise.all([
-        fetchNews(),
-        fetchPublicInterest(),
-        fetchAviation(),
-        fetchTanker(),
-        fetchPolymarket(),
-        fetchWeather()
-    ]);
-
-    // Calculate display values for sparklines
-    const newsDisplay = Math.round((Number(news) || 0) / 30 * 100);
-    const socialDisplay = Math.round((Number(interest) || 0) / 20 * 100);
-    const flightDisplay = Math.round((Number(aviation) || 0) / 15 * 100);
-    const tankerDisplay = Math.round((Number(tanker) || 0) / 10 * 100);
-    const polymarketOdds = cachedData.polymarket?.odds || 0;
-    const polymarketDisplay = polymarketOdds; // Direct percentage
-    const weatherDisplay = Number(weather) >= 4 ? 100 : Number(weather) >= 2 ? 50 : 20;
-
+    
+    // Fallback if data.json can't be read
     return {
-        news: Number(news) || 0,
-        interest: Number(interest) || 0,
-        aviation: Number(aviation) || 0,
-        tanker: Number(tanker) || 0,
-        weather: Number(weather) || 0,
+        news: 3,
+        interest: 2,
+        aviation: 5,
+        tanker: 1,
+        weather: 0,
         timestamp: Date.now(),
-        // Include cached polymarket and pentagon data (from GitHub Action)
-        polymarket: cachedData.polymarket || null,
-        pentagon: cachedData.pentagon || null,
-        // Store history from cache
-        history: cachedData.history || [],
-        signalHistory: cachedData.signalHistory || {},
-        // Store details for cache
-        newsDetail: document.getElementById('newsDetail').textContent,
-        socialDetail: document.getElementById('socialDetail').textContent,
-        flightDetail: document.getElementById('flightDetail').textContent,
-        tankerDetail: document.getElementById('tankerDetail').textContent,
-        polymarketDetail: document.getElementById('polymarketDetail').textContent,
-        weatherDetail: document.getElementById('weatherDetail').textContent,
-        feedItems: state.feedItems.slice(0, 10), // Store top 10 feed items
-        // Store signal display values for sparkline history
-        signalValues: {
-            news: newsDisplay,
-            social: socialDisplay,
-            flight: flightDisplay,
-            tanker: tankerDisplay,
-            polymarket: polymarketDisplay,
-            weather: weatherDisplay
-        }
-        // Note: history is managed separately in setCache
+        history: [],
+        signalHistory: {},
+        newsDetail: 'Data unavailable',
+        socialDetail: 'Data unavailable',
+        flightDetail: 'Data unavailable',
+        tankerDetail: 'Data unavailable',
+        weatherDetail: 'Data unavailable'
     };
 }
 
@@ -1046,6 +891,7 @@ function displayData(data, fromCache = false) {
 
     // Load signal history from cache if available
     if (data.signalHistory) {
+        console.log('Loading signalHistory from cache:', Object.keys(data.signalHistory).map(k => `${k}: ${data.signalHistory[k]?.length || 0} points`).join(', '));
         ['news', 'social', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather'].forEach(sig => {
             if (data.signalHistory[sig] && data.signalHistory[sig].length > 0) {
                 state.signalHistory[sig] = data.signalHistory[sig];
@@ -1082,17 +928,17 @@ function displayData(data, fromCache = false) {
         newsDetail = data.newsDetail;
     }
 
-    updateSignal('news', newsDisplayRisk, newsDetail);
+    updateSignal('news', newsDisplayRisk, newsDetail, !fromCache);
 
-    updateSignal('social', Math.round((safeInterest / 20) * 100), data.socialDetail || 'GDELT + Wikipedia');
+    updateSignal('social', Math.round((safeInterest / 20) * 100), data.socialDetail || 'GDELT + Wikipedia', !fromCache);
 
     const flightCount = Math.round(safeAviation * 10);
     const flightDetail = (data.flightDetail && !data.flightDetail.includes('Scanning') && !data.flightDetail.includes('Loading')) ? data.flightDetail : `${flightCount} aircraft over Iran`;
-    updateSignal('flight', Math.round((safeAviation / 15) * 100), flightDetail);
+    updateSignal('flight', Math.round((safeAviation / 15) * 100), flightDetail, !fromCache);
 
     const tankerCount = Math.round(safeTanker / 4);
     const tankerDetail = (data.tankerDetail && !data.tankerDetail.includes('Scanning') && !data.tankerDetail.includes('Loading')) ? data.tankerDetail : `${tankerCount} detected in region`;
-    updateSignal('tanker', Math.round((safeTanker / 10) * 100), tankerDetail);
+    updateSignal('tanker', Math.round((safeTanker / 10) * 100), tankerDetail, !fromCache);
 
     // Polymarket odds signal (from cached data updated by GitHub Actions)
     let polymarketOdds = 0;
@@ -1111,10 +957,10 @@ function displayData(data, fromCache = false) {
         const marketTitle = data.polymarket.market || 'Iran strike';
 
         if (polymarketOdds > 0) {
-            updateSignal('polymarket', polymarketOdds, `${polymarketOdds}% odds`);
+            updateSignal('polymarket', polymarketOdds, `${polymarketOdds}% odds`, !fromCache);
             setStatus('polymarketStatus', true);
         } else {
-            updateSignal('polymarket', 10, 'Data error - refreshing...');
+            updateSignal('polymarket', 10, 'Data error - refreshing...', !fromCache);
             setStatus('polymarketStatus', true);
         }
 
@@ -1123,13 +969,13 @@ function displayData(data, fromCache = false) {
         }
     } else {
         // No cached polymarket data yet - show baseline
-        updateSignal('polymarket', 10, 'Awaiting data...');
+        updateSignal('polymarket', 10, 'Awaiting data...', !fromCache);
         setStatus('polymarketStatus', true);
     }
     // Store for total calculation
     const safePolymarketCalc = polymarketContribution;
 
-    updateSignal('weather', safeWeather >= 4 ? 'Favorable' : safeWeather >= 2 ? 'Marginal' : 'Poor', data.weatherDetail || 'Tehran conditions');
+    updateSignal('weather', safeWeather >= 4 ? 'Favorable' : safeWeather >= 2 ? 'Marginal' : 'Poor', data.weatherDetail || 'Tehran conditions', !fromCache);
 
     // Pentagon Pizza Meter signal (from cached data updated by GitHub Actions)
     // Max contribution: 10% of total risk
@@ -1177,7 +1023,7 @@ function displayData(data, fromCache = false) {
         // Display bar: scale so Low (1%) shows as ~10%, High (10%) shows as 100%
         const displayRisk = Math.round((pentagonContribution / 10) * 100);
         const detail = `${pentagonStatus}${isLateNight ? ' (late night)' : ''}${isWeekend ? ' (weekend)' : ''}`;
-        updateSignal('pentagon', displayRisk, detail);
+        updateSignal('pentagon', displayRisk, detail, !fromCache);
         setStatus('pentagonStatus', isPentagonFresh);
 
         if (pentagonContribution >= 7) {
@@ -1208,7 +1054,7 @@ function displayData(data, fromCache = false) {
         }
 
         pentagonContribution = 1; // Baseline contribution
-        updateSignal('pentagon', simScore, simStatus);
+        updateSignal('pentagon', simScore, simStatus, !fromCache);
         setStatus('pentagonStatus', true); // Show LIVE with simulated data
     }
 
@@ -1365,107 +1211,76 @@ async function calculate() {
             const total = displayData(cached, true);
             updateChartFromHistory(cached.history);
         } else {
-            // Show default values if no cache at all
-            updateSignal('news', 10, 'Waiting for data...');
-            updateSignal('social', 8, 'Waiting for data...');
-            updateSignal('flight', 12, 'Waiting for data...');
-            updateSignal('weather', 'Unknown', 'Waiting for data...');
+            // Show default values if no cache at all (don't add to history)
+            updateSignal('news', 10, 'Waiting for data...', false);
+            updateSignal('social', 8, 'Waiting for data...', false);
+            updateSignal('flight', 12, 'Waiting for data...', false);
+            updateSignal('weather', 'Unknown', 'Waiting for data...', false);
             updateGauge(15);
         }
         return;
     }
 
     // Cache is very old or doesn't exist - fetch fresh data
-    console.log('Fetching fresh data...');
+    console.log('Loading data from data.json...');
 
     // Mark API call time BEFORE calling (prevents race conditions)
     localStorage.setItem('strikeradar_last_api_call', now.toString());
 
     const freshData = await fetchFreshData();
 
-    // Display the fresh data and get total risk
-    const total = displayData(freshData, false);
+    // Display the data (treating as cached since we're just reading data.json)
+    const total = displayData(freshData, true);
 
-    // Save to cache with history point
-    await setCache(freshData, total);
-
-    // Also save to localStorage as backup
+    // Update localStorage as backup
     try {
         localStorage.setItem('strikeradar_cache', JSON.stringify(freshData));
     } catch (e) { }
 
-    // Update chart from history (will include the new point)
-    const updatedCache = await getCache();
-    updateChartFromHistory(updatedCache?.history);
+    // Update chart from history
+    updateChartFromHistory(freshData.history);
 }
 
-// Update chart with real history data (fills gaps with simulated data)
+// Update chart with real history data only
 function updateChartFromHistory(history) {
     if (!chart) return;
 
     state.trendLabels = [];
     state.trendData = [];
 
-    const now = Date.now();
-    const interval = 12 * 60 * 60 * 1000; // 12 hours
-    const points = 7; // 7 points for 72 hours
-
-    // Build time slots for the chart (every 12 hours going back 72h)
-    const slots = [];
-    for (let i = points - 1; i >= 0; i--) {
-        slots.push(now - i * interval);
+    // Only use real data from history array
+    if (!history || history.length === 0) {
+        console.log('No history data available for chart');
+        chart.data.labels = [];
+        chart.data.datasets[0].data = [];
+        chart.update('none');
+        return;
     }
 
-    // Create a map of real history data by rounded timestamp
-    const historyMap = new Map();
-    if (history && history.length > 0) {
-        history.forEach(h => {
-            // Find closest slot for this history point
-            let closestSlot = slots[0];
-            let minDiff = Math.abs(h.timestamp - slots[0]);
-            slots.forEach(slot => {
-                const diff = Math.abs(h.timestamp - slot);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closestSlot = slot;
-                }
-            });
-            // Only use if within 6 hours of slot
-            if (minDiff < 6 * 60 * 60 * 1000) {
-                historyMap.set(closestSlot, h.risk);
-            }
-        });
-    }
+    console.log(`Rendering chart with ${history.length} real data points`);
 
-    // Build chart data - use real data where available, simulated where not
-    let lastDate = '';
-    const seed = Math.floor(now / 86400000); // Stable seed per day
+    // Sort by timestamp
+    const sortedHistory = [...history].sort((a, b) => a.timestamp - b.timestamp);
 
-    slots.forEach((slot, i) => {
-        const d = new Date(slot);
+    // Build chart from real data only
+    sortedHistory.forEach((point, i) => {
+        const d = new Date(point.timestamp);
         const dateStr = formatDate(d);
-        const hourStr = d.getHours().toString().padStart(2, '0') + ':00';
+        const hourStr = d.getHours().toString().padStart(2, '0') + ':' + 
+                       d.getMinutes().toString().padStart(2, '0');
 
-        // Label
+        // Label - show date for first point or when date changes
         let label;
-        if (i === slots.length - 1) {
+        if (i === sortedHistory.length - 1) {
             label = 'Now';
-        } else if (dateStr !== lastDate) {
+        } else if (i === 0 || formatDate(new Date(sortedHistory[i-1].timestamp)) !== dateStr) {
             label = dateStr;
-            lastDate = dateStr;
         } else {
             label = hourStr;
         }
-        state.trendLabels.push(label);
 
-        // Data - real or simulated
-        if (historyMap.has(slot)) {
-            state.trendData.push(historyMap.get(slot));
-        } else {
-            // Simulated data based on seed + position
-            const pseudoRandom = Math.abs(Math.sin(seed + i * 7) * 43758.5453) % 1;
-            state.trendData.push(Math.round(pseudoRandom * 20 + 10)); // 10-30% range
-        }
+        state.trendLabels.push(label);
+        state.trendData.push(point.risk);
     });
 
     // Update chart
