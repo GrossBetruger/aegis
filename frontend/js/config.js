@@ -7,9 +7,6 @@ const API_KEYS = {
 
 const TELEGRAM_CHANNEL = '@StrikeRadarAlerts';
 
-// Cache duration: 30 minutes (frontend reads from data.json)
-const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
-
 const state = {
     trendLabels: [],
     trendData: [],
@@ -67,4 +64,3 @@ const INFO_CONTENT = {
 };
 
 const ALERT_COOLDOWN = 60 * 60 * 1000; // 1 hour between alerts
-const MIN_API_INTERVAL = 15 * 60 * 1000; // Minimum 15 minutes between API calls

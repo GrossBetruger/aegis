@@ -1,39 +1,13 @@
 // =============================================
-// DATA FETCHING & CACHING
+// DATA FETCHING
 // =============================================
 
-// Local data.json file (updated by GitHub Actions)
-async function getCache() {
+// Read data from adjacent data.json file (updated by GitHub Actions)
+async function getData() {
     try {
         const res = await fetch('./data.json');
         if (res.ok) {
             return await res.json();
-        }
-    } catch (e) {
-        console.log('Data file error:', e.message);
-    }
-    return null;
-}
-
-async function setCache(data, totalRisk = null) {
-    // Frontend is read-only - just save to localStorage as backup
-    try {
-        localStorage.setItem('strikeradar_cache', JSON.stringify(data));
-    } catch (e) {
-        console.log('localStorage save error:', e.message);
-    }
-}
-
-// Fetch fresh data from all APIs
-async function fetchFreshData() {
-    // Frontend now just reads from data.json - no actual API calls
-    // The Python script does all the real API fetching
-    try {
-        const res = await fetch('./data.json');
-        if (res.ok) {
-            const data = await res.json();
-            // Return the data as-is from the file
-            return data;
         }
     } catch (e) {
         console.log('Error reading data.json:', e.message);
