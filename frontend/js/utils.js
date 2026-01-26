@@ -33,6 +33,6 @@ function showToast(message) {
 
 function updateOnlineStatus() {
     if (!navigator.onLine) {
-        showToast('⚠️ Connection lost - showing cached data');
+        showToast('⚠️ Connection lost - showing last known data');
     }
 }

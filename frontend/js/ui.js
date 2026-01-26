@@ -2,12 +2,12 @@
 // UI UPDATE FUNCTIONS
 // =============================================
 
-function updateTimestamp(cacheTimestamp = null) {
+function updateTimestamp(timestamp = null) {
     const el = document.getElementById('lastUpdate');
     const tz = document.getElementById('timezone');
     
-    if (cacheTimestamp) {
-        const age = Math.floor((Date.now() - cacheTimestamp) / 60000);
+    if (timestamp) {
+        const age = Math.floor((Date.now() - timestamp) / 60000);
         el.textContent = age < 1 ? 'Just now' : `${age} min ago`;
     } else {
         el.textContent = formatTime();

@@ -4,9 +4,9 @@
 
 // Display data on the dashboard
 function displayData(data) {
-    // Load signal history from cache if available
+    // Load signal history from data.json
     if (data.signalHistory) {
-        console.log('Loading signalHistory from cache:', Object.keys(data.signalHistory).map(k => `${k}: ${data.signalHistory[k]?.length || 0} points`).join(', '));
+        console.log('Loading signalHistory:', Object.keys(data.signalHistory).map(k => `${k}: ${data.signalHistory[k]?.length || 0} points`).join(', '));
         ['news', 'social', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather'].forEach(sig => {
             if (data.signalHistory[sig] && data.signalHistory[sig].length > 0) {
                 state.signalHistory[sig] = data.signalHistory[sig];
@@ -15,12 +15,12 @@ function displayData(data) {
     }
 
     // Update individual signal displays with stored details or computed values
-    // NEWS: Use news_intel from GitHub Action cache if available (consistent for all users)
+    // NEWS: Use news_intel from data.json (consistent for all users)
     let newsDisplayRisk = Math.round((data.news / 30) * 100);
     let newsDetail = `${Math.round(data.news / 2)} articles, ${Math.round(data.news / 10)} critical`;
 
     if (data.news_intel && data.news_intel.total_count !== undefined) {
-        // Use server-side cached news data (consistent!)
+        // Use data from update_data.py (consistent!)
         const articles = data.news_intel.total_count;
         const alertCount = data.news_intel.alert_count || 0;
 
@@ -55,7 +55,7 @@ function displayData(data) {
     const tankerDetail = (data.tankerDetail && !data.tankerDetail.includes('Scanning') && !data.tankerDetail.includes('Loading')) ? data.tankerDetail : `${tankerCount} detected in region`;
     updateSignal('tanker', Math.round((data.tanker / 10) * 100), tankerDetail);
 
-    // Polymarket odds signal (from cached data updated by GitHub Actions)
+    // Polymarket odds signal (from data.json updated by GitHub Actions)
     let polymarketOdds = 0;
     let polymarketContribution = 1; // baseline
     if (data.polymarket && data.polymarket.odds !== undefined) {
@@ -90,7 +90,7 @@ function displayData(data) {
 
     updateSignal('weather', data.weather >= 4 ? 'Favorable' : data.weather >= 2 ? 'Marginal' : 'Poor', data.weatherDetail || 'Tehran conditions');
 
-    // Pentagon Pizza Meter signal (from cached data updated by GitHub Actions)
+    // Pentagon Pizza Meter signal (from data.json updated by GitHub Actions)
     // Max contribution: 10% of total risk
     // Display bar: Normal ~5-10%, Elevated ~30-50%, High ~70-100%
     let pentagonContribution = 0;
@@ -125,7 +125,7 @@ function displayData(data) {
         } else if (data.pentagon_updated) {
             pentagonTimestamp = new Date(data.pentagon_updated).getTime();
         } else if (data.timestamp) {
-            // Fall back to main cache timestamp
+            // Fall back to main data timestamp
             pentagonTimestamp = data.timestamp;
         }
         const pentagonAge = Date.now() - pentagonTimestamp;
