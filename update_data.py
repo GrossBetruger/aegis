@@ -894,30 +894,52 @@ def update_data_file():
         # Add main timestamp
         current_data["last_updated"] = datetime.now().isoformat()
 
-        # Calculate risk scores for history tracking
-        # Match the JavaScript calculation in display.js
+        # Calculate ALL risk scores and display values (NO CALCULATIONS IN FRONTEND!)
+        # All calculations moved here to ensure history matches current display
+        
+        # NEWS SIGNAL CALCULATION
         news_intel = current_data.get("news_intel", {})
         articles = news_intel.get("total_count", 0)
         alert_count = news_intel.get("alert_count", 0)
         alert_ratio = alert_count / articles if articles > 0 else 0
         news_display_risk = max(3, round(pow(alert_ratio, 2) * 85))
-
+        news_detail = f"{articles} articles, {alert_count} critical"
+        
+        # FLIGHT SIGNAL CALCULATION
         aviation = current_data.get("aviation", {})
         aircraft_count = aviation.get("aircraft_count", 0)
         flight_risk = max(3, 95 - round(aircraft_count * 0.8))
-
+        flight_detail = f"{round(aircraft_count)} aircraft over Iran"
+        
+        # TANKER SIGNAL CALCULATION
         tanker = current_data.get("tanker", {})
         tanker_count = tanker.get("tanker_count", 0)
         tanker_risk = round((tanker_count / 10) * 100)
-
+        tanker_display_count = round(tanker_count / 4)
+        tanker_detail = f"{tanker_display_count} detected in region"
+        
+        # WEATHER SIGNAL CALCULATION
         weather = current_data.get("weather", {})
         clouds = weather.get("clouds", 0)
         weather_risk = 100 - (max(0, clouds - 6) * 10)
-
-        polymarket_contribution = min(
-            10, current_data.get("polymarket", {}).get("odds", 0) * 0.1
-        )
+        weather_detail = weather.get("description", "clear")
+        
+        # POLYMARKET SIGNAL CALCULATION
+        polymarket = current_data.get("polymarket", {})
+        polymarket_odds = min(100, max(0, polymarket.get("odds", 0) if polymarket else 0))
+        if polymarket_odds > 95:  # Sanity check
+            polymarket_odds = 0
+        polymarket_contribution = min(10, polymarket_odds * 0.1)
+        polymarket_display_risk = polymarket_odds if polymarket_odds > 0 else 10
+        polymarket_detail = f"{polymarket_odds}% odds" if polymarket_odds > 0 else "Awaiting data..."
+        
+        # PENTAGON SIGNAL CALCULATION
         pentagon_contribution = pentagon_data.get("risk_contribution", 1)
+        pentagon_display_risk = round((pentagon_contribution / 10) * 100)
+        pentagon_status = pentagon_data.get("status", "Normal")
+        is_late_night = pentagon_data.get("is_late_night", False)
+        is_weekend = pentagon_data.get("is_weekend", False)
+        pentagon_detail = f"{pentagon_status}{' (late night)' if is_late_night else ''}{' (weekend)' if is_weekend else ''}"
 
         # Apply weighted contributions (matching JavaScript)
         news_contribution_weighted = news_display_risk * 0.25  # 25% weight
@@ -935,12 +957,65 @@ def update_data_file():
             + polymarket_contribution_weighted
             + pentagon_contribution_weighted
         )
+        
+        # Check for escalation multiplier (3+ elevated signals)
+        elevated_count = sum([
+            news_display_risk > 30,
+            flight_contribution_weighted > 15,
+            tanker_contribution_weighted > 10,
+            weather_contribution_weighted > 7,
+            polymarket_contribution > 5,
+            pentagon_contribution > 5
+        ])
+        
+        if elevated_count >= 3:
+            total_risk = min(100, total_risk * 1.15)
+        
         total_risk = min(100, max(0, round(total_risk)))
+        
+        # Store all pre-calculated display values
+        current_data["calculated_signals"] = {
+            "news": {
+                "risk": news_display_risk,
+                "detail": news_detail
+            },
+            "flight": {
+                "risk": flight_risk,
+                "detail": flight_detail
+            },
+            "tanker": {
+                "risk": tanker_risk,
+                "detail": tanker_detail
+            },
+            "weather": {
+                "risk": weather_risk,
+                "detail": weather_detail
+            },
+            "polymarket": {
+                "risk": polymarket_display_risk,
+                "detail": polymarket_detail
+            },
+            "pentagon": {
+                "risk": pentagon_display_risk,
+                "detail": pentagon_detail
+            },
+            "total_risk": total_risk,
+            "elevated_count": elevated_count
+        }
 
-        # Add to history (keep last 72 hours)
-        history.append(
-            {"timestamp": int(datetime.now().timestamp() * 1000), "risk": total_risk}
-        )
+        # Add to history (keep last 72 hours) - include all signal risks
+        history.append({
+            "timestamp": int(datetime.now().timestamp() * 1000),
+            "risk": total_risk,
+            "signals": {
+                "news": news_display_risk,
+                "flight": flight_risk,
+                "tanker": tanker_risk,
+                "weather": weather_risk,
+                "polymarket": polymarket_display_risk,
+                "pentagon": pentagon_display_risk
+            }
+        })
         cutoff_time = int((datetime.now().timestamp() - 72 * 60 * 60) * 1000)
         history = [h for h in history if h["timestamp"] > cutoff_time]
         current_data["history"] = history
@@ -949,10 +1024,8 @@ def update_data_file():
         signal_history["news"].append(news_display_risk)
         signal_history["flight"].append(flight_risk)
         signal_history["tanker"].append(tanker_risk)
-        signal_history["pentagon"].append(round((pentagon_contribution / 10) * 100))
-        signal_history["polymarket"].append(
-            round(current_data.get("polymarket", {}).get("odds", 0))
-        )
+        signal_history["pentagon"].append(pentagon_display_risk)
+        signal_history["polymarket"].append(polymarket_display_risk)
         signal_history["weather"].append(weather_risk)
 
         # Keep only last 20 points

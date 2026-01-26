@@ -5,6 +5,7 @@
 // Display data on the dashboard
 function displayData(data) {
     console.log('Displaying data:', data);
+    
     // Load signal history from data.json
     if (data?.signalHistory) {
         console.log('Loading signalHistory:', Object.keys(data.signalHistory).map(k => `${k}: ${data.signalHistory[k]?.length || 0} points`).join(', '));
@@ -15,161 +16,75 @@ function displayData(data) {
         }); 
     }
 
-    // Update individual signal displays
+    // Get all pre-calculated signal values from backend
+    const calculated = data.calculated_signals || {};
     
-    // NEWS: Use news_intel from data.json (consistent for all users)
-    const articles = data.news_intel.total_count;
-    const alertCount = data.news_intel.alert_count || 0;
-
-    const alertRatio = alertCount / articles;
-    newsDisplayRisk = Math.max(3, Math.round(Math.pow(alertRatio, 2) * 85));
-    newsDetail = `${articles} articles, ${alertCount} critical`;
-    updateSignal('news', newsDisplayRisk, newsDetail);
-
-    // SOCIAL: Use interest from data.json (Wikipedia)
-    // updateSignal('social', Math.round((data.interest / 20) * 100), data.socialDetail || 'Wikipedia');
-
-    const flightCount = Math.round(data.aviation.aircraft_count);
-    const flightDetail = (data.flightDetail && !data.flightDetail.includes('Scanning') && !data.flightDetail.includes('Loading')) ? data.flightDetail : `${flightCount} aircraft over Iran`;
-    updateSignal('flight', Math.max(3, 95 - Math.round(data.aviation.aircraft_count*0.8 )), flightDetail);
-
-    const tankerCount = Math.round(data.tanker.tanker_count / 4);
-    const tankerDetail = (data.tankerDetail && !data.tankerDetail.includes('Scanning') && !data.tankerDetail.includes('Loading')) ? data.tankerDetail : `${tankerCount} detected in region`;
-    updateSignal('tanker', Math.round((data.tanker.tanker_count / 10) * 100), tankerDetail);
-
-    // Polymarket odds signal (from data.json updated by GitHub Actions)
-    let polymarketOdds = 0;
-    let polymarketContribution = 1; // baseline
-    if (data.polymarket && data.polymarket.odds !== undefined) {
-        // Safety: odds should be 0-100, cap at 100
-        polymarketOdds = Math.min(100, Math.max(0, data.polymarket.odds));
-
-        // Sanity check: if odds > 95, something is probably wrong with parsing
-        if (polymarketOdds > 95) {
-            console.warn('Polymarket odds suspiciously high:', data.polymarket);
-            polymarketOdds = 0; // Reset to 0 if data seems wrong
-        }
-
-        polymarketContribution = Math.min(10, polymarketOdds * 0.1);
-        const marketTitle = data.polymarket.market || 'Iran strike';
-
-        if (polymarketOdds > 0) {
-            updateSignal('polymarket', polymarketOdds, `${polymarketOdds}% odds`);
-            setStatus('polymarketStatus', true);
-        } else {
-            updateSignal('polymarket', 10, 'Data error - refreshing...');
-            setStatus('polymarketStatus', true);
-        }
-
+    // Display all signals using pre-calculated values (NO CALCULATIONS HERE!)
+    if (calculated.news) {
+        updateSignal('news', calculated.news.risk, calculated.news.detail);
+    }
+    
+    if (calculated.flight) {
+        updateSignal('flight', calculated.flight.risk, calculated.flight.detail);
+    }
+    
+    if (calculated.tanker) {
+        updateSignal('tanker', calculated.tanker.risk, calculated.tanker.detail);
+    }
+    
+    if (calculated.weather) {
+        updateSignal('weather', calculated.weather.risk, calculated.weather.detail);
+    }
+    
+    // Polymarket signal
+    if (calculated.polymarket) {
+        const polymarketOdds = data.polymarket?.odds || 0;
+        const isValidData = polymarketOdds > 0 && polymarketOdds <= 95;
+        
+        updateSignal('polymarket', calculated.polymarket.risk, calculated.polymarket.detail);
+        setStatus('polymarketStatus', isValidData);
+        
+        // Add feed alert for high odds
         if (polymarketOdds > 30 && polymarketOdds <= 95) {
+            const marketTitle = data.polymarket?.market || 'Iran strike';
             addFeed('MARKET', `📊 Polymarket: ${polymarketOdds}% odds on "${marketTitle.substring(0, 40)}"`, true, 'Alert');
         }
-    } else {
-        // No polymarket data yet - show baseline
-        updateSignal('polymarket', 10, 'Awaiting data...');
-        setStatus('polymarketStatus', true);
     }
-
-    updateSignal('weather', 100 - (Math.max(0, data.weather.clouds - 6) * 10), data.weather.description);
-
-    // Pentagon Pizza Meter signal (from data.json updated by GitHub Actions)
-    // Max contribution: 10% of total risk
-    // Display bar: Normal ~5-10%, Elevated ~30-50%, High ~70-100%
-    let pentagonContribution = 0;
-    if (data.pentagon && (data.pentagon.score !== undefined || data.pentagon.status)) {
-        const rawScore = data.pentagon.score || 30; // 0-100 from script, default to low
-
-        // Convert score to contribution (max 10%)
-        // Low (score <40) = 1% contribution, shows ~10% on bar
-        // Normal (score 40-60) = 2-3% contribution, shows ~20-30% on bar
-        // Elevated (score 60-80) = 4-7% contribution, shows ~40-70% on bar
-        // High (score 80+) = 8-10% contribution, shows ~80-100% on bar
-        if (rawScore < 40) {
-            pentagonContribution = 1; // Low activity baseline
-        } else if (rawScore <= 60) {
-            pentagonContribution = 1 + (rawScore - 40) * 0.1; // 1-3%
-        } else if (rawScore <= 80) {
-            pentagonContribution = 3 + (rawScore - 60) * 0.2; // 3-7%
-        } else {
-            pentagonContribution = 7 + (rawScore - 80) * 0.15; // 7-10%
-        }
-        pentagonContribution = Math.min(10, pentagonContribution);
-
-        const pentagonStatus = data.pentagon.status || 'Normal';
-        const isLateNight = data.pentagon.is_late_night || false;
-        const isWeekend = data.pentagon.is_weekend || false;
-
+    
+    // Pentagon signal
+    if (calculated.pentagon) {
+        updateSignal('pentagon', calculated.pentagon.risk, calculated.pentagon.detail);
+        
         // Check if pentagon data is fresh (less than 40 minutes old)
-        // Check pentagon.timestamp, pentagon_updated, or main data timestamp
         let pentagonTimestamp = 0;
-        if (data.pentagon.timestamp) {
+        if (data.pentagon?.timestamp) {
             pentagonTimestamp = new Date(data.pentagon.timestamp).getTime();
         } else if (data.pentagon_updated) {
             pentagonTimestamp = new Date(data.pentagon_updated).getTime();
         } else if (data.timestamp) {
-            // Fall back to main data timestamp
             pentagonTimestamp = data.timestamp;
         }
+        
         const pentagonAge = Date.now() - pentagonTimestamp;
-        // Show LIVE if: data < 40 min old OR we have valid pentagon status+score
         const isPentagonFresh = (pentagonTimestamp > 0 && pentagonAge < 40 * 60 * 1000) ||
-                                (data.pentagon.status && data.pentagon.score !== undefined);
-
-        // Display bar: scale so Low (1%) shows as ~10%, High (10%) shows as 100%
-        const displayRisk = Math.round((pentagonContribution / 10) * 100);
-        const detail = `${pentagonStatus}${isLateNight ? ' (late night)' : ''}${isWeekend ? ' (weekend)' : ''}`;
-        updateSignal('pentagon', displayRisk, detail);
+                                (data.pentagon?.status && data.pentagon?.score !== undefined);
+        
         setStatus('pentagonStatus', isPentagonFresh);
-
+        
+        // Add feed alert for high activity
+        const pentagonContribution = data.pentagon?.risk_contribution || 0;
         if (pentagonContribution >= 7) {
             addFeed('PENTAGON', `🍕 High activity detected near Pentagon`, true, 'Alert');
         }
-    } else {
-        // No pentagon data from GitHub Action - use time-based simulation
-        // This keeps the signal LIVE while Action catches up
-        const hour = new Date().getHours();
-        const isLateNight = hour >= 22 || hour < 6;
-        const isWeekend = [0, 6].includes(new Date().getDay());
-
-        let simStatus = 'Normal';
-        let simScore = 10;
-
-        if (isLateNight) {
-            simStatus = 'Low Activity';
-            simScore = 8;
-        } else if (isWeekend) {
-            simStatus = 'Weekend';
-            simScore = 8;
-        } else if (hour >= 11 && hour <= 14) {
-            simStatus = 'Lunch hour';
-            simScore = 12;
-        } else if (hour >= 17 && hour <= 20) {
-            simStatus = 'Dinner hour';
-            simScore = 12;
-        }
-
-        pentagonContribution = 1; // Baseline contribution
-        updateSignal('pentagon', simScore, simStatus);
-        setStatus('pentagonStatus', true); // Show LIVE with simulated data
     }
-
-    // Calculate signal contributions (weighted percentages)
-    const newsContribution = newsDisplayRisk * 0.25; // 25% weight
-    const flightContribution = (95 - Math.round(data.aviation.aircraft_count*0.8 )) * 0.20; // 20% weight
-    const tankerContribution = Math.round((data.tanker.tanker_count / 10) * 100) * 0.15; // 15% weight
-    const weatherContribution = (100 - (Math.max(0, data.weather.clouds - 6) * 10)) * 0.10; // 10% weight
-    const polymarketContributionWeighted = polymarketContribution * 2; // Already in range 0-10, weight at 20%
-    const pentagonContributionWeighted = pentagonContribution * 1; // Already in range 0-10, weight at 10%
     
-    let total = newsContribution + flightContribution + tankerContribution + weatherContribution + polymarketContributionWeighted + pentagonContributionWeighted;
-
-    const elevated = [newsDisplayRisk > 30, flightContribution > 15, tankerContribution > 10, weatherContribution > 7, polymarketContribution > 5, pentagonContribution > 5].filter(Boolean).length;
-    if (elevated >= 3) {
-        total = Math.min(100, total * 1.15);
+    // Display total risk (pre-calculated)
+    const total = calculated.total_risk || 0;
+    
+    // Add escalation alert if needed
+    if (calculated.elevated_count >= 3) {
         addFeed('SYSTEM', 'Multiple elevated signals detected - escalation multiplier applied', true, 'Alert');
     }
-
-    total = Math.min(100, Math.round(total));
 
     updateGauge(total);
     updateTimestamp(data.timestamp);

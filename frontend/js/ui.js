@@ -61,7 +61,7 @@ function updateSignal(name, value, detail) {
     const valEl = document.getElementById(`${name}Value`);
     const detailEl = document.getElementById(`${name}Detail`);
 
-    if (name === 'weather') {
+    if (false && name === 'weather') {
         // Good weather = favorable for attack = higher risk
         // Show "Clear" (orange) when good, "Poor" (green) when bad
         const displayText = value > 75 ? 'Clear' : value > 40 ? 'Marginal' : 'Poor';
