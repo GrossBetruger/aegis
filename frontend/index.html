@@ -259,6 +259,14 @@
     <!-- Offline bar -->
     <div id="offlineBar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#ef4444;color:#fff;text-align:center;padding:8px;font-size:12px;font-weight:600;z-index:999;">⚠️ No internet connection</div>
 
-    <script src="app.js"></script>
+    <!-- Modular JavaScript - Load in dependency order -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/sparklines.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/display.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
