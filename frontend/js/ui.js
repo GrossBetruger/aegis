@@ -18,29 +18,43 @@ function updateTimestamp(timestamp = null) {
 
 function startCountdown() {
     setInterval(() => {
+        const nextUpdate = document.getElementById('nextUpdate');
+        if (!nextUpdate) return;
+        
         const now = new Date();
         const nextHour = new Date(now);
         nextHour.setHours(now.getHours() + 1, 0, 0, 0);
         const diff = nextHour - now;
         const mins = Math.floor(diff / 60000);
         const secs = Math.floor((diff % 60000) / 1000);
-        document.getElementById('countdown').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        nextUpdate.textContent = `Next update in ${mins}:${secs.toString().padStart(2, '0')}`;
     }, 1000);
 }
 
 function updateGauge(score) {
-    const needle = document.querySelector('.gauge-needle');
-    const value = document.querySelector('.gauge-value');
-    const statusText = document.getElementById('statusText');
-    const container = document.querySelector('.gauge-container');
-    
     score = Math.max(0, Math.min(100, Math.round(score)));
     
-    const degrees = -90 + (score / 100) * 180;
-    needle.style.transform = `translateX(-50%) rotate(${degrees}deg)`;
-    value.textContent = Math.round(score);
-    statusText.textContent = getStatusText(score);
-    container.className = `gauge-container ${getStatusClass(score)}`;
+    // Update gauge fill (SVG arc)
+    const gaugeFill = document.getElementById('gaugeFill');
+    if (gaugeFill) {
+        const offset = 251.2 - (score / 100 * 251.2);
+        gaugeFill.style.strokeDashoffset = offset;
+        gaugeFill.setAttribute('stroke', getGradient(score));
+    }
+    
+    // Update value display
+    const gaugeValue = document.getElementById('gaugeValue');
+    if (gaugeValue) {
+        gaugeValue.textContent = `${score}%`;
+        gaugeValue.className = `gauge-value ${getColor(score)}`;
+    }
+    
+    // Update status label
+    const statusLabel = document.getElementById('statusLabel');
+    if (statusLabel) {
+        statusLabel.textContent = getStatusText(score);
+        statusLabel.className = `status-label ${getStatusClass(score)}`;
+    }
 }
 
 function updateSignal(name, value, detail) {

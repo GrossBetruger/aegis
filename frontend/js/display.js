@@ -12,7 +12,7 @@ function displayData(data) {
                 state.signalHistory[sig] = data.signalHistory[sig];
             }
         });
-    }
+    }   
 
     // Update individual signal displays with stored details or computed values
     // NEWS: Use news_intel from data.json (consistent for all users)
