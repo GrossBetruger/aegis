@@ -350,7 +350,7 @@ def fetch_polymarket_odds():
                 ):
                     market_name = market.get("question") or ""
                     print(f"Found Iran strike market question: {market_name}")
-                    
+
                     # Check if near-term (within 7 days)
                     if not is_near_term_market(market_name):
                         continue
@@ -377,11 +377,11 @@ def fetch_polymarket_odds():
 
                 if "iran" in event_title:
                     print(f"Found Iran event: {event.get('title')}")
-                    
+
                     # Check if near-term
                     if not is_near_term_market(event.get("title", "")):
                         continue
-                    
+
                     markets = event.get("markets", [])
 
                     for market in markets:
@@ -401,11 +401,11 @@ def fetch_polymarket_odds():
                             continue
 
                         market_name = market.get("question") or event.get("title") or ""
-                        
+
                         # Check if market question has near-term date
                         if not is_near_term_market(market_name):
                             continue
-                        
+
                         odds = get_market_odds(market)
 
                         if odds > 0 and odds > highest_odds:
