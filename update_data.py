@@ -153,7 +153,9 @@ def calculate_pentagon_activity_score(busyness_data):
 def fetch_polymarket_odds():
     """Fetch Iran strike odds from Polymarket Gamma API"""
     try:
-        print("Fetching Polymarket odds...")
+        print("\n" + "=" * 50)
+        print("POLYMARKET ODDS")
+        print("=" * 50)
 
         # Search for "US strikes Iran" specifically (the exact market we want)
         strike_keywords = ["strike", "attack", "bomb", "military action"]
@@ -189,7 +191,7 @@ def fetch_polymarket_odds():
         highest_odds = 0
         market_title = ""
 
-        print(f"Found {len(events)} valid events on Polymarket")
+        print(f"Scanning {len(events)} events...")
 
         def get_market_odds(market):
             """Extract odds from a market using multiple methods"""
@@ -314,8 +316,6 @@ def fetch_polymarket_odds():
                 "will us or israel strike iran" in event_title
                 or "us strikes iran by" in event_title
             ):
-                print(f"Found Iran strike event: {event.get('title')}")
-
                 # Check if it's a near-term market (within 7 days)
                 if not is_near_term_market(event.get("title", "")):
                     continue
@@ -327,7 +327,6 @@ def fetch_polymarket_odds():
                     market_name = market.get("question") or event.get("title") or ""
 
                     odds = get_market_odds(market)
-                    print(f"  Market: {market_name[:50]}... Odds: {odds}%")
 
                     if odds > highest_odds:
                         highest_odds = odds
@@ -349,14 +348,12 @@ def fetch_polymarket_odds():
                     kw in market_question for kw in strike_keywords
                 ):
                     market_name = market.get("question") or ""
-                    print(f"Found Iran strike market question: {market_name}")
 
                     # Check if near-term (within 7 days)
                     if not is_near_term_market(market_name):
                         continue
 
                     odds = get_market_odds(market)
-                    print(f"  Odds: {odds}%")
 
                     if odds > 0 and odds > highest_odds:
                         highest_odds = odds
@@ -364,7 +361,6 @@ def fetch_polymarket_odds():
 
         # Second pass: If no strike markets, look for any Iran-related market (excluding negatives)
         if highest_odds == 0:
-            print("No strike markets found, checking all Iran markets...")
             for event in events:
                 event_title = (event.get("title") or "").lower()
 
@@ -376,8 +372,6 @@ def fetch_polymarket_odds():
                     continue
 
                 if "iran" in event_title:
-                    print(f"Found Iran event: {event.get('title')}")
-
                     # Check if near-term
                     if not is_near_term_market(event.get("title", "")):
                         continue
@@ -412,7 +406,13 @@ def fetch_polymarket_odds():
                             highest_odds = odds
                             market_title = market_name
 
-        print(f"Polymarket result: {highest_odds}% odds on '{market_title}'")
+        if highest_odds > 0:
+            print(
+                f"Market: {market_title[:70]}..."
+                if len(market_title) > 70
+                else f"Market: {market_title}"
+            )
+        print(f"✓ Result: Risk {highest_odds}%")
 
         return {
             "odds": highest_odds,
@@ -431,7 +431,9 @@ def fetch_polymarket_odds():
 def fetch_news_intel():
     """Fetch Iran-related news from RSS feeds - server side, no CORS issues"""
     try:
-        print("Fetching News Intel from RSS feeds...")
+        print("\n" + "=" * 50)
+        print("NEWS INTELLIGENCE")
+        print("=" * 50)
         import xml.etree.ElementTree as ET
 
         rss_feeds = [
@@ -516,9 +518,12 @@ def fetch_news_intel():
                 seen.add(key)
                 unique_articles.append(article)
 
-        print(
-            f"News Intel result: {len(unique_articles)} articles, {alert_count} alerts"
+        print(f"Found {len(unique_articles)} articles ({alert_count} critical)")
+        alert_ratio = (
+            alert_count / len(unique_articles) if len(unique_articles) > 0 else 0
         )
+        risk = max(3, round(pow(alert_ratio, 2) * 85))
+        print(f"✓ Result: Risk {risk}%")
 
         return {
             "articles": unique_articles,  # Limit to 15 articles
@@ -610,7 +615,9 @@ def fetch_wikipedia_views():
 def fetch_aviation_data():
     """Fetch OpenSky Network data for aircraft over Iran"""
     try:
-        print("Fetching aviation data (OpenSky)...")
+        print("\n" + "=" * 50)
+        print("AVIATION TRACKING")
+        print("=" * 50)
         # Iran airspace bounding box
         url = "https://opensky-network.org/api/states/all?lamin=25&lomin=44&lamax=40&lomax=64"
 
@@ -651,7 +658,9 @@ def fetch_aviation_data():
                     if airline_code not in airlines:
                         airlines.append(airline_code)
 
-        print(f"Aviation: {civil_count} aircraft, {len(airlines)} airlines")
+        print(f"Detected {civil_count} aircraft, {len(airlines)} airlines over Iran")
+        risk = max(3, 95 - round(civil_count * 0.8))
+        print(f"✓ Result: Risk {risk}%")
         return {
             "aircraft_count": civil_count,
             "airline_count": len(airlines),
@@ -666,7 +675,9 @@ def fetch_aviation_data():
 def fetch_tanker_activity():
     """Fetch US military tanker activity in Middle East"""
     try:
-        print("Fetching tanker activity...")
+        print("\n" + "=" * 50)
+        print("TANKER ACTIVITY")
+        print("=" * 50)
         # Middle East bounding box
         url = "https://opensky-network.org/api/states/all?lamin=20&lomin=40&lamax=40&lomax=65"
 
@@ -719,7 +730,9 @@ def fetch_tanker_activity():
                     if callsign:
                         tanker_callsigns.append(callsign)
 
-        print(f"Tanker: {tanker_count} detected")
+        print(f"Detected {tanker_count} tankers in Middle East")
+        risk = round((tanker_count / 10) * 100)
+        print(f"✓ Result: Risk {risk}%")
         return {
             "tanker_count": tanker_count,
             "callsigns": tanker_callsigns[:5],  # Top 5
@@ -733,7 +746,9 @@ def fetch_tanker_activity():
 def fetch_weather_data():
     """Fetch weather conditions for Tehran"""
     try:
-        print("Fetching weather data...")
+        print("\n" + "=" * 50)
+        print("WEATHER CONDITIONS")
+        print("=" * 50)
         api_key = os.environ.get(
             "OPENWEATHER_API_KEY", "2e1d472bc1b48449837208507a2367af"
         )
@@ -756,7 +771,9 @@ def fetch_weather_data():
                 else:
                     condition = "Poor"
 
-                print(f"Weather: {temp}°C, {condition}")
+                print(f"Conditions: {temp}°C, {condition}, {description}")
+                risk = 100 - (max(0, clouds - 6) * 10)
+                print(f"✓ Result: Risk {risk}%")
                 return {
                     "temp": temp,
                     "visibility": visibility,
@@ -831,20 +848,32 @@ def update_data_file():
         else:
             current_data = {}
 
-        # Preserve existing history and signalHistory
-        history = current_data.get("history", [])
-        signal_history = current_data.get(
-            "signalHistory",
-            {
-                "news": [],
-                "social": [],
-                "flight": [],
-                "tanker": [],
-                "pentagon": [],
-                "polymarket": [],
-                "weather": [],
-            },
-        )
+        # Preserve existing history from old or new structure
+        if "total_risk" in current_data and "history" in current_data["total_risk"]:
+            # New structure
+            history = current_data["total_risk"]["history"]
+            signal_history = {
+                "news": current_data.get("news", {}).get("history", []),
+                "flight": current_data.get("flight", {}).get("history", []),
+                "tanker": current_data.get("tanker", {}).get("history", []),
+                "pentagon": current_data.get("pentagon", {}).get("history", []),
+                "polymarket": current_data.get("polymarket", {}).get("history", []),
+                "weather": current_data.get("weather", {}).get("history", []),
+            }
+        else:
+            # Old structure or no data
+            history = current_data.get("history", [])
+            signal_history = current_data.get(
+                "signalHistory",
+                {
+                    "news": [],
+                    "flight": [],
+                    "tanker": [],
+                    "pentagon": [],
+                    "polymarket": [],
+                    "weather": [],
+                },
+            )
 
         # Fetch Pentagon data
         pentagon_data = fetch_pentagon_data()
@@ -860,11 +889,6 @@ def update_data_file():
         news_data = fetch_news_intel()
         if news_data:
             current_data["news_intel"] = news_data
-
-        # NEW: Fetch all other API data
-        print("\n" + "=" * 50)
-        print("FETCHING ALL API DATA")
-        print("=" * 50)
 
         # GDELT data
         # TODO: this is good, add it sometime, it returned 25 articles on jan 26th
@@ -979,41 +1003,7 @@ def update_data_file():
 
         total_risk = min(100, max(0, round(total_risk)))
 
-        # Store all pre-calculated display values
-        current_data["calculated_signals"] = {
-            "news": {"risk": news_display_risk, "detail": news_detail},
-            "flight": {"risk": flight_risk, "detail": flight_detail},
-            "tanker": {"risk": tanker_risk, "detail": tanker_detail},
-            "weather": {"risk": weather_risk, "detail": weather_detail},
-            "polymarket": {
-                "risk": polymarket_display_risk,
-                "detail": polymarket_detail,
-            },
-            "pentagon": {"risk": pentagon_display_risk, "detail": pentagon_detail},
-            "total_risk": total_risk,
-            "elevated_count": elevated_count,
-        }
-
-        # Add to history (keep last 72 hours) - include all signal risks
-        history.append(
-            {
-                "timestamp": int(datetime.now().timestamp() * 1000),
-                "risk": total_risk,
-                "signals": {
-                    "news": news_display_risk,
-                    "flight": flight_risk,
-                    "tanker": tanker_risk,
-                    "weather": weather_risk,
-                    "polymarket": polymarket_display_risk,
-                    "pentagon": pentagon_display_risk,
-                },
-            }
-        )
-        cutoff_time = int((datetime.now().timestamp() - 72 * 60 * 60) * 1000)
-        history = [h for h in history if h["timestamp"] > cutoff_time]
-        current_data["history"] = history
-
-        # Add to signal history (keep last 20 points per signal)
+        # Update signal histories (keep last 20 points per signal)
         signal_history["news"].append(news_display_risk)
         signal_history["flight"].append(flight_risk)
         signal_history["tanker"].append(tanker_risk)
@@ -1025,7 +1015,62 @@ def update_data_file():
         for sig in signal_history:
             if len(signal_history[sig]) > 20:
                 signal_history[sig] = signal_history[sig][-20:]
-        current_data["signalHistory"] = signal_history
+
+        # Add to total risk history (keep last 72 hours)
+        history.append(
+            {"timestamp": int(datetime.now().timestamp() * 1000), "risk": total_risk}
+        )
+        cutoff_time = int((datetime.now().timestamp() - 72 * 60 * 60) * 1000)
+        history = [h for h in history if h["timestamp"] > cutoff_time]
+
+        # RESTRUCTURED DATA: Each signal has its own complete object
+        restructured_data = {
+            "news": {
+                "risk": news_display_risk,
+                "detail": news_detail,
+                "history": signal_history["news"],
+                "raw_data": news_intel,
+            },
+            "flight": {
+                "risk": flight_risk,
+                "detail": flight_detail,
+                "history": signal_history["flight"],
+                "raw_data": aviation,
+            },
+            "tanker": {
+                "risk": tanker_risk,
+                "detail": tanker_detail,
+                "history": signal_history["tanker"],
+                "raw_data": tanker,
+            },
+            "weather": {
+                "risk": weather_risk,
+                "detail": weather_detail,
+                "history": signal_history["weather"],
+                "raw_data": weather,
+            },
+            "polymarket": {
+                "risk": polymarket_display_risk,
+                "detail": polymarket_detail,
+                "history": signal_history["polymarket"],
+                "raw_data": polymarket,
+            },
+            "pentagon": {
+                "risk": pentagon_display_risk,
+                "detail": pentagon_detail,
+                "history": signal_history["pentagon"],
+                "raw_data": pentagon_data,
+            },
+            "total_risk": {
+                "risk": total_risk,
+                "history": history,
+                "elevated_count": elevated_count,
+            },
+            "last_updated": current_data["last_updated"],
+        }
+
+        # Replace old structure with new restructured data
+        current_data = restructured_data
 
         print("\n" + "=" * 50)
         print("DATA COLLECTION COMPLETE")
@@ -1051,7 +1096,9 @@ def update_data_file():
 
 def fetch_pentagon_data():
     """Fetch Pentagon Pizza Meter data - pizza place busyness near Pentagon"""
-    print("Fetching Pentagon activity...")
+    print("\n" + "=" * 50)
+    print("PENTAGON PIZZA METER")
+    print("=" * 50)
 
     busyness_data = []
 
@@ -1090,15 +1137,14 @@ def fetch_pentagon_data():
         "is_weekend": datetime.now().weekday() >= 5,
     }
 
-    print(
-        f"Pentagon: {status} (score: {activity_score}, contribution: {risk_contribution}%)"
-    )
+    print(f"Activity: {status} - Score: {activity_score}/100")
+    display_risk = round((risk_contribution / 10) * 100)
+    print(f"✓ Result: Risk {display_risk}%")
     return pentagon_data
 
 
 def main():
     print(f"Updating data - {datetime.now().isoformat()}")
-    print("-" * 50)
     update_data_file()
 
 

@@ -6,88 +6,80 @@
 function displayData(data) {
     console.log('Displaying data:', data);
     
-    // Load signal history from data.json
-    if (data?.signalHistory) {
-        console.log('Loading signalHistory:', Object.keys(data.signalHistory).map(k => `${k}: ${data.signalHistory[k]?.length || 0} points`).join(', '));
-        ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather'].forEach(sig => {
-            if (data.signalHistory[sig] && data.signalHistory[sig].length > 0) {
-                state.signalHistory[sig] = data.signalHistory[sig];
-            }
-        }); 
-    }
+    // Load signal history from restructured data
+    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather'].forEach(sig => {
+        if (data[sig] && data[sig].history && data[sig].history.length > 0) {
+            state.signalHistory[sig] = data[sig].history;
+        }
+    });
 
-    // Get all pre-calculated signal values from backend
-    const calculated = data.calculated_signals || {};
-    
-    // Display all signals using pre-calculated values (NO CALCULATIONS HERE!)
-    if (calculated.news) {
-        updateSignal('news', calculated.news.risk, calculated.news.detail);
+    // Display all signals using pre-calculated values from restructured data
+    if (data.news) {
+        updateSignal('news', data.news.risk, data.news.detail);
     }
     
-    if (calculated.flight) {
-        updateSignal('flight', calculated.flight.risk, calculated.flight.detail);
+    if (data.flight) {
+        updateSignal('flight', data.flight.risk, data.flight.detail);
     }
     
-    if (calculated.tanker) {
-        updateSignal('tanker', calculated.tanker.risk, calculated.tanker.detail);
+    if (data.tanker) {
+        updateSignal('tanker', data.tanker.risk, data.tanker.detail);
     }
     
-    if (calculated.weather) {
-        updateSignal('weather', calculated.weather.risk, calculated.weather.detail);
+    if (data.weather) {
+        updateSignal('weather', data.weather.risk, data.weather.detail);
     }
     
     // Polymarket signal
-    if (calculated.polymarket) {
-        const polymarketOdds = data.polymarket?.odds || 0;
+    if (data.polymarket) {
+        const polymarketOdds = data.polymarket.raw_data?.odds || 0;
         const isValidData = polymarketOdds > 0 && polymarketOdds <= 95;
         
-        updateSignal('polymarket', calculated.polymarket.risk, calculated.polymarket.detail);
+        updateSignal('polymarket', data.polymarket.risk, data.polymarket.detail);
         setStatus('polymarketStatus', isValidData);
         
         // Add feed alert for high odds
         if (polymarketOdds > 30 && polymarketOdds <= 95) {
-            const marketTitle = data.polymarket?.market || 'Iran strike';
+            const marketTitle = data.polymarket.raw_data?.market || 'Iran strike';
             addFeed('MARKET', `📊 Polymarket: ${polymarketOdds}% odds on "${marketTitle.substring(0, 40)}"`, true, 'Alert');
         }
     }
     
     // Pentagon signal
-    if (calculated.pentagon) {
-        updateSignal('pentagon', calculated.pentagon.risk, calculated.pentagon.detail);
+    if (data.pentagon) {
+        updateSignal('pentagon', data.pentagon.risk, data.pentagon.detail);
         
         // Check if pentagon data is fresh (less than 40 minutes old)
         let pentagonTimestamp = 0;
-        if (data.pentagon?.timestamp) {
-            pentagonTimestamp = new Date(data.pentagon.timestamp).getTime();
-        } else if (data.pentagon_updated) {
-            pentagonTimestamp = new Date(data.pentagon_updated).getTime();
-        } else if (data.timestamp) {
-            pentagonTimestamp = data.timestamp;
+        if (data.pentagon.raw_data?.timestamp) {
+            pentagonTimestamp = new Date(data.pentagon.raw_data.timestamp).getTime();
+        } else if (data.last_updated) {
+            pentagonTimestamp = new Date(data.last_updated).getTime();
         }
         
         const pentagonAge = Date.now() - pentagonTimestamp;
         const isPentagonFresh = (pentagonTimestamp > 0 && pentagonAge < 40 * 60 * 1000) ||
-                                (data.pentagon?.status && data.pentagon?.score !== undefined);
+                                (data.pentagon.raw_data?.status && data.pentagon.raw_data?.score !== undefined);
         
         setStatus('pentagonStatus', isPentagonFresh);
         
         // Add feed alert for high activity
-        const pentagonContribution = data.pentagon?.risk_contribution || 0;
+        const pentagonContribution = data.pentagon.raw_data?.risk_contribution || 0;
         if (pentagonContribution >= 7) {
             addFeed('PENTAGON', `🍕 High activity detected near Pentagon`, true, 'Alert');
         }
     }
     
     // Display total risk (pre-calculated)
-    const total = calculated.total_risk || 0;
+    const total = data.total_risk?.risk || 0;
     
     // Add escalation alert if needed
-    if (calculated.elevated_count >= 3) {
+    if (data.total_risk?.elevated_count >= 3) {
         addFeed('SYSTEM', 'Multiple elevated signals detected - escalation multiplier applied', true, 'Alert');
     }
 
     updateGauge(total);
-    updateTimestamp(data.timestamp);
+    updateTimestamp(data.last_updated);
 
     return total;
 }

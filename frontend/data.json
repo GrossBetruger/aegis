@@ -1,236 +1,318 @@
 {
-  "pentagon": {
-    "score": 20,
-    "risk_contribution": 1,
-    "status": "Low Activity",
-    "places": [
-      {
-        "status": "normal",
-        "score": 20,
-        "name": "Domino's Pizza"
-      },
-      {
-        "status": "normal",
-        "score": 20,
-        "name": "Papa John's"
-      },
-      {
-        "status": "normal",
-        "score": 20,
-        "name": "Pizza Hut"
-      }
+  "news": {
+    "risk": 7,
+    "detail": "17 articles, 5 critical",
+    "history": [
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      7
     ],
-    "timestamp": "2026-01-26T23:47:41.635819",
-    "is_late_night": true,
-    "is_weekend": false
-  },
-  "pentagon_updated": "2026-01-26T23:47:41.635824",
-  "polymarket": {
-    "odds": 13,
-    "market": "Will US or Israel strike Iran by January 31, 2026?",
-    "timestamp": "2026-01-26T23:47:41.868917"
-  },
-  "news_intel": {
-    "articles": [
-      {
-        "title": "New Iran videos show bodies piled in hospital and snipers on roofs",
-        "is_alert": false
-      },
-      {
-        "title": "'I saw people getting shot': Eyewitness tells of Iran protest crackdown",
-        "is_alert": true
-      },
-      {
-        "title": "Fears Iran's internet shutdown could lead to 'extreme digital isolation'",
-        "is_alert": true
-      },
-      {
-        "title": "What next for Iran's supreme leader?",
-        "is_alert": false
-      },
-      {
-        "title": "'I carried my wife's body for an hour and a half' - BBC hears stories of protesters killed in Iran",
-        "is_alert": false
-      },
-      {
-        "title": "Tehran morgue videos show the brutality of Iran's crackdown on protesters",
-        "is_alert": false
-      },
-      {
-        "title": "Why are there protests in Iran and what has Trump said about US action?",
-        "is_alert": true
-      },
-      {
-        "title": "Bowen: Authoritarian regimes die gradually then suddenly, but Iran is not there yet",
-        "is_alert": false
-      },
-      {
-        "title": "Decision time for Trump on Iran but what does he ultimately want?",
-        "is_alert": false
-      },
-      {
-        "title": "Which countries do business with Iran  and what could US tariffs mean?",
-        "is_alert": false
-      },
-      {
-        "title": "'They just kept killing': Eyewitnesses describe deadly crackdown in Iran",
-        "is_alert": true
-      },
-      {
-        "title": "'Anger and frustration': BBC reports from Iranian-Armenian border",
-        "is_alert": false
-      },
-      {
-        "title": "Where do these protests leave the Iranian regime?",
-        "is_alert": true
-      },
-      {
-        "title": "'Now there's the threat of executions' in Iran",
-        "is_alert": false
-      },
-      {
-        "title": "Mortuary videos show how deadly Iran crackdown has become",
-        "is_alert": false
-      },
-      {
-        "title": "Watch: Buildings in Tehran set on fire as demonstrations spread across Iran",
-        "is_alert": false
-      },
-      {
-        "title": "Watch: Protests break out in Iranian capital Tehran",
-        "is_alert": false
-      },
-      {
-        "title": "As US \u2018armada\u2019 approaches, Iran warns of dire consequences if attacked",
-        "is_alert": true
-      }
-    ],
-    "total_count": 18,
-    "alert_count": 6,
-    "timestamp": "2026-01-26T23:47:42.606232"
-  },
-  "aviation": {
-    "aircraft_count": 50,
-    "airline_count": 23,
-    "airlines": [
-      "PGT",
-      "IGO",
-      "SEJ",
-      "AXB",
-      "SVA",
-      "UAE",
-      "TKJ",
-      "THY",
-      "FDB",
-      "ABQ"
-    ],
-    "timestamp": "2026-01-26T23:47:42.890692"
-  },
-  "tanker": {
-    "tanker_count": 0,
-    "callsigns": [],
-    "timestamp": "2026-01-26T23:47:45.161247"
-  },
-  "weather": {
-    "temp": 4,
-    "visibility": 8000,
-    "clouds": 0,
-    "description": "clear sky",
-    "condition": "Marginal",
-    "timestamp": "2026-01-26T23:47:45.374240"
-  },
-  "last_updated": "2026-01-26T23:47:45.378108",
-  "calculated_signals": {
-    "news": {
-      "risk": 9,
-      "detail": "18 articles, 6 critical"
-    },
-    "flight": {
-      "risk": 55,
-      "detail": "50 aircraft over Iran"
-    },
-    "tanker": {
-      "risk": 0,
-      "detail": "0 detected in region"
-    },
-    "weather": {
-      "risk": 100,
-      "detail": "clear sky"
-    },
-    "polymarket": {
-      "risk": 13,
-      "detail": "13% odds"
-    },
-    "pentagon": {
-      "risk": 10,
-      "detail": "Low Activity (late night)"
-    },
-    "total_risk": 27,
-    "elevated_count": 1
-  },
-  "history": [
-    {
-      "timestamp": 1769463822123,
-      "risk": 26
-    },
-    {
-      "timestamp": 1769463829063,
-      "risk": 26
-    },
-    {
-      "timestamp": 1769463849351,
-      "risk": 26
-    },
-    {
-      "timestamp": 1769464065378,
-      "risk": 27,
-      "signals": {
-        "news": 9,
-        "flight": 55,
-        "tanker": 0,
-        "weather": 100,
-        "polymarket": 13,
-        "pentagon": 10
-      }
+    "raw_data": {
+      "articles": [
+        {
+          "title": "New Iran videos show bodies piled in hospital and snipers on roofs",
+          "is_alert": false
+        },
+        {
+          "title": "'I saw people getting shot': Eyewitness tells of Iran protest crackdown",
+          "is_alert": true
+        },
+        {
+          "title": "Fears Iran's internet shutdown could lead to 'extreme digital isolation'",
+          "is_alert": true
+        },
+        {
+          "title": "What next for Iran's supreme leader?",
+          "is_alert": false
+        },
+        {
+          "title": "'I carried my wife's body for an hour and a half' - BBC hears stories of protesters killed in Iran",
+          "is_alert": false
+        },
+        {
+          "title": "Tehran morgue videos show the brutality of Iran's crackdown on protesters",
+          "is_alert": false
+        },
+        {
+          "title": "Why are there protests in Iran and what has Trump said about US action?",
+          "is_alert": true
+        },
+        {
+          "title": "Bowen: Authoritarian regimes die gradually then suddenly, but Iran is not there yet",
+          "is_alert": false
+        },
+        {
+          "title": "Decision time for Trump on Iran but what does he ultimately want?",
+          "is_alert": false
+        },
+        {
+          "title": "Which countries do business with Iran  and what could US tariffs mean?",
+          "is_alert": false
+        },
+        {
+          "title": "'They just kept killing': Eyewitnesses describe deadly crackdown in Iran",
+          "is_alert": true
+        },
+        {
+          "title": "'Anger and frustration': BBC reports from Iranian-Armenian border",
+          "is_alert": false
+        },
+        {
+          "title": "Where do these protests leave the Iranian regime?",
+          "is_alert": true
+        },
+        {
+          "title": "'Now there's the threat of executions' in Iran",
+          "is_alert": false
+        },
+        {
+          "title": "Mortuary videos show how deadly Iran crackdown has become",
+          "is_alert": false
+        },
+        {
+          "title": "Watch: Buildings in Tehran set on fire as demonstrations spread across Iran",
+          "is_alert": false
+        },
+        {
+          "title": "Watch: Protests break out in Iranian capital Tehran",
+          "is_alert": false
+        }
+      ],
+      "total_count": 17,
+      "alert_count": 5,
+      "timestamp": "2026-01-27T00:17:27.511795"
     }
-  ],
-  "signalHistory": {
-    "news": [
-      9,
-      9,
-      9,
-      9
-    ],
-    "social": [],
-    "flight": [
+  },
+  "flight": {
+    "risk": 55,
+    "detail": "50 aircraft over Iran",
+    "history": [
       51,
       52,
       51,
+      55,
+      61,
+      95,
+      95,
+      95,
+      95,
+      95,
+      95,
+      95,
       55
     ],
-    "tanker": [
+    "raw_data": {
+      "aircraft_count": 50,
+      "airline_count": 26,
+      "airlines": [
+        "SWR",
+        "PGT",
+        "SVA",
+        "IGO",
+        "AXB",
+        "UAE",
+        "TKJ",
+        "THY",
+        "FDB",
+        "ABY"
+      ],
+      "timestamp": "2026-01-27T00:17:27.956911"
+    }
+  },
+  "tanker": {
+    "risk": 0,
+    "detail": "0 detected in region",
+    "history": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0,
       0,
       0,
       0
     ],
-    "pentagon": [
-      10,
-      10,
-      10,
-      10
+    "raw_data": {
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-01-27T00:17:30.418947"
+    }
+  },
+  "weather": {
+    "risk": 100,
+    "detail": "clear sky",
+    "history": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
     ],
-    "polymarket": [
+    "raw_data": {
+      "temp": 4,
+      "visibility": 8000,
+      "clouds": 0,
+      "description": "clear sky",
+      "condition": "Marginal",
+      "timestamp": "2026-01-27T00:17:30.788528"
+    }
+  },
+  "polymarket": {
+    "risk": 13,
+    "detail": "13% odds",
+    "history": [
+      13,
+      13,
+      13,
+      13,
+      13,
+      13,
+      13,
+      13,
+      13,
       13,
       13,
       13,
       13
     ],
-    "weather": [
-      100,
-      100,
-      100,
-      100
-    ]
-  }
+    "raw_data": {
+      "odds": 13,
+      "market": "Will US or Israel strike Iran by January 31, 2026?",
+      "timestamp": "2026-01-27T00:17:27.144224"
+    }
+  },
+  "pentagon": {
+    "risk": 10,
+    "detail": "Low Activity (late night)",
+    "history": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "raw_data": {
+      "score": 20,
+      "risk_contribution": 1,
+      "status": "Low Activity",
+      "places": [
+        {
+          "status": "normal",
+          "score": 20,
+          "name": "Domino's Pizza"
+        },
+        {
+          "status": "normal",
+          "score": 20,
+          "name": "Papa John's"
+        },
+        {
+          "status": "normal",
+          "score": 20,
+          "name": "Pizza Hut"
+        }
+      ],
+      "timestamp": "2026-01-27T00:17:26.680547",
+      "is_late_night": true,
+      "is_weekend": false
+    }
+  },
+  "total_risk": {
+    "risk": 26,
+    "history": [
+      {
+        "timestamp": 1769463822123,
+        "risk": 26
+      },
+      {
+        "timestamp": 1769463829063,
+        "risk": 26
+      },
+      {
+        "timestamp": 1769463849351,
+        "risk": 26
+      },
+      {
+        "timestamp": 1769464065378,
+        "risk": 27,
+        "signals": {
+          "news": 9,
+          "flight": 55,
+          "tanker": 0,
+          "weather": 100,
+          "polymarket": 13,
+          "pentagon": 10
+        }
+      },
+      {
+        "timestamp": 1769464646662,
+        "risk": 28
+      },
+      {
+        "timestamp": 1769464874170,
+        "risk": 35
+      },
+      {
+        "timestamp": 1769464889855,
+        "risk": 35
+      },
+      {
+        "timestamp": 1769464923630,
+        "risk": 35
+      },
+      {
+        "timestamp": 1769465152625,
+        "risk": 35
+      },
+      {
+        "timestamp": 1769465182475,
+        "risk": 35
+      },
+      {
+        "timestamp": 1769465382583,
+        "risk": 35
+      },
+      {
+        "timestamp": 1769465510994,
+        "risk": 35
+      },
+      {
+        "timestamp": 1769465850792,
+        "risk": 26
+      }
+    ],
+    "elevated_count": 1
+  },
+  "last_updated": "2026-01-27T00:17:30.792365"
 }

@@ -7,7 +7,7 @@ async function loadData() {
     const data = await getData();
     
     if (data) {
-        initChart(data.history); // Handles both init and update
+        initChart(data.total_risk?.history); // Pass restructured history
         displayData(data);
     }
 }

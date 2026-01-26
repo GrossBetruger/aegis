@@ -13,20 +13,16 @@ async function getData() {
         console.log('Error reading data.json:', e.message);
     }
     
-    // Fallback if data.json can't be read
+    // Fallback if data.json can't be read - use new structure
     return {
-        news: 3,
-        interest: 2,
-        aviation: 5,
-        tanker: 1,
-        weather: 0,
-        timestamp: Date.now(),
-        history: [],
-        signalHistory: {},
-        newsDetail: 'Data unavailable',
-        flightDetail: 'Data unavailable',
-        tankerDetail: 'Data unavailable',
-        weatherDetail: 'Data unavailable'
+        news: { risk: 3, detail: 'Data unavailable', history: [], raw_data: {} },
+        flight: { risk: 5, detail: 'Data unavailable', history: [], raw_data: {} },
+        tanker: { risk: 1, detail: 'Data unavailable', history: [], raw_data: {} },
+        weather: { risk: 0, detail: 'Data unavailable', history: [], raw_data: {} },
+        polymarket: { risk: 10, detail: 'Data unavailable', history: [], raw_data: {} },
+        pentagon: { risk: 10, detail: 'Data unavailable', history: [], raw_data: {} },
+        total_risk: { risk: 20, history: [], elevated_count: 0 },
+        last_updated: new Date().toISOString()
     };
 }
 
