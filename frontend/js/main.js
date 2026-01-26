@@ -7,13 +7,7 @@ async function loadData() {
     const data = await getData();
     
     if (data) {
-        // Initialize chart if not already done
-        if (!chart) {
-            initChart(data.history);
-        } else {
-            updateChartFromHistory(data.history);
-        }
-        
+        initChart(data.history); // Handles both init and update
         displayData(data, true);
     }
 }
