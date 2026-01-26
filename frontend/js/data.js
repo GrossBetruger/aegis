@@ -64,7 +64,6 @@ Elevated signals detected. Monitor the dashboard for updates.
             localStorage.setItem('lastAlertTime', now.toString());
             let lastAlertSent = now;
             console.log('Telegram alert sent successfully');
-            addFeed('TELEGRAM', 'Alert sent to subscribers', false);
         } else {
             const err = await res.json();
             console.log('Telegram error:', err.description);

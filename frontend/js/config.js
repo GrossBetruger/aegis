@@ -10,8 +10,6 @@ const TELEGRAM_CHANNEL = '@StrikeRadarAlerts';
 const state = {
     trendLabels: [],
     trendData: [],
-    feedItems: [],
-    seenHeadlines: new Set(),
     signalHistory: {
         news: [],
         flight: [],

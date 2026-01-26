@@ -87,41 +87,6 @@ function updateSignal(name, value, detail) {
     if (detailEl) detailEl.textContent = detail;
 }
 
-function addFeed(source, text, isAlert = false, badge = null) {
-    const key = text.substring(0, 50).toLowerCase();
-    if (state.seenHeadlines.has(key)) return;
-    state.seenHeadlines.add(key);
-
-    const item = { source, text, isAlert, badge, time: formatTime() };
-    state.feedItems.unshift(item);
-    if (state.feedItems.length > 20) state.feedItems.pop();
-    renderFeed();
-}
-
-function renderFeed() {
-    const list = document.getElementById('feedList');
-    const btn = document.getElementById('showMoreBtn');
-    const expanded = list.classList.contains('expanded');
-    const items = expanded ? state.feedItems : state.feedItems.slice(0, 3);
-
-    list.innerHTML = items.map(i => `
-        <div class="feed-item${i.isAlert ? ' alert' : ''}">
-            <span class="feed-source">${i.source}</span>
-            ${i.badge ? `<span class="feed-badge">${i.badge}</span>` : ''}
-            <span class="feed-text">${i.text}</span>
-            <span class="feed-time">${i.time}</span>
-        </div>
-    `).join('');
-
-    btn.textContent = expanded ? 'Show Less' : `Show More (${state.feedItems.length - 3})`;
-    btn.style.display = state.feedItems.length > 3 ? 'block' : 'none';
-}
-
-function toggleFeed() {
-    document.getElementById('feedList').classList.toggle('expanded');
-    renderFeed();
-}
-
 function showInfo(type) {
     const modal = document.getElementById('infoModal');
     const content = document.getElementById('infoContent');

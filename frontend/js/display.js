@@ -37,12 +37,6 @@ function displayData(data) {
         
         updateSignal('polymarket', data.polymarket.risk, data.polymarket.detail);
         setStatus('polymarketStatus', isValidData);
-        
-        // Add feed alert for high odds
-        if (polymarketOdds > 30 && polymarketOdds <= 95) {
-            const marketTitle = data.polymarket.raw_data?.market || 'Iran strike';
-            addFeed('MARKET', `📊 Polymarket: ${polymarketOdds}% odds on "${marketTitle.substring(0, 40)}"`, true, 'Alert');
-        }
     }
     
     // Pentagon signal
@@ -62,21 +56,10 @@ function displayData(data) {
                                 (data.pentagon.raw_data?.status && data.pentagon.raw_data?.score !== undefined);
         
         setStatus('pentagonStatus', isPentagonFresh);
-        
-        // Add feed alert for high activity
-        const pentagonContribution = data.pentagon.raw_data?.risk_contribution || 0;
-        if (pentagonContribution >= 7) {
-            addFeed('PENTAGON', `🍕 High activity detected near Pentagon`, true, 'Alert');
-        }
     }
     
     // Display total risk (pre-calculated)
     const total = data.total_risk?.risk || 0;
-    
-    // Add escalation alert if needed
-    if (data.total_risk?.elevated_count >= 3) {
-        addFeed('SYSTEM', 'Multiple elevated signals detected - escalation multiplier applied', true, 'Alert');
-    }
 
     updateGauge(total);
     updateTimestamp(new Date(data.last_updated)).getTime();
