@@ -8,7 +8,7 @@ async function loadData() {
     
     if (data) {
         initChart(data.history); // Handles both init and update
-        displayData(data, true);
+        displayData(data);
     }
 }
 

@@ -44,32 +44,17 @@ function generateSparkline(data, color = '#22c55e') {
 }
 
 // Update sparkline for a signal
-function updateSparkline(name, value, color, addToHistory = false) {
+function updateSparkline(name, value, color) {
     const container = document.getElementById(`${name}Sparkline`);
     if (!container) return;
 
-    // Get history or generate mimicked data
-    let history = state.signalHistory[name] || [];
+    // Get history from state (loaded from data.json)
+    const history = state.signalHistory[name] || [];
     
-    console.log(`updateSparkline(${name}, ${value}, addToHistory=${addToHistory}), existing history: ${history.length} points`);
-
-    // Only add current value if explicitly requested (for fresh data updates)
-    if (addToHistory && (history.length === 0 || history[history.length - 1] !== value)) {
-        history.push(value);
-        console.log(`  -> Added ${value} to ${name} history (now ${history.length} points)`);
-        // Keep only last 20 points
-        if (history.length > 20) {
-            history = history.slice(-20);
-        }
-        state.signalHistory[name] = history;
-    }
-
-    // Only render real data from data.json - no fake/mimicked data
+    // Only render real data from data.json
     if (history.length >= 2) {
-        console.log(`  -> Rendering ${history.length} real points for ${name}`);
         container.innerHTML = generateSparkline(history, color);
     } else {
-        console.log(`  -> Not enough data for ${name} sparkline (${history.length} points)`);
         container.innerHTML = ''; // Show nothing until we have at least 2 points
     }
 }

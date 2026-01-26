@@ -43,7 +43,7 @@ function updateGauge(score) {
     container.className = `gauge-container ${getStatusClass(score)}`;
 }
 
-function updateSignal(name, value, detail, addToHistory = false) {
+function updateSignal(name, value, detail) {
     const valEl = document.getElementById(`${name}Value`);
     const detailEl = document.getElementById(`${name}Detail`);
 
@@ -57,7 +57,7 @@ function updateSignal(name, value, detail, addToHistory = false) {
         // Update sparkline for weather - Clear (good attack conditions) = high, Poor = low
         const weatherNum = value === 'Favorable' ? 100 : value === 'Marginal' ? 50 : 20;
         const sparkColor = value === 'Favorable' ? '#f97316' : value === 'Marginal' ? '#eab308' : '#22c55e';
-        updateSparkline(name, weatherNum, sparkColor, addToHistory);
+        updateSparkline(name, weatherNum, sparkColor);
     } else {
         // Display the actual value
         let displayValue = Math.round(value) || 0;
@@ -66,7 +66,7 @@ function updateSignal(name, value, detail, addToHistory = false) {
         valEl.style.color = `var(--${colorClass})`;
         // Update sparkline with color based on value
         const sparkColor = getSparklineColor(displayValue);
-        updateSparkline(name, displayValue, sparkColor, addToHistory);
+        updateSparkline(name, displayValue, sparkColor);
     }
     if (detailEl) detailEl.textContent = detail;
 }
