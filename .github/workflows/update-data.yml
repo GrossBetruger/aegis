@@ -1,4 +1,4 @@
-name: Pentagon Pizza Meter
+name: Update Dashboard Data
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-pentagon-data:
+  update-data:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,12 +22,12 @@ jobs:
         run: |
           pip install requests
 
-      - name: Run Pentagon Pizza Meter
+      - name: Fetch all API data
         env:
           JSONBIN_API_KEY: ${{ secrets.JSONBIN_API_KEY }}
           OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
         run: |
-          python pentagon_pizza.py
+          python update_data.py
 
       - name: Commit and push data.json
         run: |
