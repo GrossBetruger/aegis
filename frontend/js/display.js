@@ -4,44 +4,26 @@
 
 // Display data on the dashboard
 function displayData(data) {
+    console.log('Displaying data:', data);
     // Load signal history from data.json
-    if (data.signalHistory) {
+    if (data?.signalHistory) {
         console.log('Loading signalHistory:', Object.keys(data.signalHistory).map(k => `${k}: ${data.signalHistory[k]?.length || 0} points`).join(', '));
         ['news', 'social', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather'].forEach(sig => {
             if (data.signalHistory[sig] && data.signalHistory[sig].length > 0) {
                 state.signalHistory[sig] = data.signalHistory[sig];
             }
-        });
-    }   
-
-    // Update individual signal displays with stored details or computed values
-    // NEWS: Use news_intel from data.json (consistent for all users)
-    let newsDisplayRisk = Math.round((data.news / 30) * 100);
-    let newsDetail = `${Math.round(data.news / 2)} articles, ${Math.round(data.news / 10)} critical`;
-
-    if (data.news_intel && data.news_intel.total_count !== undefined) {
-        // Use data from update_data.py (consistent!)
-        const articles = data.news_intel.total_count;
-        const alertCount = data.news_intel.alert_count || 0;
-
-        // Calculate contribution (same formula as fetchNews)
-        let contribution = 2;
-        if (articles <= 3) {
-            contribution = 3 + articles * 2 + alertCount * 1;
-        } else if (articles <= 6) {
-            contribution = 9 + (articles - 3) * 1.5 + alertCount * 1.5;
-        } else if (articles <= 10) {
-            contribution = 13.5 + (articles - 6) * 1 + alertCount * 2;
-        } else {
-            contribution = 17.5 + (articles - 10) * 0.5 + alertCount * 2;
-        }
-        contribution = Math.min(30, contribution);
-
-        newsDisplayRisk = Math.round((contribution / 30) * 100);
-        newsDetail = `${articles} articles, ${alertCount} critical`;
-    } else if (data.newsDetail && !data.newsDetail.includes('Monitoring') && !data.newsDetail.includes('Loading') && !data.newsDetail.includes('Awaiting')) {
-        newsDetail = data.newsDetail;
+        }); 
     }
+
+    // Update individual signal displays
+    
+    // NEWS: Use news_intel from data.json (consistent for all users)
+    const articles = data.news_intel.total_count;
+    const alertCount = data.news_intel.alert_count || 0;
+
+    const alertRatio = alertCount / articles;
+    newsDisplayRisk = Math.max(3, Math.round(Math.pow(alertRatio, 2) * 85));
+    newsDetail = `${articles} articles, ${alertCount} critical`;
 
     updateSignal('news', newsDisplayRisk, newsDetail);
 

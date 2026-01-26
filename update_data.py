@@ -363,7 +363,7 @@ def fetch_news_intel():
         )
 
         return {
-            "articles": unique_articles[:15],  # Limit to 15 articles
+            "articles": unique_articles,  # Limit to 15 articles
             "total_count": len(unique_articles),
             "alert_count": alert_count,
             "timestamp": datetime.now().isoformat(),
