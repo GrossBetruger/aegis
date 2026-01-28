@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 18,
-    "detail": "26 articles, 12 critical",
+    "risk": 16,
+    "detail": "25 articles, 11 critical",
     "history": [
       9,
       9,
@@ -21,7 +21,8 @@
       18,
       16,
       18,
-      18
+      18,
+      16
     ],
     "raw_data": {
       "articles": [
@@ -34,7 +35,7 @@
           "is_alert": false
         },
         {
-          "title": "Is the US preparing to strike Iran?",
+          "title": "Is the US preparing to strike Iran again?",
           "is_alert": true
         },
         {
@@ -124,20 +125,16 @@
         {
           "title": "LIVE: Iran says it will \u2018respond like never before\u2019 after Trump\u2019s threats",
           "is_alert": true
-        },
-        {
-          "title": "Iran rejects Trump\u2019s threats, says ready to respond to any US attack",
-          "is_alert": true
         }
       ],
-      "total_count": 26,
-      "alert_count": 12,
-      "timestamp": "2026-01-28T19:47:06.705498"
+      "total_count": 25,
+      "alert_count": 11,
+      "timestamp": "2026-01-28T21:01:35.133541"
     }
   },
   "flight": {
-    "risk": 3,
-    "detail": "116 aircraft over Iran",
+    "risk": 30,
+    "detail": "81 aircraft over Iran",
     "history": [
       51,
       52,
@@ -157,24 +154,25 @@
       9,
       9,
       15,
-      3
+      3,
+      30
     ],
     "raw_data": {
-      "aircraft_count": 116,
-      "airline_count": 36,
+      "aircraft_count": 81,
+      "airline_count": 23,
       "airlines": [
+        "AXB",
         "IGO",
-        "AIC",
-        "OMA",
         "UAE",
-        "MEA",
-        "WZZ",
-        "UBG",
+        "THY",
+        "ABY",
+        "FJL",
+        "FDB",
         "ETD",
-        "RAM",
-        "FDB"
+        "RNA",
+        "GFA"
       ],
-      "timestamp": "2026-01-28T19:47:07.292471"
+      "timestamp": "2026-01-28T21:01:35.610963"
     }
   },
   "tanker": {
@@ -199,18 +197,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-01-28T19:47:09.890220"
+      "timestamp": "2026-01-28T21:01:38.077348"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -253,12 +253,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -298,12 +300,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
-            "detail": "clear sky",
+            "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -322,12 +326,34 @@
               100
             ],
             "raw_data": {
-              "temp": 4,
-              "visibility": 8000,
-              "clouds": 0,
-              "description": "clear sky",
-              "condition": "Marginal",
-              "timestamp": "2026-01-27T00:38:50.092099"
+              "risk": 100,
+              "detail": "clear sky",
+              "history": [
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+              ],
+              "raw_data": {
+                "temp": 4,
+                "visibility": 8000,
+                "clouds": 0,
+                "description": "clear sky",
+                "condition": "Marginal",
+                "timestamp": "2026-01-27T00:38:50.092099"
+              }
             }
           }
         }
@@ -335,8 +361,8 @@
     }
   },
   "polymarket": {
-    "risk": 11,
-    "detail": "11% odds",
+    "risk": 12,
+    "detail": "12% odds",
     "history": [
       13,
       13,
@@ -356,17 +382,18 @@
       10,
       10,
       11,
-      11
+      11,
+      12
     ],
     "raw_data": {
-      "odds": 11,
+      "odds": 12,
       "market": "Will US or Israel strike Iran by January 31, 2026?",
-      "timestamp": "2026-01-28T19:47:05.909461"
+      "timestamp": "2026-01-28T21:01:34.170765"
     }
   },
   "pentagon": {
-    "risk": 30,
-    "detail": "Normal",
+    "risk": 10,
+    "detail": "Low Activity",
     "history": [
       10,
       10,
@@ -386,36 +413,37 @@
       30,
       30,
       30,
-      30
+      30,
+      10
     ],
     "raw_data": {
-      "score": 55,
-      "risk_contribution": 3,
-      "status": "Normal",
+      "score": 30,
+      "risk_contribution": 1,
+      "status": "Low Activity",
       "places": [
         {
           "status": "normal",
-          "score": 55,
+          "score": 30,
           "name": "Domino's Pizza"
         },
         {
           "status": "normal",
-          "score": 55,
+          "score": 30,
           "name": "Papa John's"
         },
         {
           "status": "normal",
-          "score": 55,
+          "score": 30,
           "name": "Pizza Hut"
         }
       ],
-      "timestamp": "2026-01-28T19:47:05.545669",
+      "timestamp": "2026-01-28T21:01:33.972368",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "total_risk": {
-    "risk": 20,
+    "risk": 23,
     "history": [
       {
         "timestamp": 1769385600000,
@@ -448,11 +476,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1769629630156,
-        "risk": 20
+        "timestamp": 1769634098178,
+        "risk": 23
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-01-28T19:47:10.156494"
+  "last_updated": "2026-01-28T21:01:38.178791"
 }
