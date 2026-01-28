@@ -15,6 +15,9 @@ on:
       - '.github/workflows/update-data.yml'
       - 'update_data.py'
 
+permissions:
+  contents: write
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
