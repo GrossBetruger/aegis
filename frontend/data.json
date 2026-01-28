@@ -1,9 +1,8 @@
 {
   "news": {
-    "risk": 16,
-    "detail": "25 articles, 11 critical",
+    "risk": 15,
+    "detail": "26 articles, 11 critical",
     "history": [
-      9,
       9,
       9,
       9,
@@ -22,7 +21,8 @@
       16,
       18,
       18,
-      16
+      16,
+      15
     ],
     "raw_data": {
       "articles": [
@@ -115,6 +115,10 @@
           "is_alert": false
         },
         {
+          "title": "France says will support EU designation of Iran\u2019s IRGC as \u2018terrorist\u2019 group",
+          "is_alert": false
+        },
+        {
           "title": "Iran delegates import powers as US war threats keep economy unstable",
           "is_alert": true
         },
@@ -127,16 +131,15 @@
           "is_alert": true
         }
       ],
-      "total_count": 25,
+      "total_count": 26,
       "alert_count": 11,
-      "timestamp": "2026-01-28T21:01:35.133541"
+      "timestamp": "2026-01-28T22:00:17.185090"
     }
   },
   "flight": {
-    "risk": 30,
-    "detail": "81 aircraft over Iran",
+    "risk": 49,
+    "detail": "58 aircraft over Iran",
     "history": [
-      51,
       52,
       51,
       55,
@@ -155,24 +158,25 @@
       9,
       15,
       3,
-      30
+      30,
+      49
     ],
     "raw_data": {
-      "aircraft_count": 81,
-      "airline_count": 23,
+      "aircraft_count": 58,
+      "airline_count": 31,
       "airlines": [
+        "PGT",
+        "SEJ",
         "AXB",
+        "DLH",
+        "ACA",
         "IGO",
         "UAE",
-        "THY",
-        "ABY",
-        "FJL",
-        "FDB",
-        "ETD",
-        "RNA",
-        "GFA"
+        "KNE",
+        "TKJ",
+        "FDB"
       ],
-      "timestamp": "2026-01-28T21:01:35.610963"
+      "timestamp": "2026-01-28T22:00:17.824893"
     }
   },
   "tanker": {
@@ -203,7 +207,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-01-28T21:01:38.077348"
+      "timestamp": "2026-01-28T22:00:20.340733"
     }
   },
   "weather": {
@@ -254,12 +258,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -301,6 +307,7 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
@@ -323,12 +330,14 @@
               100,
               100,
               100,
+              100,
               100
             ],
             "raw_data": {
               "risk": 100,
-              "detail": "clear sky",
+              "detail": "clear",
               "history": [
+                100,
                 100,
                 100,
                 100,
@@ -347,12 +356,34 @@
                 100
               ],
               "raw_data": {
-                "temp": 4,
-                "visibility": 8000,
-                "clouds": 0,
-                "description": "clear sky",
-                "condition": "Marginal",
-                "timestamp": "2026-01-27T00:38:50.092099"
+                "risk": 100,
+                "detail": "clear sky",
+                "history": [
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100
+                ],
+                "raw_data": {
+                  "temp": 4,
+                  "visibility": 8000,
+                  "clouds": 0,
+                  "description": "clear sky",
+                  "condition": "Marginal",
+                  "timestamp": "2026-01-27T00:38:50.092099"
+                }
               }
             }
           }
@@ -361,8 +392,8 @@
     }
   },
   "polymarket": {
-    "risk": 12,
-    "detail": "12% odds",
+    "risk": 13,
+    "detail": "13% odds",
     "history": [
       13,
       13,
@@ -376,24 +407,24 @@
       13,
       13,
       13,
-      13,
       12,
       12,
       10,
       10,
       11,
       11,
-      12
+      12,
+      13
     ],
     "raw_data": {
-      "odds": 12,
+      "odds": 13,
       "market": "Will US or Israel strike Iran by January 31, 2026?",
-      "timestamp": "2026-01-28T21:01:34.170765"
+      "timestamp": "2026-01-28T22:00:16.705036"
     }
   },
   "pentagon": {
     "risk": 10,
-    "detail": "Low Activity",
+    "detail": "Low Activity (late night)",
     "history": [
       10,
       10,
@@ -409,41 +440,41 @@
       10,
       10,
       10,
+      30,
+      30,
+      30,
+      30,
       10,
-      30,
-      30,
-      30,
-      30,
       10
     ],
     "raw_data": {
-      "score": 30,
+      "score": 20,
       "risk_contribution": 1,
       "status": "Low Activity",
       "places": [
         {
           "status": "normal",
-          "score": 30,
+          "score": 20,
           "name": "Domino's Pizza"
         },
         {
           "status": "normal",
-          "score": 30,
+          "score": 20,
           "name": "Papa John's"
         },
         {
           "status": "normal",
-          "score": 30,
+          "score": 20,
           "name": "Pizza Hut"
         }
       ],
-      "timestamp": "2026-01-28T21:01:33.972368",
-      "is_late_night": false,
+      "timestamp": "2026-01-28T22:00:16.447021",
+      "is_late_night": true,
       "is_weekend": false
     }
   },
   "total_risk": {
-    "risk": 23,
+    "risk": 27,
     "history": [
       {
         "timestamp": 1769385600000,
@@ -476,11 +507,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1769634098178,
-        "risk": 23
+        "timestamp": 1769637620608,
+        "risk": 27
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-01-28T21:01:38.178791"
+  "last_updated": "2026-01-28T22:00:20.608655"
 }
