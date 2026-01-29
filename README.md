@@ -53,11 +53,14 @@ Then open http://localhost:8000 in your browser.
 
 ## How It Works
 
-**Backend** (`pentagon_pizza.py`):
+**Backend** (`update_data.py`):
 - Fetches Polymarket prediction market odds
-- Scrapes news from RSS feeds (BBC, Al Jazeera)
+- Scrapes news from RSS feeds (BBC, Al Jazeera) and GDELT
+- Tracks Brent crude oil prices via Yahoo Finance
+- Monitors Google Trends search interest
+- Tracks civil aviation and military tanker activity via OpenSky
 - Simulates Pentagon pizza activity patterns
-- Writes aggregated data to npoint.io (free JSON storage)
+- Writes aggregated data to frontend/data.json
 
 **Frontend** (`frontend/`):
 - Static HTML/CSS/JS dashboard

@@ -9,9 +9,39 @@ Frontend only reads the JSON - no direct API calls from browser
 import json
 import os
 import time
+import ssl
+import urllib3
 from datetime import datetime, timedelta
 
 import requests
+
+# Disable SSL warnings for corporate proxies with self-signed certs
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Create a session that can handle SSL issues
+session = requests.Session()
+session.verify = os.environ.get("SSL_VERIFY", "true").lower() != "false"
+
+# If SSL_VERIFY is explicitly false, disable verification
+if not session.verify:
+    print("WARNING: SSL verification disabled")
+
+
+def make_request(url, **kwargs):
+    """Make HTTP request with SSL handling for corporate proxies"""
+    # Default timeout
+    kwargs.setdefault("timeout", 20)
+    
+    # Try with verification first, fall back to without if needed
+    try:
+        response = requests.get(url, **kwargs)
+        return response
+    except requests.exceptions.SSLError:
+        # Retry without SSL verification for corporate proxies
+        print(f"  SSL error, retrying without verification...")
+        kwargs["verify"] = False
+        return requests.get(url, **kwargs)
+
 
 # Pizza places near Pentagon (Google Place IDs)
 # You can find Place IDs at: https://developers.google.com/maps/documentation/places/web-service/place-id
@@ -161,7 +191,7 @@ def fetch_polymarket_odds():
         strike_keywords = ["strike", "attack", "bomb", "military action"]
 
         # Try the events endpoint with higher limit
-        response = requests.get(
+        response = make_request(
             "https://gamma-api.polymarket.com/public-search?q=iran",
             timeout=20,
         )
@@ -458,7 +488,7 @@ def fetch_news_intel():
         for feed_url in rss_feeds:
             try:
                 print(f"  Fetching {feed_url[:50]}...")
-                response = requests.get(
+                response = make_request(
                     feed_url,
                     timeout=15,
                     headers={"User-Agent": "Mozilla/5.0 (compatible; StrikeRadar/1.0)"},
@@ -541,36 +571,118 @@ def fetch_news_intel():
 
 
 def fetch_gdelt_data():
-    """Fetch GDELT news data for Iran-related articles"""
+    """Fetch GDELT news data for Iran-related articles with tone analysis"""
     try:
-        print("Fetching GDELT data...")
-        query = "(United States OR Pentagon OR White House OR Trump) AND (strike OR attack OR bombing OR missile OR airstrike OR military action) AND Iran"
-        url = f"https://api.gdeltproject.org/api/v2/doc/doc?query={requests.utils.quote(query)}&mode=artlist&format=json&timespan=24h"
+        print("\n" + "=" * 50)
+        print("GDELT NEWS INTELLIGENCE")
+        print("=" * 50)
 
-        response = requests.get(url, timeout=20)
-        print(f"GDELT response status: {response.status_code}")
-        print(f"GDELT response text: {response.text}")
-        if response.ok:
-            text = response.text
-            if text.startswith("{") or text.startswith("["):
-                data = json.loads(text)
-                if data.get("articles") and isinstance(data["articles"], list):
-                    articles = data["articles"]
-                    article_count = len(articles)
+        # GDELT query for Iran conflict-related news
+        query = "(United States OR Pentagon OR White House OR Trump OR Israel) AND (strike OR attack OR bombing OR missile OR airstrike OR military action OR war) AND Iran"
+        url = f"https://api.gdeltproject.org/api/v2/doc/doc?query={requests.utils.quote(query)}&mode=artlist&format=json&timespan=24h&maxrecords=100"
 
-                    print(f"GDELT: {article_count} articles")
+        response = make_request(url, timeout=20)
 
-                    return {
-                        "article_count": article_count,
-                        "top_article": articles[0].get("title", "")[:70]
-                        if articles
-                        else "",
-                        "timestamp": datetime.now().isoformat(),
-                    }
-        print("GDELT: No valid data")
-        return None
+        if not response.ok:
+            print(f"GDELT API error: {response.status_code}")
+            return None
+
+        text = response.text
+        if not (text.startswith("{") or text.startswith("[")):
+            print("GDELT: Invalid response format")
+            return None
+
+        data = json.loads(text)
+        articles = data.get("articles", [])
+
+        if not articles:
+            print("GDELT: No articles found")
+            return {
+                "article_count": 0,
+                "avg_tone": 0,
+                "negative_count": 0,
+                "top_article": "",
+                "risk": 5,
+                "timestamp": datetime.now().isoformat(),
+            }
+
+        article_count = len(articles)
+
+        # Calculate average tone from articles
+        # GDELT tone ranges from -100 (extremely negative) to +100 (extremely positive)
+        tones = []
+        negative_count = 0
+
+        for article in articles:
+            tone = article.get("tone", 0)
+            if tone:
+                try:
+                    tone_value = float(tone)
+                    tones.append(tone_value)
+                    if tone_value < -2:
+                        negative_count += 1
+                except (ValueError, TypeError):
+                    pass
+
+        avg_tone = sum(tones) / len(tones) if tones else 0
+
+        # Get top article title
+        top_article = articles[0].get("title", "")[:80] if articles else ""
+
+        # Calculate risk based on article count and tone
+        risk = 10  # Baseline
+
+        # Article volume component (0-40 points)
+        if article_count >= 50:
+            risk += 40
+        elif article_count >= 30:
+            risk += 30
+        elif article_count >= 15:
+            risk += 20
+        elif article_count >= 5:
+            risk += 10
+
+        # Negative tone component (0-40 points)
+        # More negative tone = higher tension in coverage
+        if avg_tone <= -5:
+            risk += 40  # Very negative coverage
+        elif avg_tone <= -3:
+            risk += 30
+        elif avg_tone <= -1:
+            risk += 20
+        elif avg_tone <= 0:
+            risk += 10
+
+        # High proportion of negative articles
+        if article_count > 0:
+            negative_ratio = negative_count / article_count
+            if negative_ratio >= 0.7:
+                risk += 10  # 70%+ negative
+            elif negative_ratio >= 0.5:
+                risk += 5
+
+        risk = max(0, min(100, round(risk)))
+
+        print(f"Articles: {article_count}")
+        print(f"Average Tone: {avg_tone:.2f}")
+        print(f"Negative Articles: {negative_count}")
+        if top_article:
+            print(f"Top: {top_article[:60]}...")
+        print(f"✓ Result: Risk {risk}%")
+
+        return {
+            "article_count": article_count,
+            "avg_tone": round(avg_tone, 2),
+            "negative_count": negative_count,
+            "top_article": top_article,
+            "risk": risk,
+            "timestamp": datetime.now().isoformat(),
+        }
+
     except Exception as e:
         print(f"GDELT error: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 
@@ -594,7 +706,7 @@ def fetch_wikipedia_views():
                     "User-Agent": "Mozilla/5.0 (compatible; StrikeRadar/1.0)",
                     "Accept": "application/json",
                 }
-                response = requests.get(url, headers=headers, timeout=10)
+                response = make_request(url, headers=headers, timeout=10)
                 print(f"  Wiki {page}: {response.status_code}")
                 if response.ok:
                     data = response.json()
@@ -621,7 +733,7 @@ def fetch_aviation_data():
         # Iran airspace bounding box
         url = "https://opensky-network.org/api/states/all?lamin=25&lomin=44&lamax=40&lomax=64"
 
-        response = requests.get(url, timeout=20)
+        response = make_request(url, timeout=20)
         if not response.ok:
             print(f"OpenSky API error: {response.status_code}")
             return None
@@ -681,7 +793,7 @@ def fetch_tanker_activity():
         # Middle East bounding box
         url = "https://opensky-network.org/api/states/all?lamin=20&lomin=40&lamax=40&lomax=65"
 
-        response = requests.get(url, timeout=20)
+        response = make_request(url, timeout=20)
         if not response.ok:
             print(f"OpenSky API error: {response.status_code}")
             return None
@@ -754,7 +866,7 @@ def fetch_weather_data():
         )
         url = f"https://api.openweathermap.org/data/2.5/weather?lat=35.6892&lon=51.389&appid={api_key}&units=metric"
 
-        response = requests.get(url, timeout=10)
+        response = make_request(url, timeout=10)
         if response.ok:
             data = response.json()
             if data.get("main"):
@@ -786,6 +898,193 @@ def fetch_weather_data():
         return None
     except Exception as e:
         print(f"Weather error: {e}")
+        return None
+
+
+def fetch_oil_prices():
+    """Fetch Brent crude oil prices and calculate risk from price movements"""
+    try:
+        print("\n" + "=" * 50)
+        print("OIL PRICES")
+        print("=" * 50)
+
+        # Use Yahoo Finance API (free, no key required)
+        # BZ=F is Brent Crude Futures
+        url = "https://query1.finance.yahoo.com/v8/finance/chart/BZ=F?interval=1h&range=2d"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (compatible; StrikeRadar/1.0)"
+        }
+
+        response = make_request(url, headers=headers, timeout=15)
+        if not response.ok:
+            print(f"Yahoo Finance API error: {response.status_code}")
+            return None
+
+        data = response.json()
+        result = data.get("chart", {}).get("result", [])
+
+        if not result:
+            print("No oil price data available")
+            return None
+
+        meta = result[0].get("meta", {})
+        indicators = result[0].get("indicators", {}).get("quote", [{}])[0]
+        closes = indicators.get("close", [])
+
+        # Filter out None values
+        closes = [c for c in closes if c is not None]
+
+        if not closes:
+            print("No closing prices available")
+            return None
+
+        current_price = closes[-1]
+        # Get price from ~24 hours ago (24 data points for hourly data)
+        price_24h_ago = closes[0] if len(closes) > 24 else closes[0]
+
+        # Calculate 24h change
+        change_24h = ((current_price - price_24h_ago) / price_24h_ago) * 100
+
+        # Calculate risk based on price movement and absolute level
+        # Higher prices and bigger spikes = higher risk
+        risk = 10  # Baseline
+
+        # Price spike component (0-50 points)
+        if change_24h >= 5:
+            risk += 50  # Major spike
+        elif change_24h >= 3:
+            risk += 35  # Significant spike
+        elif change_24h >= 1.5:
+            risk += 20  # Moderate increase
+        elif change_24h >= 0.5:
+            risk += 10  # Small increase
+        elif change_24h <= -2:
+            risk -= 5  # Price drop = lower tension
+
+        # Absolute price level component (0-40 points)
+        # Based on recent range: $58-$82
+        if current_price >= 80:
+            risk += 40  # Near recent highs
+        elif current_price >= 75:
+            risk += 30
+        elif current_price >= 70:
+            risk += 20
+        elif current_price >= 65:
+            risk += 10
+
+        risk = max(0, min(100, risk))
+
+        print(f"Current: ${current_price:.2f}/barrel")
+        print(f"24h Change: {change_24h:+.2f}%")
+        print(f"✓ Result: Risk {risk}%")
+
+        return {
+            "current_price": round(current_price, 2),
+            "change_24h": round(change_24h, 2),
+            "risk": risk,
+            "timestamp": datetime.now().isoformat(),
+        }
+
+    except Exception as e:
+        print(f"Oil prices error: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+
+def fetch_google_trends():
+    """Fetch Google Trends search interest for Iran-related terms"""
+    try:
+        print("\n" + "=" * 50)
+        print("GOOGLE TRENDS")
+        print("=" * 50)
+
+        from pytrends.request import TrendReq
+
+        # Initialize pytrends with SSL verification disabled for corporate proxies
+        pytrends = TrendReq(
+            hl='en-US', 
+            tz=360, 
+            timeout=(10, 25),
+            requests_args={'verify': False}
+        )
+
+        # Keywords to track
+        keywords = ["Iran war", "Iran strike", "Iran attack", "Iran nuclear", "Iran conflict"]
+
+        # Build payload - get data from last 7 days
+        pytrends.build_payload(keywords, cat=0, timeframe='now 7-d', geo='US')
+
+        # Get interest over time
+        interest_df = pytrends.interest_over_time()
+
+        if interest_df.empty:
+            print("No Google Trends data available")
+            return None
+
+        # Calculate current interest (average of latest values for all keywords)
+        # Drop the 'isPartial' column if it exists
+        if 'isPartial' in interest_df.columns:
+            interest_df = interest_df.drop('isPartial', axis=1)
+
+        # Get the most recent data point
+        latest = interest_df.iloc[-1]
+        current_interest = latest.mean()
+
+        # Get 24h average (last 24 data points for hourly data, or fewer if not available)
+        lookback = min(24, len(interest_df))
+        avg_24h = interest_df.iloc[-lookback:].mean().mean()
+
+        # Get the peak keyword
+        peak_keyword = latest.idxmax()
+        peak_value = latest.max()
+
+        # Calculate risk based on interest levels
+        # Google Trends uses 0-100 scale where 100 is peak popularity
+        risk = 5  # Baseline
+
+        # Current interest level component
+        if current_interest >= 80:
+            risk += 60  # Extremely high interest
+        elif current_interest >= 60:
+            risk += 45
+        elif current_interest >= 40:
+            risk += 30
+        elif current_interest >= 25:
+            risk += 15
+        elif current_interest >= 10:
+            risk += 5
+
+        # Spike detection (current vs 24h average)
+        if avg_24h > 0:
+            spike_ratio = current_interest / avg_24h
+            if spike_ratio >= 3:
+                risk += 30  # 3x spike = major surge
+            elif spike_ratio >= 2:
+                risk += 20  # 2x spike
+            elif spike_ratio >= 1.5:
+                risk += 10  # 1.5x spike
+
+        risk = max(0, min(100, round(risk)))
+
+        print(f"Current Interest: {current_interest:.1f}")
+        print(f"24h Average: {avg_24h:.1f}")
+        print(f"Top Search: '{peak_keyword}' ({peak_value})")
+        print(f"✓ Result: Risk {risk}%")
+
+        return {
+            "current_interest": round(current_interest, 1),
+            "avg_24h": round(avg_24h, 1),
+            "peak_keyword": peak_keyword,
+            "peak_value": int(peak_value),
+            "risk": risk,
+            "timestamp": datetime.now().isoformat(),
+        }
+
+    except Exception as e:
+        print(f"Google Trends error: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 
@@ -859,6 +1158,9 @@ def update_data_file():
                 "pentagon": current_data.get("pentagon", {}).get("history", []),
                 "polymarket": current_data.get("polymarket", {}).get("history", []),
                 "weather": current_data.get("weather", {}).get("history", []),
+                "oil": current_data.get("oil", {}).get("history", []),
+                "gdelt": current_data.get("gdelt", {}).get("history", []),
+                "trends": current_data.get("trends", {}).get("history", []),
             }
         else:
             # Old structure or no data
@@ -872,6 +1174,9 @@ def update_data_file():
                     "pentagon": [],
                     "polymarket": [],
                     "weather": [],
+                    "oil": [],
+                    "gdelt": [],
+                    "trends": [],
                 },
             )
 
@@ -890,14 +1195,20 @@ def update_data_file():
         if news_data:
             current_data["news_intel"] = news_data
 
-        # GDELT data
-        # TODO: this is good, add it sometime, it returned 25 articles on jan 26th
-        # gdelt_data = fetch_gdelt_data()
+        # GDELT enhanced news data
+        gdelt_data = fetch_gdelt_data()
+        if gdelt_data:
+            current_data["gdelt"] = gdelt_data
 
-        # Wikipedia data
-        # wiki_data = fetch_wikipedia_views()
-        # if wiki_data:
-        #     current_data["social"] = 12 * wiki_data["total_views"] / 2000000
+        # Oil prices
+        oil_data = fetch_oil_prices()
+        if oil_data:
+            current_data["oil"] = oil_data
+
+        # Google Trends search interest
+        trends_data = fetch_google_trends()
+        if trends_data:
+            current_data["trends"] = trends_data
 
         # Aviation data
         aviation_data = fetch_aviation_data()
@@ -945,7 +1256,7 @@ def update_data_file():
         # WEATHER SIGNAL CALCULATION
         weather = current_data.get("weather", {})
         clouds = weather.get("clouds", 0)
-        weather_risk = max(0, min(100, 100 - (max(0, clouds - 6) * 10)))
+        weather_risk = max(0, min(100, 100 - max(0, clouds - 6)))
         weather_detail = weather.get("description", "clear")
 
         # POLYMARKET SIGNAL CALCULATION
@@ -969,21 +1280,49 @@ def update_data_file():
         is_weekend = pentagon_data.get("is_weekend", False)
         pentagon_detail = f"{pentagon_status}{' (late night)' if is_late_night else ''}{' (weekend)' if is_weekend else ''}"
 
-        # Apply weighted contributions (matching JavaScript)
-        news_contribution_weighted = news_display_risk * 0.25  # 25% weight
+        # OIL PRICES SIGNAL CALCULATION
+        oil = current_data.get("oil", {})
+        oil_risk = oil.get("risk", 10) if oil else 10
+        oil_price = oil.get("current_price", 0) if oil else 0
+        oil_change = oil.get("change_24h", 0) if oil else 0
+        oil_detail = f"${oil_price:.2f} ({oil_change:+.1f}%)" if oil_price > 0 else "Awaiting data..."
+
+        # GDELT SIGNAL CALCULATION
+        gdelt = current_data.get("gdelt", {})
+        gdelt_risk = gdelt.get("risk", 10) if gdelt else 10
+        gdelt_articles = gdelt.get("article_count", 0) if gdelt else 0
+        gdelt_tone = gdelt.get("avg_tone", 0) if gdelt else 0
+        gdelt_detail = f"{gdelt_articles} articles, tone {gdelt_tone:.1f}" if gdelt_articles > 0 else "Awaiting data..."
+
+        # GOOGLE TRENDS SIGNAL CALCULATION
+        trends = current_data.get("trends", {})
+        trends_risk = trends.get("risk", 5) if trends else 5
+        trends_interest = trends.get("current_interest", 0) if trends else 0
+        trends_keyword = trends.get("peak_keyword", "") if trends else ""
+        trends_detail = f"Interest: {trends_interest:.0f}, '{trends_keyword}'" if trends_interest > 0 else "Awaiting data..."
+
+        # Apply weighted contributions (updated weights per plan)
+        # Total = 100%: News 20%, Flight 20%, Tanker 15%, Polymarket 15%, Oil 10%, GDELT 5%, Trends 5%, Pentagon 5%, Weather 5%
+        news_contribution_weighted = news_display_risk * 0.20  # 20% weight (was 25%)
         flight_contribution_weighted = flight_risk * 0.20  # 20% weight
         tanker_contribution_weighted = tanker_risk * 0.15  # 15% weight
-        weather_contribution_weighted = weather_risk * 0.10  # 10% weight
-        polymarket_contribution_weighted = polymarket_contribution * 2  # 20% weight
-        pentagon_contribution_weighted = pentagon_contribution * 1  # 10% weight
+        polymarket_contribution_weighted = polymarket_contribution * 1.5  # 15% weight (was 20%)
+        oil_contribution_weighted = oil_risk * 0.10  # 10% weight (new)
+        gdelt_contribution_weighted = gdelt_risk * 0.05  # 5% weight (new)
+        trends_contribution_weighted = trends_risk * 0.05  # 5% weight (new)
+        pentagon_contribution_weighted = pentagon_contribution * 0.5  # 5% weight (was 10%)
+        weather_contribution_weighted = weather_risk * 0.05  # 5% weight (was 10%)
 
         total_risk = (
             news_contribution_weighted
             + flight_contribution_weighted
             + tanker_contribution_weighted
-            + weather_contribution_weighted
             + polymarket_contribution_weighted
+            + oil_contribution_weighted
+            + gdelt_contribution_weighted
+            + trends_contribution_weighted
             + pentagon_contribution_weighted
+            + weather_contribution_weighted
         )
 
         # Check for escalation multiplier (3+ elevated signals)
@@ -992,9 +1331,12 @@ def update_data_file():
                 news_display_risk > 30,
                 flight_contribution_weighted > 15,
                 tanker_contribution_weighted > 10,
-                weather_contribution_weighted > 7,
                 polymarket_contribution > 5,
+                oil_risk > 40,
+                gdelt_risk > 40,
+                trends_risk > 30,
                 pentagon_contribution > 5,
+                weather_contribution_weighted > 4,
             ]
         )
 
@@ -1010,6 +1352,9 @@ def update_data_file():
         signal_history["pentagon"].append(pentagon_display_risk)
         signal_history["polymarket"].append(polymarket_display_risk)
         signal_history["weather"].append(weather_risk)
+        signal_history["oil"].append(oil_risk)
+        signal_history["gdelt"].append(gdelt_risk)
+        signal_history["trends"].append(trends_risk)
 
         # Keep only last 20 points
         for sig in signal_history:
@@ -1097,6 +1442,24 @@ def update_data_file():
                 "detail": pentagon_detail,
                 "history": signal_history["pentagon"],
                 "raw_data": pentagon_data,
+            },
+            "oil": {
+                "risk": oil_risk,
+                "detail": oil_detail,
+                "history": signal_history["oil"],
+                "raw_data": oil,
+            },
+            "gdelt": {
+                "risk": gdelt_risk,
+                "detail": gdelt_detail,
+                "history": signal_history["gdelt"],
+                "raw_data": gdelt,
+            },
+            "trends": {
+                "risk": trends_risk,
+                "detail": trends_detail,
+                "history": signal_history["trends"],
+                "raw_data": trends,
             },
             "total_risk": {
                 "risk": total_risk,

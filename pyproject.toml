@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "requests>=2.31.0",
+    "pytrends>=4.9.0",
 ]
 
 [build-system]
@@ -16,4 +17,4 @@ build-backend = "hatchling.build"
 packages = ["."]
 
 [tool.hatch.build.targets.wheel.force-include]
-"pentagon_pizza.py" = "pentagon_pizza.py"
+"update_data.py" = "update_data.py"

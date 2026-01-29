@@ -15,7 +15,7 @@ PID_FILE="$SCRIPT_DIR/.server.pid"
 case "${1:-help}" in
     update)
         echo "🍕 Running Pentagon Pizza Meter data update..."
-        uv run python pentagon_pizza.py
+        uv run python update_data.py
         echo "✅ Data updated to npoint.io"
         ;;
     
@@ -27,7 +27,7 @@ case "${1:-help}" in
     
     all)
         echo "🍕 Running data update first..."
-        uv run python pentagon_pizza.py
+        uv run python update_data.py
         echo "✅ Data updated"
         echo ""
         echo "🌐 Serving frontend at http://localhost:8000"
@@ -60,7 +60,7 @@ case "${1:-help}" in
         while true; do
             echo ""
             echo "🍕 [$(date '+%H:%M:%S')] Running data update..."
-            uv run python pentagon_pizza.py
+            uv run python update_data.py
             echo "✅ [$(date '+%H:%M:%S')] Update complete. Next update in 30 minutes."
             sleep 1800
         done

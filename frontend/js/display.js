@@ -16,7 +16,7 @@ function displayData(data) {
     console.log('Displaying data:', data);
     
     // Load signal history from restructured data
-    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather'].forEach(sig => {
+    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather', 'oil', 'gdelt', 'trends'].forEach(sig => {
         if (data[sig] && data[sig].history && data[sig].history.length > 0) {
             state.signalHistory[sig] = data[sig].history;
         }
@@ -65,6 +65,27 @@ function displayData(data) {
                                 (data.pentagon.raw_data?.status && data.pentagon.raw_data?.score !== undefined);
         
         setStatus('pentagonStatus', isPentagonFresh);
+    }
+    
+    // Oil prices signal
+    if (data.oil) {
+        updateSignal('oil', data.oil.risk, data.oil.detail);
+        const hasOilData = data.oil.raw_data?.current_price > 0;
+        setStatus('oilStatus', hasOilData);
+    }
+    
+    // GDELT global news signal
+    if (data.gdelt) {
+        updateSignal('gdelt', data.gdelt.risk, data.gdelt.detail);
+        const hasGdeltData = data.gdelt.raw_data?.article_count >= 0;
+        setStatus('gdeltStatus', hasGdeltData);
+    }
+    
+    // Google Trends signal
+    if (data.trends) {
+        updateSignal('trends', data.trends.risk, data.trends.detail);
+        const hasTrendsData = data.trends.raw_data?.current_interest >= 0;
+        setStatus('trendsStatus', hasTrendsData);
     }
     
     // Display total risk (pre-calculated)
