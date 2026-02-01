@@ -16,7 +16,7 @@ function displayData(data) {
     console.log('Displaying data:', data);
     
     // Load signal history from restructured data
-    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather', 'oil', 'gdelt', 'trends'].forEach(sig => {
+    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather', 'oil', 'gdelt', 'trends', 'firms', 'tfr'].forEach(sig => {
         if (data[sig] && data[sig].history && data[sig].history.length > 0) {
             state.signalHistory[sig] = data[sig].history;
         }
@@ -86,6 +86,20 @@ function displayData(data) {
         updateSignal('trends', data.trends.risk, data.trends.detail);
         const hasTrendsData = data.trends.raw_data?.current_interest >= 0;
         setStatus('trendsStatus', hasTrendsData);
+    }
+    
+    // NASA FIRMS satellite hotspots signal
+    if (data.firms) {
+        updateSignal('firms', data.firms.risk, data.firms.detail);
+        const hasFirmsData = data.firms.raw_data?.total_hotspots >= 0 || data.firms.raw_data?.status;
+        setStatus('firmsStatus', hasFirmsData);
+    }
+    
+    // FAA TFR flight restrictions signal
+    if (data.tfr) {
+        updateSignal('tfr', data.tfr.risk, data.tfr.detail);
+        const hasTfrData = data.tfr.raw_data?.total_tfrs >= 0 || data.tfr.raw_data?.status;
+        setStatus('tfrStatus', hasTfrData);
     }
     
     // Display total risk (pre-calculated)

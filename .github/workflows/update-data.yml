@@ -31,6 +31,7 @@ jobs:
         env:
           JSONBIN_API_KEY: ${{ secrets.JSONBIN_API_KEY }}
           OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          NASA_FIRMS_KEY: ${{ secrets.NASA_FIRMS_KEY }}
         run: |
           python update_data.py
 

@@ -14,7 +14,9 @@ const state = {
         weather: [],
         oil: [],
         gdelt: [],
-        trends: []
+        trends: [],
+        firms: [],
+        tfr: []
     }
 };
 
@@ -27,12 +29,14 @@ const INFO_CONTENT = {
     },
     calculation: {
         title: 'How We Calculate Risk',
-        content: `<strong>Total Risk = Weighted Sum of 9 Signals</strong><br><br>
-        <strong>News Intel (20%):</strong> Breaking news with critical keywords increases risk.<br><br>
-        <strong>Civil Aviation (20%):</strong> Fewer flights over Iran = airlines avoiding = higher risk.<br><br>
-        <strong>Military Tankers (15%):</strong> More US tankers in the region = higher risk.<br><br>
-        <strong>Market Odds (15%):</strong> Prediction market betting odds for strike within 7 days.<br><br>
-        <strong>Oil Prices (10%):</strong> Price spikes and high levels indicate market tension.<br><br>
+        content: `<strong>Total Risk = Weighted Sum of 11 Signals</strong><br><br>
+        <strong>News Intel (18%):</strong> Breaking news with critical keywords increases risk.<br><br>
+        <strong>Civil Aviation (18%):</strong> Fewer flights over Iran = airlines avoiding = higher risk.<br><br>
+        <strong>Military Tankers (12%):</strong> More US tankers in the region = higher risk.<br><br>
+        <strong>Market Odds (12%):</strong> Prediction market betting odds for strike within 7 days.<br><br>
+        <strong>Oil Prices (8%):</strong> Price spikes and high levels indicate market tension.<br><br>
+        <strong>Satellite Hotspots (6%):</strong> NASA FIRMS thermal detections in conflict zones.<br><br>
+        <strong>Flight Restrictions (6%):</strong> FAA TFRs indicating VIP/security activity.<br><br>
         <strong>Global News (5%):</strong> GDELT volume and tone of worldwide Iran coverage.<br><br>
         <strong>Public Interest (5%):</strong> Google search trends for Iran-related terms.<br><br>
         <strong>Pentagon Activity (5%):</strong> Unusual late-night activity near Pentagon = higher risk.<br><br>
@@ -90,7 +94,29 @@ const INFO_CONTENT = {
         <strong>Keywords tracked:</strong> "Iran war", "Iran strike", "Iran attack", "Iran nuclear", "Iran conflict"<br><br>
         <strong>Why it matters:</strong> Public search behavior can be a leading indicator. People search for information before and during major events.<br><br>
         <strong>How it works:</strong> Sudden spikes in search interest (2-3x normal) or sustained high interest = higher risk.<br><br>
-        <strong>Weight:</strong> 5% of total risk`
+        <strong>Weight:</strong> 5% of total risk`,
+    firms: `<strong>Satellite Thermal Hotspots (NASA FIRMS)</strong><br><br>
+        Detects fires and thermal anomalies from space using NASA satellites.<br><br>
+        <strong>Source:</strong> NASA FIRMS (Fire Information for Resource Management System) using VIIRS satellite data.<br><br>
+        <strong>Regions monitored:</strong> Middle East, Iran, Israel/Lebanon, Red Sea<br><br>
+        <strong>Why it matters:</strong> Large explosions, airstrikes, and fires create thermal signatures visible from space. This data has been used to track military activity in Ukraine and Gaza.<br><br>
+        <strong>How it works:</strong><br>
+        • Compares current hotspots to 7-day rolling average<br>
+        • +100% deviation (2x normal) = Elevated<br>
+        • +200% deviation (3x normal) = High Activity<br>
+        • High-confidence detections weighted 3x<br>
+        • Iran & Israel/Lebanon hotspots weighted more heavily<br><br>
+        <strong>Weight:</strong> 6% of total risk`,
+    tfr: `<strong>Flight Restrictions (FAA TFRs)</strong><br><br>
+        Monitors Temporary Flight Restrictions issued by the FAA.<br><br>
+        <strong>Source:</strong> Baseline estimates (FAA API not publicly available)<br><br>
+        <strong>Types tracked:</strong><br>
+        • VIP TFRs - Presidential/VP movements create no-fly zones<br>
+        • Security TFRs - Military bases, borders, sensitive areas<br>
+        • DC Area TFRs - Washington DC SFRA/FRZ (permanent)<br><br>
+        <strong>Typical counts:</strong> ~45 TFRs active at any time, mostly long-term security zones.<br><br>
+        <strong>Limitations:</strong> Currently using baseline estimates. Real-time VIP TFR detection would require manual monitoring of FAA website.<br><br>
+        <strong>Weight:</strong> 6% of total risk`
 };
 
 const ALERT_COOLDOWN = 60 * 60 * 1000; // 1 hour between alerts
