@@ -573,13 +573,55 @@ def fetch_news_intel():
         alert_ratio = (
             alert_count / len(unique_articles) if len(unique_articles) > 0 else 0
         )
-        risk = max(3, round(pow(alert_ratio, 2) * 85))
+        keyword_risk = pow(alert_ratio, 2) * 85
+
+        # Zero-shot classification for military escalation
+        avg_escalation = 0.0
+        escalation_available = False
+        ESCALATION_LABELS = [
+            "military escalation",
+            "diplomatic negotiation",
+            "routine operations",
+            "economic sanctions",
+            "unrelated",
+        ]
+        try:
+            from transformers import pipeline as hf_pipeline
+            titles = [a["title"] for a in unique_articles if a["title"]]
+            if titles:
+                print("  Running zero-shot escalation classification...")
+                classifier = hf_pipeline(
+                    "zero-shot-classification",
+                    model="MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+                    device=-1,
+                )
+                results = classifier(titles, candidate_labels=ESCALATION_LABELS, batch_size=8)
+                esc_scores = []
+                for i, result in enumerate(results):
+                    score_map = {l: s for l, s in zip(result["labels"], result["scores"])}
+                    esc = score_map.get("military escalation", 0.0)
+                    esc_scores.append(esc)
+                    unique_articles[i]["escalation"] = round(esc, 3)
+                avg_escalation = sum(esc_scores) / len(esc_scores)
+                escalation_available = True
+                print(f"  Avg escalation: {avg_escalation:.3f} ({sum(1 for s in esc_scores if s > 0.5)}/{len(esc_scores)} above 0.5)")
+        except Exception as e:
+            print(f"  Zero-shot classification unavailable: {e}")
+
+        if escalation_available:
+            escalation_risk = avg_escalation * 100
+            risk = max(3, round(keyword_risk * 0.6 + escalation_risk * 0.4))
+        else:
+            risk = max(3, round(keyword_risk))
+
         print(f"✓ Result: Risk {risk}%")
 
         return {
-            "articles": unique_articles,  # Limit to 15 articles
+            "articles": unique_articles,
             "total_count": len(unique_articles),
             "alert_count": alert_count,
+            "avg_escalation": round(avg_escalation, 3),
+            "escalation_available": escalation_available,
             "timestamp": datetime.now().isoformat(),
         }
 
@@ -1606,8 +1648,16 @@ def update_data_file():
         articles = news_intel.get("total_count", 0)
         alert_count = news_intel.get("alert_count", 0)
         alert_ratio = alert_count / articles if articles > 0 else 0
-        news_display_risk = max(3, round(pow(alert_ratio, 2) * 85))
-        news_detail = f"{articles} articles, {alert_count} critical"
+        keyword_risk = pow(alert_ratio, 2) * 85
+        escalation_available = news_intel.get("escalation_available", False)
+        avg_escalation = news_intel.get("avg_escalation", 0.0)
+        if escalation_available:
+            escalation_risk = avg_escalation * 100
+            news_display_risk = max(3, round(keyword_risk * 0.6 + escalation_risk * 0.4))
+            news_detail = f"{articles} articles, {alert_count} critical, escalation: {avg_escalation:.2f}"
+        else:
+            news_display_risk = max(3, round(keyword_risk))
+            news_detail = f"{articles} articles, {alert_count} critical"
 
         # FLIGHT SIGNAL CALCULATION
         aviation = current_data.get("aviation", {})

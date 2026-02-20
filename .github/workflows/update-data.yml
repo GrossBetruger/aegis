@@ -23,9 +23,16 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Cache HuggingFace models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-models-v1
+
       - name: Install dependencies
         run: |
-          pip install requests pytrends beautifulsoup4 selenium
+          pip install requests pytrends beautifulsoup4 selenium transformers sentencepiece
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
 
       - name: Fetch all API data
         env:

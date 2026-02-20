@@ -29,7 +29,7 @@ const INFO_CONTENT = {
         title: 'How We Calculate Risk',
         content: `<strong>Total Risk = Weighted Sum of 8 Signals</strong><br><br>
         <strong>Military Buildup (15%):</strong> Naval force posture (55%), air presence (30%), and deployment news (15%) from USNI Fleet Tracker and Google News.<br><br>
-        <strong>News Intel (20%):</strong> Breaking news with critical keywords increases risk.<br><br>
+        <strong>News Intel (20%):</strong> Breaking news keywords (60%) + AI escalation classification (40%).<br><br>
         <strong>Civil Aviation (20%):</strong> Fewer flights over Iran = airlines avoiding = higher risk.<br><br>
         <strong>Military Tankers (13%):</strong> More US tankers in the region = higher risk.<br><br>
         <strong>Market Odds (14%):</strong> Prediction market betting odds for strike within 7 days.<br><br>
@@ -80,7 +80,10 @@ const INFO_CONTENT = {
     news: `<strong>News Intelligence</strong><br><br>
         Scans BBC World and Al Jazeera for Iran-related news.<br><br>
         <strong>What we look for:</strong> Headlines containing "strike", "attack", "military", "missile", "war", "imminent"<br><br>
-        <strong>How it works:</strong> More critical articles = higher risk. The ratio of alarming headlines to total coverage drives the score.<br><br>
+        <strong>How it works:</strong> Two-part scoring:<br>
+        &bull; <strong>Keyword analysis (60%):</strong> Ratio of alarming headlines to total coverage<br>
+        &bull; <strong>Escalation classification (40%):</strong> AI zero-shot classifier (DeBERTa NLI) scores each headline for "military escalation" vs "diplomatic negotiation", "routine operations", "economic sanctions", or "unrelated". This directly measures strike-relevant content rather than generic sentiment.<br><br>
+        <strong>Escalation score:</strong> 0.0 (no escalation) to 1.0 (clear military escalation). Shown as an average across all articles.<br><br>
         <strong>Weight:</strong> 20% of total risk`,
     flight: `<strong>Civil Aviation</strong><br><br>
         Tracks commercial flights over Iranian airspace via OpenSky Network.<br><br>
