@@ -59,28 +59,6 @@ function updateSparkline(name, value, color) {
     }
 }
 
-// Generate mimicked historical data based on current value
-function generateMimickedHistory(currentValue, points, signalName) {
-    const data = [];
-    const seed = Math.floor(Date.now() / (24 * 60 * 60 * 1000)); // Stable per day
-    const signalSeed = signalName.charCodeAt(0) * 17 + signalName.length * 31;
-
-    // Use fewer points for smoother look
-    for (let i = 0; i < points; i++) {
-        const t = i / points;
-        // Smooth variation around current value
-        const pseudoRandom = Math.abs(Math.sin((seed + signalSeed + i) * 7.919) * 43758.5453) % 1;
-        const deviation = (pseudoRandom - 0.5) * 0.3; // ±15% variation
-        const value = currentValue * (1 + deviation);
-        data.push(Math.max(0, Math.min(100, Math.round(value))));
-    }
-
-    // Ensure last point is current value
-    data[data.length - 1] = currentValue;
-
-    return data;
-}
-
 function getSparklineColor(value) {
     if (value >= 86) return '#ef4444'; // red
     if (value >= 61) return '#f97316'; // orange
