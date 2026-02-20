@@ -1203,9 +1203,19 @@ def fetch_military_buildup(previous_data=None):
                             detected_bases[bkey] = detected_bases.get(bkey, 0) + 1
 
                 categories_present = 0
-                for cat_platforms in AIR_CAPABILITY_CATEGORIES.values():
+                categories_active = []
+                cat_labels = {
+                    "strategic_strike": "bombers",
+                    "air_superiority": "air superiority",
+                    "multirole_strike": "strike fighters",
+                    "ground_attack": "ground attack",
+                    "c2_isr": "C2/ISR",
+                    "allied": "allied",
+                }
+                for cat_name, cat_platforms in AIR_CAPABILITY_CATEGORIES.items():
                     if any(p in detected_platforms for p in cat_platforms):
                         categories_present += 1
+                        categories_active.append(cat_labels.get(cat_name, cat_name))
 
                 if categories_present >= 5:
                     land_air_risk = 90
@@ -1227,6 +1237,7 @@ def fetch_military_buildup(previous_data=None):
                     "platforms": {k: v["name"] for k, v in detected_platforms.items()},
                     "bases": detected_bases,
                     "categories_present": categories_present,
+                    "categories_active": categories_active,
                 }
                 print(f"    Platforms: {len(detected_platforms)}, Categories: {categories_present}/6, Land Air Risk: {land_air_risk}%")
             else:
@@ -1303,8 +1314,21 @@ def fetch_military_buildup(previous_data=None):
         destroyers = naval_result.get("destroyers_in_centcom", 0) if naval_result else 0
         points = naval_result.get("total_weighted_points", 0) if naval_result else 0
         cats = air_data.get("categories_present", 0)
+        cat_names = air_data.get("categories_active", [])
 
-        detail = f"{carriers} CVN, {destroyers} DDG in CENTCOM ({points:.0f} pts) | {cats}/6 air categories"
+        ship_parts = []
+        if carriers:
+            ship_parts.append(f"{carriers} carrier{'s' if carriers > 1 else ''}")
+        if destroyers:
+            ship_parts.append(f"{destroyers} destroyer{'s' if destroyers > 1 else ''}")
+        ships_text = ", ".join(ship_parts) if ship_parts else "No major combatants"
+
+        if cat_names:
+            air_text = f"Air: {', '.join(cat_names)}"
+        else:
+            air_text = "No air assets detected"
+
+        detail = f"{ships_text} near CENTCOM ({points:.0f} pts) | {air_text}"
 
         print(f"  Naval: {naval_force_risk}% x 0.55 = {naval_force_risk * 0.55:.1f}")
         print(f"  Air:   {air_presence_risk}% x 0.30 = {air_presence_risk * 0.30:.1f}")
