@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 19,
-    "detail": "23 articles, 11 critical",
+    "risk": 23,
+    "detail": "25 articles, 13 critical",
     "history": [
       19,
       19,
@@ -22,7 +22,7 @@
       19,
       19,
       19,
-      19
+      23
     ],
     "raw_data": {
       "articles": [
@@ -117,18 +117,25 @@
         {
           "title": "Mortuary videos show how deadly Iran crackdown has become",
           "is_alert": false
+        },
+        {
+          "title": "Trump \u2018considering\u2019 limited strikes on Iran",
+          "is_alert": true
+        },
+        {
+          "title": "Iran says US military build-up \u2018unnecessary and unhelpful\u2019, deal achievable",
+          "is_alert": true
         }
       ],
-      "total_count": 23,
-      "alert_count": 11,
-      "timestamp": "2026-02-21T00:43:12.840180"
+      "total_count": 25,
+      "alert_count": 13,
+      "timestamp": "2026-02-20T22:58:32.106337"
     }
   },
   "flight": {
-    "risk": 39,
-    "detail": "70 aircraft over Iran",
+    "risk": 25,
+    "detail": "87 aircraft over Iran",
     "history": [
-      32,
       17,
       19,
       13,
@@ -147,24 +154,25 @@
       48,
       45,
       44,
-      39
+      39,
+      25
     ],
     "raw_data": {
-      "aircraft_count": 70,
-      "airline_count": 33,
+      "aircraft_count": 87,
+      "airline_count": 32,
       "airlines": [
         "PGT",
         "IGO",
-        "BBC",
         "UAE",
         "ETD",
         "TKJ",
         "ABY",
         "UPS",
         "FDB",
-        "THY"
+        "THY",
+        "GFA"
       ],
-      "timestamp": "2026-02-21T00:43:23.144007"
+      "timestamp": "2026-02-20T22:58:34.024815"
     }
   },
   "tanker": {
@@ -195,14 +203,14 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T00:43:25.426995"
+      "timestamp": "2026-02-20T22:58:36.469141"
     }
   },
   "weather": {
     "risk": 100,
-    "detail": "clear sky",
+    "detail": "clear",
     "history": [
-      31,
+      100,
       100,
       100,
       100,
@@ -224,19 +232,46 @@
       100
     ],
     "raw_data": {
-      "temp": 13,
-      "visibility": 10000,
-      "clouds": 0,
-      "description": "clear sky",
-      "condition": "Favorable",
-      "timestamp": "2026-02-21T00:43:25.648679"
+      "risk": 100,
+      "detail": "clear sky",
+      "history": [
+        31,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "raw_data": {
+        "temp": 13,
+        "visibility": 10000,
+        "clouds": 0,
+        "description": "clear sky",
+        "condition": "Favorable",
+        "timestamp": "2026-02-21T00:43:25.648679"
+      }
     }
   },
   "polymarket": {
     "risk": 4,
     "detail": "4% odds",
     "history": [
-      5,
+      4,
       4,
       4,
       4,
@@ -260,12 +295,12 @@
     "raw_data": {
       "odds": 4,
       "market": "Will the US next strike Iran on February 22, 2026 (ET)?",
-      "timestamp": "2026-02-21T00:43:12.463016"
+      "timestamp": "2026-02-20T22:58:31.372852"
     }
   },
   "pentagon": {
     "risk": 30,
-    "detail": "Wiseguy Pizza 57%, California Pizza Kitchen 2%, Extreme Pizza 84% (live)",
+    "detail": "California Pizza Kitchen 2%, Extreme Pizza 84% (live)",
     "history": [
       10,
       10,
@@ -273,7 +308,6 @@
       10,
       10,
       10,
-      10,
       30,
       30,
       30,
@@ -285,22 +319,22 @@
       70,
       70,
       70,
+      30,
       30,
       30
     ],
     "raw_data": {
-      "score": 48,
+      "score": 43,
       "risk_contribution": 3,
       "status": "Normal",
-      "detail_text": "Wiseguy Pizza 57%, California Pizza Kitchen 2%, Extreme Pizza 84% (live)",
+      "detail_text": "California Pizza Kitchen 2%, Extreme Pizza 84% (live)",
       "source": "live",
       "live_scores": {
-        "Wiseguy Pizza": 57,
         "California Pizza Kitchen": 2,
         "Extreme Pizza": 84
       },
       "hour_et": 17,
-      "timestamp": "2026-02-21T00:43:12.286383",
+      "timestamp": "2026-02-20T22:58:31.093787",
       "is_late_night": false,
       "is_weekend": false
     }
@@ -309,7 +343,7 @@
     "risk": 40,
     "detail": "$71.19 (+1.0%)",
     "history": [
-      80,
+      40,
       40,
       40,
       40,
@@ -334,12 +368,12 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T00:43:19.539681"
+      "timestamp": "2026-02-20T22:58:32.592061"
     }
   },
   "gdelt": {
     "risk": 60,
-    "detail": "100 articles, tone 0.0",
+    "detail": "Awaiting data...",
     "history": [
       60,
       60,
@@ -363,19 +397,45 @@
       60
     ],
     "raw_data": {
-      "article_count": 100,
-      "avg_tone": 0,
-      "negative_count": 0,
-      "top_article": "\u7f8e\u4ee5\u6700\u65e9\u672c\u5468\u672b\u5bf9\u4f0a\u6717\u52a8\u6b66 \uff1f \u4e09\u5927\u7ec6\u8282\u503c\u5f97\u5173\u6ce8",
       "risk": 60,
-      "timestamp": "2026-02-21T00:43:19.276504"
+      "detail": "100 articles, tone 0.0",
+      "history": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60
+      ],
+      "raw_data": {
+        "article_count": 100,
+        "avg_tone": 0,
+        "negative_count": 0,
+        "top_article": "\u7f8e\u4ee5\u6700\u65e9\u672c\u5468\u672b\u5bf9\u4f0a\u6717\u52a8\u6b66 \uff1f \u4e09\u5927\u7ec6\u8282\u503c\u5f97\u5173\u6ce8",
+        "risk": 60,
+        "timestamp": "2026-02-21T00:43:19.276504"
+      }
     }
   },
   "trends": {
     "risk": 10,
     "detail": "Interest: 17, 'Iran war'",
     "history": [
-      20,
       20,
       20,
       20,
@@ -394,21 +454,23 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 17.4,
-      "avg_24h": 24.6,
+      "current_interest": 16.6,
+      "avg_24h": 24.4,
       "peak_keyword": "Iran war",
       "peak_value": 51,
       "risk": 10,
-      "timestamp": "2026-02-21T00:43:22.845008"
+      "timestamp": "2026-02-20T22:58:33.373502"
     }
   },
   "buildup": {
     "risk": 65,
     "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: bombers, air superiority, strike fighters, ground attack, allied",
     "history": [
+      65,
       65,
       65,
       65,
@@ -451,7 +513,7 @@
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 11,
+          "diego garcia": 9,
           "al udeid": 2
         },
         "categories_present": 5,
@@ -477,11 +539,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T00:43:27.569615"
+      "timestamp": "2026-02-20T22:58:38.244825"
     }
   },
   "total_risk": {
-    "risk": 31,
+    "risk": 29,
     "history": [
       {
         "timestamp": 1770026400000,
@@ -514,11 +576,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771627407575,
-        "risk": 31
+        "timestamp": 1771628318248,
+        "risk": 29
       }
     ],
     "elevated_count": 2
   },
-  "last_updated": "2026-02-21T00:43:27.574857"
+  "last_updated": "2026-02-20T22:58:38.248038"
 }
