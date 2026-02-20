@@ -16,7 +16,7 @@ function displayData(data) {
     console.log('Displaying data:', data);
     
     // Load signal history from restructured data
-    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather', 'oil', 'gdelt', 'trends', 'buildup'].forEach(sig => {
+    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather', 'oil', 'trends', 'buildup'].forEach(sig => {
         if (data[sig] && data[sig].history && data[sig].history.length > 0) {
             state.signalHistory[sig] = data[sig].history;
         }
@@ -80,12 +80,6 @@ function displayData(data) {
         setStatus('oilStatus', hasOilData);
     }
     
-    // GDELT global news signal
-    if (data.gdelt) {
-        updateSignal('gdelt', data.gdelt.risk, data.gdelt.detail);
-        const hasGdeltData = data.gdelt.raw_data?.article_count >= 0;
-        setStatus('gdeltStatus', hasGdeltData);
-    }
     
     // Google Trends signal
     if (data.trends) {

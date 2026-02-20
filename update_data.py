@@ -2,7 +2,7 @@
 Pentagon Pizza Meter - Fetches busyness data for pizza places near the Pentagon
 Runs via GitHub Actions every 30 minutes and updates frontend/data.json
 
-REDESIGNED: Now fetches ALL API data (GDELT, Wikipedia, OpenSky, Weather, Polymarket, News)
+REDESIGNED: Now fetches ALL API data (OpenSky, Weather, Polymarket, News, etc.)
 Frontend only reads the JSON - no direct API calls from browser
 """
 
@@ -590,121 +590,6 @@ def fetch_news_intel():
         traceback.print_exc()
         return None
 
-
-def fetch_gdelt_data():
-    """Fetch GDELT news data for Iran-related articles with tone analysis"""
-    try:
-        print("\n" + "=" * 50)
-        print("GDELT NEWS INTELLIGENCE")
-        print("=" * 50)
-
-        # GDELT query for Iran conflict-related news
-        query = "(United States OR Pentagon OR White House OR Trump OR Israel) AND (strike OR attack OR bombing OR missile OR airstrike OR military action OR war) AND Iran"
-        url = f"https://api.gdeltproject.org/api/v2/doc/doc?query={requests.utils.quote(query)}&mode=artlist&format=json&timespan=24h&maxrecords=100"
-
-        response = make_request(url, timeout=20)
-
-        if not response.ok:
-            print(f"GDELT API error: {response.status_code}")
-            return None
-
-        text = response.text
-        if not (text.startswith("{") or text.startswith("[")):
-            print("GDELT: Invalid response format")
-            return None
-
-        data = json.loads(text)
-        articles = data.get("articles", [])
-
-        if not articles:
-            print("GDELT: No articles found")
-            return {
-                "article_count": 0,
-                "avg_tone": 0,
-                "negative_count": 0,
-                "top_article": "",
-                "risk": 5,
-                "timestamp": datetime.now().isoformat(),
-            }
-
-        article_count = len(articles)
-
-        # Calculate average tone from articles
-        # GDELT tone ranges from -100 (extremely negative) to +100 (extremely positive)
-        tones = []
-        negative_count = 0
-
-        for article in articles:
-            tone = article.get("tone", 0)
-            if tone:
-                try:
-                    tone_value = float(tone)
-                    tones.append(tone_value)
-                    if tone_value < -2:
-                        negative_count += 1
-                except (ValueError, TypeError):
-                    pass
-
-        avg_tone = sum(tones) / len(tones) if tones else 0
-
-        # Get top article title
-        top_article = articles[0].get("title", "")[:80] if articles else ""
-
-        # Calculate risk based on article count and tone
-        risk = 10  # Baseline
-
-        # Article volume component (0-40 points)
-        if article_count >= 50:
-            risk += 40
-        elif article_count >= 30:
-            risk += 30
-        elif article_count >= 15:
-            risk += 20
-        elif article_count >= 5:
-            risk += 10
-
-        # Negative tone component (0-40 points)
-        # More negative tone = higher tension in coverage
-        if avg_tone <= -5:
-            risk += 40  # Very negative coverage
-        elif avg_tone <= -3:
-            risk += 30
-        elif avg_tone <= -1:
-            risk += 20
-        elif avg_tone <= 0:
-            risk += 10
-
-        # High proportion of negative articles
-        if article_count > 0:
-            negative_ratio = negative_count / article_count
-            if negative_ratio >= 0.7:
-                risk += 10  # 70%+ negative
-            elif negative_ratio >= 0.5:
-                risk += 5
-
-        risk = max(0, min(100, round(risk)))
-
-        print(f"Articles: {article_count}")
-        print(f"Average Tone: {avg_tone:.2f}")
-        print(f"Negative Articles: {negative_count}")
-        if top_article:
-            print(f"Top: {top_article[:60]}...")
-        print(f"✓ Result: Risk {risk}%")
-
-        return {
-            "article_count": article_count,
-            "avg_tone": round(avg_tone, 2),
-            "negative_count": negative_count,
-            "top_article": top_article,
-            "risk": risk,
-            "timestamp": datetime.now().isoformat(),
-        }
-
-    except Exception as e:
-        print(f"GDELT error: {e}")
-        import traceback
-        traceback.print_exc()
-        return None
 
 
 def fetch_aviation_data():
@@ -1641,7 +1526,6 @@ def update_data_file():
                 "polymarket": current_data.get("polymarket", {}).get("history", []),
                 "weather": current_data.get("weather", {}).get("history", []),
                 "oil": current_data.get("oil", {}).get("history", []),
-                "gdelt": current_data.get("gdelt", {}).get("history", []),
                 "trends": current_data.get("trends", {}).get("history", []),
                 "buildup": current_data.get("buildup", {}).get("history", []),
             }
@@ -1658,7 +1542,6 @@ def update_data_file():
                     "polymarket": [],
                     "weather": [],
                     "oil": [],
-                    "gdelt": [],
                     "trends": [],
                     "buildup": [],
                 },
@@ -1679,10 +1562,6 @@ def update_data_file():
         if news_data:
             current_data["news_intel"] = news_data
 
-        # GDELT enhanced news data
-        gdelt_data = fetch_gdelt_data()
-        if gdelt_data:
-            current_data["gdelt"] = gdelt_data
 
         # Oil prices
         oil_data = fetch_oil_prices()
@@ -1774,13 +1653,6 @@ def update_data_file():
         oil_change = oil.get("change_24h", 0) if oil else 0
         oil_detail = f"${oil_price:.2f} ({oil_change:+.1f}%)" if oil_price > 0 else "Awaiting data..."
 
-        # GDELT SIGNAL CALCULATION
-        gdelt = current_data.get("gdelt", {})
-        gdelt_risk = gdelt.get("risk", 10) if gdelt else 10
-        gdelt_articles = gdelt.get("article_count", 0) if gdelt else 0
-        gdelt_tone = gdelt.get("avg_tone", 0) if gdelt else 0
-        gdelt_detail = f"{gdelt_articles} articles, tone {gdelt_tone:.1f}" if gdelt_articles > 0 else "Awaiting data..."
-
         # GOOGLE TRENDS SIGNAL CALCULATION
         trends = current_data.get("trends", {})
         trends_risk = trends.get("risk", 5) if trends else 5
@@ -1794,17 +1666,15 @@ def update_data_file():
         buildup_detail = buildup_raw.get("detail", "Awaiting data...") if buildup_raw else "Awaiting data..."
 
         # Apply weighted contributions
-        # Total = 100%: Buildup 14%, News 18%, Flight 18%, Tanker 12%, Polymarket 13%, Oil 9%, GDELT 5%, Trends 4%, Pentagon 4%, Weather 3%
-        buildup_contribution_weighted = buildup_risk * 0.14  # 14% weight
-        news_contribution_weighted = news_display_risk * 0.18  # 18% weight
-        flight_contribution_weighted = flight_risk * 0.18  # 18% weight
-        tanker_contribution_weighted = tanker_risk * 0.12  # 12% weight
-        polymarket_contribution_weighted = polymarket_contribution * 1.3  # 13% weight
-        oil_contribution_weighted = oil_risk * 0.09  # 9% weight
-        gdelt_contribution_weighted = gdelt_risk * 0.05  # 5% weight
+        # Total = 100%: Buildup 15%, News 20%, Flight 20%, Tanker 13%, Polymarket 14%, Oil 10%, Trends 4%, Pentagon 4%
+        buildup_contribution_weighted = buildup_risk * 0.15  # 15% weight
+        news_contribution_weighted = news_display_risk * 0.20  # 20% weight
+        flight_contribution_weighted = flight_risk * 0.20  # 20% weight
+        tanker_contribution_weighted = tanker_risk * 0.13  # 13% weight
+        polymarket_contribution_weighted = polymarket_contribution * 1.4  # 14% weight
+        oil_contribution_weighted = oil_risk * 0.10  # 10% weight
         trends_contribution_weighted = trends_risk * 0.04  # 4% weight
         pentagon_contribution_weighted = pentagon_contribution * 0.4  # 4% weight
-        weather_contribution_weighted = weather_risk * 0.03  # 3% weight
 
         total_risk = (
             buildup_contribution_weighted
@@ -1813,10 +1683,8 @@ def update_data_file():
             + tanker_contribution_weighted
             + polymarket_contribution_weighted
             + oil_contribution_weighted
-            + gdelt_contribution_weighted
             + trends_contribution_weighted
             + pentagon_contribution_weighted
-            + weather_contribution_weighted
         )
 
         # Check for escalation multiplier (3+ elevated signals)
@@ -1828,10 +1696,8 @@ def update_data_file():
                 tanker_contribution_weighted > 10,
                 polymarket_contribution > 5,
                 oil_risk > 40,
-                gdelt_risk > 40,
                 trends_risk > 30,
                 pentagon_contribution > 5,
-                weather_contribution_weighted > 4,
             ]
         )
 
@@ -1848,7 +1714,6 @@ def update_data_file():
         signal_history["polymarket"].append(polymarket_display_risk)
         signal_history["weather"].append(weather_risk)
         signal_history["oil"].append(oil_risk)
-        signal_history["gdelt"].append(gdelt_risk)
         signal_history["trends"].append(trends_risk)
         signal_history["buildup"].append(buildup_risk)
 
@@ -1944,12 +1809,6 @@ def update_data_file():
                 "detail": oil_detail,
                 "history": signal_history["oil"],
                 "raw_data": oil,
-            },
-            "gdelt": {
-                "risk": gdelt_risk,
-                "detail": gdelt_detail,
-                "history": signal_history["gdelt"],
-                "raw_data": gdelt,
             },
             "trends": {
                 "risk": trends_risk,

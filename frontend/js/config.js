@@ -13,7 +13,6 @@ const state = {
         polymarket: [],
         weather: [],
         oil: [],
-        gdelt: [],
         trends: [],
         buildup: []
     }
@@ -24,18 +23,17 @@ const KEYWORDS = ['retaliation', 'strike', 'attack', 'escalation', 'military', '
 const INFO_CONTENT = {
     about: {
         title: 'About Strike Radar',
-        content: `<div class="modal-body" id="infoBody"><strong>Disclaimer</strong><br><br>This is an <strong>experimental project</strong> for informational purposes only.<br><br><strong>NOT:</strong><br>• Official intelligence<br>• Verified predictions<br>• Basis for decisions<br><br><strong>Data Sources</strong><br>• BBC World & Al Jazeera<br>• GDELT Global News<br>• OpenSky Network<br>• Polymarket<br>• Yahoo Finance (Oil)<br>• Google Trends<br>• OpenWeatherMap<br><br><strong>Limitations</strong><br>Cannot account for classified intel or diplomatic activity. One data point among many.<br><br><em>Stay informed. Think critically.</em></div>`
+        content: `<div class="modal-body" id="infoBody"><strong>Disclaimer</strong><br><br>This is an <strong>experimental project</strong> for informational purposes only.<br><br><strong>NOT:</strong><br>• Official intelligence<br>• Verified predictions<br>• Basis for decisions<br><br><strong>Data Sources</strong><br>• BBC World & Al Jazeera<br>• OpenSky Network<br>• Polymarket<br>• Yahoo Finance (Oil)<br>• Google Trends<br>• OpenWeatherMap<br><br><strong>Limitations</strong><br>Cannot account for classified intel or diplomatic activity. One data point among many.<br><br><em>Stay informed. Think critically.</em></div>`
     },
     calculation: {
         title: 'How We Calculate Risk',
-        content: `<strong>Total Risk = Weighted Sum of 10 Signals</strong><br><br>
-        <strong>Military Buildup (14%):</strong> Naval force posture (55%), air presence (30%), and deployment news (15%) from USNI Fleet Tracker and Google News.<br><br>
-        <strong>News Intel (18%):</strong> Breaking news with critical keywords increases risk.<br><br>
-        <strong>Civil Aviation (18%):</strong> Fewer flights over Iran = airlines avoiding = higher risk.<br><br>
-        <strong>Military Tankers (12%):</strong> More US tankers in the region = higher risk.<br><br>
-        <strong>Market Odds (13%):</strong> Prediction market betting odds for strike within 7 days.<br><br>
-        <strong>Oil Prices (9%):</strong> Price spikes and high levels indicate market tension.<br><br>
-        <strong>Global News (5%):</strong> GDELT volume and tone of worldwide Iran coverage.<br><br>
+        content: `<strong>Total Risk = Weighted Sum of 8 Signals</strong><br><br>
+        <strong>Military Buildup (15%):</strong> Naval force posture (55%), air presence (30%), and deployment news (15%) from USNI Fleet Tracker and Google News.<br><br>
+        <strong>News Intel (20%):</strong> Breaking news with critical keywords increases risk.<br><br>
+        <strong>Civil Aviation (20%):</strong> Fewer flights over Iran = airlines avoiding = higher risk.<br><br>
+        <strong>Military Tankers (13%):</strong> More US tankers in the region = higher risk.<br><br>
+        <strong>Market Odds (14%):</strong> Prediction market betting odds for strike within 7 days.<br><br>
+        <strong>Oil Prices (10%):</strong> Price spikes and high levels indicate market tension.<br><br>
         <strong>Public Interest (4%):</strong> Google search trends for Iran-related terms.<br><br>
         <strong>Pentagon Activity (4%):</strong> Live pizza place busyness near the Pentagon via Google Maps.<br><br>
         <strong>Weather (3%):</strong> Clear skies in Tehran = favorable for operations = higher risk.<br><br>
@@ -115,11 +113,6 @@ const INFO_CONTENT = {
         <strong>Why it matters:</strong> Oil prices spike during Middle East tensions. Traders price in conflict risk before events occur. Brent crude recently topped $70/barrel on Iran concerns.<br><br>
         <strong>How it works:</strong> Price spikes (>3% in 24h) and high absolute prices (>$75/barrel) = higher risk.<br><br>
         <strong>Weight:</strong> 10% of total risk`,
-    gdelt: `<strong>Global News (GDELT)</strong><br><br>
-        Analyzes worldwide news coverage via the GDELT Project.<br><br>
-        <strong>Source:</strong> GDELT monitors news in 65+ languages, updated every 15 minutes.<br><br>
-        <strong>Why it matters:</strong> Provides broader coverage than English-only sources. Includes sentiment/tone analysis to detect negative coverage spikes.<br><br>
-        <strong>How it works:</strong> High article volume + negative tone = higher risk. Looks for "strike", "attack", "war" keywords related to Iran.`,
     trends: `<strong>Public Interest (Google Trends)</strong><br><br>
         Tracks Google search interest for Iran-related terms in the US.<br><br>
         <strong>Keywords tracked:</strong> "Iran war", "Iran strike", "Iran attack", "Iran nuclear", "Iran conflict"<br><br>
