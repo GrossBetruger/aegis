@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 19,
-    "detail": "23 articles, 11 critical",
+    "risk": 23,
+    "detail": "25 articles, 13 critical",
     "history": [
       10,
       10,
@@ -9,7 +9,6 @@
       10,
       10,
       10,
-      10,
       20,
       20,
       19,
@@ -22,7 +21,8 @@
       19,
       19,
       19,
-      19
+      19,
+      23
     ],
     "raw_data": {
       "articles": [
@@ -117,18 +117,25 @@
         {
           "title": "Mortuary videos show how deadly Iran crackdown has become",
           "is_alert": false
+        },
+        {
+          "title": "Trump \u2018considering\u2019 limited strikes on Iran",
+          "is_alert": true
+        },
+        {
+          "title": "Iran says US military build-up \u2018unnecessary and unhelpful\u2019, deal achievable",
+          "is_alert": true
         }
       ],
-      "total_count": 23,
-      "alert_count": 11,
-      "timestamp": "2026-02-20T23:17:47.819980"
+      "total_count": 25,
+      "alert_count": 13,
+      "timestamp": "2026-02-20T21:50:28.671514"
     }
   },
   "flight": {
-    "risk": 56,
-    "detail": "49 aircraft over Iran",
+    "risk": 55,
+    "detail": "50 aircraft over Iran",
     "history": [
-      21,
       23,
       17,
       25,
@@ -147,24 +154,25 @@
       30,
       28,
       34,
-      56
+      56,
+      55
     ],
     "raw_data": {
-      "aircraft_count": 49,
-      "airline_count": 23,
+      "aircraft_count": 50,
+      "airline_count": 26,
       "airlines": [
-        "IGO",
+        "PGT",
+        "NSZ",
         "AXB",
         "BBC",
         "UAE",
+        "IGO",
+        "TKJ",
+        "UBG",
         "THY",
-        "ABY",
-        "AIC",
-        "FDB",
-        "ROJ",
-        "ADY"
+        "FDB"
       ],
-      "timestamp": "2026-02-20T23:18:21.082861"
+      "timestamp": "2026-02-20T21:51:00.456930"
     }
   },
   "tanker": {
@@ -195,14 +203,13 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-20T23:18:23.323100"
+      "timestamp": "2026-02-20T21:51:03.113307"
     }
   },
   "weather": {
     "risk": 100,
-    "detail": "clear sky",
+    "detail": "clear",
     "history": [
-      31,
       66,
       66,
       86,
@@ -212,6 +219,7 @@
       86,
       31,
       31,
+      100,
       100,
       100,
       100,
@@ -224,19 +232,45 @@
       100
     ],
     "raw_data": {
-      "temp": 15,
-      "visibility": 10000,
-      "clouds": 0,
-      "description": "clear sky",
-      "condition": "Favorable",
-      "timestamp": "2026-02-20T23:18:23.565428"
+      "risk": 100,
+      "detail": "clear sky",
+      "history": [
+        31,
+        66,
+        66,
+        86,
+        86,
+        86,
+        86,
+        86,
+        31,
+        31,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "raw_data": {
+        "temp": 15,
+        "visibility": 10000,
+        "clouds": 0,
+        "description": "clear sky",
+        "condition": "Favorable",
+        "timestamp": "2026-02-20T23:18:23.565428"
+      }
     }
   },
   "polymarket": {
     "risk": 4,
     "detail": "4% odds",
     "history": [
-      7,
       4,
       4,
       6,
@@ -255,20 +289,20 @@
       4,
       4,
       4,
+      4,
       4
     ],
     "raw_data": {
       "odds": 4,
       "market": "Will the US next strike Iran on February 22, 2026 (ET)?",
-      "timestamp": "2026-02-20T23:17:47.481066"
+      "timestamp": "2026-02-20T21:50:28.321025"
     }
   },
   "pentagon": {
-    "risk": 100,
-    "detail": "High Activity (late night)",
+    "risk": 10,
+    "detail": "Low Activity",
     "history": [
       30,
-      30,
       10,
       10,
       10,
@@ -286,39 +320,39 @@
       30,
       30,
       30,
-      100
+      100,
+      10
     ],
     "raw_data": {
-      "score": 100,
-      "risk_contribution": 10,
-      "status": "High Activity",
+      "score": 30,
+      "risk_contribution": 1,
+      "status": "Low Activity",
       "places": [
         {
-          "status": "elevated_late",
-          "score": 70,
+          "status": "normal",
+          "score": 30,
           "name": "Domino's Pizza"
         },
         {
-          "status": "elevated_late",
-          "score": 70,
+          "status": "normal",
+          "score": 30,
           "name": "Papa John's"
         },
         {
-          "status": "elevated_late",
-          "score": 70,
+          "status": "normal",
+          "score": 30,
           "name": "Pizza Hut"
         }
       ],
-      "timestamp": "2026-02-20T23:17:47.439029",
-      "is_late_night": true,
+      "timestamp": "2026-02-20T21:50:27.984072",
+      "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 40,
-    "detail": "$71.29 (+1.2%)",
+    "detail": "$71.17 (+1.0%)",
     "history": [
-      30,
       40,
       40,
       30,
@@ -328,6 +362,7 @@
       80,
       80,
       80,
+      40,
       40,
       40,
       40,
@@ -340,17 +375,17 @@
       40
     ],
     "raw_data": {
-      "current_price": 71.29,
-      "change_24h": 1.16,
+      "current_price": 71.17,
+      "change_24h": 0.99,
       "risk": 40,
-      "timestamp": "2026-02-20T23:18:19.026142"
+      "timestamp": "2026-02-20T21:50:58.914264"
     }
   },
   "gdelt": {
     "risk": 60,
     "detail": "Awaiting data...",
     "history": [
-      5,
+      60,
       60,
       60,
       60,
@@ -375,8 +410,8 @@
       "risk": 60,
       "detail": "Awaiting data...",
       "history": [
-        60,
         5,
+        60,
         60,
         60,
         60,
@@ -399,11 +434,11 @@
       ],
       "raw_data": {
         "risk": 60,
-        "detail": "100 articles, tone 0.0",
+        "detail": "Awaiting data...",
         "history": [
           60,
-          60,
           5,
+          60,
           60,
           60,
           60,
@@ -424,21 +459,47 @@
           60
         ],
         "raw_data": {
-          "article_count": 100,
-          "avg_tone": 0,
-          "negative_count": 0,
-          "top_article": "\u7f8e\u4ee5\u6700\u65e9\u672c\u5468\u672b\u5bf9\u4f0a\u6717\u52a8\u6b66 \uff1f \u4e09\u5927\u7ec6\u8282\u503c\u5f97\u5173\u6ce8",
           "risk": 60,
-          "timestamp": "2026-02-20T17:22:01.406196"
+          "detail": "100 articles, tone 0.0",
+          "history": [
+            60,
+            60,
+            5,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "raw_data": {
+            "article_count": 100,
+            "avg_tone": 0,
+            "negative_count": 0,
+            "top_article": "\u7f8e\u4ee5\u6700\u65e9\u672c\u5468\u672b\u5bf9\u4f0a\u6717\u52a8\u6b66 \uff1f \u4e09\u5927\u7ec6\u8282\u503c\u5f97\u5173\u6ce8",
+            "risk": 60,
+            "timestamp": "2026-02-20T17:22:01.406196"
+          }
         }
       }
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 18, 'Iran war'",
+    "detail": "Interest: 17, 'Iran war'",
     "history": [
-      10,
       20,
       30,
       45,
@@ -457,15 +518,16 @@
       20,
       20,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 18.2,
-      "avg_24h": 24.7,
+      "current_interest": 17.2,
+      "avg_24h": 24.9,
       "peak_keyword": "Iran war",
       "peak_value": 51,
       "risk": 10,
-      "timestamp": "2026-02-20T23:18:20.890402"
+      "timestamp": "2026-02-20T21:50:59.947577"
     }
   },
   "tfr": {
@@ -490,7 +552,7 @@
       20,
       20,
       20,
-      20,
+      15,
       15
     ],
     "raw_data": {
@@ -509,13 +571,14 @@
       "risk": 15,
       "status": "Baseline estimate",
       "data_source": "baseline_estimate",
-      "timestamp": "2026-02-20T23:18:23.567798"
+      "timestamp": "2026-02-20T21:51:03.213467"
     }
   },
   "buildup": {
     "risk": 65,
     "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: bombers, air superiority, strike fighters, ground attack, allied",
     "history": [
+      65,
       65,
       65
     ],
@@ -564,7 +627,7 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 27,
-        "deployment_matches": 18,
+        "deployment_matches": 17,
         "sample_headlines": [
           "Here's what we know about the buildup of U.S. military assets in the Middle East - PBS",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
@@ -575,11 +638,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-20T23:18:23.896466"
+      "timestamp": "2026-02-20T21:51:04.733737"
     }
   },
   "total_risk": {
-    "risk": 42,
+    "risk": 34,
     "history": [
       {
         "timestamp": 1769983200000,
@@ -612,11 +675,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771622303899,
-        "risk": 42
+        "timestamp": 1771624264736,
+        "risk": 34
       }
     ],
-    "elevated_count": 3
+    "elevated_count": 2
   },
-  "last_updated": "2026-02-20T23:18:23.899060"
+  "last_updated": "2026-02-20T21:51:04.736909"
 }
