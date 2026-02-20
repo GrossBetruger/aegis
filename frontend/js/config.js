@@ -15,8 +15,8 @@ const state = {
         oil: [],
         gdelt: [],
         trends: [],
-        firms: [],
-        tfr: []
+        tfr: [],
+        buildup: []
     }
 };
 
@@ -30,17 +30,17 @@ const INFO_CONTENT = {
     calculation: {
         title: 'How We Calculate Risk',
         content: `<strong>Total Risk = Weighted Sum of 11 Signals</strong><br><br>
-        <strong>News Intel (18%):</strong> Breaking news with critical keywords increases risk.<br><br>
-        <strong>Civil Aviation (18%):</strong> Fewer flights over Iran = airlines avoiding = higher risk.<br><br>
-        <strong>Military Tankers (12%):</strong> More US tankers in the region = higher risk.<br><br>
+        <strong>Military Buildup (12%):</strong> Naval force posture (55%), air presence (30%), and deployment news (15%) from USNI Fleet Tracker and Google News.<br><br>
+        <strong>News Intel (17%):</strong> Breaking news with critical keywords increases risk.<br><br>
+        <strong>Civil Aviation (17%):</strong> Fewer flights over Iran = airlines avoiding = higher risk.<br><br>
+        <strong>Military Tankers (11%):</strong> More US tankers in the region = higher risk.<br><br>
         <strong>Market Odds (12%):</strong> Prediction market betting odds for strike within 7 days.<br><br>
-        <strong>Oil Prices (8%):</strong> Price spikes and high levels indicate market tension.<br><br>
-        <strong>Satellite Hotspots (6%):</strong> NASA FIRMS thermal detections in conflict zones.<br><br>
-        <strong>Flight Restrictions (6%):</strong> FAA TFRs indicating VIP/security activity.<br><br>
+        <strong>Oil Prices (9%):</strong> Price spikes and high levels indicate market tension.<br><br>
+        <strong>Flight Restrictions (5%):</strong> FAA TFRs indicating VIP/security activity.<br><br>
         <strong>Global News (5%):</strong> GDELT volume and tone of worldwide Iran coverage.<br><br>
-        <strong>Public Interest (5%):</strong> Google search trends for Iran-related terms.<br><br>
-        <strong>Pentagon Activity (5%):</strong> Unusual late-night activity near Pentagon = higher risk.<br><br>
-        <strong>Weather (5%):</strong> Clear skies in Tehran = favorable for operations = higher risk.<br><br>
+        <strong>Public Interest (4%):</strong> Google search trends for Iran-related terms.<br><br>
+        <strong>Pentagon Activity (4%):</strong> Unusual late-night activity near Pentagon = higher risk.<br><br>
+        <strong>Weather (4%):</strong> Clear skies in Tehran = favorable for operations = higher risk.<br><br>
         <strong>Escalation Multiplier:</strong> If 3+ signals are elevated, total gets a 15% boost.<br><br>
         <strong>Risk Levels:</strong><br>
         • 0-30% = Low<br>
@@ -48,6 +48,39 @@ const INFO_CONTENT = {
         • 61-85% = High<br>
         • 86-100% = Imminent`
     },
+    buildup: `<strong>Military Buildup</strong><br><br>
+        Tracks US naval and air force posture in and around the CENTCOM area of responsibility.<br><br>
+        <strong>Three sub-signals:</strong><br>
+        • <strong>Naval Force Posture (55%):</strong> Ship counting from USNI Fleet Tracker — carriers, destroyers, amphibs classified by region proximity to Iran<br>
+        • <strong>Air Presence (30%):</strong> Carrier air wing squadrons + land-based platforms (B-2, F-22, F-35, AWACS, etc.) detected in news<br>
+        • <strong>Deployment News (15%):</strong> Volume and intensity of carrier/strike group deployment headlines<br><br>
+        <strong>Sources:</strong> USNI News RSS (weekly fleet tracker), Google News RSS (air assets and deployment news)<br><br>
+        <strong>Weight:</strong> 12% of total risk<br><br>
+        <strong>Abbreviations — Ships:</strong><br>
+        • <strong>CVN</strong> — Nuclear Aircraft Carrier<br>
+        • <strong>DDG</strong> — Guided-Missile Destroyer<br>
+        • <strong>CG</strong> — Guided-Missile Cruiser<br>
+        • <strong>LHA/LHD</strong> — Amphibious Assault Ship<br>
+        • <strong>LPD</strong> — Amphibious Transport Dock<br>
+        • <strong>LCS</strong> — Littoral Combat Ship<br>
+        • <strong>SSN</strong> — Nuclear Attack Submarine<br>
+        • <strong>SSGN</strong> — Guided-Missile Submarine<br>
+        • <strong>T-AO/T-AKE</strong> — Fleet Oiler / Cargo &amp; Ammunition Ship<br><br>
+        <strong>Abbreviations — Air:</strong><br>
+        • <strong>CVW</strong> — Carrier Air Wing<br>
+        • <strong>VFA</strong> — Strike Fighter Squadron (F/A-18)<br>
+        • <strong>VMFA</strong> — Marine Strike Fighter Squadron (F-35C)<br>
+        • <strong>VAQ</strong> — Electronic Attack Squadron (EA-18G)<br>
+        • <strong>VAW</strong> — Airborne Early Warning Squadron (E-2D)<br>
+        • <strong>AWACS</strong> — Airborne Warning &amp; Control System (E-3)<br>
+        • <strong>ISR</strong> — Intelligence, Surveillance, Reconnaissance<br><br>
+        <strong>Abbreviations — Other:</strong><br>
+        • <strong>CENTCOM</strong> — US Central Command (Middle East theater)<br>
+        • <strong>CSG</strong> — Carrier Strike Group<br>
+        • <strong>ARG</strong> — Amphibious Ready Group<br>
+        • <strong>FDNF</strong> — Forward Deployed Naval Forces<br>
+        • <strong>AOR</strong> — Area of Responsibility<br>
+        • <strong>pts</strong> — Weighted point score for force posture`,
     news: `<strong>News Intelligence</strong><br><br>
         Scans BBC World and Al Jazeera for Iran-related news.<br><br>
         <strong>What we look for:</strong> Headlines containing "strike", "attack", "military", "missile", "war", "imminent"<br><br>
@@ -95,18 +128,6 @@ const INFO_CONTENT = {
         <strong>Why it matters:</strong> Public search behavior can be a leading indicator. People search for information before and during major events.<br><br>
         <strong>How it works:</strong> Sudden spikes in search interest (2-3x normal) or sustained high interest = higher risk.<br><br>
         <strong>Weight:</strong> 5% of total risk`,
-    firms: `<strong>Satellite Thermal Hotspots (NASA FIRMS)</strong><br><br>
-        Detects fires and thermal anomalies from space using NASA satellites.<br><br>
-        <strong>Source:</strong> NASA FIRMS (Fire Information for Resource Management System) using VIIRS satellite data.<br><br>
-        <strong>Regions monitored:</strong> Middle East, Iran, Israel/Lebanon, Red Sea<br><br>
-        <strong>Why it matters:</strong> Large explosions, airstrikes, and fires create thermal signatures visible from space. This data has been used to track military activity in Ukraine and Gaza.<br><br>
-        <strong>How it works:</strong><br>
-        • Compares current hotspots to 7-day rolling average<br>
-        • +100% deviation (2x normal) = Elevated<br>
-        • +200% deviation (3x normal) = High Activity<br>
-        • High-confidence detections weighted 3x<br>
-        • Iran & Israel/Lebanon hotspots weighted more heavily<br><br>
-        <strong>Weight:</strong> 6% of total risk`,
     tfr: `<strong>Flight Restrictions (FAA TFRs)</strong><br><br>
         Monitors Temporary Flight Restrictions issued by the FAA.<br><br>
         <strong>Source:</strong> Baseline estimates (FAA API not publicly available)<br><br>

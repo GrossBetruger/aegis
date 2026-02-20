@@ -8,12 +8,15 @@ Frontend only reads the JSON - no direct API calls from browser
 
 import json
 import os
+import re
 import time
 import ssl
 import urllib3
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
 import requests
+from bs4 import BeautifulSoup
 
 # Disable SSL warnings for corporate proxies with self-signed certs
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -855,6 +858,481 @@ def fetch_tanker_activity():
         return None
 
 
+# =============================================
+# MILITARY BUILDUP SCORING CONSTANTS
+# =============================================
+
+SHIP_POINTS = {
+    "CVN": 25, "LHA": 12, "LHD": 12, "CG": 6, "DDG": 4,
+    "LPD": 3, "LCS": 2, "SSN": 8, "SSGN": 8,
+    "T-AOE": 1, "T-AO": 1, "T-AKE": 1, "WAGB": 0,
+}
+
+HIGH_RELEVANCE_REGIONS = [
+    "arabian sea", "north arabian sea",
+    "persian gulf", "gulf of oman",
+    "red sea", "gulf of aden", "strait of hormuz",
+]
+
+CONDITIONAL_MEDIUM_REGIONS = ["mediterranean", "atlantic", "caribbean", "adriatic"]
+
+TRANSIT_KEYWORDS_RE = [
+    r"ordered to.*(?:middle east|central command|centcom|5th fleet)",
+    r"heading to.*(?:middle east|central command|centcom)",
+    r"en route to.*(?:middle east|central command)",
+    r"deployed to.*(?:central command|5th fleet|centcom)",
+    r"now been ordered to the middle east",
+    r"sailing to.*(?:middle east|central command)",
+]
+
+STATION_KEYWORDS = ["rota", "fdnf", "forward deployed"]
+
+HULL_PATTERN = (
+    r"(?:USS|USNS|USCGC)\s+([\w\s.]+?)\s*"
+    r"\(((?:CVN|DDG|CG|LHA|LHD|LPD|LCS|SSN|SSGN|T-AOE|T-AO|T-AKE|WAGB)-?\d+)\)"
+)
+
+BUILDUP_BASELINE_POINTS = 35
+BUILDUP_MAX_POINTS = 120
+
+AIR_PLATFORM_POINTS = {
+    "b-2": ("Stealth Bomber", 15),
+    "b-52": ("Strategic Bomber", 12),
+    "b-1": ("Bomber", 12),
+    "f-22": ("Air Superiority Fighter", 10),
+    "f-35": ("5th Gen Fighter", 8),
+    "f-15e": ("Strike Eagle", 6),
+    "awacs": ("Early Warning", 6),
+    "e-3": ("Early Warning", 6),
+    "a-10": ("Ground Attack", 4),
+    "rc-135": ("Reconnaissance", 4),
+    "global hawk": ("ISR UAV", 4),
+    "rq-4": ("ISR UAV", 4),
+    "p-8": ("Maritime Patrol", 4),
+    "typhoon": ("Allied Fighter", 5),
+    "rafale": ("Allied Fighter", 5),
+}
+
+AIR_BASE_POINTS = {
+    "diego garcia": 5,
+    "al udeid": 4, "qatar": 4,
+    "al dhafra": 4, "uae": 3,
+    "lakenheath": 2, "fairford": 2,
+    "akrotiri": 3, "cyprus": 3,
+    "souda bay": 3, "crete": 3,
+}
+
+AIR_CAPABILITY_CATEGORIES = {
+    "strategic_strike": ["b-2", "b-52", "b-1"],
+    "air_superiority": ["f-22"],
+    "multirole_strike": ["f-35", "f-15e"],
+    "ground_attack": ["a-10"],
+    "c2_isr": ["awacs", "e-3", "rc-135", "global hawk", "rq-4", "p-8"],
+    "allied": ["typhoon", "rafale"],
+}
+
+CARRIER_SQUADRON_PATTERN = r"(?:VFA|VMFA)[-\s]*\d+"
+
+
+def _get_hull_type(hull):
+    """Extract the ship type prefix from a hull designation like DDG-119 or T-AKE-7."""
+    if hull.startswith("T-"):
+        parts = hull.split("-")
+        return parts[0] + "-" + re.sub(r"\d+", "", parts[1])
+    return hull.split("-")[0]
+
+
+def score_naval_force(content_html):
+    """
+    Score naval force posture from USNI Fleet Tracker article HTML.
+    Pure function: deterministic on the same input, no network calls.
+    Returns dict with total_weighted_points, force_risk, type_counts, etc.
+    """
+    import re as _re
+
+    soup = BeautifulSoup(content_html, "html.parser")
+    h2s = soup.find_all("h2")
+    all_ships = {}
+    total_points = 0.0
+
+    for h2 in h2s:
+        region_name = h2.get_text(strip=True)
+        region_lower = region_name.lower()
+        if any(s in region_lower for s in ["ships underway", "search", "related"]):
+            continue
+
+        section_text = ""
+        for sibling in h2.find_next_siblings():
+            if sibling.name == "h2":
+                break
+            section_text += sibling.get_text(" ", strip=True) + " "
+        section_lower = section_text.lower()
+
+        relevance = "low"
+        multiplier = 0.0
+        for hr in HIGH_RELEVANCE_REGIONS:
+            if hr in region_lower:
+                relevance = "high"
+                multiplier = 1.0
+                break
+        if relevance == "low":
+            for cmr in CONDITIONAL_MEDIUM_REGIONS:
+                if cmr in region_lower:
+                    for tkw in TRANSIT_KEYWORDS_RE:
+                        if _re.search(tkw, section_lower):
+                            relevance = "medium-transit"
+                            multiplier = 0.5
+                            break
+                    if relevance == "low":
+                        for skw in STATION_KEYWORDS:
+                            if skw in section_lower:
+                                relevance = "medium-station"
+                                multiplier = 0.4
+                                break
+                    break
+
+        ships = _re.findall(HULL_PATTERN, section_text)
+        seen = set()
+        for name, hull in ships:
+            if hull in seen:
+                continue
+            seen.add(hull)
+            ht = _get_hull_type(hull)
+            pts = SHIP_POINTS.get(ht, 1)
+            weighted = round(pts * multiplier, 1)
+            if hull in all_ships:
+                if weighted <= all_ships[hull]["weighted"]:
+                    continue
+                total_points -= all_ships[hull]["weighted"]
+            all_ships[hull] = {
+                "name": name.strip(),
+                "hull": hull,
+                "type": ht,
+                "base_points": pts,
+                "weighted": weighted,
+            }
+            total_points += weighted
+
+    total_points = round(total_points, 1)
+    force_risk = min(
+        100,
+        max(0, round(
+            ((total_points - BUILDUP_BASELINE_POINTS) /
+             (BUILDUP_MAX_POINTS - BUILDUP_BASELINE_POINTS)) * 100
+        )),
+    )
+
+    counted = [s for s in all_ships.values() if s["weighted"] > 0]
+    type_counts = {}
+    for s in counted:
+        type_counts[s["type"]] = type_counts.get(s["type"], 0) + 1
+
+    return {
+        "total_weighted_points": total_points,
+        "force_risk": force_risk,
+        "total_ships_parsed": len(all_ships),
+        "counted_ships": len(counted),
+        "carriers_in_centcom": type_counts.get("CVN", 0),
+        "destroyers_in_centcom": type_counts.get("DDG", 0),
+        "type_counts": type_counts,
+    }
+
+
+def _score_carrier_air(content_html, h2_regions_lower_relevant):
+    """
+    Score carrier air wing composition from USNI article HTML.
+    Only counts squadrons within CENTCOM-relevant h2 sections.
+    """
+    soup = BeautifulSoup(content_html, "html.parser")
+    total_air_pts = 0.0
+
+    for h2 in soup.find_all("h2"):
+        region_lower = h2.get_text(strip=True).lower()
+        multiplier = h2_regions_lower_relevant.get(region_lower, 0.0)
+        if multiplier == 0.0:
+            continue
+
+        section_text = ""
+        for sibling in h2.find_next_siblings():
+            if sibling.name == "h2":
+                break
+            section_text += sibling.get_text(" ", strip=True) + " "
+
+        vfa_squadrons = re.findall(r"VFA[-\s]*\d+", section_text)
+        vmfa_squadrons = re.findall(r"VMFA[-\s]*\d+", section_text)
+        vaq_squadrons = re.findall(r"VAQ[-\s]*\d+", section_text)
+        vaw_squadrons = re.findall(r"VAW[-\s]*\d+", section_text)
+
+        pts = (
+            len(set(vfa_squadrons)) * 6
+            + len(set(vmfa_squadrons)) * 8
+            + len(set(vaq_squadrons)) * 4
+            + len(set(vaw_squadrons)) * 3
+        )
+        total_air_pts += pts * multiplier
+
+    carrier_air_risk = min(100, round((total_air_pts / 50) * 100))
+    return carrier_air_risk
+
+
+def fetch_military_buildup(previous_data=None):
+    """
+    Fetch military buildup data from USNI Fleet Tracker RSS and Google News RSS.
+    Returns combined risk from naval force posture, air presence, and deployment news.
+    """
+    try:
+        print("\n" + "=" * 50)
+        print("MILITARY BUILDUP")
+        print("=" * 50)
+
+        naval_result = None
+        carrier_air_risk = 0
+        article_title = None
+        article_date = None
+        content_html = None
+
+        # --- Source 1: USNI Fleet Tracker RSS ---
+        print("  Fetching USNI Fleet Tracker RSS...")
+        try:
+            usni_resp = make_request(
+                "https://news.usni.org/feed", timeout=25
+            )
+            if usni_resp and usni_resp.ok:
+                root = ET.fromstring(usni_resp.text)
+                ns_content = "{http://purl.org/rss/1.0/modules/content/}encoded"
+                for item in root.findall(".//item"):
+                    title_elem = item.find("title")
+                    if title_elem is None or title_elem.text is None:
+                        continue
+                    t = title_elem.text
+                    if "fleet" in t.lower() and "tracker" in t.lower():
+                        content_elem = item.find(ns_content)
+                        if content_elem is not None and content_elem.text:
+                            content_html = content_elem.text
+                            article_title = t
+                            pub_elem = item.find("pubDate")
+                            article_date = pub_elem.text if pub_elem is not None else None
+                        break
+
+                if content_html:
+                    naval_result = score_naval_force(content_html)
+                    print(f"    Article: {article_title}")
+                    print(f"    Ships: {naval_result['total_ships_parsed']} parsed, {naval_result['counted_ships']} in CENTCOM")
+                    print(f"    Points: {naval_result['total_weighted_points']}, Force Risk: {naval_result['force_risk']}%")
+
+                    # Build region multiplier map for carrier air scoring
+                    region_mults = {}
+                    soup_tmp = BeautifulSoup(content_html, "html.parser")
+                    for h2 in soup_tmp.find_all("h2"):
+                        rn = h2.get_text(strip=True).lower()
+                        if any(s in rn for s in ["ships underway", "search", "related"]):
+                            continue
+                        sec = ""
+                        for sib in h2.find_next_siblings():
+                            if sib.name == "h2":
+                                break
+                            sec += sib.get_text(" ", strip=True) + " "
+                        sl = sec.lower()
+                        m = 0.0
+                        for hr in HIGH_RELEVANCE_REGIONS:
+                            if hr in rn:
+                                m = 1.0
+                                break
+                        if m == 0.0:
+                            for cmr in CONDITIONAL_MEDIUM_REGIONS:
+                                if cmr in rn:
+                                    for tkw in TRANSIT_KEYWORDS_RE:
+                                        if re.search(tkw, sl):
+                                            m = 0.5
+                                            break
+                                    if m == 0.0:
+                                        for skw in STATION_KEYWORDS:
+                                            if skw in sl:
+                                                m = 0.4
+                                                break
+                                    break
+                        if m > 0:
+                            region_mults[rn] = m
+
+                    carrier_air_risk = _score_carrier_air(content_html, region_mults)
+                    print(f"    Carrier Air Risk: {carrier_air_risk}%")
+                else:
+                    print("    No fleet tracker article found in RSS")
+            else:
+                print(f"    USNI RSS fetch failed: {usni_resp.status_code if usni_resp else 'no response'}")
+        except Exception as e:
+            print(f"    USNI RSS error: {e}")
+
+        # Use previous data as fallback for naval scoring
+        if naval_result is None and previous_data:
+            naval_result = previous_data.get("force_posture")
+            carrier_air_risk = previous_data.get("carrier_air_risk", 0)
+            print("    Using cached naval data from previous run")
+
+        naval_force_risk = naval_result["force_risk"] if naval_result else 5
+
+        # --- Source 2: Google News RSS (air assets) ---
+        print("  Fetching air asset news...")
+        land_air_risk = 5
+        air_data = {"platforms": {}, "bases": {}, "categories_present": 0}
+        try:
+            air_query = (
+                "%22F-35%22+OR+%22F-22%22+OR+%22B-52%22+OR+%22B-1%22+OR+%22B-2%22"
+                "+OR+%22AWACS%22+OR+%22E-3%22+OR+%22F-15E%22+OR+%22A-10%22"
+                "+%22Middle+East%22+OR+Iran+OR+Qatar+OR+UAE"
+                "+OR+%22Diego+Garcia%22+OR+%22Al+Udeid%22+OR+%22Al+Dhafra%22"
+                "+deploy+OR+arrive+OR+send"
+            )
+            air_url = f"https://news.google.com/rss/search?q={air_query}&hl=en-US&gl=US&ceid=US:en"
+            air_resp = make_request(air_url, timeout=15)
+            if air_resp and air_resp.ok:
+                air_root = ET.fromstring(air_resp.text)
+                detected_platforms = {}
+                detected_bases = {}
+
+                for ni in air_root.findall(".//item")[:50]:
+                    te = ni.find("title")
+                    if te is None or te.text is None:
+                        continue
+                    tl = te.text.lower()
+                    for pkey, (pname, ppts) in AIR_PLATFORM_POINTS.items():
+                        if pkey in tl and pkey not in detected_platforms:
+                            detected_platforms[pkey] = {"name": pname, "points": ppts}
+                    for bkey, bpts in AIR_BASE_POINTS.items():
+                        if bkey in tl:
+                            detected_bases[bkey] = detected_bases.get(bkey, 0) + 1
+
+                categories_present = 0
+                for cat_platforms in AIR_CAPABILITY_CATEGORIES.values():
+                    if any(p in detected_platforms for p in cat_platforms):
+                        categories_present += 1
+
+                if categories_present >= 5:
+                    land_air_risk = 90
+                elif categories_present >= 4:
+                    land_air_risk = 70
+                elif categories_present >= 3:
+                    land_air_risk = 50
+                elif categories_present >= 2:
+                    land_air_risk = 25
+                elif categories_present >= 1:
+                    land_air_risk = 15
+                else:
+                    land_air_risk = 5
+
+                base_bonus = min(15, sum(min(v, 3) for v in detected_bases.values()))
+                land_air_risk = min(100, land_air_risk + base_bonus)
+
+                air_data = {
+                    "platforms": {k: v["name"] for k, v in detected_platforms.items()},
+                    "bases": detected_bases,
+                    "categories_present": categories_present,
+                }
+                print(f"    Platforms: {len(detected_platforms)}, Categories: {categories_present}/6, Land Air Risk: {land_air_risk}%")
+            else:
+                print(f"    Air news fetch failed")
+        except Exception as e:
+            print(f"    Air news error: {e}")
+
+        air_presence_risk = round(carrier_air_risk * 0.4 + land_air_risk * 0.6)
+
+        # --- Source 3: Google News RSS (deployment news intensity) ---
+        print("  Fetching deployment news...")
+        deployment_news_risk = 0
+        news_data = {"article_count": 0, "escalation_matches": 0, "deployment_matches": 0, "sample_headlines": []}
+        try:
+            news_query = (
+                "%22US+Navy%22+OR+%22military+buildup%22+OR+%22strike+group%22"
+                "+OR+%22carrier%22+Iran+OR+%22Middle+East%22+OR+CENTCOM"
+            )
+            news_url = f"https://news.google.com/rss/search?q={news_query}&hl=en-US&gl=US&ceid=US:en"
+            news_resp = make_request(news_url, timeout=15)
+            if news_resp and news_resp.ok:
+                news_root = ET.fromstring(news_resp.text)
+                escalation_kw = ["buildup", "build-up", "strike option", "deadline", "warns", "critical level", "armada", "tensions"]
+                deployment_kw = ["deploy", "carrier", "arrives", "heading", "sailing", "ordered to", "strike group"]
+                article_count = 0
+                esc_count = 0
+                dep_count = 0
+                headlines = []
+
+                for ni in news_root.findall(".//item")[:50]:
+                    te = ni.find("title")
+                    if te is None or te.text is None:
+                        continue
+                    title_text = te.text
+                    tl = title_text.lower()
+                    article_count += 1
+                    if len(headlines) < 5:
+                        headlines.append(title_text)
+                    for kw in escalation_kw:
+                        if kw in tl:
+                            esc_count += 1
+                            break
+                    for kw in deployment_kw:
+                        if kw in tl:
+                            dep_count += 1
+                            break
+
+                deployment_news_risk = min(40, article_count * 3)
+                deployment_news_risk += min(36, esc_count * 6)
+                deployment_news_risk += min(24, dep_count * 3)
+                deployment_news_risk = min(100, deployment_news_risk)
+
+                news_data = {
+                    "article_count": article_count,
+                    "escalation_matches": esc_count,
+                    "deployment_matches": dep_count,
+                    "sample_headlines": headlines,
+                }
+                print(f"    Articles: {article_count}, Escalation: {esc_count}, Deployment: {dep_count}, News Risk: {deployment_news_risk}%")
+            else:
+                print(f"    Deployment news fetch failed")
+        except Exception as e:
+            print(f"    Deployment news error: {e}")
+
+        # --- Combined buildup risk ---
+        buildup_risk = round(
+            naval_force_risk * 0.55
+            + air_presence_risk * 0.30
+            + deployment_news_risk * 0.15
+        )
+        buildup_risk = min(100, max(0, buildup_risk))
+
+        carriers = naval_result.get("carriers_in_centcom", 0) if naval_result else 0
+        destroyers = naval_result.get("destroyers_in_centcom", 0) if naval_result else 0
+        points = naval_result.get("total_weighted_points", 0) if naval_result else 0
+        cats = air_data.get("categories_present", 0)
+
+        detail = f"{carriers} CVN, {destroyers} DDG in CENTCOM ({points:.0f} pts) | {cats}/6 air categories"
+
+        print(f"  Naval: {naval_force_risk}% x 0.55 = {naval_force_risk * 0.55:.1f}")
+        print(f"  Air:   {air_presence_risk}% x 0.30 = {air_presence_risk * 0.30:.1f}")
+        print(f"  News:  {deployment_news_risk}% x 0.15 = {deployment_news_risk * 0.15:.1f}")
+        print(f"  Combined Buildup Risk: {buildup_risk}%")
+
+        result = {
+            "risk": buildup_risk,
+            "detail": detail,
+            "force_posture": naval_result,
+            "carrier_air_risk": carrier_air_risk,
+            "air_presence": air_data,
+            "deployment_news": news_data,
+            "source_article": article_title,
+            "source_date": article_date,
+            "timestamp": datetime.now().isoformat(),
+        }
+
+        print(f"✓ Result: Risk {buildup_risk}%")
+        return result
+
+    except Exception as e:
+        print(f"Military buildup error: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+
 def fetch_weather_data():
     """Fetch weather conditions for Tehran"""
     try:
@@ -1485,8 +1963,8 @@ def update_data_file():
                 "oil": current_data.get("oil", {}).get("history", []),
                 "gdelt": current_data.get("gdelt", {}).get("history", []),
                 "trends": current_data.get("trends", {}).get("history", []),
-                "firms": current_data.get("firms", {}).get("history", []),
                 "tfr": current_data.get("tfr", {}).get("history", []),
+                "buildup": current_data.get("buildup", {}).get("history", []),
             }
         else:
             # Old structure or no data
@@ -1503,8 +1981,8 @@ def update_data_file():
                     "oil": [],
                     "gdelt": [],
                     "trends": [],
-                    "firms": [],
                     "tfr": [],
+                    "buildup": [],
                 },
             )
 
@@ -1554,19 +2032,16 @@ def update_data_file():
         if weather_data:
             current_data["weather"] = weather_data
 
-        # NASA FIRMS satellite thermal hotspots (pass historical data for baseline calculation)
-        firms_history = current_data.get("firms", {}).get("raw_data", {}).get("daily_history", [])
-        if not firms_history:
-            # Try old structure
-            firms_history = current_data.get("firms", {}).get("daily_history", [])
-        firms_data = fetch_nasa_firms(historical_data=firms_history)
-        if firms_data:
-            current_data["firms"] = firms_data
-
         # FAA TFRs (Temporary Flight Restrictions)
         tfr_data = fetch_faa_tfrs()
         if tfr_data:
             current_data["tfr"] = tfr_data
+
+        # Military Buildup (USNI Fleet Tracker + Google News)
+        previous_buildup = current_data.get("buildup", {}).get("raw_data")
+        buildup_data = fetch_military_buildup(previous_data=previous_buildup)
+        if buildup_data:
+            current_data["buildup_raw"] = buildup_data
 
         # Add main timestamp
         current_data["last_updated"] = datetime.now().isoformat()
@@ -1643,19 +2118,6 @@ def update_data_file():
         trends_keyword = trends.get("peak_keyword", "") if trends else ""
         trends_detail = f"Interest: {trends_interest:.0f}, '{trends_keyword}'" if trends_interest > 0 else "Awaiting data..."
 
-        # NASA FIRMS SIGNAL CALCULATION (satellite thermal hotspots)
-        firms = current_data.get("firms", {})
-        firms_risk = firms.get("risk", 5) if firms else 5
-        firms_total = firms.get("total_hotspots", 0) if firms else 0
-        firms_deviation = firms.get("deviation_pct", 0) if firms else 0
-        firms_status = firms.get("status", "Normal") if firms else "Normal"
-        # Show deviation from 7-day baseline
-        if firms_total > 0:
-            deviation_str = f"{firms_deviation:+.0f}%" if firms_deviation != 0 else "baseline"
-            firms_detail = f"{firms_total} hotspots ({deviation_str})"
-        else:
-            firms_detail = "Awaiting data..."
-
         # FAA TFR SIGNAL CALCULATION (flight restrictions)
         tfr = current_data.get("tfr", {})
         tfr_risk = tfr.get("risk", 5) if tfr else 5
@@ -1665,22 +2127,28 @@ def update_data_file():
         tfr_status = tfr.get("status", "Normal") if tfr else "Normal"
         tfr_detail = f"{tfr_total} TFRs ({tfr_vip} VIP, {tfr_security} Security)" if tfr_total > 0 else "Awaiting data..."
 
-        # Apply weighted contributions (updated weights with new signals)
-        # Total = 100%: News 18%, Flight 18%, Tanker 12%, Polymarket 12%, Oil 8%, GDELT 5%, Trends 5%, Pentagon 5%, Weather 5%, FIRMS 6%, TFR 6%
-        news_contribution_weighted = news_display_risk * 0.18  # 18% weight
-        flight_contribution_weighted = flight_risk * 0.18  # 18% weight
-        tanker_contribution_weighted = tanker_risk * 0.12  # 12% weight
+        # BUILDUP SIGNAL CALCULATION
+        buildup_raw = current_data.get("buildup_raw", {})
+        buildup_risk = buildup_raw.get("risk", 5) if buildup_raw else 5
+        buildup_detail = buildup_raw.get("detail", "Awaiting data...") if buildup_raw else "Awaiting data..."
+
+        # Apply weighted contributions
+        # Total = 100%: Buildup 12%, News 17%, Flight 17%, Tanker 11%, Polymarket 12%, Oil 9%, TFR 5%, GDELT 5%, Trends 4%, Pentagon 4%, Weather 4%
+        buildup_contribution_weighted = buildup_risk * 0.12  # 12% weight
+        news_contribution_weighted = news_display_risk * 0.17  # 17% weight
+        flight_contribution_weighted = flight_risk * 0.17  # 17% weight
+        tanker_contribution_weighted = tanker_risk * 0.11  # 11% weight
         polymarket_contribution_weighted = polymarket_contribution * 1.2  # 12% weight
-        oil_contribution_weighted = oil_risk * 0.08  # 8% weight
+        oil_contribution_weighted = oil_risk * 0.09  # 9% weight
         gdelt_contribution_weighted = gdelt_risk * 0.05  # 5% weight
-        trends_contribution_weighted = trends_risk * 0.05  # 5% weight
-        pentagon_contribution_weighted = pentagon_contribution * 0.5  # 5% weight
-        weather_contribution_weighted = weather_risk * 0.05  # 5% weight
-        firms_contribution_weighted = firms_risk * 0.06  # 6% weight (new - satellite hotspots)
-        tfr_contribution_weighted = tfr_risk * 0.06  # 6% weight (new - flight restrictions)
+        trends_contribution_weighted = trends_risk * 0.04  # 4% weight
+        pentagon_contribution_weighted = pentagon_contribution * 0.4  # 4% weight
+        weather_contribution_weighted = weather_risk * 0.04  # 4% weight
+        tfr_contribution_weighted = tfr_risk * 0.05  # 5% weight
 
         total_risk = (
-            news_contribution_weighted
+            buildup_contribution_weighted
+            + news_contribution_weighted
             + flight_contribution_weighted
             + tanker_contribution_weighted
             + polymarket_contribution_weighted
@@ -1689,13 +2157,13 @@ def update_data_file():
             + trends_contribution_weighted
             + pentagon_contribution_weighted
             + weather_contribution_weighted
-            + firms_contribution_weighted
             + tfr_contribution_weighted
         )
 
         # Check for escalation multiplier (3+ elevated signals)
         elevated_count = sum(
             [
+                buildup_risk > 40,
                 news_display_risk > 30,
                 flight_contribution_weighted > 15,
                 tanker_contribution_weighted > 10,
@@ -1705,8 +2173,7 @@ def update_data_file():
                 trends_risk > 30,
                 pentagon_contribution > 5,
                 weather_contribution_weighted > 4,
-                firms_risk > 40,  # Elevated satellite activity
-                tfr_risk > 30,  # Elevated flight restrictions
+                tfr_risk > 30,
             ]
         )
 
@@ -1725,8 +2192,8 @@ def update_data_file():
         signal_history["oil"].append(oil_risk)
         signal_history["gdelt"].append(gdelt_risk)
         signal_history["trends"].append(trends_risk)
-        signal_history["firms"].append(firms_risk)
         signal_history["tfr"].append(tfr_risk)
+        signal_history["buildup"].append(buildup_risk)
 
         # Keep only last 20 points
         for sig in signal_history:
@@ -1833,17 +2300,17 @@ def update_data_file():
                 "history": signal_history["trends"],
                 "raw_data": trends,
             },
-            "firms": {
-                "risk": firms_risk,
-                "detail": firms_detail,
-                "history": signal_history["firms"],
-                "raw_data": firms,
-            },
             "tfr": {
                 "risk": tfr_risk,
                 "detail": tfr_detail,
                 "history": signal_history["tfr"],
                 "raw_data": tfr,
+            },
+            "buildup": {
+                "risk": buildup_risk,
+                "detail": buildup_detail,
+                "history": signal_history["buildup"],
+                "raw_data": buildup_raw,
             },
             "total_risk": {
                 "risk": total_risk,

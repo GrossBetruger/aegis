@@ -16,13 +16,19 @@ function displayData(data) {
     console.log('Displaying data:', data);
     
     // Load signal history from restructured data
-    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather', 'oil', 'gdelt', 'trends', 'firms', 'tfr'].forEach(sig => {
+    ['news', 'flight', 'tanker', 'pentagon', 'polymarket', 'weather', 'oil', 'gdelt', 'trends', 'tfr', 'buildup'].forEach(sig => {
         if (data[sig] && data[sig].history && data[sig].history.length > 0) {
             state.signalHistory[sig] = data[sig].history;
         }
     });
 
     // Display all signals using pre-calculated values from restructured data
+    if (data.buildup) {
+        updateSignal('buildup', data.buildup.risk, data.buildup.detail);
+        const hasBuildupData = data.buildup.raw_data?.risk !== undefined;
+        setStatus('buildupStatus', hasBuildupData);
+    }
+
     if (data.news) {
         updateSignal('news', data.news.risk, data.news.detail);
     }
@@ -86,13 +92,6 @@ function displayData(data) {
         updateSignal('trends', data.trends.risk, data.trends.detail);
         const hasTrendsData = data.trends.raw_data?.current_interest >= 0;
         setStatus('trendsStatus', hasTrendsData);
-    }
-    
-    // NASA FIRMS satellite hotspots signal
-    if (data.firms) {
-        updateSignal('firms', data.firms.risk, data.firms.detail);
-        const hasFirmsData = data.firms.raw_data?.total_hotspots >= 0 || data.firms.raw_data?.status;
-        setStatus('firmsStatus', hasFirmsData);
     }
     
     // FAA TFR flight restrictions signal

@@ -202,6 +202,18 @@
         <section class="signals-section" aria-label="Data Signals">
             <h2 class="section-title">Data Signals</h2>
 
+            <div class="signal-item signal-item-buildup">
+                <div class="signal-icon" style="background: rgba(239, 68, 68, 0.15);">⚓</div>
+                <div class="signal-info">
+                    <div class="signal-name">Military Buildup <span class="signal-status live" id="buildupStatus">LIVE</span><button class="info-btn" onclick="showInfo('buildup')">i</button></div>
+                    <div class="signal-detail signal-detail-wrap" id="buildupDetail">Loading...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-sparkline" id="buildupSparkline"></div>
+                    <div class="signal-value" id="buildupValue">--</div>
+                </div>
+            </div>
+
             <div class="signal-item">
                 <div class="signal-icon news">📰</div>
                 <div class="signal-info">
@@ -295,18 +307,6 @@
                 <div class="signal-right">
                     <div class="signal-sparkline" id="trendsSparkline"></div>
                     <div class="signal-value" id="trendsValue">--</div>
-                </div>
-            </div>
-
-            <div class="signal-item">
-                <div class="signal-icon" style="background: rgba(239, 68, 68, 0.15);">🔥</div>
-                <div class="signal-info">
-                    <div class="signal-name">Satellite Hotspots <span class="signal-status live" id="firmsStatus">LIVE</span><button class="info-btn" onclick="showInfo('firms')">i</button></div>
-                    <div class="signal-detail" id="firmsDetail">Loading...</div>
-                </div>
-                <div class="signal-right">
-                    <div class="signal-sparkline" id="firmsSparkline"></div>
-                    <div class="signal-value" id="firmsValue">--</div>
                 </div>
             </div>
 
