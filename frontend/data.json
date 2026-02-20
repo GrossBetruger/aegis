@@ -1,9 +1,8 @@
 {
   "news": {
-    "risk": 25,
-    "detail": "23 articles, 11 critical, escalation: 0.32",
+    "risk": 28,
+    "detail": "25 articles, 13 critical, escalation: 0.35",
     "history": [
-      19,
       19,
       19,
       19,
@@ -22,7 +21,8 @@
       19,
       23,
       19,
-      25
+      25,
+      28
     ],
     "raw_data": {
       "articles": [
@@ -109,7 +109,7 @@
         {
           "title": "Fears Iran's internet shutdown could lead to 'extreme digital isolation'",
           "is_alert": true,
-          "escalation": 0.085
+          "escalation": 0.084
         },
         {
           "title": "Watch: BBC in Tehran sees government's 'political reply' to massive protests",
@@ -124,7 +124,7 @@
         {
           "title": "'Anger and frustration': BBC reports from Iranian-Armenian border",
           "is_alert": false,
-          "escalation": 0.386
+          "escalation": 0.387
         },
         {
           "title": "Where do these protests leave the Iranian regime?",
@@ -134,26 +134,35 @@
         {
           "title": "'Now there's the threat of executions' in Iran",
           "is_alert": false,
-          "escalation": 0.318
+          "escalation": 0.317
         },
         {
           "title": "Mortuary videos show how deadly Iran crackdown has become",
           "is_alert": false,
-          "escalation": 0.36
+          "escalation": 0.361
+        },
+        {
+          "title": "Trump \u2018considering\u2019 limited strikes on Iran",
+          "is_alert": true,
+          "escalation": 0.616
+        },
+        {
+          "title": "Iran says US military build-up \u2018unnecessary and unhelpful\u2019, deal achievable",
+          "is_alert": true,
+          "escalation": 0.77
         }
       ],
-      "total_count": 23,
-      "alert_count": 11,
-      "avg_escalation": 0.321,
+      "total_count": 25,
+      "alert_count": 13,
+      "avg_escalation": 0.351,
       "escalation_available": true,
-      "timestamp": "2026-02-21T01:17:33.811671"
+      "timestamp": "2026-02-20T23:38:23.947515"
     }
   },
   "flight": {
-    "risk": 8,
-    "detail": "109 aircraft over Iran",
+    "risk": 14,
+    "detail": "101 aircraft over Iran",
     "history": [
-      13,
       11,
       11,
       13,
@@ -172,24 +181,25 @@
       39,
       25,
       17,
-      8
+      8,
+      14
     ],
     "raw_data": {
-      "aircraft_count": 109,
-      "airline_count": 32,
+      "aircraft_count": 101,
+      "airline_count": 27,
       "airlines": [
         "AXB",
+        "AIC",
+        "AAL",
         "IGO",
         "UAE",
-        "TKJ",
         "DWC",
         "THY",
         "ABY",
         "ETD",
-        "FDB",
-        "GFA"
+        "FDB"
       ],
-      "timestamp": "2026-02-21T01:17:36.356110"
+      "timestamp": "2026-02-20T23:38:25.575365"
     }
   },
   "tanker": {
@@ -220,12 +230,12 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T01:17:38.697736"
+      "timestamp": "2026-02-20T23:38:28.226331"
     }
   },
   "weather": {
     "risk": 100,
-    "detail": "clear sky",
+    "detail": "clear",
     "history": [
       100,
       100,
@@ -249,12 +259,39 @@
       100
     ],
     "raw_data": {
-      "temp": 14,
-      "visibility": 10000,
-      "clouds": 0,
-      "description": "clear sky",
-      "condition": "Favorable",
-      "timestamp": "2026-02-21T01:17:38.971132"
+      "risk": 100,
+      "detail": "clear sky",
+      "history": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "raw_data": {
+        "temp": 14,
+        "visibility": 10000,
+        "clouds": 0,
+        "description": "clear sky",
+        "condition": "Favorable",
+        "timestamp": "2026-02-21T01:17:38.971132"
+      }
     }
   },
   "polymarket": {
@@ -285,17 +322,16 @@
     "raw_data": {
       "odds": 4,
       "market": "Will the US next strike Iran on February 22, 2026 (ET)?",
-      "timestamp": "2026-02-21T01:17:26.407704"
+      "timestamp": "2026-02-20T23:37:38.287384"
     }
   },
   "pentagon": {
     "risk": 100,
-    "detail": "Wiseguy Pizza 17%, California Pizza Kitchen 100%, Extreme Pizza 100% (live)",
+    "detail": "California Pizza Kitchen 100%, Extreme Pizza 100% (live)",
     "history": [
       10,
       10,
       10,
-      10,
       30,
       30,
       30,
@@ -311,21 +347,21 @@
       30,
       30,
       30,
+      100,
       100
     ],
     "raw_data": {
-      "score": 72,
+      "score": 100,
       "risk_contribution": 10,
       "status": "High Activity",
-      "detail_text": "Wiseguy Pizza 17%, California Pizza Kitchen 100%, Extreme Pizza 100% (live)",
+      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 100% (live)",
       "source": "live",
       "live_scores": {
-        "Wiseguy Pizza": 17,
         "California Pizza Kitchen": 100,
         "Extreme Pizza": 100
       },
       "hour_et": 18,
-      "timestamp": "2026-02-21T01:17:26.216589",
+      "timestamp": "2026-02-20T23:37:37.999353",
       "is_late_night": false,
       "is_weekend": false
     }
@@ -359,14 +395,13 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T01:17:34.108171"
+      "timestamp": "2026-02-20T23:38:24.095910"
     }
   },
   "trends": {
     "risk": 10,
     "detail": "Interest: 18, 'Iran war'",
     "history": [
-      20,
       5,
       20,
       20,
@@ -385,21 +420,23 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 18.4,
+      "current_interest": 17.6,
       "avg_24h": 24.3,
       "peak_keyword": "Iran war",
-      "peak_value": 54,
+      "peak_value": 53,
       "risk": 10,
-      "timestamp": "2026-02-21T01:17:36.031039"
+      "timestamp": "2026-02-20T23:38:24.930253"
     }
   },
   "buildup": {
     "risk": 65,
     "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: bombers, air superiority, strike fighters, ground attack, allied",
     "history": [
+      65,
       65,
       65,
       65,
@@ -445,7 +482,7 @@
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 10,
+          "diego garcia": 9,
           "al udeid": 2
         },
         "categories_present": 5,
@@ -471,11 +508,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T01:17:41.611655"
+      "timestamp": "2026-02-20T23:38:29.536879"
     }
   },
   "total_risk": {
-    "risk": 25,
+    "risk": 27,
     "history": [
       {
         "timestamp": 1770026400000,
@@ -508,11 +545,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771629461617,
-        "risk": 25
+        "timestamp": 1771630709540,
+        "risk": 27
       }
     ],
     "elevated_count": 2
   },
-  "last_updated": "2026-02-21T01:17:41.616901"
+  "last_updated": "2026-02-20T23:38:29.540241"
 }
