@@ -25,7 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests pytrends beautifulsoup4
+          pip install requests pytrends beautifulsoup4 selenium
 
       - name: Fetch all API data
         env:

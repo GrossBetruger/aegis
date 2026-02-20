@@ -46,141 +46,153 @@ def make_request(url, **kwargs):
         return requests.get(url, **kwargs)
 
 
-# Pizza places near Pentagon (Google Place IDs)
-# You can find Place IDs at: https://developers.google.com/maps/documentation/places/web-service/place-id
 PIZZA_PLACES = [
-    {
-        "name": "Domino's Pizza",
-        "place_id": "ChIJN1t_tDeuEmsRUsoyG83frY4",  # Replace with actual Place ID
-        "address": "Pentagon City",
-    },
-    {
-        "name": "Papa John's",
-        "place_id": "ChIJP3Sa8ziYEmsRUKgyFmh9AQM",  # Replace with actual Place ID
-        "address": "Near Pentagon",
-    },
-    {
-        "name": "Pizza Hut",
-        "place_id": "ChIJrTLr-GyuEmsRBfy61i59si0",  # Replace with actual Place ID
-        "address": "Pentagon Area",
-    },
+    {"name": "Wiseguy Pizza", "url": "https://maps.app.goo.gl/hZ6KsS8HFs3J8Ti28"},
+    {"name": "California Pizza Kitchen", "url": "https://maps.app.goo.gl/Rvov6ZvDfoX2MCC98"},
+    {"name": "Extreme Pizza", "url": "https://maps.app.goo.gl/1uZxG2mZshD9Pp9A6"},
+    {"name": "We, The Pizza", "url": "https://maps.app.goo.gl/5GyfTt45vcy9zAG47"},
+    {"name": "District Pizza Palace", "url": "https://maps.app.goo.gl/ZQMPqGXedazt7Beg6"},
 ]
 
 # Output file configuration
 OUTPUT_FILE = "frontend/data.json"
 
 
-def get_popular_times(place_id):
+def _scrape_live_busyness_batch(places):
     """
-    Fetch popular times data using populartimes library approach
-    This uses web scraping - no API key needed
+    Scrape live busyness from Google Maps using Selenium headless Chrome.
+    Opens each place's Google Maps short URL and reads the "Currently X% busy,
+    usually Y% busy" aria-label from the popular-times bar chart.
+
+    Returns dict of {place_name: {"current": int, "usual": int}} for places
+    with live data. Places that are closed or have no live reading are omitted.
     """
+    import uuid
+
     try:
-        # Using the LivePopularTimes approach
-        import populartimes
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.common.by import By
+    except ImportError:
+        print("  selenium not installed, skipping live scrape")
+        return {}
 
-        result = populartimes.get_id(os.environ.get("GOOGLE_API_KEY", ""), place_id)
-        return result
-    except Exception as e:
-        print(f"Error fetching popular times: {e}")
-        return None
+    chrome_options = Options()
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_argument(
+        "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    )
+    chrome_options.add_argument(f"--user-data-dir=/tmp/selenium_{uuid.uuid4()}")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option("useAutomationExtension", False)
 
-
-def get_live_busyness_scrape(place_name, address):
-    """
-    Get busyness data - using time-based simulation for now
-    Real implementation would use Google Places API or scraping
-    """
-    current_hour = datetime.now().hour
-    current_day = datetime.now().weekday()
-
-    # Simulate realistic patterns based on time
-    # Pentagon area pizza places are busier during lunch (11-14) and dinner (17-20)
-    # Late night (22-06) activity is unusual and noteworthy
-
-    base_score = 30  # Normal baseline
-
-    # Lunch rush
-    if 11 <= current_hour <= 14 and current_day < 5:
-        base_score = 50
-    # Dinner rush
-    elif 17 <= current_hour <= 20:
-        base_score = 55
-    # Late night (unusual - could indicate overtime)
-    elif current_hour >= 22 or current_hour < 6:
-        # Add some randomness based on the day
-        import hashlib
-
-        day_hash = int(
-            hashlib.md5(f"{datetime.now().date()}".encode()).hexdigest()[:8], 16
+    results = {}
+    try:
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.execute_cdp_cmd(
+            "Page.addScriptToEvaluateOnNewDocument",
+            {"source": 'Object.defineProperty(navigator, "webdriver", {get: () => undefined})'},
         )
-        if day_hash % 10 < 2:  # 20% chance of elevated late-night activity
-            base_score = 70
-            return {"status": "elevated_late", "score": base_score}
+    except Exception as e:
+        print(f"  Chrome driver init failed: {e}")
+        return {}
+
+    try:
+        for place in places:
+            name = place["name"]
+            url = place["url"]
+            try:
+                driver.get(url)
+                time.sleep(8)
+
+                all_aria = driver.find_elements(By.XPATH, "//*[@aria-label]")
+                for el in all_aria:
+                    label = el.get_attribute("aria-label") or ""
+                    # English: "Currently 65% busy, usually 42% busy."
+                    m = re.search(r"Currently\s+(\d+)%.*usually\s+(\d+)%", label)
+                    if m:
+                        results[name] = {"current": int(m.group(1)), "usual": int(m.group(2))}
+                        break
+                    # Hebrew: "כרגע תפוסה של %100, בדרך כלל תפוסה של %58."
+                    m = re.search(r"כרגע תפוסה של %(\d+).*תפוסה של %(\d+)", label)
+                    if m:
+                        results[name] = {"current": int(m.group(1)), "usual": int(m.group(2))}
+                        break
+            except Exception as e:
+                print(f"    {name}: scrape error ({e})")
+    finally:
+        driver.quit()
+
+    return results
+
+
+def _pentagon_eastern_time():
+    """Return current time in US Eastern (Pentagon local), accounting for DST."""
+    from datetime import timezone
+
+    utc_now = datetime.now(timezone.utc)
+    # US Eastern: UTC-5, EDT: UTC-4. Approximate DST (Mar second Sun – Nov first Sun).
+    month = utc_now.month
+    is_dst = 3 < month < 11 or (
+        month == 3 and utc_now.day >= 8
+    ) or (
+        month == 11 and utc_now.day < 1
+    )
+    offset = timedelta(hours=-4 if is_dst else -5)
+    return utc_now + offset
+
+
+def get_pentagon_time_risk():
+    """
+    Score Pentagon activity based on actual Eastern Time.
+    Late-night weekday activity at the Pentagon is genuinely unusual and
+    historically correlates with crisis planning. This uses real clock time
+    rather than simulated busyness data.
+    """
+    et = _pentagon_eastern_time()
+    hour = et.hour
+    weekday = et.weekday()  # 0=Mon, 6=Sun
+    is_weekend = weekday >= 5
+    is_late_night = hour >= 22 or hour < 6
+
+    if is_late_night and not is_weekend:
+        status = "Late night (weekday)"
+        score = 75
+    elif is_late_night and is_weekend:
+        status = "Late night (weekend)"
+        score = 55
+    elif is_weekend:
+        if 9 <= hour <= 18:
+            status = "Weekend daytime"
+            score = 35
         else:
-            base_score = 20
-    # Weekend
-    elif current_day >= 5:
-        base_score = 25
+            status = "Weekend evening"
+            score = 25
+    elif 6 <= hour < 9:
+        status = "Early morning"
+        score = 20
+    elif 9 <= hour < 17:
+        status = "Business hours"
+        score = 10
+    elif 17 <= hour < 20:
+        status = "Evening"
+        score = 15
+    else:
+        status = "Late evening"
+        score = 40
 
-    return {"status": "normal", "score": base_score}
-
-
-def calculate_pentagon_activity_score(busyness_data):
-    """
-    Calculate overall Pentagon activity score based on pizza place busyness
-    """
-    current_hour = datetime.now().hour
-    is_late_night = current_hour >= 22 or current_hour < 6
-    is_weekend = datetime.now().weekday() >= 5
-
-    print(
-        f"  Calculating score - Hour: {current_hour}, Late night: {is_late_night}, Weekend: {is_weekend}"
-    )
-
-    total_score = 0
-    valid_readings = 0
-
-    for place in busyness_data:
-        if place.get("score") is not None:
-            score = place["score"]
-            valid_readings += 1
-            weighted_score = score
-
-            # Weight: busier than usual at odd hours = higher risk
-            if is_late_night and score > 60:
-                # Late night busy = very unusual = high risk indicator
-                weighted_score = score * 1.5
-                print(
-                    f"    {place['name']}: {score} × 1.5 (late night busy) = {weighted_score}"
-                )
-                total_score += weighted_score
-            elif is_weekend and score > 70:
-                # Weekend busy = unusual = moderate risk indicator
-                weighted_score = score * 1.3
-                print(
-                    f"    {place['name']}: {score} × 1.3 (weekend busy) = {weighted_score}"
-                )
-                total_score += weighted_score
-            else:
-                print(f"    {place['name']}: {score} (normal weighting)")
-                total_score += score
-
-    if valid_readings == 0:
-        print("  No valid readings, using default score of 30")
-        return 30  # Default low score (nothing unusual)
-
-    avg_score = total_score / valid_readings
-    print(
-        f"  Total: {total_score:.1f}, Valid readings: {valid_readings}, Average: {avg_score:.1f}"
-    )
-
-    # Normalize to 0-100 scale
-    # Normal activity = 30-50, Elevated = 60-80, High = 80+
-    normalized = min(100, max(0, avg_score))
-    print(f"  Normalized score: {normalized:.1f}")
-
-    return round(normalized)
+    return {
+        "score": score,
+        "status": status,
+        "hour_et": hour,
+        "is_late_night": is_late_night,
+        "is_weekend": is_weekend,
+    }
 
 
 def fetch_polymarket_odds():
@@ -2116,10 +2128,7 @@ def update_data_file():
         # PENTAGON SIGNAL CALCULATION
         pentagon_contribution = pentagon_data.get("risk_contribution", 1)
         pentagon_display_risk = round((pentagon_contribution / 10) * 100)
-        pentagon_status = pentagon_data.get("status", "Normal")
-        is_late_night = pentagon_data.get("is_late_night", False)
-        is_weekend = pentagon_data.get("is_weekend", False)
-        pentagon_detail = f"{pentagon_status}{' (late night)' if is_late_night else ''}{' (weekend)' if is_weekend else ''}"
+        pentagon_detail = pentagon_data.get("detail_text", "Awaiting data...")
 
         # OIL PRICES SIGNAL CALCULATION
         oil = current_data.get("oil", {})
@@ -2370,32 +2379,51 @@ def update_data_file():
 
 
 def fetch_pentagon_data():
-    """Fetch Pentagon Pizza Meter data - pizza place busyness near Pentagon"""
+    """Fetch live pizza-place busyness near the Pentagon via Selenium scraping."""
     print("\n" + "=" * 50)
     print("PENTAGON PIZZA METER")
     print("=" * 50)
 
-    busyness_data = []
+    time_risk = get_pentagon_time_risk()
+    is_late_night = time_risk["is_late_night"]
+    is_weekend = time_risk["is_weekend"]
 
-    for place in PIZZA_PLACES:
-        print(f"  Checking {place['name']}...")
-        result = get_live_busyness_scrape(place["name"], place["address"])
-        result["name"] = place["name"]
-        busyness_data.append(result)
-        print(f"    Status: {result['status']}, Score: {result['score']}")
+    print(f"  Scraping {len(PIZZA_PLACES)} pizza places via Google Maps...")
+    scraped = _scrape_live_busyness_batch(PIZZA_PLACES)
 
-    # Calculate overall score
-    activity_score = calculate_pentagon_activity_score(busyness_data)
+    live_scores = {}
+    for name, data in scraped.items():
+        live_scores[name] = data["current"]
+        usual = data["usual"]
+        print(f"    {name}: {data['current']}% busy (usually {usual}%)")
 
-    # Determine risk contribution (max 10% for this signal)
-    # Normal baseline should show ~5-10% on the bar
-    if activity_score >= 80:
-        risk_contribution = 10  # Very busy at odd hours
+    is_live = len(live_scores) > 0
+
+    if is_live:
+        avg_busyness = sum(live_scores.values()) / len(live_scores)
+
+        if is_late_night and avg_busyness > 40:
+            score = min(100, round(avg_busyness * 1.4))
+        elif is_weekend and avg_busyness > 50:
+            score = min(100, round(avg_busyness * 1.2))
+        else:
+            score = round(avg_busyness)
+
+        parts = [f"{n} {v}%" for n, v in live_scores.items()]
+        detail_text = ", ".join(parts) + " (live)"
+        source = "live"
+    else:
+        score = time_risk["score"]
+        detail_text = f"{time_risk['status']} (estimated)"
+        source = "estimated"
+
+    if score >= 70:
+        risk_contribution = 10
         status = "High Activity"
-    elif activity_score >= 60:
+    elif score >= 50:
         risk_contribution = 7
         status = "Elevated"
-    elif activity_score >= 40:
+    elif score >= 30:
         risk_contribution = 3
         status = "Normal"
     else:
@@ -2403,16 +2431,19 @@ def fetch_pentagon_data():
         status = "Low Activity"
 
     pentagon_data = {
-        "score": activity_score,
+        "score": score,
         "risk_contribution": risk_contribution,
         "status": status,
-        "places": busyness_data,
+        "detail_text": detail_text,
+        "source": source,
+        "live_scores": live_scores if is_live else None,
+        "hour_et": time_risk["hour_et"],
         "timestamp": datetime.now().isoformat(),
-        "is_late_night": datetime.now().hour >= 22 or datetime.now().hour < 6,
-        "is_weekend": datetime.now().weekday() >= 5,
+        "is_late_night": is_late_night,
+        "is_weekend": is_weekend,
     }
 
-    print(f"Activity: {status} - Score: {activity_score}/100")
+    print(f"  Source: {source} | Score: {score}/100 | {status}")
     display_risk = round((risk_contribution / 10) * 100)
     print(f"✓ Result: Risk {display_risk}%")
     return pentagon_data
