@@ -36,7 +36,7 @@ git clone https://github.com/your-username/aegis.git
 cd aegis
 
 # Run the system (updates data + serves frontend)
-./cmd.sh all
+./run.sh all
 ```
 
 Then open http://localhost:8000 in your browser.
@@ -45,18 +45,22 @@ Then open http://localhost:8000 in your browser.
 
 | Command | Description |
 |---------|-------------|
-| `./cmd.sh update` | Run the backend data updater (updates npoint.io) |
-| `./cmd.sh serve` | Serve the frontend locally at http://localhost:8000 |
-| `./cmd.sh all` | Run update once, then serve frontend |
-| `./cmd.sh watch` | Run updates every 30 min + serve frontend (like production) |
+| `./run.sh update` | Run the backend data updater (updates npoint.io) |
+| `./run.sh serve` | Serve the frontend locally at http://localhost:8000 |
+| `./run.sh all` | Run update once, then serve frontend |
+| `./run.sh watch` | Run updates every 30 min + serve frontend (like production) |
+| `./run.sh kill` | Kill any running background server on port 8000 |
 
 ## How It Works
 
-**Backend** (`pentagon_pizza.py`):
+**Backend** (`update_data.py`):
 - Fetches Polymarket prediction market odds
-- Scrapes news from RSS feeds (BBC, Al Jazeera)
+- Scrapes news from RSS feeds (BBC, Al Jazeera) and GDELT
+- Tracks Brent crude oil prices via Yahoo Finance
+- Monitors Google Trends search interest
+- Tracks civil aviation and military tanker activity via OpenSky
 - Simulates Pentagon pizza activity patterns
-- Writes aggregated data to npoint.io (free JSON storage)
+- Writes aggregated data to frontend/data.json
 
 **Frontend** (`frontend/`):
 - Static HTML/CSS/JS dashboard

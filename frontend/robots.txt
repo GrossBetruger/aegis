@@ -1,0 +1,11 @@
+# robots.txt for StrikeRadar
+# https://usstrikeradar.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://usstrikeradar.com/sitemap.xml
+
+# Disallow crawling of data files (they change frequently)
+Disallow: /data.json

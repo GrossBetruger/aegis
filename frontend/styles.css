@@ -75,6 +75,7 @@ html, body {
 .signal-info { flex: 1; min-width: 0; }
 .signal-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
 .signal-detail { font-size: 11px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.signal-detail-wrap { white-space: normal; overflow: visible; text-overflow: unset; line-height: 1.5; }
 .signal-status { font-size: 9px; padding: 2px 5px; border-radius: 4px; font-weight: 600; }
 .signal-status.live { background: rgba(34, 197, 94, 0.2); color: var(--green); }
 .signal-status.weak { background: rgba(234, 179, 8, 0.2); color: var(--yellow); }

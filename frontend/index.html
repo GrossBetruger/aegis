@@ -4,21 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>StrikeRadar - USA Strike on Iran Monitor</title>
-    <meta name="description" content="Real-time geopolitical risk monitor tracking USA-Iran tension indicators. Live data from news, aviation, and global sentiment.">
+    <meta name="description" content="Real-time geopolitical risk monitor tracking USA-Iran tension indicators. Live data from news, aviation, military tankers, prediction markets, and weather conditions. Updated every 30 minutes.">
+
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://usstrikeradar.com/">
+    <meta name="keywords" content="USA Iran strike probability, geopolitical risk monitor, Iran tension tracker, military activity tracker, real-time risk dashboard, prediction market odds, aviation tracker">
+    <meta name="author" content="StrikeRadar">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="StrikeRadar">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://backyonatan-alt.github.io/strikeradar/">
+    <meta property="og:url" content="https://usstrikeradar.com/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="StrikeRadar">
     <meta property="og:title" content="StrikeRadar - USA Strike on Iran Probability Monitor">
     <meta property="og:description" content="Real-time geopolitical risk dashboard tracking news intel, aviation activity, and global sentiment for USA-Iran tensions.">
-    <meta property="og:image" content="https://backyonatan-alt.github.io/strikeradar/og-image.png">
+    <meta property="og:image" content="https://usstrikeradar.com/og-image.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://backyonatan-alt.github.io/strikeradar/">
+    <meta name="twitter:url" content="https://usstrikeradar.com/">
     <meta name="twitter:title" content="StrikeRadar - USA Strike on Iran Probability Monitor">
     <meta name="twitter:description" content="Real-time geopolitical risk dashboard tracking news intel, aviation activity, and global sentiment.">
-    <meta name="twitter:image" content="https://backyonatan-alt.github.io/strikeradar/og-image.png">
+    <meta name="twitter:image" content="https://usstrikeradar.com/og-image.png">
+    <meta name="google-adsense-account" content="ca-pub-8033751083492488">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
@@ -69,11 +87,61 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8033751083492488"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data (JSON-LD) for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "StrikeRadar",
+        "alternateName": "USA Strike on Iran Probability Monitor",
+        "description": "Real-time geopolitical risk monitor tracking USA-Iran tension indicators through live data from news sources, aviation activity, military tankers, prediction markets, and weather conditions.",
+        "url": "https://usstrikeradar.com/",
+        "applicationCategory": "NewsApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Real-time risk probability gauge",
+            "News intelligence from BBC World and Al Jazeera",
+            "Civil aviation tracking via OpenSky Network",
+            "Military tanker activity monitoring",
+            "Prediction market odds from Polymarket",
+            "Pentagon Pizza Meter activity tracking",
+            "Weather conditions analysis",
+            "72-hour risk trend charts",
+            "Auto-refresh every 30 minutes"
+        ],
+        "screenshot": "https://usstrikeradar.com/og-image.png",
+        "author": {
+            "@type": "Organization",
+            "name": "StrikeRadar"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "StrikeRadar",
+        "url": "https://usstrikeradar.com/",
+        "description": "Real-time geopolitical risk monitor tracking USA-Iran tension indicators",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://usstrikeradar.com/",
+            "query": "required"
+        }
+    }
+    </script>
 </head>
 <body>
     <div class="app" id="appContainer">
         <header class="header">
-            <div class="logo">📡 StrikeRadar</div>
+            <h1 class="logo">📡 StrikeRadar</h1>
             <div class="header-right">
                 <div class="live-badge"><div class="live-dot"></div>Live</div>
                 <a href="https://www.linkedin.com/in/yonatan-back/" target="_blank" rel="noopener" class="contact-link" title="Contact me on LinkedIn">
@@ -89,8 +157,8 @@
         </header>
 
         <div class="timestamp-bar">
-            <span>Updated at <span class="time" id="lastUpdate">--:--</span> <span class="tz" id="timezone"></span></span>
-            <span style="color: var(--text-muted)" id="nextUpdate">Next update in 30m</span>
+            <span>Updated <span class="time" id="lastUpdate">--:--</span> <span class="tz" id="timezone"></span></span>
+            <span style="color: var(--text-muted)" id="nextUpdate"></span>
         </div>
 
         <div class="gauge-card">
@@ -131,8 +199,20 @@
             <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
         </div>
 
-        <div class="signals-section">
-            <div class="section-title">Data Signals</div>
+        <section class="signals-section" aria-label="Data Signals">
+            <h2 class="section-title">Data Signals</h2>
+
+            <div class="signal-item signal-item-buildup">
+                <div class="signal-icon" style="background: rgba(239, 68, 68, 0.15);">⚓</div>
+                <div class="signal-info">
+                    <div class="signal-name">Military Buildup <span class="signal-status live" id="buildupStatus">LIVE</span><button class="info-btn" onclick="showInfo('buildup')">i</button></div>
+                    <div class="signal-detail signal-detail-wrap" id="buildupDetail">Loading...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-sparkline" id="buildupSparkline"></div>
+                    <div class="signal-value" id="buildupValue">--</div>
+                </div>
+            </div>
 
             <div class="signal-item">
                 <div class="signal-icon news">📰</div>
@@ -147,21 +227,9 @@
             </div>
 
             <div class="signal-item">
-                <div class="signal-icon trends">📈</div>
-                <div class="signal-info">
-                    <div class="signal-name">Public Interest <span class="signal-status live" id="trendsStatus">LIVE</span><button class="info-btn" onclick="showInfo('trends')">i</button></div>
-                    <div class="signal-detail" id="socialDetail">Loading...</div>
-                </div>
-                <div class="signal-right">
-                    <div class="signal-sparkline" id="socialSparkline"></div>
-                    <div class="signal-value" id="socialValue">--</div>
-                </div>
-            </div>
-
-            <div class="signal-item">
                 <div class="signal-icon flight">✈️</div>
                 <div class="signal-info">
-                    <div class="signal-name">Civil Aviation <span class="signal-status live" id="flightStatus">LIVE</span><button class="info-btn" onclick="showInfo('aviation')">i</button></div>
+                    <div class="signal-name">Civil Aviation <span class="signal-status live" id="flightStatus">LIVE</span><button class="info-btn" onclick="showInfo('flight')">i</button></div>
                     <div class="signal-detail" id="flightDetail">Loading...</div>
                 </div>
                 <div class="signal-right">
@@ -207,9 +275,57 @@
             </div>
 
             <div class="signal-item">
+                <div class="signal-icon" style="background: rgba(234, 179, 8, 0.15);">🛢️</div>
+                <div class="signal-info">
+                    <div class="signal-name">Oil Prices <span class="signal-status live" id="oilStatus">LIVE</span><button class="info-btn" onclick="showInfo('oil')">i</button></div>
+                    <div class="signal-detail" id="oilDetail">Loading...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-sparkline" id="oilSparkline"></div>
+                    <div class="signal-value" id="oilValue">--</div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon" style="background: rgba(59, 130, 246, 0.15);">🌐</div>
+                <div class="signal-info">
+                    <div class="signal-name">Global News <span class="signal-status live" id="gdeltStatus">LIVE</span><button class="info-btn" onclick="showInfo('gdelt')">i</button></div>
+                    <div class="signal-detail" id="gdeltDetail">Loading...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-sparkline" id="gdeltSparkline"></div>
+                    <div class="signal-value" id="gdeltValue">--</div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon" style="background: rgba(16, 185, 129, 0.15);">🔍</div>
+                <div class="signal-info">
+                    <div class="signal-name">Public Interest <span class="signal-status live" id="trendsStatus">LIVE</span><button class="info-btn" onclick="showInfo('trends')">i</button></div>
+                    <div class="signal-detail" id="trendsDetail">Loading...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-sparkline" id="trendsSparkline"></div>
+                    <div class="signal-value" id="trendsValue">--</div>
+                </div>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-icon" style="background: rgba(168, 85, 247, 0.15);">🚫</div>
+                <div class="signal-info">
+                    <div class="signal-name">Flight Restrictions <span class="signal-status live" id="tfrStatus">LIVE</span><button class="info-btn" onclick="showInfo('tfr')">i</button></div>
+                    <div class="signal-detail" id="tfrDetail">Loading...</div>
+                </div>
+                <div class="signal-right">
+                    <div class="signal-sparkline" id="tfrSparkline"></div>
+                    <div class="signal-value" id="tfrValue">--</div>
+                </div>
+            </div>
+
+            <div class="signal-item">
                 <div class="signal-icon weather">🌤️</div>
                 <div class="signal-info">
-                    <div class="signal-name">Op. Conditions <span class="signal-status live" id="weatherStatus">LIVE</span><button class="info-btn" onclick="showInfo('weather')">i</button></div>
+                    <div class="signal-name">Weather Conditions <span class="signal-status live" id="weatherStatus">LIVE</span><button class="info-btn" onclick="showInfo('weather')">i</button></div>
                     <div class="signal-detail" id="weatherDetail">Loading...</div>
                 </div>
                 <div class="signal-right">
@@ -217,25 +333,13 @@
                     <div class="signal-value" id="weatherValue">--</div>
                 </div>
             </div>
-        </div>
-
-        <div class="feed-section">
-            <div class="feed-header">
-                <span class="section-title" style="margin-bottom:0">Intelligence Feed</span>
-                <span style="font-size: 11px; color: var(--text-muted)" id="feedCount">0 items</span>
-            </div>
-            <div class="feed-list" id="feedList"></div>
-            <button class="show-more-btn" id="showMoreBtn" onclick="toggleFeed()" style="display:none">Show All</button>
-        </div>
+        </section>
 
         <!-- Footer with share, telegram and about -->
         <div style="display: flex; gap: 10px; margin-top: 8px;">
             <button class="show-more-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="shareSnapshot()">
                 <span>📤</span> Share
             </button>
-            <a href="https://t.me/StrikeRadarAlerts" target="_blank" class="show-more-btn" style="flex: 1.5; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; color: inherit;">
-                <span>🔔</span> Get Alerts
-            </a>
             <button class="show-more-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="showInfo('about')">
                 <span>ℹ️</span> About
             </button>
@@ -262,6 +366,32 @@
     <!-- Offline bar -->
     <div id="offlineBar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#ef4444;color:#fff;text-align:center;padding:8px;font-size:12px;font-weight:600;z-index:999;">⚠️ No internet connection</div>
 
-    <script src="app.js"></script>
+    <!-- Fallback for search engines that don't execute JavaScript -->
+    <noscript>
+        <div style="padding: 20px; background: #141414; color: #fff; text-align: center;">
+            <h2>StrikeRadar - USA Strike on Iran Probability Monitor</h2>
+            <p>Real-time geopolitical risk dashboard tracking USA-Iran tension indicators.</p>
+            <p>This application monitors multiple data signals including:</p>
+            <ul style="list-style: none; padding: 10px;">
+                <li>News Intelligence from BBC World and Al Jazeera</li>
+                <li>Civil Aviation Activity via OpenSky Network</li>
+                <li>Military Tanker Tracking</li>
+                <li>Prediction Market Odds from Polymarket</li>
+                <li>Pentagon Activity Monitoring</li>
+                <li>Weather Conditions in the Region</li>
+            </ul>
+            <p>Please enable JavaScript to use this application.</p>
+        </div>
+    </noscript>
+
+    <!-- Modular JavaScript - Load in dependency order -->
+    <script src="js/config.js?v=2"></script>
+    <script src="js/utils.js?v=2"></script>
+    <script src="js/sparklines.js?v=2"></script>
+    <script src="js/ui.js?v=2"></script>
+    <script src="js/chart.js?v=2"></script>
+    <script src="js/data.js?v=2"></script>
+    <script src="js/display.js?v=2"></script>
+    <script src="js/main.js?v=2"></script>
 </body>
 </html>
