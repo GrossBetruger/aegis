@@ -18,10 +18,10 @@
       19,
       19,
       19,
-      19,
       23,
       19,
       25,
+      28,
       28
     ],
     "raw_data": {
@@ -156,14 +156,13 @@
       "alert_count": 13,
       "avg_escalation": 0.351,
       "escalation_available": true,
-      "timestamp": "2026-02-20T23:38:23.947515"
+      "timestamp": "2026-02-21T02:08:50.762444"
     }
   },
   "flight": {
-    "risk": 14,
-    "detail": "101 aircraft over Iran",
+    "risk": 27,
+    "detail": "85 aircraft over Iran",
     "history": [
-      11,
       11,
       13,
       30,
@@ -182,24 +181,25 @@
       25,
       17,
       8,
-      14
+      14,
+      27
     ],
     "raw_data": {
-      "aircraft_count": 101,
+      "aircraft_count": 85,
       "airline_count": 27,
       "airlines": [
-        "AXB",
-        "AIC",
-        "AAL",
         "IGO",
+        "PGT",
+        "BYD",
+        "DLH",
+        "BBC",
         "UAE",
-        "DWC",
         "THY",
-        "ABY",
         "ETD",
-        "FDB"
+        "ABY",
+        "AIC"
       ],
-      "timestamp": "2026-02-20T23:38:25.575365"
+      "timestamp": "2026-02-21T02:08:52.428601"
     }
   },
   "tanker": {
@@ -230,7 +230,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-20T23:38:28.226331"
+      "timestamp": "2026-02-21T02:08:55.039013"
     }
   },
   "weather": {
@@ -260,7 +260,7 @@
     ],
     "raw_data": {
       "risk": 100,
-      "detail": "clear sky",
+      "detail": "clear",
       "history": [
         100,
         100,
@@ -285,12 +285,39 @@
         100
       ],
       "raw_data": {
-        "temp": 14,
-        "visibility": 10000,
-        "clouds": 0,
-        "description": "clear sky",
-        "condition": "Favorable",
-        "timestamp": "2026-02-21T01:17:38.971132"
+        "risk": 100,
+        "detail": "clear sky",
+        "history": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "raw_data": {
+          "temp": 14,
+          "visibility": 10000,
+          "clouds": 0,
+          "description": "clear sky",
+          "condition": "Favorable",
+          "timestamp": "2026-02-21T01:17:38.971132"
+        }
       }
     }
   },
@@ -321,17 +348,16 @@
     ],
     "raw_data": {
       "odds": 4,
-      "market": "Will the US next strike Iran on February 22, 2026 (ET)?",
-      "timestamp": "2026-02-20T23:37:38.287384"
+      "market": "Will the US next strike Iran on February 26, 2026 (ET)?",
+      "timestamp": "2026-02-21T02:08:08.166453"
     }
   },
   "pentagon": {
-    "risk": 100,
-    "detail": "California Pizza Kitchen 100%, Extreme Pizza 100% (live)",
+    "risk": 30,
+    "detail": "California Pizza Kitchen 0%, Extreme Pizza 100%, We, The Pizza 46% (live)",
     "history": [
       10,
       10,
-      10,
       30,
       30,
       30,
@@ -348,20 +374,22 @@
       30,
       30,
       100,
-      100
+      100,
+      30
     ],
     "raw_data": {
-      "score": 100,
-      "risk_contribution": 10,
-      "status": "High Activity",
-      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 100% (live)",
+      "score": 49,
+      "risk_contribution": 3,
+      "status": "Normal",
+      "detail_text": "California Pizza Kitchen 0%, Extreme Pizza 100%, We, The Pizza 46% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 100,
-        "Extreme Pizza": 100
+        "California Pizza Kitchen": 0,
+        "Extreme Pizza": 100,
+        "We, The Pizza": 46
       },
-      "hour_et": 18,
-      "timestamp": "2026-02-20T23:37:37.999353",
+      "hour_et": 21,
+      "timestamp": "2026-02-21T02:08:08.052447",
       "is_late_night": false,
       "is_weekend": false
     }
@@ -395,18 +423,18 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-20T23:38:24.095910"
+      "timestamp": "2026-02-21T02:08:50.998215"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 18, 'Iran war'",
+    "detail": "Interest: 20, 'Iran war'",
     "history": [
-      5,
       20,
       20,
       20,
       20,
+      10,
       10,
       10,
       10,
@@ -424,18 +452,19 @@
       10
     ],
     "raw_data": {
-      "current_interest": 17.6,
-      "avg_24h": 24.3,
+      "current_interest": 20.2,
+      "avg_24h": 23.3,
       "peak_keyword": "Iran war",
-      "peak_value": 53,
+      "peak_value": 62,
       "risk": 10,
-      "timestamp": "2026-02-20T23:38:24.930253"
+      "timestamp": "2026-02-21T02:08:51.819564"
     }
   },
   "buildup": {
     "risk": 65,
     "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: bombers, air superiority, strike fighters, ground attack, allied",
     "history": [
+      65,
       65,
       65,
       65,
@@ -502,23 +531,18 @@
           "Here's what we know about the buildup of U.S. military assets in the Middle East - PBS",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
           "Iran Is Threatening to Sink a US Aircraft Carrier. Can It? - The National Interest",
-          "A look at the military hardware the US has positioned for potential war with Iran - CNN",
+          "Tracking the rapid US military build-up near Iran - Al Jazeera",
           "\u2018War with Iran is stupid': Mass. congresspeople decry Trump\u2019s military buildup - WGBH"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-20T23:38:29.536879"
+      "timestamp": "2026-02-21T02:08:56.780206"
     }
   },
   "total_risk": {
     "risk": 27,
     "history": [
-      {
-        "timestamp": 1770026400000,
-        "risk": 17,
-        "pinned": true
-      },
       {
         "timestamp": 1770760800000,
         "risk": 17,
@@ -545,11 +569,16 @@
         "pinned": true
       },
       {
-        "timestamp": 1771630709540,
+        "timestamp": 1771632000000,
+        "risk": 27,
+        "pinned": true
+      },
+      {
+        "timestamp": 1771639736783,
         "risk": 27
       }
     ],
-    "elevated_count": 2
+    "elevated_count": 1
   },
-  "last_updated": "2026-02-20T23:38:29.540241"
+  "last_updated": "2026-02-21T02:08:56.783736"
 }
