@@ -1,9 +1,8 @@
 {
   "news": {
-    "risk": 25,
-    "detail": "25 articles, 12 critical, escalation: 0.32",
+    "risk": 26,
+    "detail": "26 articles, 13 critical, escalation: 0.32",
     "history": [
-      19,
       19,
       19,
       19,
@@ -22,7 +21,8 @@
       25,
       25,
       25,
-      25
+      25,
+      26
     ],
     "raw_data": {
       "articles": [
@@ -147,23 +147,27 @@
           "escalation": 0.361
         },
         {
+          "title": "Protesters shoot fireworks at Albania prime minister\u2019s office",
+          "is_alert": true,
+          "escalation": 0.321
+        },
+        {
           "title": "Trump \u2018considering\u2019 limited strikes on Iran",
           "is_alert": true,
           "escalation": 0.616
         }
       ],
-      "total_count": 25,
-      "alert_count": 12,
+      "total_count": 26,
+      "alert_count": 13,
       "avg_escalation": 0.322,
       "escalation_available": true,
-      "timestamp": "2026-02-21T07:09:36.178305"
+      "timestamp": "2026-02-21T07:54:25.711144"
     }
   },
   "flight": {
-    "risk": 21,
-    "detail": "93 aircraft over Iran",
+    "risk": 36,
+    "detail": "74 aircraft over Iran",
     "history": [
-      34,
       56,
       59,
       53,
@@ -182,24 +186,25 @@
       29,
       10,
       3,
-      21
+      21,
+      36
     ],
     "raw_data": {
-      "aircraft_count": 93,
+      "aircraft_count": 74,
       "airline_count": 32,
       "airlines": [
-        "PGT",
-        "AXB",
-        "KRU",
-        "KNE",
         "IGO",
+        "AIC",
         "UAE",
-        "UBG",
+        "MEA",
+        "ETD",
+        "VIR",
         "ABY",
-        "HBL",
-        "VSV"
+        "FDB",
+        "G96",
+        "GFA"
       ],
-      "timestamp": "2026-02-21T07:09:38.283579"
+      "timestamp": "2026-02-21T07:54:27.151735"
     }
   },
   "tanker": {
@@ -230,7 +235,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T07:09:40.929603"
+      "timestamp": "2026-02-21T07:54:29.627745"
     }
   },
   "weather": {
@@ -390,7 +395,7 @@
               ],
               "raw_data": {
                 "risk": 100,
-                "detail": "clear sky",
+                "detail": "clear",
                 "history": [
                   100,
                   100,
@@ -415,12 +420,39 @@
                   100
                 ],
                 "raw_data": {
-                  "temp": 14,
-                  "visibility": 10000,
-                  "clouds": 0,
-                  "description": "clear sky",
-                  "condition": "Favorable",
-                  "timestamp": "2026-02-21T01:17:38.971132"
+                  "risk": 100,
+                  "detail": "clear sky",
+                  "history": [
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100
+                  ],
+                  "raw_data": {
+                    "temp": 14,
+                    "visibility": 10000,
+                    "clouds": 0,
+                    "description": "clear sky",
+                    "condition": "Favorable",
+                    "timestamp": "2026-02-21T01:17:38.971132"
+                  }
                 }
               }
             }
@@ -448,23 +480,22 @@
       4,
       4,
       4,
+      3,
+      3,
+      3,
       4,
-      3,
-      3,
-      3,
       4
     ],
     "raw_data": {
       "odds": 4,
       "market": "Will the US next strike Iran on February 26, 2026 (ET)?",
-      "timestamp": "2026-02-21T07:08:52.881038"
+      "timestamp": "2026-02-21T07:53:40.931235"
     }
   },
   "pentagon": {
     "risk": 70,
     "detail": "Late night (weekend) (estimated)",
     "history": [
-      30,
       100,
       100,
       10,
@@ -481,6 +512,7 @@
       100,
       30,
       100,
+      70,
       70,
       70,
       70
@@ -493,7 +525,7 @@
       "source": "estimated",
       "live_scores": null,
       "hour_et": 2,
-      "timestamp": "2026-02-21T07:08:52.275461",
+      "timestamp": "2026-02-21T07:53:40.615675",
       "is_late_night": true,
       "is_weekend": true
     }
@@ -527,12 +559,12 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T07:09:36.447563"
+      "timestamp": "2026-02-21T07:54:25.863700"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 14, 'Iran war'",
+    "detail": "Interest: 22, 'Iran war'",
     "history": [
       10,
       10,
@@ -556,12 +588,12 @@
       10
     ],
     "raw_data": {
-      "current_interest": 14.4,
+      "current_interest": 21.6,
       "avg_24h": 22.0,
       "peak_keyword": "Iran war",
-      "peak_value": 72,
+      "peak_value": 67,
       "risk": 10,
-      "timestamp": "2026-02-21T07:09:37.517243"
+      "timestamp": "2026-02-21T07:54:26.663301"
     }
   },
   "buildup": {
@@ -619,7 +651,7 @@
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 10,
+          "diego garcia": 9,
           "al udeid": 2
         },
         "categories_present": 5,
@@ -633,23 +665,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 30,
+        "escalation_matches": 27,
         "deployment_matches": 14,
         "sample_headlines": [
           "Here's what we know about the buildup of U.S. military assets in the Middle East - PBS",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
           "Iran Is Threatening to Sink a US Aircraft Carrier. Can It? - The National Interest",
-          "\u2018War with Iran is stupid': Mass. congresspeople decry Trump\u2019s military buildup - WGBH",
-          "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times"
+          "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
+          "Trump sets deadline for possible military strike against Iran - NewsNation"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T07:09:42.840543"
+      "timestamp": "2026-02-21T07:54:31.264915"
     }
   },
   "total_risk": {
-    "risk": 27,
+    "risk": 30,
     "history": [
       {
         "timestamp": 1770760800000,
@@ -682,11 +714,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771657782843,
-        "risk": 27
+        "timestamp": 1771660471268,
+        "risk": 30
       }
     ],
     "elevated_count": 2
   },
-  "last_updated": "2026-02-21T07:09:42.843848"
+  "last_updated": "2026-02-21T07:54:31.268239"
 }
