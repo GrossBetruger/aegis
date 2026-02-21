@@ -16,12 +16,12 @@
       19,
       19,
       19,
-      19,
       23,
       19,
       25,
       28,
       28,
+      25,
       25
     ],
     "raw_data": {
@@ -156,14 +156,13 @@
       "alert_count": 12,
       "avg_escalation": 0.322,
       "escalation_available": true,
-      "timestamp": "2026-02-21T04:19:08.556050"
+      "timestamp": "2026-02-21T05:29:39.397088"
     }
   },
   "flight": {
-    "risk": 29,
-    "detail": "82 aircraft over Iran",
+    "risk": 10,
+    "detail": "106 aircraft over Iran",
     "history": [
-      13,
       30,
       28,
       34,
@@ -182,24 +181,25 @@
       8,
       14,
       27,
-      29
+      29,
+      10
     ],
     "raw_data": {
-      "aircraft_count": 82,
-      "airline_count": 31,
+      "aircraft_count": 106,
+      "airline_count": 27,
       "airlines": [
-        "AXB",
-        "NSZ",
-        "AIC",
+        "IAW",
         "UAE",
+        "APP",
         "ETD",
-        "N78",
-        "VIR",
         "ABY",
-        "THY",
-        "FDB"
+        "AIC",
+        "FDB",
+        "IGO",
+        "ADY",
+        "CSG"
       ],
-      "timestamp": "2026-02-21T04:19:10.527931"
+      "timestamp": "2026-02-21T05:29:40.945399"
     }
   },
   "tanker": {
@@ -230,7 +230,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T04:19:13.023016"
+      "timestamp": "2026-02-21T05:29:43.593670"
     }
   },
   "weather": {
@@ -312,7 +312,7 @@
         ],
         "raw_data": {
           "risk": 100,
-          "detail": "clear sky",
+          "detail": "clear",
           "history": [
             100,
             100,
@@ -337,12 +337,39 @@
             100
           ],
           "raw_data": {
-            "temp": 14,
-            "visibility": 10000,
-            "clouds": 0,
-            "description": "clear sky",
-            "condition": "Favorable",
-            "timestamp": "2026-02-21T01:17:38.971132"
+            "risk": 100,
+            "detail": "clear sky",
+            "history": [
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100,
+              100
+            ],
+            "raw_data": {
+              "temp": 14,
+              "visibility": 10000,
+              "clouds": 0,
+              "description": "clear sky",
+              "condition": "Favorable",
+              "timestamp": "2026-02-21T01:17:38.971132"
+            }
           }
         }
       }
@@ -370,20 +397,19 @@
       4,
       4,
       4,
-      4,
+      3,
       3
     ],
     "raw_data": {
       "odds": 3,
       "market": "Will the US next strike Iran on February 22, 2026 (ET)?",
-      "timestamp": "2026-02-21T04:18:25.487493"
+      "timestamp": "2026-02-21T05:28:57.041017"
     }
   },
   "pentagon": {
-    "risk": 100,
-    "detail": "Late night (weekday) (estimated)",
+    "risk": 70,
+    "detail": "Late night (weekend) (estimated)",
     "history": [
-      10,
       30,
       30,
       30,
@@ -402,19 +428,20 @@
       100,
       100,
       30,
-      100
+      100,
+      70
     ],
     "raw_data": {
-      "score": 75,
-      "risk_contribution": 10,
-      "status": "High Activity",
-      "detail_text": "Late night (weekday) (estimated)",
+      "score": 55,
+      "risk_contribution": 7,
+      "status": "Elevated",
+      "detail_text": "Late night (weekend) (estimated)",
       "source": "estimated",
       "live_scores": null,
-      "hour_et": 23,
-      "timestamp": "2026-02-21T04:18:25.229895",
+      "hour_et": 0,
+      "timestamp": "2026-02-21T05:28:56.684770",
       "is_late_night": true,
-      "is_weekend": false
+      "is_weekend": true
     }
   },
   "oil": {
@@ -446,16 +473,16 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T04:19:08.763494"
+      "timestamp": "2026-02-21T05:29:39.566031"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 22, 'Iran war'",
+    "detail": "Interest: 20, 'Iran war'",
     "history": [
       20,
       20,
-      20,
+      10,
       10,
       10,
       10,
@@ -475,18 +502,19 @@
       10
     ],
     "raw_data": {
-      "current_interest": 22.0,
-      "avg_24h": 22.2,
+      "current_interest": 20.2,
+      "avg_24h": 22.6,
       "peak_keyword": "Iran war",
-      "peak_value": 74,
+      "peak_value": 62,
       "risk": 10,
-      "timestamp": "2026-02-21T04:19:09.938163"
+      "timestamp": "2026-02-21T05:29:40.391474"
     }
   },
   "buildup": {
     "risk": 65,
     "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: bombers, air superiority, strike fighters, ground attack, allied",
     "history": [
+      65,
       65,
       65,
       65,
@@ -549,7 +577,7 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 28,
+        "escalation_matches": 27,
         "deployment_matches": 14,
         "sample_headlines": [
           "Here's what we know about the buildup of U.S. military assets in the Middle East - PBS",
@@ -561,11 +589,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T04:19:15.078204"
+      "timestamp": "2026-02-21T05:29:45.026264"
     }
   },
   "total_risk": {
-    "risk": 29,
+    "risk": 24,
     "history": [
       {
         "timestamp": 1770760800000,
@@ -598,11 +626,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771647555081,
-        "risk": 29
+        "timestamp": 1771651785029,
+        "risk": 24
       }
     ],
     "elevated_count": 2
   },
-  "last_updated": "2026-02-21T04:19:15.081597"
+  "last_updated": "2026-02-21T05:29:45.029693"
 }
