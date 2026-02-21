@@ -1,9 +1,8 @@
 {
   "news": {
     "risk": 23,
-    "detail": "24 articles, 11 critical, escalation: 0.31",
+    "detail": "26 articles, 12 critical, escalation: 0.31",
     "history": [
-      19,
       19,
       19,
       19,
@@ -15,6 +14,7 @@
       19,
       25,
       25,
+      23,
       23,
       23,
       23,
@@ -69,7 +69,7 @@
         {
           "title": "US-Iran tension: Why Tehran may choose confrontation over 'surrender'",
           "is_alert": false,
-          "escalation": 0.305
+          "escalation": 0.304
         },
         {
           "title": "Machine guns to machetes: Weapons that massacred thousands in Iran",
@@ -147,23 +147,27 @@
           "escalation": 0.361
         },
         {
+          "title": "Iran demands \u2018evidence\u2019 as Trump, UN experts highlight protest killings",
+          "is_alert": false,
+          "escalation": 0.245
+        },
+        {
           "title": "Protesters shoot fireworks at Albania prime minister\u2019s office",
           "is_alert": true,
           "escalation": 0.321
         }
       ],
-      "total_count": 24,
-      "alert_count": 11,
-      "avg_escalation": 0.31,
+      "total_count": 26,
+      "alert_count": 12,
+      "avg_escalation": 0.308,
       "escalation_available": true,
-      "timestamp": "2026-02-21T14:05:19.691213"
+      "timestamp": "2026-02-21T12:54:39.250466"
     }
   },
   "flight": {
     "risk": 23,
     "detail": "90 aircraft over Iran",
     "history": [
-      53,
       53,
       47,
       48,
@@ -182,25 +186,25 @@
       34,
       37,
       34,
+      23,
       23
     ],
     "raw_data": {
       "aircraft_count": 90,
-      "airline_count": 45,
+      "airline_count": 35,
       "airlines": [
-        "AIC",
-        "FYC",
-        "IGO",
-        "AIC",
+        "OYA",
         "UAE",
-        "FDB",
+        "DWC",
+        "AIC",
         "ABY",
-        "A6F",
-        "A6T",
+        "FDB",
+        "ADY",
         "CYP",
-        "QNT"
+        "A6F",
+        "LOT"
       ],
-      "timestamp": "2026-02-21T14:05:23.784139"
+      "timestamp": "2026-02-21T12:54:41.014505"
     }
   },
   "tanker": {
@@ -231,7 +235,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T14:05:26.062128"
+      "timestamp": "2026-02-21T12:54:43.700591"
     }
   },
   "weather": {
@@ -260,27 +264,50 @@
       100
     ],
     "raw_data": {
-      "temp": 19,
-      "visibility": 8000,
-      "clouds": 0,
-      "description": "clear sky",
-      "condition": "Marginal",
-      "timestamp": "2026-02-21T14:05:26.753957"
+      "risk": 100,
+      "detail": "clear",
+      "history": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "raw_data": {
+        "temp": 19,
+        "visibility": 8000,
+        "clouds": 0,
+        "description": "clear sky",
+        "condition": "Marginal",
+        "timestamp": "2026-02-21T14:05:26.753957"
+      }
     }
   },
   "polymarket": {
-    "risk": 19,
-    "detail": "19% odds",
+    "risk": 18,
+    "detail": "18% odds",
     "history": [
       4,
       4,
       4,
       4,
       4,
-      4,
-      4,
-      4,
-      4,
       3,
       3,
       3,
@@ -294,12 +321,13 @@
       20,
       20,
       20,
-      19
+      19,
+      18
     ],
     "raw_data": {
-      "odds": 19,
+      "odds": 18,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-21T14:04:54.479792"
+      "timestamp": "2026-02-21T12:53:53.853222"
     }
   },
   "pentagon": {
@@ -307,7 +335,6 @@
     "detail": "No data available",
     "history": [
       10,
-      10,
       30,
       70,
       70,
@@ -325,6 +352,7 @@
       70,
       70,
       10,
+      0,
       0
     ],
     "raw_data": {
@@ -335,7 +363,7 @@
       "source": "none",
       "live_scores": null,
       "hour_et": 7,
-      "timestamp": "2026-02-21T14:04:54.331130",
+      "timestamp": "2026-02-21T12:53:53.263206",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -369,14 +397,13 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T14:05:19.986318"
+      "timestamp": "2026-02-21T12:54:39.419270"
     }
   },
   "trends": {
-    "risk": 20,
-    "detail": "Interest: 29, 'Iran war'",
+    "risk": 10,
+    "detail": "Interest: 22, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -395,15 +422,16 @@
       10,
       5,
       10,
-      20
+      20,
+      10
     ],
     "raw_data": {
-      "current_interest": 28.8,
-      "avg_24h": 20.0,
+      "current_interest": 22.2,
+      "avg_24h": 20.2,
       "peak_keyword": "Iran war",
-      "peak_value": 100,
-      "risk": 20,
-      "timestamp": "2026-02-21T14:05:23.424038"
+      "peak_value": 59,
+      "risk": 10,
+      "timestamp": "2026-02-21T12:54:40.268997"
     }
   },
   "buildup": {
@@ -461,7 +489,7 @@
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 11,
+          "diego garcia": 9,
           "al udeid": 2
         },
         "categories_present": 5,
@@ -476,18 +504,18 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 26,
-        "deployment_matches": 16,
+        "deployment_matches": 15,
         "sample_headlines": [
           "Here's what we know about the buildup of U.S. military assets in the Middle East - PBS",
           "US ramps up military buildup in Middle East amid talks with Iran - France 24",
+          "US build-up of warships and fighter jets tracked near Iran - BBC",
           "With U.S. forces in position, Trump mulls his options for Iran - NPR",
-          "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
-          "Iran Is Threatening to Sink a US Aircraft Carrier. Can It? - The National Interest"
+          "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T14:05:29.327721"
+      "timestamp": "2026-02-21T12:54:45.202564"
     }
   },
   "total_risk": {
@@ -524,11 +552,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771675529331,
+        "timestamp": 1771678485205,
         "risk": 26
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-21T14:05:29.331360"
+  "last_updated": "2026-02-21T12:54:45.205797"
 }
