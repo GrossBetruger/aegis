@@ -18,7 +18,7 @@
       23,
       23,
       23,
-      23,
+      21,
       21,
       21,
       21,
@@ -27,9 +27,9 @@
     "raw_data": {
       "articles": [
         {
-          "title": "Iran students stage first anti-government protests since deadly crackdown",
+          "title": "Iran students stage first large anti-government protests since deadly crackdown",
           "is_alert": false,
-          "escalation": 0.05
+          "escalation": 0.056
         },
         {
           "title": "What could happen if the US strikes Iran? Here are seven scenarios",
@@ -89,7 +89,7 @@
         {
           "title": "Why Iran's response to a US attack could be different this time",
           "is_alert": true,
-          "escalation": 0.301
+          "escalation": 0.302
         },
         {
           "title": "Iran's internet is returning - but not for everyone",
@@ -104,7 +104,7 @@
         {
           "title": "'We all know someone who was killed' -  Iran protesters tell BBC of brutal crackdown",
           "is_alert": true,
-          "escalation": 0.429
+          "escalation": 0.428
         },
         {
           "title": "'I saw people getting shot': Eyewitness tells of Iran protest crackdown",
@@ -161,14 +161,13 @@
       "alert_count": 11,
       "avg_escalation": 0.306,
       "escalation_available": true,
-      "timestamp": "2026-02-21T21:49:49.510913"
+      "timestamp": "2026-02-21T22:28:47.524788"
     }
   },
   "flight": {
-    "risk": 46,
-    "detail": "61 aircraft over Iran",
+    "risk": 33,
+    "detail": "78 aircraft over Iran",
     "history": [
-      34,
       37,
       34,
       23,
@@ -187,24 +186,25 @@
       25,
       34,
       52,
-      46
+      46,
+      33
     ],
     "raw_data": {
-      "aircraft_count": 61,
-      "airline_count": 37,
+      "aircraft_count": 78,
+      "airline_count": 39,
       "airlines": [
         "IGO",
         "PGT",
         "AXB",
+        "ACA",
+        "ATC",
         "BBC",
-        "TKJ",
-        "ETD",
-        "THY",
         "UAE",
-        "HKC",
-        "FDB"
+        "TKJ",
+        "RAM",
+        "THY"
       ],
-      "timestamp": "2026-02-21T21:49:51.077510"
+      "timestamp": "2026-02-21T22:28:49.086831"
     }
   },
   "tanker": {
@@ -235,7 +235,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T21:49:53.587980"
+      "timestamp": "2026-02-21T22:28:56.519243"
     }
   },
   "weather": {
@@ -499,7 +499,7 @@
                       ],
                       "raw_data": {
                         "risk": 100,
-                        "detail": "clear sky",
+                        "detail": "clear",
                         "history": [
                           100,
                           100,
@@ -525,7 +525,7 @@
                         ],
                         "raw_data": {
                           "risk": 100,
-                          "detail": "clear",
+                          "detail": "clear sky",
                           "history": [
                             100,
                             100,
@@ -680,12 +680,39 @@
                                       100
                                     ],
                                     "raw_data": {
-                                      "temp": 19,
-                                      "visibility": 8000,
-                                      "clouds": 0,
-                                      "description": "clear sky",
-                                      "condition": "Marginal",
-                                      "timestamp": "2026-02-21T14:05:26.753957"
+                                      "risk": 100,
+                                      "detail": "clear",
+                                      "history": [
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100
+                                      ],
+                                      "raw_data": {
+                                        "temp": 19,
+                                        "visibility": 8000,
+                                        "clouds": 0,
+                                        "description": "clear sky",
+                                        "condition": "Marginal",
+                                        "timestamp": "2026-02-21T14:05:26.753957"
+                                      }
                                     }
                                   }
                                 }
@@ -705,12 +732,11 @@
     }
   },
   "polymarket": {
-    "risk": 4,
-    "detail": "4% odds",
+    "risk": 3,
+    "detail": "3% odds",
     "history": [
       20,
       20,
-      20,
       19,
       18,
       18,
@@ -727,19 +753,19 @@
       3,
       3,
       4,
-      4
+      4,
+      3
     ],
     "raw_data": {
-      "odds": 4,
+      "odds": 3,
       "market": "Will the US next strike Iran on February 26, 2026 (ET)?",
-      "timestamp": "2026-02-21T21:49:04.952884"
+      "timestamp": "2026-02-21T22:28:09.444636"
     }
   },
   "pentagon": {
     "risk": 70,
-    "detail": "California Pizza Kitchen 100%, Extreme Pizza 0% (live)",
+    "detail": "California Pizza Kitchen 100%, Extreme Pizza 7% (live)",
     "history": [
-      70,
       70,
       10,
       0,
@@ -758,20 +784,21 @@
       100,
       100,
       70,
+      70,
       70
     ],
     "raw_data": {
-      "score": 50,
+      "score": 64,
       "risk_contribution": 7,
       "status": "Elevated",
-      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 0% (live)",
+      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 7% (live)",
       "source": "live",
       "live_scores": {
         "California Pizza Kitchen": 100,
-        "Extreme Pizza": 0
+        "Extreme Pizza": 7
       },
-      "hour_et": 16,
-      "timestamp": "2026-02-21T21:49:04.852289",
+      "hour_et": 17,
+      "timestamp": "2026-02-21T22:28:09.089765",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -805,14 +832,13 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T21:49:49.704217"
+      "timestamp": "2026-02-21T22:28:47.746439"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 16, 'Iran war'",
+    "detail": "Interest: 14, 'Iran war'",
     "history": [
-      10,
       5,
       10,
       20,
@@ -831,15 +857,16 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 16.0,
-      "avg_24h": 18.8,
+      "current_interest": 14.0,
+      "avg_24h": 18.7,
       "peak_keyword": "Iran war",
-      "peak_value": 47,
+      "peak_value": 41,
       "risk": 10,
-      "timestamp": "2026-02-21T21:49:50.453031"
+      "timestamp": "2026-02-21T22:28:48.476502"
     }
   },
   "buildup": {
@@ -898,7 +925,7 @@
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 9,
+          "diego garcia": 11,
           "al udeid": 2
         },
         "categories_present": 5,
@@ -912,23 +939,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 22,
-        "deployment_matches": 17,
+        "escalation_matches": 24,
+        "deployment_matches": 18,
         "sample_headlines": [
           "A look at the US military assets in the Middle East - AP News",
           "US ramps up military buildup in Middle East amid talks with Iran - France 24",
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times - The New York Times",
-          "Would a War Against Iran Be Legal? An Expert Explains - Time Magazine",
+          "How Would a US Strike on Iran Play Out? - The National Interest",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T21:49:55.214537"
+      "timestamp": "2026-02-21T22:28:58.535919"
     }
   },
   "total_risk": {
-    "risk": 31,
+    "risk": 28,
     "history": [
       {
         "timestamp": 1770760800000,
@@ -961,11 +988,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771710595217,
-        "risk": 31
+        "timestamp": 1771712938539,
+        "risk": 28
       }
     ],
     "elevated_count": 2
   },
-  "last_updated": "2026-02-21T21:49:55.217391"
+  "last_updated": "2026-02-21T22:28:58.539132"
 }
