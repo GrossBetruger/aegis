@@ -153,54 +153,6 @@ def _pentagon_eastern_time():
     return utc_now + offset
 
 
-def get_pentagon_time_risk():
-    """
-    Score Pentagon activity based on actual Eastern Time.
-    Late-night weekday activity at the Pentagon is genuinely unusual and
-    historically correlates with crisis planning. This uses real clock time
-    rather than simulated busyness data.
-    """
-    et = _pentagon_eastern_time()
-    hour = et.hour
-    weekday = et.weekday()  # 0=Mon, 6=Sun
-    is_weekend = weekday >= 5
-    is_late_night = hour >= 22 or hour < 6
-
-    if is_late_night and not is_weekend:
-        status = "Late night (weekday)"
-        score = 75
-    elif is_late_night and is_weekend:
-        status = "Late night (weekend)"
-        score = 55
-    elif is_weekend:
-        if 9 <= hour <= 18:
-            status = "Weekend daytime"
-            score = 35
-        else:
-            status = "Weekend evening"
-            score = 25
-    elif 6 <= hour < 9:
-        status = "Early morning"
-        score = 20
-    elif 9 <= hour < 17:
-        status = "Business hours"
-        score = 10
-    elif 17 <= hour < 20:
-        status = "Evening"
-        score = 15
-    else:
-        status = "Late evening"
-        score = 40
-
-    return {
-        "score": score,
-        "status": status,
-        "hour_et": hour,
-        "is_late_night": is_late_night,
-        "is_weekend": is_weekend,
-    }
-
-
 def fetch_polymarket_odds():
     """Fetch Iran strike odds from Polymarket Gamma API"""
     try:
@@ -1911,9 +1863,10 @@ def fetch_pentagon_data():
     print("PENTAGON PIZZA METER")
     print("=" * 50)
 
-    time_risk = get_pentagon_time_risk()
-    is_late_night = time_risk["is_late_night"]
-    is_weekend = time_risk["is_weekend"]
+    et = _pentagon_eastern_time()
+    hour = et.hour
+    is_late_night = hour >= 22 or hour < 6
+    is_weekend = et.weekday() >= 5
 
     print(f"  Scraping {len(PIZZA_PLACES)} pizza places via Google Maps...")
     scraped = _scrape_live_busyness_batch(PIZZA_PLACES)
@@ -1940,9 +1893,9 @@ def fetch_pentagon_data():
         detail_text = ", ".join(parts) + " (live)"
         source = "live"
     else:
-        score = time_risk["score"]
-        detail_text = f"{time_risk['status']} (estimated)"
-        source = "estimated"
+        score = 0
+        detail_text = "No data available"
+        source = "none"
 
     if score >= 70:
         risk_contribution = 10
@@ -1954,8 +1907,8 @@ def fetch_pentagon_data():
         risk_contribution = 3
         status = "Normal"
     else:
-        risk_contribution = 1
-        status = "Low Activity"
+        risk_contribution = 0
+        status = "No Data" if source == "none" else "Low Activity"
 
     pentagon_data = {
         "score": score,
@@ -1964,7 +1917,7 @@ def fetch_pentagon_data():
         "detail_text": detail_text,
         "source": source,
         "live_scores": live_scores if is_live else None,
-        "hour_et": time_risk["hour_et"],
+        "hour_et": hour,
         "timestamp": datetime.now().isoformat(),
         "is_late_night": is_late_night,
         "is_weekend": is_weekend,
