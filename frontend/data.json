@@ -3,9 +3,9 @@
     "risk": 23,
     "detail": "26 articles, 12 critical, escalation: 0.31",
     "history": [
-      19,
       25,
       25,
+      23,
       23,
       23,
       23,
@@ -89,7 +89,7 @@
         {
           "title": "Why Iran's response to a US attack could be different this time",
           "is_alert": true,
-          "escalation": 0.302
+          "escalation": 0.301
         },
         {
           "title": "Iran's internet is returning - but not for everyone",
@@ -104,7 +104,7 @@
         {
           "title": "'We all know someone who was killed' -  Iran protesters tell BBC of brutal crackdown",
           "is_alert": true,
-          "escalation": 0.428
+          "escalation": 0.429
         },
         {
           "title": "'I saw people getting shot': Eyewitness tells of Iran protest crackdown",
@@ -161,14 +161,13 @@
       "alert_count": 12,
       "avg_escalation": 0.308,
       "escalation_available": true,
-      "timestamp": "2026-02-21T17:54:14.984864"
+      "timestamp": "2026-02-21T18:40:06.545325"
     }
   },
   "flight": {
-    "risk": 11,
-    "detail": "105 aircraft over Iran",
+    "risk": 13,
+    "detail": "103 aircraft over Iran",
     "history": [
-      17,
       8,
       9,
       9,
@@ -187,24 +186,25 @@
       33,
       19,
       20,
-      11
+      11,
+      13
     ],
     "raw_data": {
-      "aircraft_count": 105,
-      "airline_count": 36,
+      "aircraft_count": 103,
+      "airline_count": 38,
       "airlines": [
         "IGO",
-        "AIC",
-        "AKJ",
-        "BBC",
+        "EMO",
         "UAE",
-        "WZZ",
-        "WMT",
-        "ABY",
+        "AXB",
+        "AIC",
         "ETD",
-        "FDB"
+        "ABY",
+        "THY",
+        "FDB",
+        "N42"
       ],
-      "timestamp": "2026-02-21T17:54:17.282523"
+      "timestamp": "2026-02-21T18:40:08.510223"
     }
   },
   "tanker": {
@@ -235,7 +235,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T17:54:19.905066"
+      "timestamp": "2026-02-21T18:40:11.236283"
     }
   },
   "weather": {
@@ -317,7 +317,7 @@
         ],
         "raw_data": {
           "risk": 100,
-          "detail": "clear sky",
+          "detail": "clear",
           "history": [
             100,
             100,
@@ -343,7 +343,7 @@
           ],
           "raw_data": {
             "risk": 100,
-            "detail": "clear",
+            "detail": "clear sky",
             "history": [
               100,
               100,
@@ -498,12 +498,39 @@
                         100
                       ],
                       "raw_data": {
-                        "temp": 19,
-                        "visibility": 8000,
-                        "clouds": 0,
-                        "description": "clear sky",
-                        "condition": "Marginal",
-                        "timestamp": "2026-02-21T14:05:26.753957"
+                        "risk": 100,
+                        "detail": "clear",
+                        "history": [
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100,
+                          100
+                        ],
+                        "raw_data": {
+                          "temp": 19,
+                          "visibility": 8000,
+                          "clouds": 0,
+                          "description": "clear sky",
+                          "condition": "Marginal",
+                          "timestamp": "2026-02-21T14:05:26.753957"
+                        }
                       }
                     }
                   }
@@ -525,32 +552,31 @@
       4,
       4,
       4,
+      20,
+      20,
+      20,
+      19,
+      18,
+      18,
+      18,
+      18,
+      18,
+      19,
+      19,
       4,
-      20,
-      20,
-      20,
-      19,
-      18,
-      18,
-      18,
-      18,
-      18,
-      19,
-      19,
       4,
       4
     ],
     "raw_data": {
       "odds": 4,
       "market": "Will the US next strike Iran on February 26, 2026 (ET)?",
-      "timestamp": "2026-02-21T17:53:37.783404"
+      "timestamp": "2026-02-21T18:39:22.458919"
     }
   },
   "pentagon": {
-    "risk": 0,
-    "detail": "California Pizza Kitchen 20%, Extreme Pizza 26% (live)",
+    "risk": 100,
+    "detail": "California Pizza Kitchen 100%, Extreme Pizza 95% (live)",
     "history": [
-      30,
       100,
       100,
       70,
@@ -569,20 +595,21 @@
       0,
       0,
       0,
-      0
+      0,
+      100
     ],
     "raw_data": {
-      "score": 23,
-      "risk_contribution": 0,
-      "status": "Low Activity",
-      "detail_text": "California Pizza Kitchen 20%, Extreme Pizza 26% (live)",
+      "score": 100,
+      "risk_contribution": 10,
+      "status": "High Activity",
+      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 95% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 20,
-        "Extreme Pizza": 26
+        "California Pizza Kitchen": 100,
+        "Extreme Pizza": 95
       },
-      "hour_et": 12,
-      "timestamp": "2026-02-21T17:53:37.328586",
+      "hour_et": 13,
+      "timestamp": "2026-02-21T18:39:22.063700",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -616,14 +643,13 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T17:54:15.298719"
+      "timestamp": "2026-02-21T18:40:06.927110"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 18, 'Iran war'",
+    "detail": "Interest: 16, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -642,15 +668,16 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 18.2,
-      "avg_24h": 19.4,
+      "current_interest": 15.8,
+      "avg_24h": 19.2,
       "peak_keyword": "Iran war",
-      "peak_value": 53,
+      "peak_value": 47,
       "risk": 10,
-      "timestamp": "2026-02-21T17:54:16.671658"
+      "timestamp": "2026-02-21T18:40:07.883431"
     }
   },
   "buildup": {
@@ -704,8 +731,8 @@
           "b-2": "Stealth Bomber",
           "a-10": "Ground Attack",
           "f-35": "5th Gen Fighter",
-          "typhoon": "Allied Fighter",
-          "b-52": "Strategic Bomber"
+          "b-52": "Strategic Bomber",
+          "typhoon": "Allied Fighter"
         },
         "bases": {
           "lakenheath": 2,
@@ -723,23 +750,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 24,
-        "deployment_matches": 15,
+        "escalation_matches": 23,
+        "deployment_matches": 18,
         "sample_headlines": [
           "A look at the US military assets in the Middle East - AP News",
           "US ramps up military buildup in Middle East amid talks with Iran - France 24",
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
-          "With U.S. forces in position, Trump mulls his options for Iran - NPR",
-          "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes"
+          "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
+          "With U.S. forces in position, Trump mulls his options for Iran - NPR"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T17:54:21.967657"
+      "timestamp": "2026-02-21T18:40:16.863665"
     }
   },
   "total_risk": {
-    "risk": 22,
+    "risk": 26,
     "history": [
       {
         "timestamp": 1770760800000,
@@ -772,11 +799,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771696461970,
-        "risk": 22
+        "timestamp": 1771699216867,
+        "risk": 26
       }
     ],
-    "elevated_count": 1
+    "elevated_count": 2
   },
-  "last_updated": "2026-02-21T17:54:21.970752"
+  "last_updated": "2026-02-21T18:40:16.866972"
 }
