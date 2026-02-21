@@ -4,11 +4,11 @@
     "detail": "26 articles, 12 critical, escalation: 0.31",
     "history": [
       19,
-      19,
       23,
       19,
       25,
       25,
+      23,
       23,
       23,
       23,
@@ -104,7 +104,7 @@
         {
           "title": "'We all know someone who was killed' -  Iran protesters tell BBC of brutal crackdown",
           "is_alert": true,
-          "escalation": 0.428
+          "escalation": 0.429
         },
         {
           "title": "'I saw people getting shot': Eyewitness tells of Iran protest crackdown",
@@ -139,17 +139,12 @@
         {
           "title": "'Now there's the threat of executions' in Iran",
           "is_alert": false,
-          "escalation": 0.318
+          "escalation": 0.317
         },
         {
           "title": "Mortuary videos show how deadly Iran crackdown has become",
           "is_alert": false,
-          "escalation": 0.36
-        },
-        {
-          "title": "Iran demands \u2018evidence\u2019 as Trump, UN experts highlight protest killings",
-          "is_alert": false,
-          "escalation": 0.245
+          "escalation": 0.361
         },
         {
           "title": "Iran demands \u2018evidence\u2019 as Trump, UN experts highlight protest killings",
@@ -159,21 +154,20 @@
         {
           "title": "Protesters shoot fireworks at Albania prime minister\u2019s office",
           "is_alert": true,
-          "escalation": 0.323
+          "escalation": 0.321
         }
       ],
       "total_count": 26,
       "alert_count": 12,
       "avg_escalation": 0.308,
       "escalation_available": true,
-      "timestamp": "2026-02-21T15:52:53.106469"
+      "timestamp": "2026-02-21T16:34:12.535714"
     }
   },
   "flight": {
-    "risk": 33,
-    "detail": "77 aircraft over Iran",
+    "risk": 19,
+    "detail": "95 aircraft over Iran",
     "history": [
-      44,
       39,
       25,
       17,
@@ -192,24 +186,25 @@
       28,
       29,
       30,
-      33
+      33,
+      19
     ],
     "raw_data": {
-      "aircraft_count": 77,
-      "airline_count": 37,
+      "aircraft_count": 95,
+      "airline_count": 41,
       "airlines": [
+        "AXB",
         "ACA",
         "OYA",
-        "UAE",
+        "DLH",
         "IGO",
-        "ABY",
-        "HKC",
-        "FDB",
-        "LOT",
-        "GFA",
-        "AFG"
+        "MNB",
+        "MEA",
+        "UAE",
+        "AIC",
+        "ABY"
       ],
-      "timestamp": "2026-02-21T15:52:55.186794"
+      "timestamp": "2026-02-21T16:34:14.206208"
     }
   },
   "tanker": {
@@ -240,12 +235,12 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T15:52:57.852656"
+      "timestamp": "2026-02-21T16:34:16.871588"
     }
   },
   "weather": {
     "risk": 100,
-    "detail": "clear sky",
+    "detail": "clear",
     "history": [
       100,
       100,
@@ -270,7 +265,7 @@
     ],
     "raw_data": {
       "risk": 100,
-      "detail": "clear",
+      "detail": "clear sky",
       "history": [
         100,
         100,
@@ -425,12 +420,39 @@
                   100
                 ],
                 "raw_data": {
-                  "temp": 19,
-                  "visibility": 8000,
-                  "clouds": 0,
-                  "description": "clear sky",
-                  "condition": "Marginal",
-                  "timestamp": "2026-02-21T14:05:26.753957"
+                  "risk": 100,
+                  "detail": "clear",
+                  "history": [
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100
+                  ],
+                  "raw_data": {
+                    "temp": 19,
+                    "visibility": 8000,
+                    "clouds": 0,
+                    "description": "clear sky",
+                    "condition": "Marginal",
+                    "timestamp": "2026-02-21T14:05:26.753957"
+                  }
                 }
               }
             }
@@ -443,7 +465,6 @@
     "risk": 19,
     "detail": "19% odds",
     "history": [
-      3,
       3,
       3,
       4,
@@ -462,19 +483,19 @@
       18,
       18,
       18,
+      19,
       19
     ],
     "raw_data": {
       "odds": 19,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-21T15:52:08.433390"
+      "timestamp": "2026-02-21T16:33:28.215980"
     }
   },
   "pentagon": {
     "risk": 0,
-    "detail": "No data available",
+    "detail": "California Pizza Kitchen 16%, Extreme Pizza 16% (live)",
     "history": [
-      30,
       30,
       30,
       30,
@@ -493,17 +514,21 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
-      "score": 0,
+      "score": 16,
       "risk_contribution": 0,
-      "status": "No Data",
-      "detail_text": "No data available",
-      "source": "none",
-      "live_scores": null,
-      "hour_et": 10,
-      "timestamp": "2026-02-21T15:52:08.123708",
+      "status": "Low Activity",
+      "detail_text": "California Pizza Kitchen 16%, Extreme Pizza 16% (live)",
+      "source": "live",
+      "live_scores": {
+        "California Pizza Kitchen": 16,
+        "Extreme Pizza": 16
+      },
+      "hour_et": 11,
+      "timestamp": "2026-02-21T16:33:27.968646",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -537,14 +562,13 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T15:52:53.314510"
+      "timestamp": "2026-02-21T16:34:12.695880"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 17, 'Iran war'",
+    "detail": "Interest: 18, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -563,15 +587,16 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 17.4,
-      "avg_24h": 19.3,
+      "current_interest": 18.2,
+      "avg_24h": 19.6,
       "peak_keyword": "Iran war",
-      "peak_value": 51,
+      "peak_value": 53,
       "risk": 10,
-      "timestamp": "2026-02-21T15:52:54.182489"
+      "timestamp": "2026-02-21T16:34:13.556980"
     }
   },
   "buildup": {
@@ -631,7 +656,7 @@
         "bases": {
           "lakenheath": 2,
           "diego garcia": 10,
-          "al udeid": 1
+          "al udeid": 2
         },
         "categories_present": 5,
         "categories_active": [
@@ -644,23 +669,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 25,
+        "escalation_matches": 24,
         "deployment_matches": 18,
         "sample_headlines": [
           "US ramps up military buildup in Middle East amid talks with Iran - France 24",
           "Here's what we know about the buildup of U.S. military assets in the Middle East - PBS",
-          "With U.S. forces in position, Trump mulls his options for Iran - NPR",
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
+          "With U.S. forces in position, Trump mulls his options for Iran - NPR",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T15:52:59.387324"
+      "timestamp": "2026-02-21T16:34:18.238058"
     }
   },
   "total_risk": {
-    "risk": 28,
+    "risk": 25,
     "history": [
       {
         "timestamp": 1770760800000,
@@ -693,11 +718,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771689179390,
-        "risk": 28
+        "timestamp": 1771691658241,
+        "risk": 25
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-21T15:52:59.390700"
+  "last_updated": "2026-02-21T16:34:18.241332"
 }
