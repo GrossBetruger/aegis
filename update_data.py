@@ -901,9 +901,13 @@ def _score_carrier_air(content_html, h2_regions_lower_relevant):
     """
     Score carrier air wing composition from USNI article HTML.
     Only counts squadrons within CENTCOM-relevant h2 sections.
+    Returns dict with risk score and squadron counts.
     """
     soup = BeautifulSoup(content_html, "html.parser")
     total_air_pts = 0.0
+    total_fighter_sq = 0
+    total_ea_sq = 0
+    total_ew_sq = 0
 
     for h2 in soup.find_all("h2"):
         region_lower = h2.get_text(strip=True).lower()
@@ -917,21 +921,31 @@ def _score_carrier_air(content_html, h2_regions_lower_relevant):
                 break
             section_text += sibling.get_text(" ", strip=True) + " "
 
-        vfa_squadrons = re.findall(r"VFA[-\s]*\d+", section_text)
-        vmfa_squadrons = re.findall(r"VMFA[-\s]*\d+", section_text)
-        vaq_squadrons = re.findall(r"VAQ[-\s]*\d+", section_text)
-        vaw_squadrons = re.findall(r"VAW[-\s]*\d+", section_text)
+        vfa_squadrons = set(re.findall(r"VFA[-\s]*\d+", section_text))
+        vmfa_squadrons = set(re.findall(r"VMFA[-\s]*\d+", section_text))
+        vaq_squadrons = set(re.findall(r"VAQ[-\s]*\d+", section_text))
+        vaw_squadrons = set(re.findall(r"VAW[-\s]*\d+", section_text))
+
+        total_fighter_sq += len(vfa_squadrons) + len(vmfa_squadrons)
+        total_ea_sq += len(vaq_squadrons)
+        total_ew_sq += len(vaw_squadrons)
 
         pts = (
-            len(set(vfa_squadrons)) * 6
-            + len(set(vmfa_squadrons)) * 8
-            + len(set(vaq_squadrons)) * 4
-            + len(set(vaw_squadrons)) * 3
+            len(vfa_squadrons) * 6
+            + len(vmfa_squadrons) * 8
+            + len(vaq_squadrons) * 4
+            + len(vaw_squadrons) * 3
         )
         total_air_pts += pts * multiplier
 
     carrier_air_risk = min(100, round((total_air_pts / 50) * 100))
-    return carrier_air_risk
+    return {
+        "risk": carrier_air_risk,
+        "fighter_squadrons": total_fighter_sq,
+        "ea_squadrons": total_ea_sq,
+        "ew_squadrons": total_ew_sq,
+        "total_squadrons": total_fighter_sq + total_ea_sq + total_ew_sq,
+    }
 
 
 def fetch_military_buildup(previous_data=None):
@@ -946,6 +960,7 @@ def fetch_military_buildup(previous_data=None):
 
         naval_result = None
         carrier_air_risk = 0
+        carrier_air_squadrons = 0
         article_title = None
         article_date = None
         content_html = None
@@ -1013,8 +1028,10 @@ def fetch_military_buildup(previous_data=None):
                         if m > 0:
                             region_mults[rn] = m
 
-                    carrier_air_risk = _score_carrier_air(content_html, region_mults)
-                    print(f"    Carrier Air Risk: {carrier_air_risk}%")
+                    carrier_air_result = _score_carrier_air(content_html, region_mults)
+                    carrier_air_risk = carrier_air_result["risk"]
+                    carrier_air_squadrons = carrier_air_result["total_squadrons"]
+                    print(f"    Carrier Air Risk: {carrier_air_risk}% ({carrier_air_result['fighter_squadrons']} fighter, {carrier_air_result['ea_squadrons']} EA, {carrier_air_result['ew_squadrons']} EW squadrons)")
                 else:
                     print("    No fleet tracker article found in RSS")
             else:
@@ -1026,6 +1043,7 @@ def fetch_military_buildup(previous_data=None):
         if naval_result is None and previous_data:
             naval_result = previous_data.get("force_posture")
             carrier_air_risk = previous_data.get("carrier_air_risk", 0)
+            carrier_air_squadrons = previous_data.get("carrier_air_squadrons", 0)
             print("    Using cached naval data from previous run")
 
         naval_force_risk = naval_result["force_risk"] if naval_result else 5
@@ -1182,8 +1200,17 @@ def fetch_military_buildup(previous_data=None):
             ship_parts.append(f"{destroyers} destroyer{'s' if destroyers > 1 else ''}")
         ships_text = ", ".join(ship_parts) if ship_parts else "No major combatants"
 
+        land_platforms = len(air_data.get("platforms", {}))
+        air_parts = []
+        if carrier_air_squadrons:
+            air_parts.append(f"{carrier_air_squadrons} carrier sq")
+        if land_platforms:
+            air_parts.append(f"{land_platforms} land types")
         if cat_names:
-            air_text = f"Air: {', '.join(cat_names)}"
+            air_parts.append(f"{cats}/6 categories ({', '.join(cat_names)})")
+
+        if air_parts:
+            air_text = "Air: " + ", ".join(air_parts)
         else:
             air_text = "No air assets detected"
 
@@ -1199,6 +1226,7 @@ def fetch_military_buildup(previous_data=None):
             "detail": detail,
             "force_posture": naval_result,
             "carrier_air_risk": carrier_air_risk,
+            "carrier_air_squadrons": carrier_air_squadrons,
             "air_presence": air_data,
             "deployment_news": news_data,
             "source_article": article_title,
