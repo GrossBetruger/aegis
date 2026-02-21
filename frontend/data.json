@@ -3,11 +3,11 @@
     "risk": 23,
     "detail": "26 articles, 12 critical, escalation: 0.31",
     "history": [
-      19,
       23,
       19,
       25,
       25,
+      23,
       23,
       23,
       23,
@@ -161,14 +161,13 @@
       "alert_count": 12,
       "avg_escalation": 0.308,
       "escalation_available": true,
-      "timestamp": "2026-02-21T16:34:12.535714"
+      "timestamp": "2026-02-21T17:29:17.679841"
     }
   },
   "flight": {
-    "risk": 19,
-    "detail": "95 aircraft over Iran",
+    "risk": 20,
+    "detail": "94 aircraft over Iran",
     "history": [
-      39,
       25,
       17,
       8,
@@ -187,24 +186,25 @@
       29,
       30,
       33,
-      19
+      19,
+      20
     ],
     "raw_data": {
-      "aircraft_count": 95,
-      "airline_count": 41,
+      "aircraft_count": 94,
+      "airline_count": 31,
       "airlines": [
-        "AXB",
-        "ACA",
-        "OYA",
-        "DLH",
         "IGO",
-        "MNB",
-        "MEA",
-        "UAE",
         "AIC",
-        "ABY"
+        "BBC",
+        "DLH",
+        "UAE",
+        "WMT",
+        "ETD",
+        "ABY",
+        "FDB",
+        "UNI"
       ],
-      "timestamp": "2026-02-21T16:34:14.206208"
+      "timestamp": "2026-02-21T17:29:19.538929"
     }
   },
   "tanker": {
@@ -235,7 +235,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-21T16:34:16.871588"
+      "timestamp": "2026-02-21T17:29:22.206864"
     }
   },
   "weather": {
@@ -265,7 +265,7 @@
     ],
     "raw_data": {
       "risk": 100,
-      "detail": "clear sky",
+      "detail": "clear",
       "history": [
         100,
         100,
@@ -291,7 +291,7 @@
       ],
       "raw_data": {
         "risk": 100,
-        "detail": "clear",
+        "detail": "clear sky",
         "history": [
           100,
           100,
@@ -446,12 +446,39 @@
                     100
                   ],
                   "raw_data": {
-                    "temp": 19,
-                    "visibility": 8000,
-                    "clouds": 0,
-                    "description": "clear sky",
-                    "condition": "Marginal",
-                    "timestamp": "2026-02-21T14:05:26.753957"
+                    "risk": 100,
+                    "detail": "clear",
+                    "history": [
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100,
+                      100
+                    ],
+                    "raw_data": {
+                      "temp": 19,
+                      "visibility": 8000,
+                      "clouds": 0,
+                      "description": "clear sky",
+                      "condition": "Marginal",
+                      "timestamp": "2026-02-21T14:05:26.753957"
+                    }
                   }
                 }
               }
@@ -462,11 +489,10 @@
     }
   },
   "polymarket": {
-    "risk": 19,
-    "detail": "19% odds",
+    "risk": 4,
+    "detail": "4% odds",
     "history": [
       3,
-      3,
       4,
       4,
       4,
@@ -484,19 +510,19 @@
       18,
       18,
       19,
-      19
+      19,
+      4
     ],
     "raw_data": {
-      "odds": 19,
-      "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-21T16:33:28.215980"
+      "odds": 4,
+      "market": "Will the US next strike Iran on February 26, 2026 (ET)?",
+      "timestamp": "2026-02-21T17:28:32.936677"
     }
   },
   "pentagon": {
     "risk": 0,
-    "detail": "California Pizza Kitchen 16%, Extreme Pizza 16% (live)",
+    "detail": "California Pizza Kitchen 20%, Extreme Pizza 26% (live)",
     "history": [
-      30,
       30,
       30,
       100,
@@ -515,20 +541,21 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
-      "score": 16,
+      "score": 23,
       "risk_contribution": 0,
       "status": "Low Activity",
-      "detail_text": "California Pizza Kitchen 16%, Extreme Pizza 16% (live)",
+      "detail_text": "California Pizza Kitchen 20%, Extreme Pizza 26% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 16,
-        "Extreme Pizza": 16
+        "California Pizza Kitchen": 20,
+        "Extreme Pizza": 26
       },
-      "hour_et": 11,
-      "timestamp": "2026-02-21T16:33:27.968646",
+      "hour_et": 12,
+      "timestamp": "2026-02-21T17:28:32.546292",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -562,14 +589,13 @@
       "current_price": 71.19,
       "change_24h": 1.02,
       "risk": 40,
-      "timestamp": "2026-02-21T16:34:12.695880"
+      "timestamp": "2026-02-21T17:29:17.829479"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 18, 'Iran war'",
+    "detail": "Interest: 19, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -588,15 +614,16 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 18.2,
-      "avg_24h": 19.6,
+      "current_interest": 19.0,
+      "avg_24h": 19.3,
       "peak_keyword": "Iran war",
-      "peak_value": 53,
+      "peak_value": 55,
       "risk": 10,
-      "timestamp": "2026-02-21T16:34:13.556980"
+      "timestamp": "2026-02-21T17:29:18.739001"
     }
   },
   "buildup": {
@@ -655,8 +682,8 @@
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 10,
-          "al udeid": 2
+          "diego garcia": 11,
+          "al udeid": 3
         },
         "categories_present": 5,
         "categories_active": [
@@ -670,10 +697,10 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 24,
-        "deployment_matches": 18,
+        "deployment_matches": 19,
         "sample_headlines": [
           "US ramps up military buildup in Middle East amid talks with Iran - France 24",
-          "Here's what we know about the buildup of U.S. military assets in the Middle East - PBS",
+          "A look at the US military assets in the Middle East - AP News",
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
           "With U.S. forces in position, Trump mulls his options for Iran - NPR",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes"
@@ -681,11 +708,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-21T16:34:18.238058"
+      "timestamp": "2026-02-21T17:29:23.696880"
     }
   },
   "total_risk": {
-    "risk": 25,
+    "risk": 23,
     "history": [
       {
         "timestamp": 1770760800000,
@@ -718,11 +745,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771691658241,
-        "risk": 25
+        "timestamp": 1771694963700,
+        "risk": 23
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-21T16:34:18.241332"
+  "last_updated": "2026-02-21T17:29:23.700220"
 }
