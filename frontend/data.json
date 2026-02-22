@@ -4,7 +4,6 @@
     "detail": "25 articles, 9 critical, escalation: 0.26",
     "history": [
       20,
-      20,
       21,
       20,
       21,
@@ -13,6 +12,7 @@
       21,
       18,
       18,
+      17,
       17,
       17,
       17,
@@ -156,14 +156,13 @@
       "alert_count": 9,
       "avg_escalation": 0.261,
       "escalation_available": true,
-      "timestamp": "2026-02-22T19:28:36.177535"
+      "timestamp": "2026-02-22T19:49:27.281380"
     }
   },
   "flight": {
     "risk": 3,
-    "detail": "117 aircraft over Iran",
+    "detail": "120 aircraft over Iran",
     "history": [
-      3,
       9,
       18,
       36,
@@ -182,24 +181,25 @@
       21,
       13,
       11,
+      3,
       3
     ],
     "raw_data": {
-      "aircraft_count": 117,
-      "airline_count": 38,
+      "aircraft_count": 120,
+      "airline_count": 40,
       "airlines": [
         "IGO",
         "AIC",
         "AXB",
-        "NSZ",
         "WZZ",
-        "FYC",
         "BBC",
-        "MEA",
         "UAE",
-        "WMT"
+        "WMT",
+        "ABY",
+        "CPA",
+        "FDB"
       ],
-      "timestamp": "2026-02-22T19:28:37.709506"
+      "timestamp": "2026-02-22T19:49:29.549204"
     }
   },
   "tanker": {
@@ -230,7 +230,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-22T19:28:40.186668"
+      "timestamp": "2026-02-22T19:49:32.178891"
     }
   },
   "weather": {
@@ -650,7 +650,7 @@
                                   ],
                                   "raw_data": {
                                     "risk": 100,
-                                    "detail": "clear sky",
+                                    "detail": "clear",
                                     "history": [
                                       100,
                                       100,
@@ -675,12 +675,39 @@
                                       100
                                     ],
                                     "raw_data": {
-                                      "temp": 18,
-                                      "visibility": 8000,
-                                      "clouds": 0,
-                                      "description": "clear sky",
-                                      "condition": "Marginal",
-                                      "timestamp": "2026-02-22T10:19:15.925825"
+                                      "risk": 100,
+                                      "detail": "clear sky",
+                                      "history": [
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100,
+                                        100
+                                      ],
+                                      "raw_data": {
+                                        "temp": 18,
+                                        "visibility": 8000,
+                                        "clouds": 0,
+                                        "description": "clear sky",
+                                        "condition": "Marginal",
+                                        "timestamp": "2026-02-22T10:19:15.925825"
+                                      }
                                     }
                                   }
                                 }
@@ -703,7 +730,6 @@
     "risk": 20,
     "detail": "20% odds",
     "history": [
-      18,
       17,
       18,
       18,
@@ -722,12 +748,13 @@
       20,
       20,
       20,
+      20,
       20
     ],
     "raw_data": {
       "odds": 20,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-22T19:27:53.048768"
+      "timestamp": "2026-02-22T19:48:44.241820"
     }
   },
   "pentagon": {
@@ -748,11 +775,11 @@
       0,
       0,
       0,
-      0,
       30,
       30,
       30,
       30,
+      70,
       70
     ],
     "raw_data": {
@@ -766,7 +793,7 @@
         "Extreme Pizza": 100
       },
       "hour_et": 14,
-      "timestamp": "2026-02-22T19:27:52.766468",
+      "timestamp": "2026-02-22T19:48:43.467106",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -800,14 +827,13 @@
       "current_price": 71.3,
       "change_24h": -1.1,
       "risk": 30,
-      "timestamp": "2026-02-22T19:28:36.339536"
+      "timestamp": "2026-02-22T19:49:27.645349"
     }
   },
   "trends": {
     "risk": 10,
     "detail": "Interest: 16, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -826,15 +852,16 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 15.8,
-      "avg_24h": 18.3,
+      "current_interest": 16.0,
+      "avg_24h": 18.6,
       "peak_keyword": "Iran war",
-      "peak_value": 47,
+      "peak_value": 48,
       "risk": 10,
-      "timestamp": "2026-02-22T19:28:37.205712"
+      "timestamp": "2026-02-22T19:49:28.972228"
     }
   },
   "buildup": {
@@ -849,8 +876,8 @@
       65,
       65,
       65,
-      65,
       34,
+      65,
       65,
       65,
       65,
@@ -907,19 +934,19 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 25,
-        "deployment_matches": 17,
+        "escalation_matches": 28,
+        "deployment_matches": 16,
         "sample_headlines": [
           "A look at the US military assets in the Middle East - AP News",
-          "Trump curious why Iran has not 'capitulated' amid US military buildup, says Witkoff - Reuters",
           "'This isn\u2019t a token strike,' analysts say as US prepares for a major confrontation with Iran - The Jerusalem Post",
+          "Trump curious why Iran has not 'capitulated' amid US military buildup, says Witkoff - Reuters",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
-          "U.S.-Iran Nuclear Talks Stall as Military Buildup Raises War Fears - La Voce di New York"
+          "Aircraft Carrier Heads to Mediterranean Sea Ahead of Possible Iran Action - Newsweek"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-22T19:28:41.497258"
+      "timestamp": "2026-02-22T19:49:37.555483"
     }
   },
   "total_risk": {
@@ -956,11 +983,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771788521500,
+        "timestamp": 1771789777559,
         "risk": 23
       }
     ],
     "elevated_count": 2
   },
-  "last_updated": "2026-02-22T19:28:41.500500"
+  "last_updated": "2026-02-22T19:49:37.558978"
 }
