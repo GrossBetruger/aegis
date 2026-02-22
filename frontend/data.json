@@ -3,7 +3,6 @@
     "risk": 18,
     "detail": "24 articles, 9 critical, escalation: 0.27",
     "history": [
-      23,
       21,
       21,
       21,
@@ -22,6 +21,7 @@
       21,
       21,
       21,
+      18,
       18
     ],
     "raw_data": {
@@ -151,14 +151,13 @@
       "alert_count": 9,
       "avg_escalation": 0.265,
       "escalation_available": true,
-      "timestamp": "2026-02-22T11:47:32.295560"
+      "timestamp": "2026-02-22T12:56:00.599841"
     }
   },
   "flight": {
-    "risk": 21,
-    "detail": "93 aircraft over Iran",
+    "risk": 9,
+    "detail": "108 aircraft over Iran",
     "history": [
-      5,
       25,
       34,
       52,
@@ -177,24 +176,25 @@
       29,
       28,
       23,
-      21
+      21,
+      9
     ],
     "raw_data": {
-      "aircraft_count": 93,
-      "airline_count": 37,
+      "aircraft_count": 108,
+      "airline_count": 42,
       "airlines": [
-        "AXB",
-        "T7T",
         "AIC",
         "UAE",
-        "ISR",
-        "RAM",
-        "THY",
-        "ETD",
+        "QSM",
+        "ABY",
         "FDB",
-        "ABY"
+        "CYP",
+        "A6F",
+        "A6O",
+        "ADY",
+        "GFA"
       ],
-      "timestamp": "2026-02-22T11:47:34.558033"
+      "timestamp": "2026-02-22T12:56:02.105095"
     }
   },
   "tanker": {
@@ -225,7 +225,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-22T11:47:37.282386"
+      "timestamp": "2026-02-22T12:56:04.611090"
     }
   },
   "weather": {
@@ -359,7 +359,7 @@
             ],
             "raw_data": {
               "risk": 100,
-              "detail": "clear sky",
+              "detail": "clear",
               "history": [
                 100,
                 100,
@@ -384,12 +384,39 @@
                 100
               ],
               "raw_data": {
-                "temp": 18,
-                "visibility": 8000,
-                "clouds": 0,
-                "description": "clear sky",
-                "condition": "Marginal",
-                "timestamp": "2026-02-22T10:19:15.925825"
+                "risk": 100,
+                "detail": "clear sky",
+                "history": [
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100
+                ],
+                "raw_data": {
+                  "temp": 18,
+                  "visibility": 8000,
+                  "clouds": 0,
+                  "description": "clear sky",
+                  "condition": "Marginal",
+                  "timestamp": "2026-02-22T10:19:15.925825"
+                }
               }
             }
           }
@@ -401,7 +428,6 @@
     "risk": 3,
     "detail": "3% odds",
     "history": [
-      3,
       3,
       3,
       4,
@@ -420,19 +446,19 @@
       3,
       3,
       3,
+      3,
       3
     ],
     "raw_data": {
       "odds": 3,
       "market": "Will the US next strike Iran on February 24, 2026 (ET)?",
-      "timestamp": "2026-02-22T11:46:50.712839"
+      "timestamp": "2026-02-22T12:55:19.258689"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      30,
       100,
       100,
       70,
@@ -442,6 +468,7 @@
       100,
       100,
       30,
+      0,
       0,
       0,
       0,
@@ -460,8 +487,8 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 6,
-      "timestamp": "2026-02-22T11:46:50.279988",
+      "hour_et": 7,
+      "timestamp": "2026-02-22T12:55:18.903566",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -480,7 +507,7 @@
       40,
       40,
       40,
-      40,
+      30,
       30,
       30,
       30,
@@ -495,14 +522,13 @@
       "current_price": 71.3,
       "change_24h": -1.1,
       "risk": 30,
-      "timestamp": "2026-02-22T11:47:32.624304"
+      "timestamp": "2026-02-22T12:56:00.795827"
     }
   },
   "trends": {
-    "risk": 20,
-    "detail": "Interest: 27, 'Iran war'",
+    "risk": 10,
+    "detail": "Interest: 21, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -521,20 +547,21 @@
       10,
       10,
       30,
-      20
+      20,
+      10
     ],
     "raw_data": {
-      "current_interest": 27.4,
+      "current_interest": 21.2,
       "avg_24h": 18.6,
       "peak_keyword": "Iran war",
-      "peak_value": 69,
-      "risk": 20,
-      "timestamp": "2026-02-22T11:47:33.792667"
+      "peak_value": 59,
+      "risk": 10,
+      "timestamp": "2026-02-22T12:56:01.491494"
     }
   },
   "buildup": {
-    "risk": 65,
-    "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq, 7 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
+    "risk": 34,
+    "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq",
     "history": [
       65,
       65,
@@ -555,11 +582,11 @@
       65,
       65,
       65,
-      65
+      34
     ],
     "raw_data": {
-      "risk": 65,
-      "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq, 7 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
+      "risk": 34,
+      "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq",
       "force_posture": {
         "total_weighted_points": 77.7,
         "force_risk": 50,
@@ -577,54 +604,24 @@
       "carrier_air_risk": 42,
       "carrier_air_squadrons": 5,
       "air_presence": {
-        "platforms": {
-          "f-22": "Air Superiority Fighter",
-          "f-15e": "Strike Eagle",
-          "b-2": "Stealth Bomber",
-          "a-10": "Ground Attack",
-          "f-35": "5th Gen Fighter",
-          "b-52": "Strategic Bomber",
-          "typhoon": "Allied Fighter"
-        },
-        "bases": {
-          "lakenheath": 2,
-          "diego garcia": 10,
-          "al udeid": 2
-        },
-        "categories_present": 5,
-        "categories_active": [
-          "bombers",
-          "air superiority",
-          "strike fighters",
-          "ground attack",
-          "allied"
-        ]
+        "platforms": {},
+        "bases": {},
+        "categories_present": 0
       },
       "deployment_news": {
-        "article_count": 50,
-        "escalation_matches": 24,
-        "deployment_matches": 18,
-        "sample_headlines": [
-          "Explainer: US military buildup and scenarios for war with Iran - JNS.org",
-          "A look at the US military assets in the Middle East - AP News",
-          "Largest US Military Buildup Since 2003 Raises Prospect of Multi-Week Strike on Iran - The Media Line",
-          "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
-          "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times"
-        ]
+        "article_count": 0,
+        "escalation_matches": 0,
+        "deployment_matches": 0,
+        "sample_headlines": []
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-22T11:47:39.117232"
+      "timestamp": "2026-02-22T12:56:21.825276"
     }
   },
   "total_risk": {
-    "risk": 22,
+    "risk": 14,
     "history": [
-      {
-        "timestamp": 1771408800000,
-        "risk": 14,
-        "pinned": true
-      },
       {
         "timestamp": 1771495200000,
         "risk": 21,
@@ -651,11 +648,16 @@
         "pinned": true
       },
       {
-        "timestamp": 1771760859120,
-        "risk": 22
+        "timestamp": 1771761600000,
+        "risk": 22,
+        "pinned": true
+      },
+      {
+        "timestamp": 1771764981828,
+        "risk": 14
       }
     ],
-    "elevated_count": 1
+    "elevated_count": 0
   },
-  "last_updated": "2026-02-22T11:47:39.120083"
+  "last_updated": "2026-02-22T12:56:21.828316"
 }
