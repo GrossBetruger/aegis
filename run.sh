@@ -22,7 +22,7 @@ case "${1:-help}" in
     serve)
         echo "🌐 Serving frontend at http://localhost:8000"
         echo "   Press Ctrl+C to stop"
-        cd frontend && uv run python -m http.server 8000
+        cd frontend && uv run python -m http.server 8000 --bind 0.0.0.0
         ;;
     
     all)
@@ -30,19 +30,19 @@ case "${1:-help}" in
         uv run python update_data.py
         echo "✅ Data updated"
         echo ""
-        echo "🌐 Serving frontend at http://localhost:8000"
+        echo "🌐 Serving frontend at http://0.0.0.0:8000"
         echo "   Press Ctrl+C to stop"
-        cd frontend && uv run python -m http.server 8000
+        cd frontend && uv run python -m http.server 8000 --bind 0.0.0.0
         ;;
     
     watch)
         echo "👀 Starting watch mode..."
-        echo "   - Frontend: http://localhost:8000"
+        echo "   - Frontend: http://0.0.0.0:8000"
         echo "   - Data updates every 30 minutes"
         echo "   Press Ctrl+C to stop"
         
         # Start frontend server in background
-        (cd frontend && uv run python -m http.server 8000) &
+        (cd frontend && uv run python -m http.server 8000 --bind 0.0.0.0) &
         SERVER_PID=$!
         
         # Save PID to file for kill command
