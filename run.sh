@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+[[ -f "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
+
 # Pentagon Pizza Meter / StrikeRadar - Run Commands
 # Usage:
 #   ./run.sh update    - Run the backend data updater (updates npoint.io)
