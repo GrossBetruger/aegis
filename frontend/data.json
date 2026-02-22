@@ -1,10 +1,9 @@
 {
   "news": {
-    "risk": 21,
-    "detail": "26 articles, 11 critical, escalation: 0.29",
+    "risk": 18,
+    "detail": "24 articles, 9 critical, escalation: 0.27",
     "history": [
       23,
-      23,
       21,
       21,
       21,
@@ -22,7 +21,8 @@
       21,
       21,
       21,
-      21
+      21,
+      18
     ],
     "raw_data": {
       "articles": [
@@ -47,16 +47,6 @@
           "escalation": 0.879
         },
         {
-          "title": "Detained Briton describes life in Iran jail to BBC hours before sentencing",
-          "is_alert": false,
-          "escalation": 0.09
-        },
-        {
-          "title": "US build-up of warships and fighter jets tracked near Iran",
-          "is_alert": true,
-          "escalation": 0.929
-        },
-        {
           "title": "Iran must abandon enriched uranium and not produce more, Netanyahu says",
           "is_alert": false,
           "escalation": 0.026
@@ -65,6 +55,16 @@
           "title": "Iran ready to discuss compromises to reach nuclear deal, minister tells BBC in Tehran",
           "is_alert": false,
           "escalation": 0.003
+        },
+        {
+          "title": "US build-up of warships and fighter jets tracked near Iran",
+          "is_alert": true,
+          "escalation": 0.929
+        },
+        {
+          "title": "Detained Briton describes life in Iran jail to BBC hours before sentencing",
+          "is_alert": false,
+          "escalation": 0.09
         },
         {
           "title": "US-Iran tension: Why Tehran may choose confrontation over 'surrender'",
@@ -107,16 +107,6 @@
           "escalation": 0.429
         },
         {
-          "title": "'I saw people getting shot': Eyewitness tells of Iran protest crackdown",
-          "is_alert": true,
-          "escalation": 0.985
-        },
-        {
-          "title": "Fears Iran's internet shutdown could lead to 'extreme digital isolation'",
-          "is_alert": true,
-          "escalation": 0.084
-        },
-        {
           "title": "Watch: BBC in Tehran sees government's 'political reply' to massive protests",
           "is_alert": false,
           "escalation": 0.045
@@ -157,18 +147,17 @@
           "escalation": 0.004
         }
       ],
-      "total_count": 26,
-      "alert_count": 11,
-      "avg_escalation": 0.286,
+      "total_count": 24,
+      "alert_count": 9,
+      "avg_escalation": 0.265,
       "escalation_available": true,
-      "timestamp": "2026-02-22T11:25:56.111575"
+      "timestamp": "2026-02-22T11:47:32.295560"
     }
   },
   "flight": {
-    "risk": 23,
-    "detail": "90 aircraft over Iran",
+    "risk": 21,
+    "detail": "93 aircraft over Iran",
     "history": [
-      5,
       5,
       25,
       34,
@@ -187,24 +176,25 @@
       29,
       29,
       28,
-      23
+      23,
+      21
     ],
     "raw_data": {
-      "aircraft_count": 90,
-      "airline_count": 34,
+      "aircraft_count": 93,
+      "airline_count": 37,
       "airlines": [
         "AXB",
         "T7T",
-        "HMZ",
-        "IAW",
+        "AIC",
         "UAE",
-        "ETD",
         "ISR",
-        "ABY",
+        "RAM",
         "THY",
-        "FDB"
+        "ETD",
+        "FDB",
+        "ABY"
       ],
-      "timestamp": "2026-02-22T11:25:57.550486"
+      "timestamp": "2026-02-22T11:47:34.558033"
     }
   },
   "tanker": {
@@ -235,7 +225,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-22T11:26:00.150697"
+      "timestamp": "2026-02-22T11:47:37.282386"
     }
   },
   "weather": {
@@ -343,7 +333,7 @@
           ],
           "raw_data": {
             "risk": 100,
-            "detail": "clear sky",
+            "detail": "clear",
             "history": [
               100,
               100,
@@ -368,12 +358,39 @@
               100
             ],
             "raw_data": {
-              "temp": 18,
-              "visibility": 8000,
-              "clouds": 0,
-              "description": "clear sky",
-              "condition": "Marginal",
-              "timestamp": "2026-02-22T10:19:15.925825"
+              "risk": 100,
+              "detail": "clear sky",
+              "history": [
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+              ],
+              "raw_data": {
+                "temp": 18,
+                "visibility": 8000,
+                "clouds": 0,
+                "description": "clear sky",
+                "condition": "Marginal",
+                "timestamp": "2026-02-22T10:19:15.925825"
+              }
             }
           }
         }
@@ -384,7 +401,6 @@
     "risk": 3,
     "detail": "3% odds",
     "history": [
-      4,
       3,
       3,
       3,
@@ -403,12 +419,13 @@
       3,
       3,
       3,
+      3,
       3
     ],
     "raw_data": {
       "odds": 3,
       "market": "Will the US next strike Iran on February 24, 2026 (ET)?",
-      "timestamp": "2026-02-22T11:25:10.786201"
+      "timestamp": "2026-02-22T11:46:50.712839"
     }
   },
   "pentagon": {
@@ -416,7 +433,6 @@
     "detail": "No data available",
     "history": [
       30,
-      30,
       100,
       100,
       70,
@@ -426,6 +442,7 @@
       100,
       100,
       30,
+      0,
       0,
       0,
       0,
@@ -444,7 +461,7 @@
       "source": "none",
       "live_scores": null,
       "hour_et": 6,
-      "timestamp": "2026-02-22T11:25:10.537955",
+      "timestamp": "2026-02-22T11:46:50.279988",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -464,7 +481,7 @@
       40,
       40,
       40,
-      40,
+      30,
       30,
       30,
       30,
@@ -478,12 +495,12 @@
       "current_price": 71.3,
       "change_24h": -1.1,
       "risk": 30,
-      "timestamp": "2026-02-22T11:25:56.263417"
+      "timestamp": "2026-02-22T11:47:32.624304"
     }
   },
   "trends": {
-    "risk": 30,
-    "detail": "Interest: 29, 'Iran war'",
+    "risk": 20,
+    "detail": "Interest: 27, 'Iran war'",
     "history": [
       10,
       10,
@@ -503,16 +520,16 @@
       10,
       10,
       10,
-      10,
-      30
+      30,
+      20
     ],
     "raw_data": {
-      "current_interest": 29.0,
-      "avg_24h": 18.8,
+      "current_interest": 27.4,
+      "avg_24h": 18.6,
       "peak_keyword": "Iran war",
-      "peak_value": 72,
-      "risk": 30,
-      "timestamp": "2026-02-22T11:25:57.000722"
+      "peak_value": 69,
+      "risk": 20,
+      "timestamp": "2026-02-22T11:47:33.792667"
     }
   },
   "buildup": {
@@ -586,7 +603,7 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 24,
-        "deployment_matches": 17,
+        "deployment_matches": 18,
         "sample_headlines": [
           "Explainer: US military buildup and scenarios for war with Iran - JNS.org",
           "A look at the US military assets in the Middle East - AP News",
@@ -597,11 +614,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-22T11:26:01.625686"
+      "timestamp": "2026-02-22T11:47:39.117232"
     }
   },
   "total_risk": {
-    "risk": 23,
+    "risk": 22,
     "history": [
       {
         "timestamp": 1771408800000,
@@ -634,11 +651,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771759561628,
-        "risk": 23
+        "timestamp": 1771760859120,
+        "risk": 22
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-22T11:26:01.628755"
+  "last_updated": "2026-02-22T11:47:39.120083"
 }
