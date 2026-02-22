@@ -16,7 +16,8 @@ sudo apt-get install -y -qq curl git chromium chromium-driver
 if ! command -v uv &>/dev/null; then
     echo "Installing uv..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
-    export PATH="$HOME/.local/bin:$PATH"
+    source "$HOME/.local/bin/env"
+    grep -q '.local/bin/env' ~/.bashrc 2>/dev/null || echo 'source $HOME/.local/bin/env' >> ~/.bashrc
 else
     echo "uv found ($(uv --version))"
 fi
