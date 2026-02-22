@@ -1,14 +1,13 @@
 {
   "news": {
-    "risk": 20,
-    "detail": "27 articles, 11 critical, escalation: 0.28",
+    "risk": 21,
+    "detail": "26 articles, 11 critical, escalation: 0.29",
     "history": [
       23,
       23,
       23,
       23,
       23,
-      23,
       21,
       21,
       21,
@@ -22,14 +21,15 @@
       20,
       20,
       21,
-      20
+      20,
+      21
     ],
     "raw_data": {
       "articles": [
         {
           "title": "Iran students stage first large anti-government protests since deadly crackdown",
           "is_alert": false,
-          "escalation": 0.055
+          "escalation": 0.056
         },
         {
           "title": "What could happen if the US strikes Iran? Here are seven scenarios",
@@ -69,7 +69,7 @@
         {
           "title": "US-Iran tension: Why Tehran may choose confrontation over 'surrender'",
           "is_alert": false,
-          "escalation": 0.305
+          "escalation": 0.304
         },
         {
           "title": "Machine guns to machetes: Weapons that massacred thousands in Iran",
@@ -104,7 +104,7 @@
         {
           "title": "'We all know someone who was killed' -  Iran protesters tell BBC of brutal crackdown",
           "is_alert": true,
-          "escalation": 0.428
+          "escalation": 0.429
         },
         {
           "title": "'I saw people getting shot': Eyewitness tells of Iran protest crackdown",
@@ -139,12 +139,12 @@
         {
           "title": "'Now there's the threat of executions' in Iran",
           "is_alert": false,
-          "escalation": 0.318
+          "escalation": 0.317
         },
         {
           "title": "Mortuary videos show how deadly Iran crackdown has become",
           "is_alert": false,
-          "escalation": 0.36
+          "escalation": 0.361
         },
         {
           "title": "Iran\u2019s president says his country will not bow to US pressure",
@@ -155,25 +155,19 @@
           "title": "Iran will not bow down to US pressure in nuclear talks, Pezeshkian says",
           "is_alert": true,
           "escalation": 0.004
-        },
-        {
-          "title": "Iran demands \u2018evidence\u2019 as Trump, UN experts highlight protest killings",
-          "is_alert": false,
-          "escalation": 0.244
         }
       ],
-      "total_count": 27,
+      "total_count": 26,
       "alert_count": 11,
-      "avg_escalation": 0.284,
+      "avg_escalation": 0.286,
       "escalation_available": true,
-      "timestamp": "2026-02-22T10:19:10.727525"
+      "timestamp": "2026-02-22T09:35:46.446977"
     }
   },
   "flight": {
-    "risk": 36,
-    "detail": "74 aircraft over Iran",
+    "risk": 29,
+    "detail": "83 aircraft over Iran",
     "history": [
-      19,
       20,
       11,
       13,
@@ -192,24 +186,25 @@
       3,
       9,
       18,
-      36
+      36,
+      29
     ],
     "raw_data": {
-      "aircraft_count": 74,
+      "aircraft_count": 83,
       "airline_count": 42,
       "airlines": [
+        "T7M",
         "FYC",
-        "IAW",
-        "IGO",
-        "UAE",
-        "ISR",
-        "QSM",
-        "RAM",
-        "ETD",
+        "ELY",
+        "AXB",
+        "VJH",
+        "ABY",
         "FDB",
-        "ABY"
+        "UAE",
+        "THY",
+        "AIZ"
       ],
-      "timestamp": "2026-02-22T10:19:13.339587"
+      "timestamp": "2026-02-22T09:35:47.896994"
     }
   },
   "tanker": {
@@ -240,12 +235,12 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-22T10:19:15.686569"
+      "timestamp": "2026-02-22T09:35:50.380040"
     }
   },
   "weather": {
     "risk": 100,
-    "detail": "clear sky",
+    "detail": "clear",
     "history": [
       100,
       100,
@@ -269,19 +264,45 @@
       100
     ],
     "raw_data": {
-      "temp": 18,
-      "visibility": 8000,
-      "clouds": 0,
-      "description": "clear sky",
-      "condition": "Marginal",
-      "timestamp": "2026-02-22T10:19:15.925825"
+      "risk": 100,
+      "detail": "clear sky",
+      "history": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "raw_data": {
+        "temp": 18,
+        "visibility": 8000,
+        "clouds": 0,
+        "description": "clear sky",
+        "condition": "Marginal",
+        "timestamp": "2026-02-22T10:19:15.925825"
+      }
     }
   },
   "polymarket": {
-    "risk": 18,
-    "detail": "18% odds",
+    "risk": 3,
+    "detail": "3% odds",
     "history": [
-      19,
       4,
       4,
       4,
@@ -300,12 +321,13 @@
       18,
       17,
       18,
-      18
+      18,
+      3
     ],
     "raw_data": {
-      "odds": 18,
-      "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-22T10:19:02.190667"
+      "odds": 3,
+      "market": "Will the US next strike Iran on February 26, 2026 (ET)?",
+      "timestamp": "2026-02-22T09:35:00.953721"
     }
   },
   "pentagon": {
@@ -314,19 +336,19 @@
     "history": [
       0,
       0,
+      100,
+      30,
+      30,
+      100,
+      100,
+      70,
+      70,
+      70,
+      70,
+      100,
+      100,
+      30,
       0,
-      100,
-      30,
-      30,
-      100,
-      100,
-      70,
-      70,
-      70,
-      70,
-      100,
-      100,
-      30,
       0,
       0,
       0,
@@ -340,15 +362,15 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 3,
-      "timestamp": "2026-02-22T10:19:02.081001",
+      "hour_et": 4,
+      "timestamp": "2026-02-22T09:35:00.732705",
       "is_late_night": true,
       "is_weekend": true
     }
   },
   "oil": {
     "risk": 30,
-    "detail": "$71.30 (-0.6%)",
+    "detail": "$71.30 (-1.1%)",
     "history": [
       40,
       40,
@@ -365,7 +387,7 @@
       40,
       40,
       40,
-      40,
+      30,
       30,
       30,
       30,
@@ -373,14 +395,14 @@
     ],
     "raw_data": {
       "current_price": 71.3,
-      "change_24h": -0.64,
+      "change_24h": -1.1,
       "risk": 30,
-      "timestamp": "2026-02-22T10:19:11.040856"
+      "timestamp": "2026-02-22T09:35:46.631239"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 24, 'Iran war'",
+    "detail": "Interest: 22, 'Iran war'",
     "history": [
       10,
       10,
@@ -404,12 +426,12 @@
       10
     ],
     "raw_data": {
-      "current_interest": 24.2,
-      "avg_24h": 18.3,
+      "current_interest": 22.4,
+      "avg_24h": 18.7,
       "peak_keyword": "Iran war",
-      "peak_value": 70,
+      "peak_value": 66,
       "risk": 10,
-      "timestamp": "2026-02-22T10:19:13.012313"
+      "timestamp": "2026-02-22T09:35:47.406801"
     }
   },
   "buildup": {
@@ -483,22 +505,22 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 25,
-        "deployment_matches": 19,
+        "deployment_matches": 14,
         "sample_headlines": [
           "Explainer: US military buildup and scenarios for war with Iran - JNS.org",
           "A look at the US military assets in the Middle East - AP News",
           "Largest US Military Buildup Since 2003 Raises Prospect of Multi-Week Strike on Iran - The Media Line",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
-          "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times"
+          "Iran Is Threatening to Sink a US Aircraft Carrier. Can It? - The National Interest"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-22T10:19:18.028162"
+      "timestamp": "2026-02-22T09:35:51.683243"
     }
   },
   "total_risk": {
-    "risk": 27,
+    "risk": 24,
     "history": [
       {
         "timestamp": 1771408800000,
@@ -531,11 +553,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771748358037,
-        "risk": 27
+        "timestamp": 1771752951686,
+        "risk": 24
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-22T10:19:18.037485"
+  "last_updated": "2026-02-22T09:35:51.686810"
 }
