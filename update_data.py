@@ -1928,17 +1928,14 @@ def fetch_pentagon_data():
         detail_text = "No data available"
         source = "none"
 
+    risk_contribution = round(score / 10, 1)
     if score >= 70:
-        risk_contribution = 10
         status = "High Activity"
     elif score >= 50:
-        risk_contribution = 7
         status = "Elevated"
     elif score >= 30:
-        risk_contribution = 3
         status = "Normal"
     else:
-        risk_contribution = 0
         status = "No Data" if source == "none" else "Low Activity"
 
     pentagon_data = {
