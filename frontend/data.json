@@ -9,7 +9,6 @@
       21,
       21,
       21,
-      21,
       20,
       20,
       20,
@@ -21,6 +20,7 @@
       21,
       18,
       18,
+      17,
       17,
       17
     ],
@@ -146,14 +146,13 @@
       "alert_count": 8,
       "avg_escalation": 0.281,
       "escalation_available": true,
-      "timestamp": "2026-02-22T14:30:33.533084"
+      "timestamp": "2026-02-22T14:57:04.205433"
     }
   },
   "flight": {
-    "risk": 25,
-    "detail": "88 aircraft over Iran",
+    "risk": 17,
+    "detail": "98 aircraft over Iran",
     "history": [
-      52,
       46,
       33,
       21,
@@ -172,24 +171,25 @@
       21,
       9,
       95,
-      25
+      25,
+      17
     ],
     "raw_data": {
-      "aircraft_count": 88,
-      "airline_count": 34,
+      "aircraft_count": 98,
+      "airline_count": 37,
       "airlines": [
         "AIC",
+        "KNE",
+        "AXB",
         "ELY",
         "UAE",
         "WZZ",
         "ENT",
-        "ABY",
         "ETD",
-        "SHI",
-        "UPE",
-        "FDB"
+        "ABY",
+        "UPE"
       ],
-      "timestamp": "2026-02-22T14:30:35.355559"
+      "timestamp": "2026-02-22T14:57:06.315366"
     }
   },
   "tanker": {
@@ -220,7 +220,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-22T14:30:37.799638"
+      "timestamp": "2026-02-22T14:57:08.979243"
     }
   },
   "weather": {
@@ -432,7 +432,7 @@
                   ],
                   "raw_data": {
                     "risk": 100,
-                    "detail": "clear sky",
+                    "detail": "clear",
                     "history": [
                       100,
                       100,
@@ -457,12 +457,39 @@
                       100
                     ],
                     "raw_data": {
-                      "temp": 18,
-                      "visibility": 8000,
-                      "clouds": 0,
-                      "description": "clear sky",
-                      "condition": "Marginal",
-                      "timestamp": "2026-02-22T10:19:15.925825"
+                      "risk": 100,
+                      "detail": "clear sky",
+                      "history": [
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100,
+                        100
+                      ],
+                      "raw_data": {
+                        "temp": 18,
+                        "visibility": 8000,
+                        "clouds": 0,
+                        "description": "clear sky",
+                        "condition": "Marginal",
+                        "timestamp": "2026-02-22T10:19:15.925825"
+                      }
                     }
                   }
                 }
@@ -477,7 +504,6 @@
     "risk": 4,
     "detail": "4% odds",
     "history": [
-      4,
       4,
       3,
       3,
@@ -496,12 +522,13 @@
       3,
       3,
       3,
+      4,
       4
     ],
     "raw_data": {
       "odds": 4,
-      "market": "Will the US next strike Iran on February 27, 2026 (ET)?",
-      "timestamp": "2026-02-22T14:29:53.051156"
+      "market": "Will the US next strike Iran on February 28, 2026 (ET)?",
+      "timestamp": "2026-02-22T14:56:23.276206"
     }
   },
   "pentagon": {
@@ -511,10 +538,10 @@
       70,
       70,
       70,
-      70,
       100,
       100,
       30,
+      0,
       0,
       0,
       0,
@@ -537,14 +564,14 @@
       "source": "none",
       "live_scores": null,
       "hour_et": 9,
-      "timestamp": "2026-02-22T14:29:52.953482",
+      "timestamp": "2026-02-22T14:56:22.575939",
       "is_late_night": false,
       "is_weekend": true
     }
   },
   "oil": {
     "risk": 30,
-    "detail": "$71.30 (-1.1%)",
+    "detail": "$71.30 (-0.6%)",
     "history": [
       40,
       40,
@@ -553,7 +580,7 @@
       40,
       40,
       40,
-      40,
+      30,
       30,
       30,
       30,
@@ -569,9 +596,9 @@
     ],
     "raw_data": {
       "current_price": 71.3,
-      "change_24h": -1.1,
+      "change_24h": -0.64,
       "risk": 30,
-      "timestamp": "2026-02-22T14:30:33.698613"
+      "timestamp": "2026-02-22T14:57:04.411176"
     }
   },
   "trends": {
@@ -592,20 +619,20 @@
       10,
       10,
       10,
-      10,
       30,
       20,
+      10,
       10,
       10,
       10
     ],
     "raw_data": {
-      "current_interest": 20.4,
-      "avg_24h": 18.3,
+      "current_interest": 20.0,
+      "avg_24h": 18.5,
       "peak_keyword": "Iran war",
-      "peak_value": 55,
+      "peak_value": 56,
       "risk": 10,
-      "timestamp": "2026-02-22T14:30:34.799263"
+      "timestamp": "2026-02-22T14:57:05.497899"
     }
   },
   "buildup": {
@@ -628,8 +655,8 @@
       65,
       65,
       65,
-      65,
       34,
+      65,
       65,
       65
     ],
@@ -679,22 +706,22 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 26,
-        "deployment_matches": 17,
+        "deployment_matches": 13,
         "sample_headlines": [
           "A look at the US military assets in the Middle East - AP News",
+          "Trump curious why Iran has not 'capitulated' amid US military buildup, says Witkoff - Reuters",
           "Explainer: US military buildup and scenarios for war with Iran - JNS.org",
           "Largest US Military Buildup Since 2003 Raises Prospect of Multi-Week Strike on Iran - The Media Line",
-          "Trump curious why Iran has not 'capitulated' amid US military buildup, says Witkoff - Reuters",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-22T14:30:39.259553"
+      "timestamp": "2026-02-22T14:57:10.701077"
     }
   },
   "total_risk": {
-    "risk": 22,
+    "risk": 21,
     "history": [
       {
         "timestamp": 1771495200000,
@@ -727,11 +754,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771770639262,
-        "risk": 22
+        "timestamp": 1771772230704,
+        "risk": 21
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-22T14:30:39.262906"
+  "last_updated": "2026-02-22T14:57:10.704329"
 }
