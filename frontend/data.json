@@ -4,7 +4,6 @@
     "detail": "23 articles, 8 critical, escalation: 0.28",
     "history": [
       21,
-      21,
       20,
       20,
       20,
@@ -16,6 +15,7 @@
       21,
       18,
       18,
+      17,
       17,
       17,
       17,
@@ -89,7 +89,7 @@
         {
           "title": "Why Iran's response to a US attack could be different this time",
           "is_alert": true,
-          "escalation": 0.302
+          "escalation": 0.301
         },
         {
           "title": "Iran's internet is returning - but not for everyone",
@@ -104,7 +104,7 @@
         {
           "title": "'We all know someone who was killed' -  Iran protesters tell BBC of brutal crackdown",
           "is_alert": true,
-          "escalation": 0.428
+          "escalation": 0.429
         },
         {
           "title": "Watch: BBC in Tehran sees government's 'political reply' to massive protests",
@@ -139,21 +139,20 @@
         {
           "title": "Iran-US tensions: What would blocking Strait of Hormuz mean for oil, LNG?",
           "is_alert": false,
-          "escalation": 0.144
+          "escalation": 0.142
         }
       ],
       "total_count": 23,
       "alert_count": 8,
       "avg_escalation": 0.281,
       "escalation_available": true,
-      "timestamp": "2026-02-22T17:28:49.909032"
+      "timestamp": "2026-02-22T17:55:07.817839"
     }
   },
   "flight": {
-    "risk": 21,
-    "detail": "92 aircraft over Iran",
+    "risk": 13,
+    "detail": "102 aircraft over Iran",
     "history": [
-      7,
       23,
       16,
       3,
@@ -172,24 +171,25 @@
       30,
       25,
       28,
-      21
+      21,
+      13
     ],
     "raw_data": {
-      "aircraft_count": 92,
+      "aircraft_count": 102,
       "airline_count": 35,
       "airlines": [
         "IGO",
+        "WZZ",
+        "AKJ",
         "ELY",
         "MNB",
         "MEA",
         "UAE",
-        "WZZ",
         "WMT",
-        "ETD",
-        "ABY",
-        "CPA"
+        "UBG",
+        "ETD"
       ],
-      "timestamp": "2026-02-22T17:28:52.064600"
+      "timestamp": "2026-02-22T17:55:09.329855"
     }
   },
   "tanker": {
@@ -220,7 +220,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-22T17:28:54.784843"
+      "timestamp": "2026-02-22T17:55:11.782157"
     }
   },
   "weather": {
@@ -562,7 +562,7 @@
                             ],
                             "raw_data": {
                               "risk": 100,
-                              "detail": "clear sky",
+                              "detail": "clear",
                               "history": [
                                 100,
                                 100,
@@ -587,12 +587,39 @@
                                 100
                               ],
                               "raw_data": {
-                                "temp": 18,
-                                "visibility": 8000,
-                                "clouds": 0,
-                                "description": "clear sky",
-                                "condition": "Marginal",
-                                "timestamp": "2026-02-22T10:19:15.925825"
+                                "risk": 100,
+                                "detail": "clear sky",
+                                "history": [
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100,
+                                  100
+                                ],
+                                "raw_data": {
+                                  "temp": 18,
+                                  "visibility": 8000,
+                                  "clouds": 0,
+                                  "description": "clear sky",
+                                  "condition": "Marginal",
+                                  "timestamp": "2026-02-22T10:19:15.925825"
+                                }
                               }
                             }
                           }
@@ -612,7 +639,6 @@
     "risk": 20,
     "detail": "20% odds",
     "history": [
-      4,
       18,
       18,
       18,
@@ -631,19 +657,19 @@
       4,
       4,
       19,
+      20,
       20
     ],
     "raw_data": {
       "odds": 20,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-22T17:28:15.645378"
+      "timestamp": "2026-02-22T17:54:26.344504"
     }
   },
   "pentagon": {
     "risk": 30,
-    "detail": "California Pizza Kitchen 10%, Extreme Pizza 55% (live)",
+    "detail": "Wiseguy Pizza 56%, California Pizza Kitchen 10%, Extreme Pizza 55% (live)",
     "history": [
-      100,
       30,
       0,
       0,
@@ -661,32 +687,34 @@
       0,
       0,
       0,
+      30,
       30,
       30
     ],
     "raw_data": {
-      "score": 32,
+      "score": 40,
       "risk_contribution": 3,
       "status": "Normal",
-      "detail_text": "California Pizza Kitchen 10%, Extreme Pizza 55% (live)",
+      "detail_text": "Wiseguy Pizza 56%, California Pizza Kitchen 10%, Extreme Pizza 55% (live)",
       "source": "live",
       "live_scores": {
+        "Wiseguy Pizza": 56,
         "California Pizza Kitchen": 10,
         "Extreme Pizza": 55
       },
       "hour_et": 12,
-      "timestamp": "2026-02-22T17:28:15.266244",
+      "timestamp": "2026-02-22T17:54:26.256522",
       "is_late_night": false,
       "is_weekend": true
     }
   },
   "oil": {
     "risk": 30,
-    "detail": "$71.30 (-0.6%)",
+    "detail": "$71.30 (-1.1%)",
     "history": [
       40,
       40,
-      40,
+      30,
       30,
       30,
       30,
@@ -707,16 +735,15 @@
     ],
     "raw_data": {
       "current_price": 71.3,
-      "change_24h": -0.64,
+      "change_24h": -1.1,
       "risk": 30,
-      "timestamp": "2026-02-22T17:28:50.293646"
+      "timestamp": "2026-02-22T17:55:07.985637"
     }
   },
   "trends": {
     "risk": 10,
     "detail": "Interest: 16, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -735,15 +762,16 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 16.2,
+      "current_interest": 16.4,
       "avg_24h": 18.4,
       "peak_keyword": "Iran war",
-      "peak_value": 47,
+      "peak_value": 50,
       "risk": 10,
-      "timestamp": "2026-02-22T17:28:51.451018"
+      "timestamp": "2026-02-22T17:55:08.789553"
     }
   },
   "buildup": {
@@ -761,8 +789,8 @@
       65,
       65,
       65,
-      65,
       34,
+      65,
       65,
       65,
       65,
@@ -816,23 +844,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 28,
+        "escalation_matches": 26,
         "deployment_matches": 16,
         "sample_headlines": [
           "Trump curious why Iran has not 'capitulated' amid US military buildup, says Witkoff - Yahoo",
           "A look at the US military assets in the Middle East - AP News",
+          "U.S.-Iran Nuclear Talks Stall as Military Buildup Raises War Fears - La Voce di New York",
           "Explainer: US military buildup and scenarios for war with Iran - JNS.org",
-          "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
-          "Largest US Military Buildup Since 2003 Raises Prospect of Multi-Week Strike on Iran - The Media Line"
+          "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-22T17:28:56.254974"
+      "timestamp": "2026-02-22T17:55:13.404422"
     }
   },
   "total_risk": {
-    "risk": 25,
+    "risk": 23,
     "history": [
       {
         "timestamp": 1771495200000,
@@ -865,11 +893,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771781336258,
-        "risk": 25
+        "timestamp": 1771782913409,
+        "risk": 23
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-22T17:28:56.258412"
+  "last_updated": "2026-02-22T17:55:13.409336"
 }
