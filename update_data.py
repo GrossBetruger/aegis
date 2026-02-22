@@ -562,7 +562,7 @@ def fetch_news_intel():
 
         if escalation_available:
             escalation_risk = avg_escalation * 100
-            risk = max(3, round(keyword_risk * 0.6 + escalation_risk * 0.4))
+            risk = max(3, round(keyword_risk * 0.4 + escalation_risk * 0.6))
         else:
             risk = max(3, round(keyword_risk))
 
@@ -1636,7 +1636,7 @@ def update_data_file():
         avg_escalation = news_intel.get("avg_escalation", 0.0)
         if escalation_available:
             escalation_risk = avg_escalation * 100
-            news_display_risk = max(3, round(keyword_risk * 0.6 + escalation_risk * 0.4))
+            news_display_risk = max(3, round(keyword_risk * 0.4 + escalation_risk * 0.6))
             news_detail = f"{articles} articles, {alert_count} critical, escalation: {avg_escalation:.2f}"
         else:
             news_display_risk = max(3, round(keyword_risk))
