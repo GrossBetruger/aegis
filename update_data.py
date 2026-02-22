@@ -1323,13 +1323,16 @@ def fetch_oil_prices():
         # Filter out None values
         closes = [c for c in closes if c is not None]
 
-        if not closes:
-            print("No closing prices available")
+        if closes:
+            current_price = closes[-1]
+            price_24h_ago = closes[0] if len(closes) > 24 else closes[0]
+        elif meta.get("regularMarketPrice"):
+            current_price = meta["regularMarketPrice"]
+            price_24h_ago = meta.get("chartPreviousClose", current_price)
+            print(f"  Using meta prices (market closed): ${current_price:.2f}")
+        else:
+            print("No oil price data available")
             return None
-
-        current_price = closes[-1]
-        # Get price from ~24 hours ago (24 data points for hourly data)
-        price_24h_ago = closes[0] if len(closes) > 24 else closes[0]
 
         # Calculate 24h change
         change_24h = ((current_price - price_24h_ago) / price_24h_ago) * 100
