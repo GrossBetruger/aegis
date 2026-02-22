@@ -3,25 +3,25 @@
     "risk": 20,
     "detail": "25 articles, 9 critical, escalation: 0.26",
     "history": [
+      21,
+      21,
+      21,
+      21,
+      18,
+      18,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
+      17,
       20,
-      21,
-      21,
-      21,
-      21,
-      18,
-      18,
-      17,
-      17,
-      17,
-      17,
-      17,
-      17,
-      17,
-      17,
-      17,
-      17,
-      17,
-      17,
       20
     ],
     "raw_data": {
@@ -156,14 +156,13 @@
       "alert_count": 9,
       "avg_escalation": 0.261,
       "escalation_available": true,
-      "timestamp": "2026-02-22T21:29:29.381122"
+      "timestamp": "2026-02-22T21:51:59.698434"
     }
   },
   "flight": {
-    "risk": 64,
-    "detail": "39 aircraft over Iran",
+    "risk": 55,
+    "detail": "50 aircraft over Iran",
     "history": [
-      36,
       29,
       29,
       28,
@@ -182,24 +181,25 @@
       3,
       3,
       23,
-      64
+      64,
+      55
     ],
     "raw_data": {
-      "aircraft_count": 39,
-      "airline_count": 21,
+      "aircraft_count": 50,
+      "airline_count": 31,
       "airlines": [
+        "AIC",
         "AXB",
         "PGT",
         "MNB",
+        "UAE",
         "IGO",
         "TKJ",
         "ENT",
-        "UAE",
-        "FDB",
-        "ABY",
-        "ADY"
+        "THY",
+        "FDB"
       ],
-      "timestamp": "2026-02-22T21:29:31.634957"
+      "timestamp": "2026-02-22T21:52:01.156636"
     }
   },
   "tanker": {
@@ -230,7 +230,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-22T21:29:34.246908"
+      "timestamp": "2026-02-22T21:52:03.594821"
     }
   },
   "weather": {
@@ -728,7 +728,7 @@
                                         ],
                                         "raw_data": {
                                           "risk": 100,
-                                          "detail": "clear sky",
+                                          "detail": "clear",
                                           "history": [
                                             100,
                                             100,
@@ -753,12 +753,39 @@
                                             100
                                           ],
                                           "raw_data": {
-                                            "temp": 18,
-                                            "visibility": 8000,
-                                            "clouds": 0,
-                                            "description": "clear sky",
-                                            "condition": "Marginal",
-                                            "timestamp": "2026-02-22T10:19:15.925825"
+                                            "risk": 100,
+                                            "detail": "clear sky",
+                                            "history": [
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100,
+                                              100
+                                            ],
+                                            "raw_data": {
+                                              "temp": 18,
+                                              "visibility": 8000,
+                                              "clouds": 0,
+                                              "description": "clear sky",
+                                              "condition": "Marginal",
+                                              "timestamp": "2026-02-22T10:19:15.925825"
+                                            }
                                           }
                                         }
                                       }
@@ -781,10 +808,9 @@
     }
   },
   "polymarket": {
-    "risk": 19,
-    "detail": "19% odds",
+    "risk": 21,
+    "detail": "21% odds",
     "history": [
-      18,
       3,
       3,
       3,
@@ -803,19 +829,19 @@
       20,
       20,
       20,
-      19
+      19,
+      21
     ],
     "raw_data": {
-      "odds": 19,
+      "odds": 21,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-22T21:28:46.472677"
+      "timestamp": "2026-02-22T21:51:17.089760"
     }
   },
   "pentagon": {
-    "risk": 46,
-    "detail": "Wiseguy Pizza 78%, California Pizza Kitchen 0%, Extreme Pizza 60% (live)",
+    "risk": 30,
+    "detail": "California Pizza Kitchen 0%, Extreme Pizza 60% (live)",
     "history": [
-      0,
       0,
       0,
       0,
@@ -834,21 +860,21 @@
       70,
       70,
       100,
-      46
+      46,
+      30
     ],
     "raw_data": {
-      "score": 46,
-      "risk_contribution": 4.6,
+      "score": 30,
+      "risk_contribution": 3.0,
       "status": "Normal",
-      "detail_text": "Wiseguy Pizza 78%, California Pizza Kitchen 0%, Extreme Pizza 60% (live)",
+      "detail_text": "California Pizza Kitchen 0%, Extreme Pizza 60% (live)",
       "source": "live",
       "live_scores": {
-        "Wiseguy Pizza": 78,
         "California Pizza Kitchen": 0,
         "Extreme Pizza": 60
       },
       "hour_et": 16,
-      "timestamp": "2026-02-22T21:28:45.742097",
+      "timestamp": "2026-02-22T21:51:16.833367",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -882,14 +908,13 @@
       "current_price": 71.3,
       "change_24h": -1.1,
       "risk": 30,
-      "timestamp": "2026-02-22T21:29:29.786819"
+      "timestamp": "2026-02-22T21:51:59.877868"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 15, 'Iran war'",
+    "detail": "Interest: 16, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -908,15 +933,16 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 15.2,
-      "avg_24h": 18.4,
+      "current_interest": 15.8,
+      "avg_24h": 18.1,
       "peak_keyword": "Iran war",
       "peak_value": 46,
       "risk": 10,
-      "timestamp": "2026-02-22T21:29:31.162707"
+      "timestamp": "2026-02-22T21:52:00.670697"
     }
   },
   "buildup": {
@@ -928,8 +954,8 @@
       65,
       65,
       65,
-      65,
       34,
+      65,
       65,
       65,
       65,
@@ -989,8 +1015,8 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 29,
-        "deployment_matches": 15,
+        "escalation_matches": 28,
+        "deployment_matches": 14,
         "sample_headlines": [
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
           "'This isn\u2019t a token strike,' analysts say as US prepares for a major confrontation with Iran - The Jerusalem Post",
@@ -1001,11 +1027,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-22T21:29:35.965682"
+      "timestamp": "2026-02-22T21:52:05.476669"
     }
   },
   "total_risk": {
-    "risk": 34,
+    "risk": 32,
     "history": [
       {
         "timestamp": 1771495200000,
@@ -1038,11 +1064,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771795775969,
-        "risk": 34
+        "timestamp": 1771797125480,
+        "risk": 32
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-22T21:29:35.968947"
+  "last_updated": "2026-02-22T21:52:05.480030"
 }
