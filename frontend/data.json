@@ -1,11 +1,10 @@
 {
   "news": {
     "risk": 22,
-    "detail": "24 articles, 10 critical, escalation: 0.27",
+    "detail": "23 articles, 9 critical, escalation: 0.28",
     "history": [
       17,
       17,
-      17,
       20,
       20,
       20,
@@ -17,6 +16,7 @@
       21,
       21,
       21,
+      22,
       22,
       22,
       22,
@@ -140,25 +140,19 @@
           "title": "Mortuary videos show how deadly Iran crackdown has become",
           "is_alert": false,
           "escalation": 0.361
-        },
-        {
-          "title": "Iran says ready for talks but will defend itself against US aggression",
-          "is_alert": true,
-          "escalation": 0.035
         }
       ],
-      "total_count": 24,
-      "alert_count": 10,
-      "avg_escalation": 0.266,
+      "total_count": 23,
+      "alert_count": 9,
+      "avg_escalation": 0.276,
       "escalation_available": true,
-      "timestamp": "2026-02-23T16:32:35.846528"
+      "timestamp": "2026-02-23T17:43:31.454939"
     }
   },
   "flight": {
-    "risk": 18,
-    "detail": "96 aircraft over Iran",
+    "risk": 23,
+    "detail": "90 aircraft over Iran",
     "history": [
-      3,
       3,
       23,
       64,
@@ -177,29 +171,30 @@
       29,
       21,
       24,
-      18
+      18,
+      23
     ],
     "raw_data": {
-      "aircraft_count": 96,
-      "airline_count": 36,
+      "aircraft_count": 90,
+      "airline_count": 39,
       "airlines": [
-        "PGT",
-        "AIC",
-        "DUB",
-        "BBC",
-        "UAE",
-        "MEA",
+        "AXB",
         "WZZ",
+        "IGO",
+        "ELY",
+        "UAE",
+        "ETD",
         "ABY",
         "FDB",
+        "CPA",
         "UNI"
       ],
-      "timestamp": "2026-02-23T16:32:38.110088"
+      "timestamp": "2026-02-23T17:43:33.077714"
     }
   },
   "tanker": {
-    "risk": 10,
-    "detail": "1 detected in region",
+    "risk": 0,
+    "detail": "0 detected in region",
     "history": [
       0,
       0,
@@ -212,7 +207,6 @@
       0,
       0,
       0,
-      0,
       10,
       0,
       10,
@@ -220,14 +214,13 @@
       10,
       0,
       10,
-      10
+      10,
+      0
     ],
     "raw_data": {
-      "tanker_count": 1,
-      "callsigns": [
-        "CNV512"
-      ],
-      "timestamp": "2026-02-23T16:32:38.110088"
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-02-23T17:43:33.077714"
     }
   },
   "weather": {
@@ -1141,7 +1134,7 @@
                                                                         ],
                                                                         "raw_data": {
                                                                           "risk": 100,
-                                                                          "detail": "clear sky",
+                                                                          "detail": "clear",
                                                                           "history": [
                                                                             100,
                                                                             100,
@@ -1166,12 +1159,39 @@
                                                                             100
                                                                           ],
                                                                           "raw_data": {
-                                                                            "temp": 18,
-                                                                            "visibility": 8000,
-                                                                            "clouds": 0,
-                                                                            "description": "clear sky",
-                                                                            "condition": "Marginal",
-                                                                            "timestamp": "2026-02-22T10:19:15.925825"
+                                                                            "risk": 100,
+                                                                            "detail": "clear sky",
+                                                                            "history": [
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100,
+                                                                              100
+                                                                            ],
+                                                                            "raw_data": {
+                                                                              "temp": 18,
+                                                                              "visibility": 8000,
+                                                                              "clouds": 0,
+                                                                              "description": "clear sky",
+                                                                              "condition": "Marginal",
+                                                                              "timestamp": "2026-02-22T10:19:15.925825"
+                                                                            }
                                                                           }
                                                                         }
                                                                       }
@@ -1210,12 +1230,11 @@
     }
   },
   "polymarket": {
-    "risk": 20,
-    "detail": "20% odds",
+    "risk": 21,
+    "detail": "21% odds",
     "history": [
       20,
       20,
-      20,
       19,
       21,
       21,
@@ -1232,19 +1251,19 @@
       19,
       19,
       19,
-      20
+      20,
+      21
     ],
     "raw_data": {
-      "odds": 20,
+      "odds": 21,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-23T16:31:54.633491"
+      "timestamp": "2026-02-23T17:42:51.110637"
     }
   },
   "pentagon": {
-    "risk": 34,
-    "detail": "California Pizza Kitchen 34% (live)",
+    "risk": 28,
+    "detail": "California Pizza Kitchen 45%, Extreme Pizza 12% (live)",
     "history": [
-      70,
       70,
       100,
       46,
@@ -1263,28 +1282,29 @@
       0,
       0,
       0,
-      34
+      34,
+      28
     ],
     "raw_data": {
-      "score": 34,
-      "risk_contribution": 3.4,
-      "status": "Normal",
-      "detail_text": "California Pizza Kitchen 34% (live)",
+      "score": 28,
+      "risk_contribution": 2.8,
+      "status": "Low Activity",
+      "detail_text": "California Pizza Kitchen 45%, Extreme Pizza 12% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 34
+        "California Pizza Kitchen": 45,
+        "Extreme Pizza": 12
       },
-      "hour_et": 11,
-      "timestamp": "2026-02-23T16:31:54.432596",
+      "hour_et": 12,
+      "timestamp": "2026-02-23T17:42:50.953462",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 40,
-    "detail": "$71.85 (+1.4%)",
+    "risk": 30,
+    "detail": "$71.10 (+0.3%)",
     "history": [
-      30,
       30,
       30,
       30,
@@ -1303,13 +1323,14 @@
       40,
       40,
       50,
-      40
+      40,
+      30
     ],
     "raw_data": {
-      "current_price": 71.85,
-      "change_24h": 1.35,
-      "risk": 40,
-      "timestamp": "2026-02-23T16:32:36.140606"
+      "current_price": 71.1,
+      "change_24h": 0.3,
+      "risk": 30,
+      "timestamp": "2026-02-23T17:43:31.608837"
     }
   },
   "trends": {
@@ -1330,20 +1351,20 @@
       10,
       10,
       10,
-      10,
       20,
+      10,
       10,
       10,
       10,
       10
     ],
     "raw_data": {
-      "current_interest": 15.8,
-      "avg_24h": 18.9,
+      "current_interest": 16.0,
+      "avg_24h": 18.5,
       "peak_keyword": "Iran war",
-      "peak_value": 44,
+      "peak_value": 46,
       "risk": 10,
-      "timestamp": "2026-02-23T16:32:37.482001"
+      "timestamp": "2026-02-23T17:43:32.525493"
     }
   },
   "buildup": {
@@ -1362,8 +1383,8 @@
       65,
       65,
       65,
-      65,
       62,
+      65,
       65,
       65,
       65,
@@ -1402,8 +1423,8 @@
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 11,
-          "al udeid": 1
+          "diego garcia": 10,
+          "al udeid": 2
         },
         "categories_present": 5,
         "categories_active": [
@@ -1416,23 +1437,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 28,
-        "deployment_matches": 17,
+        "escalation_matches": 26,
+        "deployment_matches": 19,
         "sample_headlines": [
+          "US jets, Gerald R. Ford aircraft carrier arrive in Israel - The Jerusalem Post",
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
-          "A look at the US military assets in the Middle East - AP News",
           "Strike a deal or face a strike: US continues military buildup in the Middle East - Forces News",
-          "USS Gerald R. Ford in Greece amid Iran-US tensions: How soon could it reach USS Abraham Lincoln in a potential strike posture? - WION",
+          "A look at the US military assets in the Middle East - AP News",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-23T16:32:39.829162"
+      "timestamp": "2026-02-23T17:43:34.565465"
     }
   },
   "total_risk": {
-    "risk": 28,
+    "risk": 26,
     "history": [
       {
         "timestamp": 1771624800000,
@@ -1465,11 +1486,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771864359832,
-        "risk": 28
+        "timestamp": 1771868614568,
+        "risk": 26
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-23T16:32:39.832568"
+  "last_updated": "2026-02-23T17:43:34.568733"
 }
