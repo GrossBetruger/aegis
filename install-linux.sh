@@ -10,7 +10,7 @@ echo ""
 # 1. System packages (Chromium for Selenium, curl for uv installer)
 echo "Installing system dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y -qq curl git chromium chromium-driver
+sudo apt-get install -y -qq curl git lsof chromium chromium-driver
 
 # 2. uv
 if ! command -v uv &>/dev/null; then
