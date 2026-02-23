@@ -1,7 +1,7 @@
 {
   "news": {
     "risk": 21,
-    "detail": "25 articles, 10 critical, escalation: 0.26",
+    "detail": "24 articles, 9 critical, escalation: 0.27",
     "history": [
       17,
       17,
@@ -12,7 +12,6 @@
       17,
       17,
       17,
-      17,
       20,
       20,
       20,
@@ -21,6 +20,7 @@
       20,
       20,
       20,
+      21,
       21,
       21
     ],
@@ -145,25 +145,19 @@
           "title": "Iran hails \u2018encouraging signals\u2019 from US before nuclear talks on Thursday",
           "is_alert": false,
           "escalation": 0.001
-        },
-        {
-          "title": "Iranian students rally as universities reopen after nationwide protests",
-          "is_alert": true,
-          "escalation": 0.054
         }
       ],
-      "total_count": 25,
-      "alert_count": 10,
-      "avg_escalation": 0.256,
+      "total_count": 24,
+      "alert_count": 9,
+      "avg_escalation": 0.265,
       "escalation_available": true,
-      "timestamp": "2026-02-23T08:55:32.050502"
+      "timestamp": "2026-02-23T10:00:01.167638"
     }
   },
   "flight": {
-    "risk": 26,
-    "detail": "86 aircraft over Iran",
+    "risk": 35,
+    "detail": "75 aircraft over Iran",
     "history": [
-      17,
       30,
       25,
       28,
@@ -182,29 +176,30 @@
       11,
       22,
       22,
-      26
+      26,
+      35
     ],
     "raw_data": {
-      "aircraft_count": 86,
-      "airline_count": 38,
+      "aircraft_count": 75,
+      "airline_count": 37,
       "airlines": [
-        "ELJ",
-        "FYC",
-        "SAS",
-        "IAW",
-        "IGO",
+        "PGT",
+        "GTI",
+        "ELY",
+        "AXB",
+        "AIC",
         "UAE",
-        "VIR",
-        "THY",
         "ABY",
-        "ETD"
+        "FDB",
+        "ENT",
+        "EFC"
       ],
-      "timestamp": "2026-02-23T08:55:33.558214"
+      "timestamp": "2026-02-23T10:00:03.328978"
     }
   },
   "tanker": {
-    "risk": 10,
-    "detail": "1 detected in region",
+    "risk": 0,
+    "detail": "0 detected in region",
     "history": [
       0,
       0,
@@ -224,15 +219,13 @@
       0,
       0,
       0,
-      0,
-      10
+      10,
+      0
     ],
     "raw_data": {
-      "tanker_count": 1,
-      "callsigns": [
-        "CNV5323"
-      ],
-      "timestamp": "2026-02-23T08:55:33.558214"
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-02-23T10:00:03.328978"
     }
   },
   "weather": {
@@ -964,7 +957,7 @@
                                                           ],
                                                           "raw_data": {
                                                             "risk": 100,
-                                                            "detail": "clear sky",
+                                                            "detail": "clear",
                                                             "history": [
                                                               100,
                                                               100,
@@ -989,12 +982,39 @@
                                                               100
                                                             ],
                                                             "raw_data": {
-                                                              "temp": 18,
-                                                              "visibility": 8000,
-                                                              "clouds": 0,
-                                                              "description": "clear sky",
-                                                              "condition": "Marginal",
-                                                              "timestamp": "2026-02-22T10:19:15.925825"
+                                                              "risk": 100,
+                                                              "detail": "clear sky",
+                                                              "history": [
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100,
+                                                                100
+                                                              ],
+                                                              "raw_data": {
+                                                                "temp": 18,
+                                                                "visibility": 8000,
+                                                                "clouds": 0,
+                                                                "description": "clear sky",
+                                                                "condition": "Marginal",
+                                                                "timestamp": "2026-02-22T10:19:15.925825"
+                                                              }
                                                             }
                                                           }
                                                         }
@@ -1031,7 +1051,6 @@
     "history": [
       4,
       4,
-      4,
       19,
       20,
       20,
@@ -1048,19 +1067,19 @@
       20,
       20,
       20,
+      19,
       19
     ],
     "raw_data": {
       "odds": 19,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-23T08:54:48.951637"
+      "timestamp": "2026-02-23T09:59:19.214293"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      0,
       0,
       0,
       30,
@@ -1079,6 +1098,7 @@
       72,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -1088,17 +1108,16 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 3,
-      "timestamp": "2026-02-23T08:54:48.780837",
+      "hour_et": 4,
+      "timestamp": "2026-02-23T09:59:18.830309",
       "is_late_night": true,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 30,
-    "detail": "$70.96 (+0.1%)",
+    "risk": 40,
+    "detail": "$71.54 (+1.3%)",
     "history": [
-      30,
       30,
       30,
       30,
@@ -1117,18 +1136,19 @@
       30,
       25,
       30,
-      30
+      30,
+      40
     ],
     "raw_data": {
-      "current_price": 70.96,
-      "change_24h": 0.1,
-      "risk": 30,
-      "timestamp": "2026-02-23T08:55:32.234444"
+      "current_price": 71.54,
+      "change_24h": 1.3,
+      "risk": 40,
+      "timestamp": "2026-02-23T10:00:01.492960"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 22, 'Iran war'",
+    "detail": "Interest: 23, 'Iran war'",
     "history": [
       10,
       10,
@@ -1152,17 +1172,17 @@
       10
     ],
     "raw_data": {
-      "current_interest": 22.4,
-      "avg_24h": 18.8,
+      "current_interest": 23.0,
+      "avg_24h": 18.5,
       "peak_keyword": "Iran war",
-      "peak_value": 60,
+      "peak_value": 63,
       "risk": 10,
-      "timestamp": "2026-02-23T08:55:32.965811"
+      "timestamp": "2026-02-23T10:00:02.550163"
     }
   },
   "buildup": {
-    "risk": 65,
-    "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq, 7 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
+    "risk": 62,
+    "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
       65,
       65,
@@ -1183,11 +1203,11 @@
       65,
       65,
       65,
-      65
+      62
     ],
     "raw_data": {
-      "risk": 65,
-      "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq, 7 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
+      "risk": 62,
+      "detail": "2 carriers, 11 destroyers near CENTCOM (78 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 77.7,
         "force_risk": 50,
@@ -1208,30 +1228,30 @@
         "platforms": {
           "f-22": "Air Superiority Fighter",
           "f-15e": "Strike Eagle",
-          "b-2": "Stealth Bomber",
-          "b-52": "Strategic Bomber",
-          "a-10": "Ground Attack",
           "f-35": "5th Gen Fighter",
-          "typhoon": "Allied Fighter"
+          "b-2": "Stealth Bomber",
+          "a-10": "Ground Attack",
+          "b-52": "Strategic Bomber",
+          "b-1": "Bomber"
         },
         "bases": {
-          "lakenheath": 2,
-          "diego garcia": 11,
-          "al udeid": 2
+          "lakenheath": 3,
+          "diego garcia": 14,
+          "al udeid": 3,
+          "uae": 1
         },
-        "categories_present": 5,
+        "categories_present": 4,
         "categories_active": [
           "bombers",
           "air superiority",
           "strike fighters",
-          "ground attack",
-          "allied"
+          "ground attack"
         ]
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 27,
-        "deployment_matches": 17,
+        "escalation_matches": 28,
+        "deployment_matches": 18,
         "sample_headlines": [
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
           "A look at the US military assets in the Middle East - AP News",
@@ -1242,11 +1262,11 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-23T08:55:35.032980"
+      "timestamp": "2026-02-23T10:00:05.006567"
     }
   },
   "total_risk": {
-    "risk": 27,
+    "risk": 28,
     "history": [
       {
         "timestamp": 1771581600000,
@@ -1279,11 +1299,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771836935036,
-        "risk": 27
+        "timestamp": 1771840805009,
+        "risk": 28
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-23T08:55:35.036313"
+  "last_updated": "2026-02-23T10:00:05.009746"
 }
