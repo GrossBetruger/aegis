@@ -7,7 +7,6 @@
       17,
       17,
       17,
-      17,
       20,
       20,
       20,
@@ -19,6 +18,7 @@
       21,
       21,
       21,
+      22,
       22,
       22,
       22,
@@ -94,7 +94,7 @@
         {
           "title": "Why Iran's response to a US attack could be different this time",
           "is_alert": true,
-          "escalation": 0.302
+          "escalation": 0.301
         },
         {
           "title": "Iran's internet is returning - but not for everyone",
@@ -109,7 +109,7 @@
         {
           "title": "'We all know someone who was killed' -  Iran protesters tell BBC of brutal crackdown",
           "is_alert": true,
-          "escalation": 0.429
+          "escalation": 0.428
         },
         {
           "title": "Watch: BBC in Tehran sees government's 'political reply' to massive protests",
@@ -151,14 +151,13 @@
       "alert_count": 10,
       "avg_escalation": 0.266,
       "escalation_available": true,
-      "timestamp": "2026-02-23T14:31:48.560047"
+      "timestamp": "2026-02-23T15:28:49.837706"
     }
   },
   "flight": {
-    "risk": 21,
-    "detail": "92 aircraft over Iran",
+    "risk": 24,
+    "detail": "89 aircraft over Iran",
     "history": [
-      13,
       11,
       3,
       3,
@@ -177,29 +176,30 @@
       14,
       18,
       29,
-      21
+      21,
+      24
     ],
     "raw_data": {
-      "aircraft_count": 92,
-      "airline_count": 34,
+      "aircraft_count": 89,
+      "airline_count": 36,
       "airlines": [
-        "PGT",
-        "BNL",
+        "DUB",
         "ELY",
         "UAE",
-        "DUB",
         "IGO",
-        "CFT",
-        "ETD",
         "ABY",
-        "AIC"
+        "FDB",
+        "ETD",
+        "CYP",
+        "ADY",
+        "GFA"
       ],
-      "timestamp": "2026-02-23T14:31:50.234016"
+      "timestamp": "2026-02-23T15:28:51.578364"
     }
   },
   "tanker": {
-    "risk": 0,
-    "detail": "0 detected in region",
+    "risk": 10,
+    "detail": "1 detected in region",
     "history": [
       0,
       0,
@@ -214,18 +214,20 @@
       0,
       0,
       0,
-      0,
       10,
       0,
       10,
       10,
       10,
-      0
+      0,
+      10
     ],
     "raw_data": {
-      "tanker_count": 0,
-      "callsigns": [],
-      "timestamp": "2026-02-23T14:31:50.234016"
+      "tanker_count": 1,
+      "callsigns": [
+        "RRR4944"
+      ],
+      "timestamp": "2026-02-23T15:28:51.578364"
     }
   },
   "weather": {
@@ -1087,7 +1089,7 @@
                                                                     ],
                                                                     "raw_data": {
                                                                       "risk": 100,
-                                                                      "detail": "clear sky",
+                                                                      "detail": "clear",
                                                                       "history": [
                                                                         100,
                                                                         100,
@@ -1112,12 +1114,39 @@
                                                                         100
                                                                       ],
                                                                       "raw_data": {
-                                                                        "temp": 18,
-                                                                        "visibility": 8000,
-                                                                        "clouds": 0,
-                                                                        "description": "clear sky",
-                                                                        "condition": "Marginal",
-                                                                        "timestamp": "2026-02-22T10:19:15.925825"
+                                                                        "risk": 100,
+                                                                        "detail": "clear sky",
+                                                                        "history": [
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100,
+                                                                          100
+                                                                        ],
+                                                                        "raw_data": {
+                                                                          "temp": 18,
+                                                                          "visibility": 8000,
+                                                                          "clouds": 0,
+                                                                          "description": "clear sky",
+                                                                          "condition": "Marginal",
+                                                                          "timestamp": "2026-02-22T10:19:15.925825"
+                                                                        }
                                                                       }
                                                                     }
                                                                   }
@@ -1161,7 +1190,6 @@
       20,
       20,
       20,
-      20,
       19,
       21,
       21,
@@ -1171,6 +1199,7 @@
       20,
       20,
       20,
+      19,
       19,
       19,
       19,
@@ -1181,14 +1210,13 @@
     "raw_data": {
       "odds": 19,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-23T14:31:13.435783"
+      "timestamp": "2026-02-23T15:28:08.263885"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      30,
       30,
       70,
       70,
@@ -1207,6 +1235,7 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -1216,17 +1245,16 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 9,
-      "timestamp": "2026-02-23T14:31:13.189251",
+      "hour_et": 10,
+      "timestamp": "2026-02-23T15:28:07.618349",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 40,
-    "detail": "$71.57 (+1.0%)",
+    "risk": 50,
+    "detail": "$72.02 (+2.0%)",
     "history": [
-      30,
       30,
       30,
       30,
@@ -1245,20 +1273,20 @@
       30,
       30,
       40,
-      40
+      40,
+      50
     ],
     "raw_data": {
-      "current_price": 71.57,
-      "change_24h": 0.96,
-      "risk": 40,
-      "timestamp": "2026-02-23T14:31:48.744343"
+      "current_price": 72.02,
+      "change_24h": 1.98,
+      "risk": 50,
+      "timestamp": "2026-02-23T15:28:49.997304"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 17, 'Iran war'",
+    "detail": "Interest: 18, 'Iran war'",
     "history": [
-      10,
       10,
       10,
       10,
@@ -1277,15 +1305,16 @@
       10,
       20,
       10,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 17.4,
-      "avg_24h": 18.7,
+      "current_interest": 18.0,
+      "avg_24h": 18.9,
       "peak_keyword": "Iran war",
-      "peak_value": 47,
+      "peak_value": 52,
       "risk": 10,
-      "timestamp": "2026-02-23T14:31:49.736174"
+      "timestamp": "2026-02-23T15:28:50.894090"
     }
   },
   "buildup": {
@@ -1306,8 +1335,8 @@
       65,
       65,
       65,
-      65,
       62,
+      65,
       65,
       65,
       65,
@@ -1358,23 +1387,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 27,
-        "deployment_matches": 18,
+        "escalation_matches": 25,
+        "deployment_matches": 19,
         "sample_headlines": [
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
+          "Strike a deal or face a strike: US continues military buildup in the Middle East - Forces News",
           "A look at the US military assets in the Middle East - AP News",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
-          "'This isn\u2019t a token strike,' analysts say as US prepares for a major confrontation with Iran - The Jerusalem Post",
-          "Opinion | The U.S. is sleepwalking into war with Iran. Trump won\u2019t explain why. - The Washington Post"
+          "Iran hit by resurgent protests as U.S. builds pressure ahead of new nuclear talks - NBC News"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-23T14:31:52.124781"
+      "timestamp": "2026-02-23T15:28:53.017938"
     }
   },
   "total_risk": {
-    "risk": 25,
+    "risk": 28,
     "history": [
       {
         "timestamp": 1771624800000,
@@ -1407,11 +1436,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771857112127,
-        "risk": 25
+        "timestamp": 1771860533021,
+        "risk": 28
       }
     ],
-    "elevated_count": 1
+    "elevated_count": 2
   },
-  "last_updated": "2026-02-23T14:31:52.127826"
+  "last_updated": "2026-02-23T15:28:53.021253"
 }
