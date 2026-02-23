@@ -586,139 +586,109 @@ def fetch_news_intel():
 
 
 
-def fetch_aviation_data():
-    """Fetch OpenSky Network data for aircraft over Iran"""
+def fetch_opensky_data():
+    """Single OpenSky call: civil aviation over Iran + military/allied tankers in Middle East."""
     try:
         print("\n" + "=" * 50)
-        print("AVIATION TRACKING")
+        print("OPENSKY — AVIATION & TANKERS")
         print("=" * 50)
-        # Iran airspace bounding box
-        url = "https://opensky-network.org/api/states/all?lamin=25&lomin=44&lamax=40&lomax=64"
 
+        # Middle East bbox (covers Iran too)
+        url = "https://opensky-network.org/api/states/all?lamin=20&lomin=40&lamax=40&lomax=65"
         response = make_request(url, timeout=20)
         if not response.ok:
             print(f"  OpenSky API error: HTTP {response.status_code}")
-            return None
+            return None, None
 
         data = response.json()
+        if not data.get("states") or not isinstance(data["states"], list):
+            print("  OpenSky returned no states (possibly rate-limited)")
+            return None, None
+
+        # Iran airspace sub-bbox for civil aviation counting
+        IRAN_LAT_MIN, IRAN_LAT_MAX = 25, 40
+        IRAN_LON_MIN, IRAN_LON_MAX = 44, 64
+
+        # Military ICAO hex ranges
+        USAF_HEX = (int("AE0000", 16), int("AE7FFF", 16))    # US Air Force
+        USN_HEX  = (int("ADF000", 16), int("ADF7FF", 16))     # US Navy/Marines
+        RAF_HEX  = (int("43C000", 16), int("43CFFF", 16))     # Royal Air Force
+
+        TANKER_PREFIXES = [
+            # USAF tanker callsigns
+            "IRON", "SHELL", "TEXAN", "ETHYL", "PEARL", "ARCO",
+            "ESSO", "MOBIL", "GULF", "TOPAZ", "PACK", "DOOM",
+            "TREK", "REACH",
+            # US Navy
+            "CNV", "NAVY",
+            # RAF / allied
+            "RRR", "RAFR", "TYNE", "TARTAN",
+            # NATO
+            "NATO", "MMF",
+        ]
+
         civil_count = 0
         airlines = []
-
-        if not data.get("states") or not isinstance(data["states"], list):
-            print(f"  OpenSky returned no states (possibly rate-limited)")
-            return None
-
-        if data.get("states") and isinstance(data["states"], list):
-            # US military ICAO hex range
-            usaf_hex_start = int("AE0000", 16)
-            usaf_hex_end = int("AE7FFF", 16)
-
-            for aircraft in data["states"]:
-                icao = aircraft[0]
-                callsign = (aircraft[1] or "").strip()
-                on_ground = aircraft[8]
-
-                if on_ground:
-                    continue
-
-                # Skip US military
-                try:
-                    icao_num = int(icao, 16)
-                    if usaf_hex_start <= icao_num <= usaf_hex_end:
-                        continue
-                except:
-                    pass
-
-                civil_count += 1
-
-                if callsign and len(callsign) >= 3:
-                    airline_code = callsign[:3]
-                    if airline_code not in airlines:
-                        airlines.append(airline_code)
-
-        print(f"Detected {civil_count} aircraft, {len(airlines)} airlines over Iran")
-        risk = max(3, 95 - round(civil_count * 0.8))
-        print(f"✓ Result: Risk {risk}%")
-        return {
-            "aircraft_count": civil_count,
-            "airline_count": len(airlines),
-            "airlines": airlines[:10],  # Top 10 airlines
-            "timestamp": datetime.now().isoformat(),
-        }
-    except Exception as e:
-        print(f"Aviation error: {e}")
-        return None
-
-
-def fetch_tanker_activity():
-    """Fetch US military tanker activity in Middle East"""
-    try:
-        print("\n" + "=" * 50)
-        print("TANKER ACTIVITY")
-        print("=" * 50)
-        # Middle East bounding box
-        url = "https://opensky-network.org/api/states/all?lamin=20&lomin=40&lamax=40&lomax=65"
-
-        response = make_request(url, timeout=20)
-        if not response.ok:
-            print(f"OpenSky API error: {response.status_code}")
-            return None
-
-        data = response.json()
         tanker_count = 0
         tanker_callsigns = []
 
-        tanker_prefixes = [
-            "IRON",
-            "SHELL",
-            "TEXAN",
-            "ETHYL",
-            "PEARL",
-            "ARCO",
-            "ESSO",
-            "MOBIL",
-            "GULF",
-            "TOPAZ",
-            "PACK",
-            "DOOM",
-            "TREK",
-            "REACH",
-        ]
-        usaf_hex_start = int("AE0000", 16)
-        usaf_hex_end = int("AE7FFF", 16)
+        for ac in data["states"]:
+            icao = ac[0]
+            callsign = (ac[1] or "").strip().upper()
+            lat = ac[6]
+            lon = ac[5]
+            on_ground = ac[8]
 
-        if data.get("states") and isinstance(data["states"], list):
-            for aircraft in data["states"]:
-                icao = aircraft[0]
-                callsign = (aircraft[1] or "").strip().upper()
+            if on_ground:
+                continue
 
-                try:
-                    icao_num = int(icao, 16)
-                    is_us_military = usaf_hex_start <= icao_num <= usaf_hex_end
-                except:
-                    is_us_military = False
+            # --- Tanker detection (whole Middle East bbox) ---
+            is_tanker = any(callsign.startswith(p) for p in TANKER_PREFIXES)
+            has_kc = "KC" in callsign or "TANKER" in callsign
 
-                is_tanker_callsign = any(
-                    callsign.startswith(prefix) for prefix in tanker_prefixes
-                )
-                has_kc_pattern = "KC" in callsign or "TANKER" in callsign
+            try:
+                icao_num = int(icao, 16)
+                is_mil = any(lo <= icao_num <= hi for lo, hi in [USAF_HEX, USN_HEX, RAF_HEX])
+            except ValueError:
+                is_mil = False
 
-                if is_us_military and (is_tanker_callsign or has_kc_pattern):
+            if is_tanker or has_kc or (is_mil and callsign):
+                if is_tanker or has_kc:
                     tanker_count += 1
                     if callsign:
                         tanker_callsigns.append(callsign)
+                continue  # don't count military as civil
 
-        print(f"Detected {tanker_count} tankers in Middle East")
-        risk = round((tanker_count / 10) * 100)
-        print(f"✓ Result: Risk {risk}%")
-        return {
-            "tanker_count": tanker_count,
-            "callsigns": tanker_callsigns[:5],  # Top 5
-            "timestamp": datetime.now().isoformat(),
+            # --- Civil aviation (Iran sub-bbox only) ---
+            if lat is not None and lon is not None:
+                if IRAN_LAT_MIN <= lat <= IRAN_LAT_MAX and IRAN_LON_MIN <= lon <= IRAN_LON_MAX:
+                    civil_count += 1
+                    if callsign and len(callsign) >= 3:
+                        code = callsign[:3]
+                        if code not in airlines:
+                            airlines.append(code)
+
+        print(f"  Civil: {civil_count} aircraft, {len(airlines)} airlines over Iran")
+        print(f"  Tankers: {tanker_count} detected in Middle East — {tanker_callsigns}")
+
+        ts = datetime.now().isoformat()
+
+        aviation = {
+            "aircraft_count": civil_count,
+            "airline_count": len(airlines),
+            "airlines": airlines[:10],
+            "timestamp": ts,
         }
+        tanker = {
+            "tanker_count": tanker_count,
+            "callsigns": tanker_callsigns[:10],
+            "timestamp": ts,
+        }
+        return aviation, tanker
+
     except Exception as e:
-        print(f"Tanker error: {e}")
-        return None
+        print(f"  OpenSky error: {e}")
+        return None, None
 
 
 # =============================================
@@ -1602,14 +1572,10 @@ def update_data_file():
         if trends_data:
             current_data["trends"] = trends_data
 
-        # Aviation data
-        aviation_data = fetch_aviation_data()
+        # Aviation + Tanker data (single OpenSky call)
+        aviation_data, tanker_data = fetch_opensky_data()
         if aviation_data:
             current_data["aviation"] = aviation_data
-
-        # Tanker activity
-        time.sleep(2)  # Rate limiting for OpenSky
-        tanker_data = fetch_tanker_activity()
         if tanker_data:
             current_data["tanker"] = tanker_data
 
@@ -1653,15 +1619,18 @@ def update_data_file():
             flight_risk = max(3, 95 - round(aircraft_count * 0.8))
             flight_detail = f"{round(aircraft_count)} aircraft over Iran"
         else:
-            flight_risk = previous_data.get("flight", {}).get("risk", 50)
+            flight_risk = current_data.get("flight", {}).get("risk", 50)
             flight_detail = "OpenSky API unavailable — using last known value"
 
         # TANKER SIGNAL CALCULATION
         tanker = current_data.get("tanker", {})
-        tanker_count = tanker.get("tanker_count", 0)
-        tanker_risk = round((tanker_count / 10) * 100)
-        tanker_display_count = round(tanker_count / 4)
-        tanker_detail = f"{tanker_display_count} detected in region"
+        tanker_count = tanker.get("tanker_count", None)
+        if tanker_count is not None:
+            tanker_risk = round((tanker_count / 10) * 100)
+            tanker_detail = f"{tanker_count} detected in region"
+        else:
+            tanker_risk = current_data.get("tanker", {}).get("risk", 5)
+            tanker_detail = "OpenSky API unavailable — using last known value"
 
         # WEATHER SIGNAL CALCULATION
         weather = current_data.get("weather", {})
