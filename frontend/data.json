@@ -8,7 +8,6 @@
       17,
       17,
       17,
-      17,
       20,
       20,
       20,
@@ -20,6 +19,7 @@
       21,
       21,
       21,
+      22,
       22,
       22,
       22
@@ -94,7 +94,7 @@
         {
           "title": "Why Iran's response to a US attack could be different this time",
           "is_alert": true,
-          "escalation": 0.301
+          "escalation": 0.302
         },
         {
           "title": "Iran's internet is returning - but not for everyone",
@@ -109,7 +109,7 @@
         {
           "title": "'We all know someone who was killed' -  Iran protesters tell BBC of brutal crackdown",
           "is_alert": true,
-          "escalation": 0.428
+          "escalation": 0.429
         },
         {
           "title": "Watch: BBC in Tehran sees government's 'political reply' to massive protests",
@@ -151,14 +151,13 @@
       "alert_count": 10,
       "avg_escalation": 0.266,
       "escalation_available": true,
-      "timestamp": "2026-02-23T13:11:23.556324"
+      "timestamp": "2026-02-23T14:31:48.560047"
     }
   },
   "flight": {
-    "risk": 29,
-    "detail": "83 aircraft over Iran",
+    "risk": 21,
+    "detail": "92 aircraft over Iran",
     "history": [
-      21,
       13,
       11,
       3,
@@ -177,29 +176,30 @@
       35,
       14,
       18,
-      29
+      29,
+      21
     ],
     "raw_data": {
-      "aircraft_count": 83,
-      "airline_count": 31,
+      "aircraft_count": 92,
+      "airline_count": 34,
       "airlines": [
-        "AIC",
-        "AXB",
+        "PGT",
+        "BNL",
+        "ELY",
         "UAE",
-        "GTI",
-        "ENT",
+        "DUB",
+        "IGO",
+        "CFT",
+        "ETD",
         "ABY",
-        "FDB",
-        "A6T",
-        "GFA",
-        "LGL"
+        "AIC"
       ],
-      "timestamp": "2026-02-23T13:11:25.343855"
+      "timestamp": "2026-02-23T14:31:50.234016"
     }
   },
   "tanker": {
-    "risk": 10,
-    "detail": "1 detected in region",
+    "risk": 0,
+    "detail": "0 detected in region",
     "history": [
       0,
       0,
@@ -215,19 +215,17 @@
       0,
       0,
       0,
-      0,
       10,
       0,
       10,
       10,
-      10
+      10,
+      0
     ],
     "raw_data": {
-      "tanker_count": 1,
-      "callsigns": [
-        "CNV5323"
-      ],
-      "timestamp": "2026-02-23T13:11:25.343855"
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-02-23T14:31:50.234016"
     }
   },
   "weather": {
@@ -1063,7 +1061,7 @@
                                                                   ],
                                                                   "raw_data": {
                                                                     "risk": 100,
-                                                                    "detail": "clear sky",
+                                                                    "detail": "clear",
                                                                     "history": [
                                                                       100,
                                                                       100,
@@ -1088,12 +1086,39 @@
                                                                       100
                                                                     ],
                                                                     "raw_data": {
-                                                                      "temp": 18,
-                                                                      "visibility": 8000,
-                                                                      "clouds": 0,
-                                                                      "description": "clear sky",
-                                                                      "condition": "Marginal",
-                                                                      "timestamp": "2026-02-22T10:19:15.925825"
+                                                                      "risk": 100,
+                                                                      "detail": "clear sky",
+                                                                      "history": [
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100,
+                                                                        100
+                                                                      ],
+                                                                      "raw_data": {
+                                                                        "temp": 18,
+                                                                        "visibility": 8000,
+                                                                        "clouds": 0,
+                                                                        "description": "clear sky",
+                                                                        "condition": "Marginal",
+                                                                        "timestamp": "2026-02-22T10:19:15.925825"
+                                                                      }
                                                                     }
                                                                   }
                                                                 }
@@ -1137,7 +1162,6 @@
       20,
       20,
       20,
-      20,
       19,
       21,
       21,
@@ -1147,6 +1171,7 @@
       20,
       20,
       20,
+      19,
       19,
       19,
       19,
@@ -1156,14 +1181,13 @@
     "raw_data": {
       "odds": 19,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-23T13:10:41.760277"
+      "timestamp": "2026-02-23T14:31:13.435783"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      30,
       30,
       30,
       70,
@@ -1182,6 +1206,7 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -1191,17 +1216,16 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 8,
-      "timestamp": "2026-02-23T13:10:41.244904",
+      "hour_et": 9,
+      "timestamp": "2026-02-23T14:31:13.189251",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 40,
-    "detail": "$71.48 (+1.2%)",
+    "detail": "$71.57 (+1.0%)",
     "history": [
-      30,
       30,
       30,
       30,
@@ -1220,13 +1244,14 @@
       40,
       30,
       30,
+      40,
       40
     ],
     "raw_data": {
-      "current_price": 71.48,
-      "change_24h": 1.22,
+      "current_price": 71.57,
+      "change_24h": 0.96,
       "risk": 40,
-      "timestamp": "2026-02-23T13:11:23.726818"
+      "timestamp": "2026-02-23T14:31:48.744343"
     }
   },
   "trends": {
@@ -1250,17 +1275,17 @@
       10,
       10,
       10,
-      10,
       20,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 16.6,
-      "avg_24h": 18.6,
+      "current_interest": 17.4,
+      "avg_24h": 18.7,
       "peak_keyword": "Iran war",
-      "peak_value": 49,
+      "peak_value": 47,
       "risk": 10,
-      "timestamp": "2026-02-23T13:11:24.654485"
+      "timestamp": "2026-02-23T14:31:49.736174"
     }
   },
   "buildup": {
@@ -1282,8 +1307,8 @@
       65,
       65,
       65,
-      65,
       62,
+      65,
       65,
       65,
       65
@@ -1313,14 +1338,14 @@
           "f-15e": "Strike Eagle",
           "b-2": "Stealth Bomber",
           "b-52": "Strategic Bomber",
-          "a-10": "Ground Attack",
           "f-35": "5th Gen Fighter",
-          "typhoon": "Allied Fighter"
+          "typhoon": "Allied Fighter",
+          "a-10": "Ground Attack"
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 9,
-          "al udeid": 2
+          "diego garcia": 11,
+          "al udeid": 1
         },
         "categories_present": 5,
         "categories_active": [
@@ -1333,23 +1358,23 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 26,
-        "deployment_matches": 19,
+        "escalation_matches": 27,
+        "deployment_matches": 18,
         "sample_headlines": [
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
           "A look at the US military assets in the Middle East - AP News",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
           "'This isn\u2019t a token strike,' analysts say as US prepares for a major confrontation with Iran - The Jerusalem Post",
-          "Iran Is Threatening to Sink a US Aircraft Carrier. Can It? - The National Interest"
+          "Opinion | The U.S. is sleepwalking into war with Iran. Trump won\u2019t explain why. - The Washington Post"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-23T13:11:26.918802"
+      "timestamp": "2026-02-23T14:31:52.124781"
     }
   },
   "total_risk": {
-    "risk": 28,
+    "risk": 25,
     "history": [
       {
         "timestamp": 1771624800000,
@@ -1382,11 +1407,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771852286922,
-        "risk": 28
+        "timestamp": 1771857112127,
+        "risk": 25
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-23T13:11:26.922394"
+  "last_updated": "2026-02-23T14:31:52.127826"
 }
