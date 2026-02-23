@@ -81,7 +81,10 @@ def _scrape_live_busyness_batch(places):
     chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--single-process")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--window-size=800,600")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_argument(
         "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -132,7 +135,12 @@ def _scrape_live_busyness_batch(places):
             except Exception as e:
                 print(f"error ({e})")
     finally:
-        driver.quit()
+        try:
+            driver.quit()
+        except Exception:
+            pass
+        import subprocess
+        subprocess.run(["pkill", "-f", "chromium.*--headless"], capture_output=True)
 
     return results
 
