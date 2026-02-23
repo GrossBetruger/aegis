@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 20,
-    "detail": "26 articles, 10 critical, escalation: 0.25",
+    "risk": 21,
+    "detail": "25 articles, 10 critical, escalation: 0.26",
     "history": [
       17,
       17,
@@ -14,7 +14,6 @@
       17,
       17,
       17,
-      17,
       20,
       20,
       20,
@@ -22,7 +21,8 @@
       20,
       20,
       20,
-      20
+      20,
+      21
     ],
     "raw_data": {
       "articles": [
@@ -142,7 +142,7 @@
           "escalation": 0.361
         },
         {
-          "title": "Iran hails \u2018encouraging signals\u2019 from US ahead of nuclear talks in Geneva",
+          "title": "Iran hails \u2018encouraging signals\u2019 from US before nuclear talks on Thursday",
           "is_alert": false,
           "escalation": 0.001
         },
@@ -150,25 +150,19 @@
           "title": "Iranian students rally as universities reopen after nationwide protests",
           "is_alert": true,
           "escalation": 0.054
-        },
-        {
-          "title": "Iran-US tensions: What would blocking Strait of Hormuz mean for oil, LNG?",
-          "is_alert": false,
-          "escalation": 0.142
         }
       ],
-      "total_count": 26,
+      "total_count": 25,
       "alert_count": 10,
-      "avg_escalation": 0.252,
+      "avg_escalation": 0.256,
       "escalation_available": true,
-      "timestamp": "2026-02-23T04:38:18.915905"
+      "timestamp": "2026-02-23T07:39:25.174963"
     }
   },
   "flight": {
     "risk": 22,
     "detail": "91 aircraft over Iran",
     "history": [
-      95,
       25,
       17,
       30,
@@ -187,24 +181,25 @@
       22,
       24,
       11,
+      22,
       22
     ],
     "raw_data": {
       "aircraft_count": 91,
-      "airline_count": 31,
+      "airline_count": 35,
       "airlines": [
-        "AIC",
-        "NSZ",
-        "IAW",
+        "KNE",
+        "IGO",
         "UAE",
+        "AXB",
+        "MEA",
         "ETD",
-        "THY",
-        "VIR",
+        "ISR",
         "ABY",
-        "FDB",
-        "IGO"
+        "ENT",
+        "FDB"
       ],
-      "timestamp": "2026-02-23T04:38:20.556948"
+      "timestamp": "2026-02-23T07:39:26.581234"
     }
   },
   "tanker": {
@@ -235,7 +230,7 @@
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-02-23T04:38:23.143044"
+      "timestamp": "2026-02-23T07:39:26.581234"
     }
   },
   "weather": {
@@ -915,7 +910,7 @@
                                                       ],
                                                       "raw_data": {
                                                         "risk": 100,
-                                                        "detail": "clear sky",
+                                                        "detail": "clear",
                                                         "history": [
                                                           100,
                                                           100,
@@ -940,12 +935,39 @@
                                                           100
                                                         ],
                                                         "raw_data": {
-                                                          "temp": 18,
-                                                          "visibility": 8000,
-                                                          "clouds": 0,
-                                                          "description": "clear sky",
-                                                          "condition": "Marginal",
-                                                          "timestamp": "2026-02-22T10:19:15.925825"
+                                                          "risk": 100,
+                                                          "detail": "clear sky",
+                                                          "history": [
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100,
+                                                            100
+                                                          ],
+                                                          "raw_data": {
+                                                            "temp": 18,
+                                                            "visibility": 8000,
+                                                            "clouds": 0,
+                                                            "description": "clear sky",
+                                                            "condition": "Marginal",
+                                                            "timestamp": "2026-02-22T10:19:15.925825"
+                                                          }
                                                         }
                                                       }
                                                     }
@@ -978,7 +1000,6 @@
     "risk": 20,
     "detail": "20% odds",
     "history": [
-      3,
       4,
       4,
       4,
@@ -996,20 +1017,20 @@
       21,
       21,
       21,
+      20,
       20,
       20
     ],
     "raw_data": {
       "odds": 20,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-23T04:37:33.938457"
+      "timestamp": "2026-02-23T07:38:42.451791"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      0,
       0,
       0,
       0,
@@ -1028,6 +1049,7 @@
       100,
       100,
       72,
+      0,
       0
     ],
     "raw_data": {
@@ -1037,15 +1059,15 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 23,
-      "timestamp": "2026-02-23T04:37:33.754160",
+      "hour_et": 2,
+      "timestamp": "2026-02-23T07:38:42.328400",
       "is_late_night": true,
-      "is_weekend": true
+      "is_weekend": false
     }
   },
   "oil": {
-    "risk": 25,
-    "detail": "$70.35 (-2.4%)",
+    "risk": 30,
+    "detail": "$70.50 (-0.6%)",
     "history": [
       30,
       30,
@@ -1065,19 +1087,19 @@
       30,
       30,
       30,
-      30,
-      25
+      25,
+      30
     ],
     "raw_data": {
-      "current_price": 70.35,
-      "change_24h": -2.41,
-      "risk": 25,
-      "timestamp": "2026-02-23T04:38:19.235666"
+      "current_price": 70.5,
+      "change_24h": -0.55,
+      "risk": 30,
+      "timestamp": "2026-02-23T07:39:25.318856"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 22, 'Iran war'",
+    "detail": "Interest: 23, 'Iran war'",
     "history": [
       10,
       10,
@@ -1101,12 +1123,12 @@
       10
     ],
     "raw_data": {
-      "current_interest": 22.4,
-      "avg_24h": 18.7,
+      "current_interest": 22.6,
+      "avg_24h": 18.6,
       "peak_keyword": "Iran war",
-      "peak_value": 66,
+      "peak_value": 70,
       "risk": 10,
-      "timestamp": "2026-02-23T04:38:19.959346"
+      "timestamp": "2026-02-23T07:39:26.056390"
     }
   },
   "buildup": {
@@ -1158,14 +1180,14 @@
           "f-22": "Air Superiority Fighter",
           "f-15e": "Strike Eagle",
           "b-2": "Stealth Bomber",
+          "b-52": "Strategic Bomber",
           "a-10": "Ground Attack",
           "f-35": "5th Gen Fighter",
-          "b-52": "Strategic Bomber",
           "typhoon": "Allied Fighter"
         },
         "bases": {
           "lakenheath": 2,
-          "diego garcia": 10,
+          "diego garcia": 11,
           "al udeid": 2
         },
         "categories_present": 5,
@@ -1180,22 +1202,22 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 27,
-        "deployment_matches": 16,
+        "deployment_matches": 19,
         "sample_headlines": [
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
           "'This isn\u2019t a token strike,' analysts say as US prepares for a major confrontation with Iran - The Jerusalem Post",
           "A look at the US military assets in the Middle East - AP News",
           "Ford carrier group arrives in Mediterranean, bringing more potential strike options against Iran - Stars and Stripes",
-          "U.S. military buildup continues near Iran - CBS News"
+          "Iran President Gives Update Amid Massive US Military Buildup - Newsweek"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 17, 2026",
       "source_date": "Tue, 17 Feb 2026 19:04:05 +0000",
-      "timestamp": "2026-02-23T04:38:24.781793"
+      "timestamp": "2026-02-23T07:39:28.172051"
     }
   },
   "total_risk": {
-    "risk": 24,
+    "risk": 25,
     "history": [
       {
         "timestamp": 1771581600000,
@@ -1228,11 +1250,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771821504785,
-        "risk": 24
+        "timestamp": 1771832368174,
+        "risk": 25
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-23T04:38:24.785060"
+  "last_updated": "2026-02-23T07:39:28.173997"
 }
