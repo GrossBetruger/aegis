@@ -597,12 +597,16 @@ def fetch_aviation_data():
 
         response = make_request(url, timeout=20)
         if not response.ok:
-            print(f"OpenSky API error: {response.status_code}")
+            print(f"  OpenSky API error: HTTP {response.status_code}")
             return None
 
         data = response.json()
         civil_count = 0
         airlines = []
+
+        if not data.get("states") or not isinstance(data["states"], list):
+            print(f"  OpenSky returned no states (possibly rate-limited)")
+            return None
 
         if data.get("states") and isinstance(data["states"], list):
             # US military ICAO hex range
@@ -1644,9 +1648,13 @@ def update_data_file():
 
         # FLIGHT SIGNAL CALCULATION
         aviation = current_data.get("aviation", {})
-        aircraft_count = aviation.get("aircraft_count", 0)
-        flight_risk = max(3, 95 - round(aircraft_count * 0.8))
-        flight_detail = f"{round(aircraft_count)} aircraft over Iran"
+        aircraft_count = aviation.get("aircraft_count", None)
+        if aircraft_count is not None:
+            flight_risk = max(3, 95 - round(aircraft_count * 0.8))
+            flight_detail = f"{round(aircraft_count)} aircraft over Iran"
+        else:
+            flight_risk = previous_data.get("flight", {}).get("risk", 50)
+            flight_detail = "OpenSky API unavailable — using last known value"
 
         # TANKER SIGNAL CALCULATION
         tanker = current_data.get("tanker", {})
