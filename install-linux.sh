@@ -12,7 +12,23 @@ echo "Installing system dependencies..."
 sudo apt-get update -qq
 sudo apt-get install -y -qq curl git lsof chromium chromium-driver
 
-# 2. uv
+# 2. Use /mnt/data for heavy storage if available (GCP data disk)
+if [[ -d /mnt/data && -w /mnt/data ]]; then
+    echo "Data disk detected at /mnt/data — using it for caches and venv"
+    mkdir -p /mnt/data/.cache/uv /mnt/data/.local/share/uv
+
+    export UV_CACHE_DIR=/mnt/data/.cache/uv
+    export UV_PYTHON_INSTALL_DIR=/mnt/data/.local/share/uv/python
+
+    # Persist env vars in .bashrc
+    for var in \
+        "export UV_CACHE_DIR=/mnt/data/.cache/uv" \
+        "export UV_PYTHON_INSTALL_DIR=/mnt/data/.local/share/uv/python"; do
+        grep -qF "$var" ~/.bashrc 2>/dev/null || echo "$var" >> ~/.bashrc
+    done
+fi
+
+# 3. uv
 if ! command -v uv &>/dev/null; then
     echo "Installing uv..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -22,12 +38,15 @@ else
     echo "uv found ($(uv --version))"
 fi
 
-# 3. Python 3.12 via uv
+# 4. Python 3.12 via uv
 echo ""
 echo "Ensuring Python 3.12..."
 uv python install 3.12
 
-# 4. Project dependencies
+# 5. Project dependencies (.venv on data disk if available)
+if [[ -d /mnt/data && -w /mnt/data ]]; then
+    export UV_PROJECT_ENVIRONMENT=/mnt/data/aegis-venv
+fi
 echo ""
 echo "Syncing project dependencies..."
 uv sync

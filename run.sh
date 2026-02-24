@@ -11,6 +11,13 @@ set -e
 #   ./run.sh watch     - Run update every 30 min + serve frontend
 #   ./run.sh kill      - Kill any running background server
 
+# Use /mnt/data for heavy storage if available (GCP data disk)
+if [[ -d /mnt/data && -w /mnt/data ]]; then
+    export UV_CACHE_DIR=/mnt/data/.cache/uv
+    export UV_PYTHON_INSTALL_DIR=/mnt/data/.local/share/uv/python
+    export UV_PROJECT_ENVIRONMENT=/mnt/data/aegis-venv
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PID_FILE="$SCRIPT_DIR/.server.pid"
 
