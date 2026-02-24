@@ -1,12 +1,11 @@
 {
   "news": {
-    "risk": 25,
-    "detail": "25 articles, 10 critical, escalation: 0.32",
+    "risk": 24,
+    "detail": "24 articles, 10 critical, escalation: 0.30",
     "history": [
       22,
       22,
       22,
-      22,
       24,
       24,
       24,
@@ -22,7 +21,8 @@
       23,
       23,
       23,
-      25
+      25,
+      24
     ],
     "raw_data": {
       "articles": [
@@ -145,25 +145,19 @@
           "title": "Iran cannot defeat US military might, but it can still win",
           "is_alert": true,
           "escalation": 0.772
-        },
-        {
-          "title": "Iran army helicopter crashes into market, killing 2 pilots and 2 merchants",
-          "is_alert": false,
-          "escalation": 0.693
         }
       ],
-      "total_count": 25,
+      "total_count": 24,
       "alert_count": 10,
-      "avg_escalation": 0.32,
+      "avg_escalation": 0.304,
       "escalation_available": true,
-      "timestamp": "2026-02-24T14:54:37.287617"
+      "timestamp": "2026-02-24T16:03:03.827480"
     }
   },
   "flight": {
-    "risk": 24,
-    "detail": "89 aircraft over Iran",
+    "risk": 30,
+    "detail": "81 aircraft over Iran",
     "history": [
-      21,
       24,
       18,
       23,
@@ -182,31 +176,31 @@
       11,
       17,
       14,
-      24
+      24,
+      30
     ],
     "raw_data": {
-      "aircraft_count": 89,
+      "aircraft_count": 81,
       "airline_count": 35,
       "airlines": [
-        "AIC",
-        "VPC",
-        "AXB",
-        "ACA",
-        "VJH",
-        "ELY",
+        "FAH",
+        "ICL",
+        "UBD",
         "UAE",
-        "AOJ",
-        "TAY",
-        "ETD"
+        "MEA",
+        "WMT",
+        "UBG",
+        "SHI",
+        "FDB",
+        "ABY"
       ],
-      "timestamp": "2026-02-24T14:54:39.179546"
+      "timestamp": "2026-02-24T16:03:05.609223"
     }
   },
   "tanker": {
-    "risk": 10,
-    "detail": "1 detected in region",
+    "risk": 0,
+    "detail": "0 detected in region",
     "history": [
-      0,
       10,
       10,
       0,
@@ -225,14 +219,13 @@
       10,
       10,
       10,
-      10
+      10,
+      0
     ],
     "raw_data": {
-      "tanker_count": 1,
-      "callsigns": [
-        "CNV5360"
-      ],
-      "timestamp": "2026-02-24T14:54:39.179546"
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-02-24T16:03:05.609223"
     }
   },
   "weather": {
@@ -1588,7 +1581,7 @@
                                                                                                           ],
                                                                                                           "raw_data": {
                                                                                                             "risk": 100,
-                                                                                                            "detail": "clear sky",
+                                                                                                            "detail": "clear",
                                                                                                             "history": [
                                                                                                               100,
                                                                                                               100,
@@ -1613,12 +1606,39 @@
                                                                                                               100
                                                                                                             ],
                                                                                                             "raw_data": {
-                                                                                                              "temp": 18,
-                                                                                                              "visibility": 8000,
-                                                                                                              "clouds": 0,
-                                                                                                              "description": "clear sky",
-                                                                                                              "condition": "Marginal",
-                                                                                                              "timestamp": "2026-02-22T10:19:15.925825"
+                                                                                                              "risk": 100,
+                                                                                                              "detail": "clear sky",
+                                                                                                              "history": [
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100,
+                                                                                                                100
+                                                                                                              ],
+                                                                                                              "raw_data": {
+                                                                                                                "temp": 18,
+                                                                                                                "visibility": 8000,
+                                                                                                                "clouds": 0,
+                                                                                                                "description": "clear sky",
+                                                                                                                "condition": "Marginal",
+                                                                                                                "timestamp": "2026-02-22T10:19:15.925825"
+                                                                                                              }
                                                                                                             }
                                                                                                           }
                                                                                                         }
@@ -1678,7 +1698,6 @@
     "detail": "16% odds",
     "history": [
       19,
-      19,
       20,
       21,
       22,
@@ -1696,19 +1715,19 @@
       19,
       18,
       17,
+      16,
       16
     ],
     "raw_data": {
       "odds": 16,
       "market": "Will US or Israel strike Iran by February 28, 2026?",
-      "timestamp": "2026-02-24T14:53:54.580614"
+      "timestamp": "2026-02-24T16:02:21.768950"
     }
   },
   "pentagon": {
-    "risk": 0,
-    "detail": "No data available",
+    "risk": 27,
+    "detail": "California Pizza Kitchen 27% (live)",
     "history": [
-      0,
       0,
       34,
       28,
@@ -1727,26 +1746,28 @@
       0,
       0,
       0,
-      0
+      0,
+      27
     ],
     "raw_data": {
-      "score": 0,
-      "risk_contribution": 0.0,
-      "status": "No Data",
-      "detail_text": "No data available",
-      "source": "none",
-      "live_scores": null,
-      "hour_et": 9,
-      "timestamp": "2026-02-24T14:53:53.894721",
+      "score": 27,
+      "risk_contribution": 2.7,
+      "status": "Low Activity",
+      "detail_text": "California Pizza Kitchen 27% (live)",
+      "source": "live",
+      "live_scores": {
+        "California Pizza Kitchen": 27
+      },
+      "hour_et": 11,
+      "timestamp": "2026-02-24T16:02:21.220532",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 30,
-    "detail": "$71.34 (-0.4%)",
+    "detail": "$70.81 (-1.2%)",
     "history": [
-      40,
       50,
       40,
       30,
@@ -1765,13 +1786,14 @@
       30,
       40,
       50,
+      30,
       30
     ],
     "raw_data": {
-      "current_price": 71.34,
-      "change_24h": -0.43,
+      "current_price": 70.81,
+      "change_24h": -1.17,
       "risk": 30,
-      "timestamp": "2026-02-24T14:54:37.545409"
+      "timestamp": "2026-02-24T16:03:03.972640"
     }
   },
   "trends": {
@@ -1792,20 +1814,20 @@
       10,
       10,
       10,
+      30,
+      30,
       10,
-      30,
-      30,
       10,
       10,
       10
     ],
     "raw_data": {
-      "current_interest": 15.8,
-      "avg_24h": 16.7,
+      "current_interest": 16.2,
+      "avg_24h": 16.4,
       "peak_keyword": "Iran war",
-      "peak_value": 40,
+      "peak_value": 60,
       "risk": 10,
-      "timestamp": "2026-02-24T14:54:38.392468"
+      "timestamp": "2026-02-24T16:03:04.940787"
     }
   },
   "buildup": {
@@ -1816,7 +1838,6 @@
       65,
       65,
       65,
-      65,
       72,
       72,
       72,
@@ -1827,6 +1848,7 @@
       72,
       69,
       69,
+      72,
       72,
       72,
       72,
@@ -1879,18 +1901,18 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 27,
-        "deployment_matches": 20,
+        "deployment_matches": 22,
         "sample_headlines": [
           "Iran nears deal for Chinese supersonic anti-ship missiles - The Jerusalem Post",
           "Maps: Where the U.S. Is Building Up Military Force Near Iran - The New York Times",
-          "Iranians worry over American military buildup as next, last-chance round of talks with the US nears - Laredo Morning Times",
+          "World\u2019s largest aircraft carrier USS Gerald R Ford reaches Crete - Euronews.com",
           "Washington Policy Weekly: Despite Military Buildup, US-Iran Talks to Continue - Arab Center Washington DC",
-          "World\u2019s largest aircraft carrier USS Gerald R Ford reaches Crete - Euronews.com"
+          "USS Gerald R. Ford Arrives in Crete Amid U.S. Naval Buildup in Middle East - kurdistan24.net"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Feb. 23, 2026",
       "source_date": "Mon, 23 Feb 2026 19:34:20 +0000",
-      "timestamp": "2026-02-24T14:54:40.547201"
+      "timestamp": "2026-02-24T16:03:06.985656"
     }
   },
   "total_risk": {
@@ -1927,11 +1949,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1771944880550,
+        "timestamp": 1771948986989,
         "risk": 28
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-02-24T14:54:40.550502"
+  "last_updated": "2026-02-24T16:03:06.989029"
 }
