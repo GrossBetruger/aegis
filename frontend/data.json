@@ -4,7 +4,6 @@
     "detail": "41 articles, 32 critical, escalation: 0.60",
     "history": [
       61,
-      61,
       60,
       61,
       59,
@@ -20,6 +19,7 @@
       59,
       58,
       58,
+      57,
       57,
       57,
       57
@@ -236,14 +236,13 @@
       "alert_count": 32,
       "avg_escalation": 0.598,
       "escalation_available": true,
-      "timestamp": "2026-03-08T05:31:54.599307"
+      "timestamp": "2026-03-08T06:08:29.640415"
     }
   },
   "flight": {
-    "risk": 95,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 91,
+    "detail": "5 aircraft over Iran",
     "history": [
-      93,
       93,
       92,
       93,
@@ -262,13 +261,24 @@
       95,
       95,
       95,
-      95
+      95,
+      91
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 5,
+      "airline_count": 4,
+      "airlines": [
+        "JAG",
+        "UAE",
+        "ABY",
+        "FAD"
+      ],
+      "timestamp": "2026-03-08T06:08:31.799788"
+    }
   },
   "tanker": {
     "risk": 0,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "detail": "0 detected in region",
     "history": [
       0,
       0,
@@ -292,90 +302,9 @@
       0
     ],
     "raw_data": {
-      "risk": 0,
-      "detail": "OpenSky API unavailable \u2014 using last known value",
-      "history": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "raw_data": {
-        "risk": 0,
-        "detail": "OpenSky API unavailable \u2014 using last known value",
-        "history": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "raw_data": {
-          "risk": 0,
-          "detail": "0 detected in region",
-          "history": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "raw_data": {
-            "tanker_count": 0,
-            "callsigns": [],
-            "timestamp": "2026-03-07T23:48:30.327704"
-          }
-        }
-      }
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-03-08T06:08:31.799788"
     }
   },
   "weather": {
@@ -8959,7 +8888,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       "raw_data": {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         "risk": 100,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        "detail": "clear sky",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        "detail": "clear",
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         "history": [
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           100,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           100,
@@ -8984,12 +8913,39 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           100
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         "raw_data": {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "temp": 18,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "visibility": 8000,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "clouds": 0,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "description": "clear sky",
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "condition": "Marginal",
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "timestamp": "2026-02-22T10:19:15.925825"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "risk": 100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "detail": "clear sky",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "history": [
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            100
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ],
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          "raw_data": {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "temp": 18,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "visibility": 8000,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "clouds": 0,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "description": "clear sky",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "condition": "Marginal",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "timestamp": "2026-02-22T10:19:15.925825"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     }
@@ -9323,10 +9279,9 @@
     }
   },
   "polymarket": {
-    "risk": 88,
-    "detail": "88% odds",
+    "risk": 87,
+    "detail": "87% odds",
     "history": [
-      67,
       65,
       66,
       64,
@@ -9345,19 +9300,19 @@
       82,
       78,
       76,
-      88
+      88,
+      87
     ],
     "raw_data": {
-      "odds": 88,
+      "odds": 87,
       "market": "Will Iran strike Israel on March 9?",
-      "timestamp": "2026-03-08T05:30:47.693939"
+      "timestamp": "2026-03-08T06:07:21.709789"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      0,
       0,
       0,
       17,
@@ -9376,6 +9331,7 @@
       85,
       69,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -9385,8 +9341,8 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 1,
-      "timestamp": "2026-03-08T05:30:47.495377",
+      "hour_et": 2,
+      "timestamp": "2026-03-08T06:07:21.467722",
       "is_late_night": true,
       "is_weekend": true
     }
@@ -9420,12 +9376,12 @@
       "current_price": 92.69,
       "change_24h": 9.03,
       "risk": 100,
-      "timestamp": "2026-03-08T05:31:54.884875"
+      "timestamp": "2026-03-08T06:08:30.074825"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 12, 'Iran war'",
+    "detail": "Interest: 14, 'Iran war'",
     "history": [
       5,
       5,
@@ -9443,18 +9399,18 @@
       5,
       5,
       5,
-      5,
+      10,
       10,
       10,
       10
     ],
     "raw_data": {
-      "current_interest": 12.2,
+      "current_interest": 13.8,
       "avg_24h": 12.1,
       "peak_keyword": "Iran war",
-      "peak_value": 44,
+      "peak_value": 50,
       "risk": 10,
-      "timestamp": "2026-03-08T05:31:55.907208"
+      "timestamp": "2026-03-08T06:08:31.333913"
     }
   },
   "buildup": {
@@ -9463,7 +9419,6 @@
     "history": [
       67,
       67,
-      67,
       69,
       69,
       69,
@@ -9479,6 +9434,7 @@
       67,
       69,
       69,
+      68,
       68,
       68
     ],
@@ -9502,8 +9458,8 @@
       "carrier_air_squadrons": 5,
       "air_presence": {
         "platforms": {
-          "b-2": "Stealth Bomber",
           "f-22": "Air Superiority Fighter",
+          "b-2": "Stealth Bomber",
           "f-35": "5th Gen Fighter",
           "f-15e": "Strike Eagle",
           "b-52": "Strategic Bomber",
@@ -9512,7 +9468,7 @@
         },
         "bases": {
           "diego garcia": 8,
-          "al udeid": 1
+          "al udeid": 2
         },
         "categories_present": 5,
         "categories_active": [
@@ -9532,16 +9488,16 @@
           "UK preparing aircraft carrier for possible Middle East deployment - The Guardian",
           "British aircraft carrier HMS Prince of Wales prepped to set sail - BBC",
           "Trump rejects UK\u2019s offer to send aircraft carriers to Middle East: \u2018We will remember\u2019 - The Hill",
-          "Trump tells Britain he does not need its help to win Iran war - Reuters"
+          "US has destroyed Iranian \u2018drone carrier,\u2019 CENTCOM commander says - Navy Times"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: March 2, 2026",
       "source_date": "Mon, 02 Mar 2026 19:50:26 +0000",
-      "timestamp": "2026-03-08T05:32:17.756112"
+      "timestamp": "2026-03-08T06:08:33.353469"
     }
   },
   "total_risk": {
-    "risk": 73,
+    "risk": 72,
     "history": [
       {
         "timestamp": 1772712000000,
@@ -9574,11 +9530,11 @@
         "pinned": true
       },
       {
-        "timestamp": 1772947937759,
-        "risk": 73
+        "timestamp": 1772950113356,
+        "risk": 72
       }
     ],
     "elevated_count": 5
   },
-  "last_updated": "2026-03-08T05:32:17.758951"
+  "last_updated": "2026-03-08T06:08:33.356694"
 }
