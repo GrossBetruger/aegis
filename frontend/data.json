@@ -1,19 +1,30 @@
 {
   "news": {
-    "risk": 38,
-    "detail": "36 articles, 23 critical, escalation: 0.41",
+    "risk": 36,
+    "detail": "35 articles, 22 critical, escalation: 0.38",
     "history": [
       34,
       38,
       38,
-      38
+      38,
+      36
     ],
     "raw_data": {
       "articles": [
         {
+          "title": "'Endless fears': Even if fighting stops, the damage to Iran's children will endure",
+          "is_alert": true,
+          "escalation": 0.696
+        },
+        {
           "title": "Lebanon thought there was a ceasefire - then Israel unleashed deadly blitz",
           "is_alert": true,
           "escalation": 0.993
+        },
+        {
+          "title": "Has US achieved its war objectives in Iran?",
+          "is_alert": true,
+          "escalation": 0.801
         },
         {
           "title": "Israeli strikes in Lebanon 'grave violation' of ceasefire, Iran minister tells BBC",
@@ -21,9 +32,9 @@
           "escalation": 0.988
         },
         {
-          "title": "Has US achieved its war objectives in Iran?",
-          "is_alert": true,
-          "escalation": 0.801
+          "title": "Ships remain cautious approaching Strait of Hormuz amid fragile ceasefire",
+          "is_alert": false,
+          "escalation": 0.016
         },
         {
           "title": "Negotiators face huge task to close gaps in rival Iran peace proposals",
@@ -41,16 +52,6 @@
           "escalation": 0.016
         },
         {
-          "title": "Why ceasefire deal with US has unsettled Iran's hardliners",
-          "is_alert": false,
-          "escalation": 0.003
-        },
-        {
-          "title": "Ships remain cautious approaching Strait of Hormuz amid fragile ceasefire",
-          "is_alert": false,
-          "escalation": 0.016
-        },
-        {
           "title": "Oil prices plunge and shares jump on US-Iran ceasefire plan",
           "is_alert": true,
           "escalation": 0.005
@@ -59,6 +60,11 @@
           "title": "French couple leave Iran after more than three years in jail",
           "is_alert": false,
           "escalation": 0.056
+        },
+        {
+          "title": "Why ceasefire deal with US has unsettled Iran's hardliners",
+          "is_alert": false,
+          "escalation": 0.003
         },
         {
           "title": "Iran ceasefire deal gives Trump a way out of war - but at a high cost",
@@ -179,23 +185,13 @@
           "title": "Why Israel\u2019s attacks on Lebanon could cripple US-Iran ceasefire",
           "is_alert": true,
           "escalation": 0.977
-        },
-        {
-          "title": "Several people reported killed in fresh Israeli attacks on Lebanon",
-          "is_alert": true,
-          "escalation": 0.974
-        },
-        {
-          "title": "The war on Iran: Nobody won, everyone paid",
-          "is_alert": true,
-          "escalation": 0.921
         }
       ],
-      "total_count": 36,
-      "alert_count": 23,
-      "avg_escalation": 0.406,
+      "total_count": 35,
+      "alert_count": 22,
+      "avg_escalation": 0.383,
       "escalation_available": true,
-      "timestamp": "2026-04-09T16:04:30.936173"
+      "timestamp": "2026-04-09T17:39:31.104909"
     }
   },
   "flight": {
@@ -205,15 +201,19 @@
       88,
       88,
       94,
+      92,
       92
     ],
     "raw_data": {
       "aircraft_count": 4,
-      "airline_count": 1,
+      "airline_count": 4,
       "airlines": [
-        "QTR"
+        "NBT",
+        "JZR",
+        "SVA",
+        "FAD"
       ],
-      "timestamp": "2026-04-09T16:04:32.737601"
+      "timestamp": "2026-04-09T17:39:32.402544"
     }
   },
   "tanker": {
@@ -223,18 +223,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-04-09T16:04:32.737601"
+      "timestamp": "2026-04-09T17:39:32.402544"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -247,12 +249,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100
@@ -262,9 +266,18 @@
           "detail": "clear",
           "history": [
             100,
+            100,
             100
           ],
-          "raw_data": {}
+          "raw_data": {
+            "risk": 100,
+            "detail": "clear",
+            "history": [
+              100,
+              100
+            ],
+            "raw_data": {}
+          }
         }
       }
     }
@@ -276,53 +289,56 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-04-09T16:03:32.471819"
+      "timestamp": "2026-04-09T17:38:43.868029"
     }
   },
   "pentagon": {
-    "risk": 30,
-    "detail": "California Pizza Kitchen 43%, Extreme Pizza 16% (live)",
+    "risk": 90,
+    "detail": "California Pizza Kitchen 100%, Extreme Pizza 80% (live)",
     "history": [
       0,
       0,
       0,
-      30
+      30,
+      90
     ],
     "raw_data": {
-      "score": 30,
-      "risk_contribution": 3.0,
-      "status": "Normal",
-      "detail_text": "California Pizza Kitchen 43%, Extreme Pizza 16% (live)",
+      "score": 90,
+      "risk_contribution": 9.0,
+      "status": "High Activity",
+      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 80% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 43,
-        "Extreme Pizza": 16
+        "California Pizza Kitchen": 100,
+        "Extreme Pizza": 80
       },
-      "hour_et": 12,
-      "timestamp": "2026-04-09T16:03:32.186968",
+      "hour_et": 13,
+      "timestamp": "2026-04-09T17:38:43.619371",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 70,
-    "detail": "$96.51 (+1.6%)",
+    "risk": 50,
+    "detail": "$95.03 (+0.0%)",
     "history": [
       85,
       70,
       85,
-      70
+      70,
+      50
     ],
     "raw_data": {
-      "current_price": 96.51,
-      "change_24h": 1.59,
-      "risk": 70,
-      "timestamp": "2026-04-09T16:04:31.174298"
+      "current_price": 95.03,
+      "change_24h": 0.03,
+      "risk": 50,
+      "timestamp": "2026-04-09T17:39:31.266020"
     }
   },
   "trends": {
@@ -332,24 +348,36 @@
       10,
       5,
       5,
+      5,
       5
     ],
     "raw_data": {
       "risk": 5,
-      "detail": "Interest: 7, 'Iran war'",
+      "detail": "Awaiting data...",
       "history": [
         10,
+        5,
         5,
         5,
         5
       ],
       "raw_data": {
-        "current_interest": 6.6,
-        "avg_24h": 7.3,
-        "peak_keyword": "Iran war",
-        "peak_value": 27,
         "risk": 5,
-        "timestamp": "2026-04-09T14:21:58.006571"
+        "detail": "Interest: 7, 'Iran war'",
+        "history": [
+          10,
+          5,
+          5,
+          5
+        ],
+        "raw_data": {
+          "current_interest": 6.6,
+          "avg_24h": 7.3,
+          "peak_keyword": "Iran war",
+          "peak_value": 27,
+          "risk": 5,
+          "timestamp": "2026-04-09T14:21:58.006571"
+        }
       }
     }
   },
@@ -360,6 +388,7 @@
       72,
       74,
       76,
+      72,
       72
     ],
     "raw_data": {
@@ -409,29 +438,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 29,
+        "deployment_matches": 27,
         "sample_headlines": [
           "MPV, deck carrier operators eye cargo demand surge from Iran war reconstruction - Journal of Commerce",
-          "US Navy requesting $3B to replenish Tomahawk missiles used in Iran war - Fox News",
           "USS Gerald R. Ford aircraft carrier leaves Croatia, putting US fighter jets closer to Iran - Aerospace Global News",
           "After Iran ceasefire, US military role in Hormuz remains uncertain - Stars and Stripes",
+          "US Navy requesting $3B to replenish Tomahawk missiles used in Iran war - Fox News",
           "As Iran War Enters 6th Week, Escalation Looks the Most Likely Scenario - Middle East Forum"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-09T16:04:34.302462"
+      "timestamp": "2026-04-09T17:39:33.948206"
     }
   },
   "total_risk": {
     "risk": 52,
     "history": [
       {
-        "timestamp": 1775750674305,
+        "timestamp": 1775756373951,
         "risk": 52
       }
     ],
-    "elevated_count": 4
+    "elevated_count": 5
   },
-  "last_updated": "2026-04-09T16:04:34.305486"
+  "last_updated": "2026-04-09T17:39:33.951896"
 }
