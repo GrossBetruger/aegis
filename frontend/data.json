@@ -1,14 +1,15 @@
 {
   "news": {
-    "risk": 36,
-    "detail": "38 articles, 25 critical, escalation: 0.35",
+    "risk": 37,
+    "detail": "38 articles, 26 critical, escalation: 0.35",
     "history": [
       34,
       38,
       38,
       38,
       36,
-      36
+      36,
+      37
     ],
     "raw_data": {
       "articles": [
@@ -48,11 +49,6 @@
           "escalation": 0.942
         },
         {
-          "title": "Israel backs US-Iran ceasefire but Netanyahu's war goals remain unfulfilled",
-          "is_alert": true,
-          "escalation": 0.016
-        },
-        {
           "title": "Oil prices plunge and shares jump on US-Iran ceasefire plan",
           "is_alert": true,
           "escalation": 0.005
@@ -61,6 +57,11 @@
           "title": "French couple leave Iran after more than three years in jail",
           "is_alert": false,
           "escalation": 0.056
+        },
+        {
+          "title": "Israel backs US-Iran ceasefire but Netanyahu's war goals remain unfulfilled",
+          "is_alert": true,
+          "escalation": 0.016
         },
         {
           "title": "Why ceasefire deal with US has unsettled Iran's hardliners",
@@ -148,6 +149,11 @@
           "escalation": 0.055
         },
         {
+          "title": "Why is Hezbollah a sticking point in the Iran ceasefire?",
+          "is_alert": true,
+          "escalation": 0.027
+        },
+        {
           "title": "Iran says it \u2018would be dumb\u2019 for US to let Netanyahu kill diplomacy",
           "is_alert": true,
           "escalation": 0.049
@@ -196,37 +202,43 @@
           "title": "Has Iran\u2019s 10-point plan changed, as JD Vance claims?",
           "is_alert": false,
           "escalation": 0.048
-        },
-        {
-          "title": "What is Iran\u2019s Strait of Hormuz protocol and will other nations accept it?",
-          "is_alert": false,
-          "escalation": 0.004
         }
       ],
       "total_count": 38,
-      "alert_count": 25,
-      "avg_escalation": 0.354,
+      "alert_count": 26,
+      "avg_escalation": 0.355,
       "escalation_available": true,
-      "timestamp": "2026-04-09T19:12:18.292583"
+      "timestamp": "2026-04-09T20:15:06.190274"
     }
   },
   "flight": {
-    "risk": 92,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 93,
+    "detail": "3 aircraft over Iran",
     "history": [
       88,
       88,
       94,
       92,
       92,
-      92
+      92,
+      93
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 3,
+      "airline_count": 3,
+      "airlines": [
+        "UAE",
+        "ABY",
+        "PAA"
+      ],
+      "timestamp": "2026-04-09T20:15:08.022183"
+    }
   },
   "tanker": {
     "risk": 0,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "detail": "0 detected in region",
     "history": [
+      0,
       0,
       0,
       0,
@@ -235,27 +247,16 @@
       0
     ],
     "raw_data": {
-      "risk": 0,
-      "detail": "0 detected in region",
-      "history": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "raw_data": {
-        "tanker_count": 0,
-        "callsigns": [],
-        "timestamp": "2026-04-09T17:39:32.402544"
-      }
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-04-09T20:15:08.022183"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -272,12 +273,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -291,12 +294,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100
@@ -306,9 +311,18 @@
               "detail": "clear",
               "history": [
                 100,
+                100,
                 100
               ],
-              "raw_data": {}
+              "raw_data": {
+                "risk": 100,
+                "detail": "clear",
+                "history": [
+                  100,
+                  100
+                ],
+                "raw_data": {}
+              }
             }
           }
         }
@@ -316,65 +330,68 @@
     }
   },
   "polymarket": {
-    "risk": 8,
-    "detail": "8% odds",
+    "risk": 5,
+    "detail": "5% odds",
     "history": [
       10,
       10,
       10,
       10,
       10,
-      8
+      8,
+      5
     ],
     "raw_data": {
-      "odds": 8,
+      "odds": 5,
       "market": "Military action against Iran ends on April 10, 2026?",
-      "timestamp": "2026-04-09T19:11:15.324362"
+      "timestamp": "2026-04-09T20:14:04.198259"
     }
   },
   "pentagon": {
-    "risk": 79,
-    "detail": "California Pizza Kitchen 58%, Extreme Pizza 100% (live)",
+    "risk": 48,
+    "detail": "California Pizza Kitchen 57%, Extreme Pizza 38% (live)",
     "history": [
       0,
       0,
       0,
       30,
       90,
-      79
+      79,
+      48
     ],
     "raw_data": {
-      "score": 79,
-      "risk_contribution": 7.9,
-      "status": "High Activity",
-      "detail_text": "California Pizza Kitchen 58%, Extreme Pizza 100% (live)",
+      "score": 48,
+      "risk_contribution": 4.8,
+      "status": "Normal",
+      "detail_text": "California Pizza Kitchen 57%, Extreme Pizza 38% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 58,
-        "Extreme Pizza": 100
+        "California Pizza Kitchen": 57,
+        "Extreme Pizza": 38
       },
-      "hour_et": 15,
-      "timestamp": "2026-04-09T19:11:15.047876",
+      "hour_et": 16,
+      "timestamp": "2026-04-09T20:14:04.087246",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 60,
-    "detail": "$96.41 (+1.5%)",
+    "risk": 70,
+    "detail": "$97.25 (+2.4%)",
     "history": [
       85,
       70,
       85,
       70,
       50,
-      60
+      60,
+      70
     ],
     "raw_data": {
-      "current_price": 96.41,
-      "change_24h": 1.48,
-      "risk": 60,
-      "timestamp": "2026-04-09T19:12:18.615504"
+      "current_price": 97.25,
+      "change_24h": 2.37,
+      "risk": 70,
+      "timestamp": "2026-04-09T20:15:06.407761"
     }
   },
   "trends": {
@@ -386,19 +403,20 @@
       5,
       5,
       5,
+      5,
       5
     ],
     "raw_data": {
-      "current_interest": 5.4,
-      "avg_24h": 6.7,
+      "current_interest": 5.0,
+      "avg_24h": 6.6,
       "peak_keyword": "Iran war",
-      "peak_value": 23,
+      "peak_value": 20,
       "risk": 5,
-      "timestamp": "2026-04-09T19:12:20.195731"
+      "timestamp": "2026-04-09T20:15:07.612166"
     }
   },
   "buildup": {
-    "risk": 72,
+    "risk": 73,
     "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
       72,
@@ -406,10 +424,11 @@
       76,
       72,
       72,
-      72
+      72,
+      73
     ],
     "raw_data": {
-      "risk": 72,
+      "risk": 73,
       "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 102.4,
@@ -440,9 +459,9 @@
         },
         "bases": {
           "fairford": 1,
-          "al udeid": 2,
+          "diego garcia": 5,
           "lakenheath": 1,
-          "diego garcia": 4
+          "al udeid": 2
         },
         "categories_present": 4,
         "categories_active": [
@@ -454,8 +473,8 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 1,
-        "deployment_matches": 26,
+        "escalation_matches": 2,
+        "deployment_matches": 27,
         "sample_headlines": [
           "MPV, deck carrier operators eye cargo demand surge from Iran war reconstruction - Journal of Commerce",
           "USS Gerald R. Ford aircraft carrier leaves Croatia, putting US fighter jets closer to Iran - Aerospace Global News",
@@ -466,18 +485,18 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-09T19:12:41.864737"
+      "timestamp": "2026-04-09T20:15:09.423548"
     }
   },
   "total_risk": {
     "risk": 54,
     "history": [
       {
-        "timestamp": 1775761961868,
+        "timestamp": 1775765709426,
         "risk": 54
       }
     ],
-    "elevated_count": 5
+    "elevated_count": 4
   },
-  "last_updated": "2026-04-09T19:12:41.868091"
+  "last_updated": "2026-04-09T20:15:09.426819"
 }
