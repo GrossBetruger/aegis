@@ -1,12 +1,13 @@
 {
   "news": {
     "risk": 36,
-    "detail": "35 articles, 22 critical, escalation: 0.38",
+    "detail": "38 articles, 25 critical, escalation: 0.35",
     "history": [
       34,
       38,
       38,
       38,
+      36,
       36
     ],
     "raw_data": {
@@ -147,6 +148,41 @@
           "escalation": 0.055
         },
         {
+          "title": "Iran says it \u2018would be dumb\u2019 for US to let Netanyahu kill diplomacy",
+          "is_alert": true,
+          "escalation": 0.049
+        },
+        {
+          "title": "Iranians rally nationwide to honour late leader Ali Khamenei",
+          "is_alert": true,
+          "escalation": 0.041
+        },
+        {
+          "title": "Zohran Mamdani on 100 days as New York mayor",
+          "is_alert": false,
+          "escalation": 0.113
+        },
+        {
+          "title": "US Democrats warn Trump that Iran ceasefire must apply to Lebanon",
+          "is_alert": true,
+          "escalation": 0.015
+        },
+        {
+          "title": "Sidon residents recall horror of Israeli strikes after Iran ceasefire",
+          "is_alert": true,
+          "escalation": 0.982
+        },
+        {
+          "title": "Does a US-Iran ceasefire mean the end of the war?",
+          "is_alert": true,
+          "escalation": 0.027
+        },
+        {
+          "title": "IMF warns of looming inflation crisis on back of US-Israel war on Iran",
+          "is_alert": true,
+          "escalation": 0.854
+        },
+        {
           "title": "Israel bombed Gaza on 36 of the past 40 days while the war raged in Iran",
           "is_alert": true,
           "escalation": 0.902
@@ -165,61 +201,33 @@
           "title": "What is Iran\u2019s Strait of Hormuz protocol and will other nations accept it?",
           "is_alert": false,
           "escalation": 0.004
-        },
-        {
-          "title": "The economic cost of US-Israel war on Iran",
-          "is_alert": true,
-          "escalation": 0.274
-        },
-        {
-          "title": "US-Iran talks in Pakistan: Who\u2019s attending, what\u2019s on the agenda?",
-          "is_alert": false,
-          "escalation": 0.0
-        },
-        {
-          "title": "Lebanon Latest: Israel kills hundreds in one day",
-          "is_alert": true,
-          "escalation": 0.765
-        },
-        {
-          "title": "Why Israel\u2019s attacks on Lebanon could cripple US-Iran ceasefire",
-          "is_alert": true,
-          "escalation": 0.977
         }
       ],
-      "total_count": 35,
-      "alert_count": 22,
-      "avg_escalation": 0.383,
+      "total_count": 38,
+      "alert_count": 25,
+      "avg_escalation": 0.354,
       "escalation_available": true,
-      "timestamp": "2026-04-09T17:39:31.104909"
+      "timestamp": "2026-04-09T19:12:18.292583"
     }
   },
   "flight": {
     "risk": 92,
-    "detail": "4 aircraft over Iran",
+    "detail": "OpenSky API unavailable \u2014 using last known value",
     "history": [
       88,
       88,
       94,
       92,
+      92,
       92
     ],
-    "raw_data": {
-      "aircraft_count": 4,
-      "airline_count": 4,
-      "airlines": [
-        "NBT",
-        "JZR",
-        "SVA",
-        "FAD"
-      ],
-      "timestamp": "2026-04-09T17:39:32.402544"
-    }
+    "raw_data": {}
   },
   "tanker": {
     "risk": 0,
-    "detail": "0 detected in region",
+    "detail": "OpenSky API unavailable \u2014 using last known value",
     "history": [
+      0,
       0,
       0,
       0,
@@ -227,15 +235,28 @@
       0
     ],
     "raw_data": {
-      "tanker_count": 0,
-      "callsigns": [],
-      "timestamp": "2026-04-09T17:39:32.402544"
+      "risk": 0,
+      "detail": "0 detected in region",
+      "history": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw_data": {
+        "tanker_count": 0,
+        "callsigns": [],
+        "timestamp": "2026-04-09T17:39:32.402544"
+      }
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -250,12 +271,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -267,6 +290,7 @@
           "history": [
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
@@ -274,111 +298,103 @@
             "detail": "clear",
             "history": [
               100,
+              100,
               100
             ],
-            "raw_data": {}
+            "raw_data": {
+              "risk": 100,
+              "detail": "clear",
+              "history": [
+                100,
+                100
+              ],
+              "raw_data": {}
+            }
           }
         }
       }
     }
   },
   "polymarket": {
-    "risk": 10,
-    "detail": "Awaiting data...",
+    "risk": 8,
+    "detail": "8% odds",
     "history": [
       10,
       10,
       10,
       10,
-      10
+      10,
+      8
     ],
     "raw_data": {
-      "odds": 0,
-      "market": "",
-      "timestamp": "2026-04-09T17:38:43.868029"
+      "odds": 8,
+      "market": "Military action against Iran ends on April 10, 2026?",
+      "timestamp": "2026-04-09T19:11:15.324362"
     }
   },
   "pentagon": {
-    "risk": 90,
-    "detail": "California Pizza Kitchen 100%, Extreme Pizza 80% (live)",
+    "risk": 79,
+    "detail": "California Pizza Kitchen 58%, Extreme Pizza 100% (live)",
     "history": [
       0,
       0,
       0,
       30,
-      90
+      90,
+      79
     ],
     "raw_data": {
-      "score": 90,
-      "risk_contribution": 9.0,
+      "score": 79,
+      "risk_contribution": 7.9,
       "status": "High Activity",
-      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 80% (live)",
+      "detail_text": "California Pizza Kitchen 58%, Extreme Pizza 100% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 100,
-        "Extreme Pizza": 80
+        "California Pizza Kitchen": 58,
+        "Extreme Pizza": 100
       },
-      "hour_et": 13,
-      "timestamp": "2026-04-09T17:38:43.619371",
+      "hour_et": 15,
+      "timestamp": "2026-04-09T19:11:15.047876",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 50,
-    "detail": "$95.03 (+0.0%)",
+    "risk": 60,
+    "detail": "$96.41 (+1.5%)",
     "history": [
       85,
       70,
       85,
       70,
-      50
+      50,
+      60
     ],
     "raw_data": {
-      "current_price": 95.03,
-      "change_24h": 0.03,
-      "risk": 50,
-      "timestamp": "2026-04-09T17:39:31.266020"
+      "current_price": 96.41,
+      "change_24h": 1.48,
+      "risk": 60,
+      "timestamp": "2026-04-09T19:12:18.615504"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Awaiting data...",
+    "detail": "Interest: 5, 'Iran war'",
     "history": [
       10,
+      5,
       5,
       5,
       5,
       5
     ],
     "raw_data": {
+      "current_interest": 5.4,
+      "avg_24h": 6.7,
+      "peak_keyword": "Iran war",
+      "peak_value": 23,
       "risk": 5,
-      "detail": "Awaiting data...",
-      "history": [
-        10,
-        5,
-        5,
-        5,
-        5
-      ],
-      "raw_data": {
-        "risk": 5,
-        "detail": "Interest: 7, 'Iran war'",
-        "history": [
-          10,
-          5,
-          5,
-          5
-        ],
-        "raw_data": {
-          "current_interest": 6.6,
-          "avg_24h": 7.3,
-          "peak_keyword": "Iran war",
-          "peak_value": 27,
-          "risk": 5,
-          "timestamp": "2026-04-09T14:21:58.006571"
-        }
-      }
+      "timestamp": "2026-04-09T19:12:20.195731"
     }
   },
   "buildup": {
@@ -388,6 +404,7 @@
       72,
       74,
       76,
+      72,
       72,
       72
     ],
@@ -438,7 +455,7 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 27,
+        "deployment_matches": 26,
         "sample_headlines": [
           "MPV, deck carrier operators eye cargo demand surge from Iran war reconstruction - Journal of Commerce",
           "USS Gerald R. Ford aircraft carrier leaves Croatia, putting US fighter jets closer to Iran - Aerospace Global News",
@@ -449,18 +466,18 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-09T17:39:33.948206"
+      "timestamp": "2026-04-09T19:12:41.864737"
     }
   },
   "total_risk": {
-    "risk": 52,
+    "risk": 54,
     "history": [
       {
-        "timestamp": 1775756373951,
-        "risk": 52
+        "timestamp": 1775761961868,
+        "risk": 54
       }
     ],
     "elevated_count": 5
   },
-  "last_updated": "2026-04-09T17:39:33.951896"
+  "last_updated": "2026-04-09T19:12:41.868091"
 }
