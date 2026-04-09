@@ -1,27 +1,38 @@
 {
   "news": {
     "risk": 38,
-    "detail": "34 articles, 23 critical, escalation: 0.38",
+    "detail": "36 articles, 23 critical, escalation: 0.41",
     "history": [
       34,
+      38,
       38
     ],
     "raw_data": {
       "articles": [
         {
-          "title": "US must choose 'between war and ceasefire', Iranian minister tells BBC",
+          "title": "Lebanon thought there was a ceasefire - then Israel unleashed deadly blitz",
           "is_alert": true,
-          "escalation": 0.682
+          "escalation": 0.993
         },
         {
-          "title": "At least 182 killed across Lebanon in large wave of Israeli strikes",
+          "title": "Israeli strikes in Lebanon 'grave violation' of ceasefire, Iran minister tells BBC",
           "is_alert": true,
-          "escalation": 0.942
+          "escalation": 0.988
+        },
+        {
+          "title": "Has US achieved its war objectives in Iran?",
+          "is_alert": true,
+          "escalation": 0.801
         },
         {
           "title": "Negotiators face huge task to close gaps in rival Iran peace proposals",
           "is_alert": true,
           "escalation": 0.007
+        },
+        {
+          "title": "At least 182 killed across Lebanon in large wave of Israeli strikes",
+          "is_alert": true,
+          "escalation": 0.942
         },
         {
           "title": "Israel backs US-Iran ceasefire but Netanyahu's war goals remain unfulfilled",
@@ -34,19 +45,9 @@
           "escalation": 0.003
         },
         {
-          "title": "Iran Strait of Hormuz warning adds to shipping uncertainty",
-          "is_alert": true,
-          "escalation": 0.149
-        },
-        {
-          "title": "Iran ceasefire deal gives Trump a way out of war - but at a high cost",
-          "is_alert": true,
-          "escalation": 0.005
-        },
-        {
-          "title": "What we know about the two-week ceasefire between the US and Iran ",
-          "is_alert": true,
-          "escalation": 0.005
+          "title": "Ships remain cautious approaching Strait of Hormuz amid fragile ceasefire",
+          "is_alert": false,
+          "escalation": 0.016
         },
         {
           "title": "Oil prices plunge and shares jump on US-Iran ceasefire plan",
@@ -57,6 +58,16 @@
           "title": "French couple leave Iran after more than three years in jail",
           "is_alert": false,
           "escalation": 0.056
+        },
+        {
+          "title": "Iran ceasefire deal gives Trump a way out of war - but at a high cost",
+          "is_alert": true,
+          "escalation": 0.005
+        },
+        {
+          "title": "What we know about the two-week ceasefire between the US and Iran ",
+          "is_alert": true,
+          "escalation": 0.005
         },
         {
           "title": "How Pakistan helped secure a fragile ceasefire between the US and Iran",
@@ -129,6 +140,26 @@
           "escalation": 0.055
         },
         {
+          "title": "What is Iran\u2019s Strait of Hormuz protocol and will other nations accept it?",
+          "is_alert": false,
+          "escalation": 0.004
+        },
+        {
+          "title": "The economic cost of US-Israel war on Iran",
+          "is_alert": true,
+          "escalation": 0.274
+        },
+        {
+          "title": "US-Iran talks in Pakistan: Who\u2019s attending, what\u2019s on the agenda?",
+          "is_alert": false,
+          "escalation": 0.0
+        },
+        {
+          "title": "Lebanon Latest: Israel kills hundreds in one day",
+          "is_alert": true,
+          "escalation": 0.765
+        },
+        {
           "title": "Why Israel\u2019s attacks on Lebanon could cripple US-Iran ceasefire",
           "is_alert": true,
           "escalation": 0.977
@@ -157,69 +188,51 @@
           "title": "Trump says US forces to stay near Iran, ready for \u2018next conquest\u2019",
           "is_alert": true,
           "escalation": 0.729
-        },
-        {
-          "title": "Iran war day 41: What\u2019s happening in Lebanon, Middle East and beyond?",
-          "is_alert": true,
-          "escalation": 0.737
-        },
-        {
-          "title": "For Gulf states, Hormuz uncertainty casts shadow over US-Iran ceasefire",
-          "is_alert": true,
-          "escalation": 0.03
-        },
-        {
-          "title": "Trump slams NATO over Iran after meeting Rutte, renews Greenland threat",
-          "is_alert": true,
-          "escalation": 0.385
-        },
-        {
-          "title": "US VP JD Vance says Lebanon is not part of the US-Iran ceasefire",
-          "is_alert": false,
-          "escalation": 0.079
         }
       ],
-      "total_count": 34,
+      "total_count": 36,
       "alert_count": 23,
-      "avg_escalation": 0.377,
+      "avg_escalation": 0.406,
       "escalation_available": true,
-      "timestamp": "2026-04-09T12:10:55.230302"
+      "timestamp": "2026-04-09T14:21:56.635018"
     }
   },
   "flight": {
-    "risk": 88,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 94,
+    "detail": "1 aircraft over Iran",
     "history": [
       88,
-      88
+      88,
+      94
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 1,
+      "airline_count": 1,
+      "airlines": [
+        "FAD"
+      ],
+      "timestamp": "2026-04-09T14:21:58.536047"
+    }
   },
   "tanker": {
     "risk": 0,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "detail": "0 detected in region",
     "history": [
+      0,
       0,
       0
     ],
     "raw_data": {
-      "risk": 0,
-      "detail": "0 detected in region",
-      "history": [
-        0,
-        0
-      ],
-      "raw_data": {
-        "tanker_count": 0,
-        "callsigns": [],
-        "timestamp": "2026-04-09T11:02:34.605140"
-      }
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-04-09T14:21:58.536047"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100
     ],
@@ -228,9 +241,18 @@
       "detail": "clear",
       "history": [
         100,
+        100,
         100
       ],
-      "raw_data": {}
+      "raw_data": {
+        "risk": 100,
+        "detail": "clear",
+        "history": [
+          100,
+          100
+        ],
+        "raw_data": {}
+      }
     }
   },
   "polymarket": {
@@ -238,18 +260,20 @@
     "detail": "Awaiting data...",
     "history": [
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-04-09T12:09:59.281598"
+      "timestamp": "2026-04-09T14:20:58.332382"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
+      0,
       0,
       0
     ],
@@ -260,51 +284,54 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 8,
-      "timestamp": "2026-04-09T12:09:59.166955",
+      "hour_et": 10,
+      "timestamp": "2026-04-09T14:20:58.063893",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 70,
-    "detail": "$97.74 (+2.9%)",
+    "risk": 85,
+    "detail": "$98.54 (+3.7%)",
     "history": [
       85,
-      70
+      70,
+      85
     ],
     "raw_data": {
-      "current_price": 97.74,
-      "change_24h": 2.88,
-      "risk": 70,
-      "timestamp": "2026-04-09T12:10:55.419430"
+      "current_price": 98.54,
+      "change_24h": 3.73,
+      "risk": 85,
+      "timestamp": "2026-04-09T14:21:56.795980"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Interest: 8, 'Iran war'",
+    "detail": "Interest: 7, 'Iran war'",
     "history": [
       10,
+      5,
       5
     ],
     "raw_data": {
-      "current_interest": 8.2,
-      "avg_24h": 7.7,
+      "current_interest": 6.6,
+      "avg_24h": 7.3,
       "peak_keyword": "Iran war",
-      "peak_value": 34,
+      "peak_value": 27,
       "risk": 5,
-      "timestamp": "2026-04-09T12:10:56.471334"
+      "timestamp": "2026-04-09T14:21:58.006571"
     }
   },
   "buildup": {
-    "risk": 74,
+    "risk": 76,
     "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
       72,
-      74
+      74,
+      76
     ],
     "raw_data": {
-      "risk": 74,
+      "risk": 76,
       "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 102.4,
@@ -327,17 +354,17 @@
         "platforms": {
           "b-2": "Stealth Bomber",
           "b-52": "Strategic Bomber",
-          "f-35": "5th Gen Fighter",
-          "b-1": "Bomber",
-          "f-15e": "Strike Eagle",
           "f-22": "Air Superiority Fighter",
+          "f-35": "5th Gen Fighter",
+          "f-15e": "Strike Eagle",
+          "b-1": "Bomber",
           "a-10": "Ground Attack"
         },
         "bases": {
           "fairford": 1,
-          "lakenheath": 2,
           "al udeid": 2,
-          "diego garcia": 3
+          "lakenheath": 1,
+          "diego garcia": 4
         },
         "categories_present": 4,
         "categories_active": [
@@ -349,30 +376,30 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 3,
+        "escalation_matches": 5,
         "deployment_matches": 28,
         "sample_headlines": [
           "US Navy requesting $3B to replenish Tomahawk missiles used in Iran war - Fox News",
           "USS Gerald R. Ford aircraft carrier leaves Croatia, putting US fighter jets closer to Iran - Aerospace Global News",
-          "Iran War Indicates U.S. Navy May Need 12 Carriers - Warrior Maven",
           "After Iran ceasefire, US military role in Hormuz remains uncertain - Stars and Stripes",
+          "Iran War Indicates U.S. Navy May Need 12 Carriers - Warrior Maven",
           "US Navy requesting $3B to replenish Tomahawk missiles used in Iran war - AOL.com"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-09T12:11:17.921452"
+      "timestamp": "2026-04-09T14:22:00.069381"
     }
   },
   "total_risk": {
-    "risk": 50,
+    "risk": 53,
     "history": [
       {
-        "timestamp": 1775736677925,
-        "risk": 50
+        "timestamp": 1775744520072,
+        "risk": 53
       }
     ],
     "elevated_count": 4
   },
-  "last_updated": "2026-04-09T12:11:17.925081"
+  "last_updated": "2026-04-09T14:22:00.072789"
 }
