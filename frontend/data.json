@@ -1,12 +1,18 @@
 {
   "news": {
-    "risk": 34,
-    "detail": "35 articles, 22 critical, escalation: 0.35",
+    "risk": 38,
+    "detail": "34 articles, 23 critical, escalation: 0.38",
     "history": [
-      34
+      34,
+      38
     ],
     "raw_data": {
       "articles": [
+        {
+          "title": "US must choose 'between war and ceasefire', Iranian minister tells BBC",
+          "is_alert": true,
+          "escalation": 0.682
+        },
         {
           "title": "At least 182 killed across Lebanon in large wave of Israeli strikes",
           "is_alert": true,
@@ -14,7 +20,7 @@
         },
         {
           "title": "Negotiators face huge task to close gaps in rival Iran peace proposals",
-          "is_alert": false,
+          "is_alert": true,
           "escalation": 0.007
         },
         {
@@ -43,11 +49,6 @@
           "escalation": 0.005
         },
         {
-          "title": "How Pakistan helped secure a fragile ceasefire between the US and Iran",
-          "is_alert": false,
-          "escalation": 0.002
-        },
-        {
           "title": "Oil prices plunge and shares jump on US-Iran ceasefire plan",
           "is_alert": true,
           "escalation": 0.005
@@ -58,14 +59,9 @@
           "escalation": 0.056
         },
         {
-          "title": "Trump condemned over threat that Iran's 'civilisation will die'",
-          "is_alert": true,
-          "escalation": 0.163
-        },
-        {
-          "title": "Trump issues expletive-laden threat to Iran over Hormuz Strait blockage",
+          "title": "How Pakistan helped secure a fragile ceasefire between the US and Iran",
           "is_alert": false,
-          "escalation": 0.518
+          "escalation": 0.002
         },
         {
           "title": "Little sign of breakthrough as Trump's Iran deadline nears ",
@@ -133,6 +129,11 @@
           "escalation": 0.055
         },
         {
+          "title": "Why Israel\u2019s attacks on Lebanon could cripple US-Iran ceasefire",
+          "is_alert": true,
+          "escalation": 0.977
+        },
+        {
           "title": "Several people reported killed in fresh Israeli attacks on Lebanon",
           "is_alert": true,
           "escalation": 0.974
@@ -155,7 +156,7 @@
         {
           "title": "Trump says US forces to stay near Iran, ready for \u2018next conquest\u2019",
           "is_alert": true,
-          "escalation": 0.728
+          "escalation": 0.729
         },
         {
           "title": "Iran war day 41: What\u2019s happening in Lebanon, Middle East and beyond?",
@@ -175,74 +176,81 @@
         {
           "title": "US VP JD Vance says Lebanon is not part of the US-Iran ceasefire",
           "is_alert": false,
-          "escalation": 0.078
-        },
-        {
-          "title": "Iran war live: Trump threatens action if Tehran fails to comply with deal",
-          "is_alert": true,
-          "escalation": 0.354
+          "escalation": 0.079
         }
       ],
-      "total_count": 35,
-      "alert_count": 22,
-      "avg_escalation": 0.348,
+      "total_count": 34,
+      "alert_count": 23,
+      "avg_escalation": 0.377,
       "escalation_available": true,
-      "timestamp": "2026-04-09T11:02:33.026944"
+      "timestamp": "2026-04-09T12:10:55.230302"
     }
   },
   "flight": {
     "risk": 88,
-    "detail": "9 aircraft over Iran",
+    "detail": "OpenSky API unavailable \u2014 using last known value",
     "history": [
+      88,
       88
     ],
-    "raw_data": {
-      "aircraft_count": 9,
-      "airline_count": 3,
-      "airlines": [
-        "UAE",
-        "FDB",
-        "A7G"
-      ],
-      "timestamp": "2026-04-09T11:02:34.605140"
-    }
+    "raw_data": {}
   },
   "tanker": {
     "risk": 0,
-    "detail": "0 detected in region",
+    "detail": "OpenSky API unavailable \u2014 using last known value",
     "history": [
+      0,
       0
     ],
     "raw_data": {
-      "tanker_count": 0,
-      "callsigns": [],
-      "timestamp": "2026-04-09T11:02:34.605140"
+      "risk": 0,
+      "detail": "0 detected in region",
+      "history": [
+        0,
+        0
+      ],
+      "raw_data": {
+        "tanker_count": 0,
+        "callsigns": [],
+        "timestamp": "2026-04-09T11:02:34.605140"
+      }
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100
     ],
-    "raw_data": {}
+    "raw_data": {
+      "risk": 100,
+      "detail": "clear",
+      "history": [
+        100,
+        100
+      ],
+      "raw_data": {}
+    }
   },
   "polymarket": {
     "risk": 10,
     "detail": "Awaiting data...",
     "history": [
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-04-09T11:01:46.931467"
+      "timestamp": "2026-04-09T12:09:59.281598"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
+      0,
       0
     ],
     "raw_data": {
@@ -252,48 +260,51 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 7,
-      "timestamp": "2026-04-09T11:01:46.676261",
+      "hour_et": 8,
+      "timestamp": "2026-04-09T12:09:59.166955",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 85,
-    "detail": "$98.51 (+3.7%)",
+    "risk": 70,
+    "detail": "$97.74 (+2.9%)",
     "history": [
-      85
+      85,
+      70
     ],
     "raw_data": {
-      "current_price": 98.51,
-      "change_24h": 3.69,
-      "risk": 85,
-      "timestamp": "2026-04-09T11:02:33.194231"
+      "current_price": 97.74,
+      "change_24h": 2.88,
+      "risk": 70,
+      "timestamp": "2026-04-09T12:10:55.419430"
     }
   },
   "trends": {
-    "risk": 10,
-    "detail": "Interest: 10, 'Iran war'",
+    "risk": 5,
+    "detail": "Interest: 8, 'Iran war'",
     "history": [
-      10
+      10,
+      5
     ],
     "raw_data": {
-      "current_interest": 10.2,
-      "avg_24h": 8.2,
+      "current_interest": 8.2,
+      "avg_24h": 7.7,
       "peak_keyword": "Iran war",
-      "peak_value": 43,
-      "risk": 10,
-      "timestamp": "2026-04-09T11:02:34.217975"
+      "peak_value": 34,
+      "risk": 5,
+      "timestamp": "2026-04-09T12:10:56.471334"
     }
   },
   "buildup": {
-    "risk": 72,
+    "risk": 74,
     "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
-      72
+      72,
+      74
     ],
     "raw_data": {
-      "risk": 72,
+      "risk": 74,
       "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 102.4,
@@ -316,17 +327,17 @@
         "platforms": {
           "b-2": "Stealth Bomber",
           "b-52": "Strategic Bomber",
-          "f-22": "Air Superiority Fighter",
           "f-35": "5th Gen Fighter",
           "b-1": "Bomber",
           "f-15e": "Strike Eagle",
+          "f-22": "Air Superiority Fighter",
           "a-10": "Ground Attack"
         },
         "bases": {
           "fairford": 1,
+          "lakenheath": 2,
           "al udeid": 2,
-          "lakenheath": 1,
-          "diego garcia": 5
+          "diego garcia": 3
         },
         "categories_present": 4,
         "categories_active": [
@@ -338,8 +349,8 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 1,
-        "deployment_matches": 26,
+        "escalation_matches": 3,
+        "deployment_matches": 28,
         "sample_headlines": [
           "US Navy requesting $3B to replenish Tomahawk missiles used in Iran war - Fox News",
           "USS Gerald R. Ford aircraft carrier leaves Croatia, putting US fighter jets closer to Iran - Aerospace Global News",
@@ -350,18 +361,18 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-09T11:02:35.867311"
+      "timestamp": "2026-04-09T12:11:17.921452"
     }
   },
   "total_risk": {
-    "risk": 51,
+    "risk": 50,
     "history": [
       {
-        "timestamp": 1775732555870,
-        "risk": 51
+        "timestamp": 1775736677925,
+        "risk": 50
       }
     ],
     "elevated_count": 4
   },
-  "last_updated": "2026-04-09T11:02:35.870274"
+  "last_updated": "2026-04-09T12:11:17.925081"
 }
