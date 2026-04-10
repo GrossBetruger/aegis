@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 35,
-    "detail": "34 articles, 22 critical, escalation: 0.35",
+    "risk": 36,
+    "detail": "33 articles, 21 critical, escalation: 0.36",
     "history": [
       34,
       38,
@@ -15,7 +15,8 @@
       34,
       35,
       33,
-      35
+      35,
+      36
     ],
     "raw_data": {
       "articles": [
@@ -150,6 +151,11 @@
           "escalation": 0.055
         },
         {
+          "title": "Iran war: What is happening on day 42 of US-Israeli attacks?",
+          "is_alert": true,
+          "escalation": 0.885
+        },
+        {
           "title": "Kuwait blames Iran for drone strike, Iran denies responsibility",
           "is_alert": true,
           "escalation": 0.62
@@ -178,28 +184,18 @@
           "title": "US-Iran ceasefire: Uncertainty over what\u2019s next",
           "is_alert": true,
           "escalation": 0.002
-        },
-        {
-          "title": "Khamenei says Tehran \u2018astonished the world\u2019 during US-Israeli war on Iran",
-          "is_alert": true,
-          "escalation": 0.691
-        },
-        {
-          "title": "Iran: Strait of Hormuz open with restrictions",
-          "is_alert": true,
-          "escalation": 0.022
         }
       ],
-      "total_count": 34,
-      "alert_count": 22,
-      "avg_escalation": 0.349,
+      "total_count": 33,
+      "alert_count": 21,
+      "avg_escalation": 0.365,
       "escalation_available": true,
-      "timestamp": "2026-04-10T06:01:24.907732"
+      "timestamp": "2026-04-10T07:57:14.793510"
     }
   },
   "flight": {
-    "risk": 82,
-    "detail": "16 aircraft over Iran",
+    "risk": 93,
+    "detail": "3 aircraft over Iran",
     "history": [
       88,
       88,
@@ -213,20 +209,18 @@
       85,
       88,
       88,
-      82
+      82,
+      93
     ],
     "raw_data": {
-      "aircraft_count": 16,
-      "airline_count": 6,
+      "aircraft_count": 3,
+      "airline_count": 3,
       "airlines": [
-        "UAE",
-        "JZR",
-        "QTR",
-        "QQE",
-        "224",
-        "KNE"
+        "BAH",
+        "KAC",
+        "MSC"
       ],
-      "timestamp": "2026-04-10T06:01:26.607475"
+      "timestamp": "2026-04-10T07:57:16.450316"
     }
   },
   "tanker": {
@@ -245,18 +239,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-04-10T06:01:26.607475"
+      "timestamp": "2026-04-10T07:57:16.450316"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -287,12 +283,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -320,12 +318,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -349,12 +349,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100,
@@ -374,12 +376,14 @@
                     100,
                     100,
                     100,
+                    100,
                     100
                   ],
                   "raw_data": {
                     "risk": 100,
                     "detail": "clear",
                     "history": [
+                      100,
                       100,
                       100,
                       100,
@@ -395,12 +399,14 @@
                         100,
                         100,
                         100,
+                        100,
                         100
                       ],
                       "raw_data": {
                         "risk": 100,
                         "detail": "clear",
                         "history": [
+                          100,
                           100,
                           100,
                           100,
@@ -412,6 +418,7 @@
                           "history": [
                             100,
                             100,
+                            100,
                             100
                           ],
                           "raw_data": {
@@ -419,9 +426,18 @@
                             "detail": "clear",
                             "history": [
                               100,
+                              100,
                               100
                             ],
-                            "raw_data": {}
+                            "raw_data": {
+                              "risk": 100,
+                              "detail": "clear",
+                              "history": [
+                                100,
+                                100
+                              ],
+                              "raw_data": {}
+                            }
                           }
                         }
                       }
@@ -436,8 +452,8 @@
     }
   },
   "polymarket": {
-    "risk": 1,
-    "detail": "1% odds",
+    "risk": 10,
+    "detail": "Awaiting data...",
     "history": [
       10,
       10,
@@ -451,12 +467,13 @@
       1,
       10,
       1,
-      1
+      1,
+      10
     ],
     "raw_data": {
-      "odds": 1,
-      "market": "Military action against Iran ends on April 11, 2026?",
-      "timestamp": "2026-04-10T06:00:27.974267"
+      "odds": 0,
+      "market": "",
+      "timestamp": "2026-04-10T07:56:19.677617"
     }
   },
   "pentagon": {
@@ -475,6 +492,7 @@
       78,
       50,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -484,15 +502,15 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 1,
-      "timestamp": "2026-04-10T06:00:27.654320",
+      "hour_et": 3,
+      "timestamp": "2026-04-10T07:56:19.483276",
       "is_late_night": true,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 50,
-    "detail": "$96.85 (-0.5%)",
+    "detail": "$97.81 (+0.5%)",
     "history": [
       85,
       70,
@@ -506,20 +524,22 @@
       70,
       70,
       70,
+      50,
       50
     ],
     "raw_data": {
-      "current_price": 96.85,
-      "change_24h": -0.52,
+      "current_price": 97.81,
+      "change_24h": 0.46,
       "risk": 50,
-      "timestamp": "2026-04-10T06:01:25.218918"
+      "timestamp": "2026-04-10T07:57:14.977049"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Awaiting data...",
+    "detail": "Interest: 6, 'Iran war'",
     "history": [
       10,
+      5,
       5,
       5,
       5,
@@ -534,35 +554,16 @@
       5
     ],
     "raw_data": {
+      "current_interest": 5.8,
+      "avg_24h": 5.6,
+      "peak_keyword": "Iran war",
+      "peak_value": 23,
       "risk": 5,
-      "detail": "Interest: 5, 'Iran war'",
-      "history": [
-        10,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5
-      ],
-      "raw_data": {
-        "current_interest": 4.6,
-        "avg_24h": 5.7,
-        "peak_keyword": "Iran war",
-        "peak_value": 19,
-        "risk": 5,
-        "timestamp": "2026-04-10T03:49:34.796412"
-      }
+      "timestamp": "2026-04-10T07:57:16.021964"
     }
   },
   "buildup": {
-    "risk": 74,
+    "risk": 72,
     "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
       72,
@@ -577,10 +578,11 @@
       72,
       72,
       71,
-      74
+      74,
+      72
     ],
     "raw_data": {
-      "risk": 74,
+      "risk": 72,
       "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 102.4,
@@ -610,10 +612,10 @@
           "a-10": "Ground Attack"
         },
         "bases": {
-          "fairford": 1,
+          "fairford": 2,
           "lakenheath": 1,
           "al udeid": 2,
-          "diego garcia": 4
+          "diego garcia": 3
         },
         "categories_present": 4,
         "categories_active": [
@@ -625,8 +627,8 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 3,
-        "deployment_matches": 29,
+        "escalation_matches": 0,
+        "deployment_matches": 27,
         "sample_headlines": [
           "CENTCOM Commander Provides Update on Operation Epic Fury - centcom.mil",
           "MPV, deck carrier operators eye cargo demand surge from Iran war reconstruction - Journal of Commerce",
@@ -637,18 +639,18 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-10T06:01:28.083914"
+      "timestamp": "2026-04-10T07:57:17.877364"
     }
   },
   "total_risk": {
-    "risk": 46,
+    "risk": 48,
     "history": [
       {
-        "timestamp": 1775800888087,
-        "risk": 46
+        "timestamp": 1775807837880,
+        "risk": 48
       }
     ],
     "elevated_count": 4
   },
-  "last_updated": "2026-04-10T06:01:28.087385"
+  "last_updated": "2026-04-10T07:57:17.880681"
 }
