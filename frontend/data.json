@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 34,
-    "detail": "34 articles, 23 critical, escalation: 0.31",
+    "risk": 35,
+    "detail": "34 articles, 24 critical, escalation: 0.31",
     "history": [
       34,
       38,
@@ -12,7 +12,8 @@
       37,
       38,
       36,
-      34
+      34,
+      35
     ],
     "raw_data": {
       "articles": [
@@ -152,6 +153,11 @@
           "escalation": 0.055
         },
         {
+          "title": "Iran\u2019s Supreme Leader Mojtaba Khamenei says \u2018we seek compensation, not war\u2019",
+          "is_alert": true,
+          "escalation": 0.086
+        },
+        {
           "title": "US-Iran ceasefire: Uncertainty over what\u2019s next",
           "is_alert": true,
           "escalation": 0.002
@@ -180,23 +186,18 @@
           "title": "Iranians rally nationwide to honour late leader Ali Khamenei",
           "is_alert": true,
           "escalation": 0.041
-        },
-        {
-          "title": "Zohran Mamdani on 100 days as New York mayor",
-          "is_alert": false,
-          "escalation": 0.113
         }
       ],
       "total_count": 34,
-      "alert_count": 23,
-      "avg_escalation": 0.308,
+      "alert_count": 24,
+      "avg_escalation": 0.307,
       "escalation_available": true,
-      "timestamp": "2026-04-09T23:12:01.053697"
+      "timestamp": "2026-04-10T00:04:23.339327"
     }
   },
   "flight": {
-    "risk": 85,
-    "detail": "13 aircraft over Iran",
+    "risk": 88,
+    "detail": "9 aircraft over Iran",
     "history": [
       88,
       88,
@@ -207,20 +208,18 @@
       93,
       93,
       90,
-      85
+      85,
+      88
     ],
     "raw_data": {
-      "aircraft_count": 13,
-      "airline_count": 6,
+      "aircraft_count": 9,
+      "airline_count": 3,
       "airlines": [
         "UAE",
-        "UBG",
-        "FDB",
-        "GFA",
-        "ETH",
-        "QTR"
+        "QTR",
+        "ABQ"
       ],
-      "timestamp": "2026-04-09T23:12:02.662965"
+      "timestamp": "2026-04-10T00:04:25.123234"
     }
   },
   "tanker": {
@@ -236,18 +235,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-04-09T23:12:02.662965"
+      "timestamp": "2026-04-10T00:04:25.123234"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -272,12 +273,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -299,12 +302,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -322,12 +327,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100,
@@ -341,12 +348,14 @@
                     100,
                     100,
                     100,
+                    100,
                     100
                   ],
                   "raw_data": {
                     "risk": 100,
                     "detail": "clear",
                     "history": [
+                      100,
                       100,
                       100,
                       100
@@ -356,9 +365,18 @@
                       "detail": "clear",
                       "history": [
                         100,
+                        100,
                         100
                       ],
-                      "raw_data": {}
+                      "raw_data": {
+                        "risk": 100,
+                        "detail": "clear",
+                        "history": [
+                          100,
+                          100
+                        ],
+                        "raw_data": {}
+                      }
                     }
                   }
                 }
@@ -370,8 +388,8 @@
     }
   },
   "polymarket": {
-    "risk": 1,
-    "detail": "1% odds",
+    "risk": 10,
+    "detail": "Awaiting data...",
     "history": [
       10,
       10,
@@ -382,17 +400,18 @@
       5,
       2,
       1,
-      1
+      1,
+      10
     ],
     "raw_data": {
-      "odds": 1,
-      "market": "Military action against Iran ends on April 10, 2026?",
-      "timestamp": "2026-04-09T23:11:05.862172"
+      "odds": 0,
+      "market": "",
+      "timestamp": "2026-04-10T00:03:25.548535"
     }
   },
   "pentagon": {
-    "risk": 78,
-    "detail": "California Pizza Kitchen 100%, Extreme Pizza 55% (live)",
+    "risk": 50,
+    "detail": "California Pizza Kitchen 100%, Extreme Pizza 0% (live)",
     "history": [
       0,
       0,
@@ -403,27 +422,28 @@
       48,
       72,
       72,
-      78
+      78,
+      50
     ],
     "raw_data": {
-      "score": 78,
-      "risk_contribution": 7.8,
-      "status": "High Activity",
-      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 55% (live)",
+      "score": 50,
+      "risk_contribution": 5.0,
+      "status": "Elevated",
+      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 0% (live)",
       "source": "live",
       "live_scores": {
         "California Pizza Kitchen": 100,
-        "Extreme Pizza": 55
+        "Extreme Pizza": 0
       },
-      "hour_et": 19,
-      "timestamp": "2026-04-09T23:11:05.775464",
+      "hour_et": 20,
+      "timestamp": "2026-04-10T00:03:25.342024",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 70,
-    "detail": "$96.95 (+2.0%)",
+    "detail": "$96.63 (+1.7%)",
     "history": [
       85,
       70,
@@ -434,13 +454,14 @@
       70,
       70,
       70,
+      70,
       70
     ],
     "raw_data": {
-      "current_price": 96.95,
-      "change_24h": 2.05,
+      "current_price": 96.63,
+      "change_24h": 1.72,
       "risk": 70,
-      "timestamp": "2026-04-09T23:12:01.197453"
+      "timestamp": "2026-04-10T00:04:23.498966"
     }
   },
   "trends": {
@@ -456,15 +477,16 @@
       5,
       5,
       5,
+      5,
       5
     ],
     "raw_data": {
-      "current_interest": 4.2,
+      "current_interest": 3.8,
       "avg_24h": 6.0,
       "peak_keyword": "Iran war",
-      "peak_value": 18,
+      "peak_value": 17,
       "risk": 5,
-      "timestamp": "2026-04-09T23:12:02.152006"
+      "timestamp": "2026-04-10T00:04:24.712800"
     }
   },
   "buildup": {
@@ -480,6 +502,7 @@
       73,
       73,
       73,
+      72,
       72
     ],
     "raw_data": {
@@ -529,29 +552,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 29,
+        "deployment_matches": 28,
         "sample_headlines": [
           "MPV, deck carrier operators eye cargo demand surge from Iran war reconstruction - Journal of Commerce",
           "USS Gerald R. Ford aircraft carrier leaves Croatia, putting US fighter jets closer to Iran - Aerospace Global News",
           "US Navy MQ-4C Triton Vanishes Near Iran After Emergency Code: Did Tehran Just Down America\u2019s US$200 Million Spy Drone? - Defence Security Asia",
           "After Iran ceasefire, US military role in Hormuz remains uncertain - Stars and Stripes",
-          "US Navy requesting $3B to replenish Tomahawk missiles used in Iran war - Fox News"
+          "Another carrier strike group departs from San Diego, Navy says, as war in Iran continues - NBC 7 San Diego"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-09T23:12:04.105628"
+      "timestamp": "2026-04-10T00:04:26.458466"
     }
   },
   "total_risk": {
-    "risk": 52,
+    "risk": 51,
     "history": [
       {
-        "timestamp": 1775776324108,
-        "risk": 52
+        "timestamp": 1775779466462,
+        "risk": 51
       }
     ],
-    "elevated_count": 5
+    "elevated_count": 4
   },
-  "last_updated": "2026-04-09T23:12:04.108009"
+  "last_updated": "2026-04-10T00:04:26.462489"
 }
