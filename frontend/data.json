@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 36,
-    "detail": "34 articles, 22 critical, escalation: 0.36",
+    "risk": 33,
+    "detail": "31 articles, 19 critical, escalation: 0.34",
     "history": [
       34,
       38,
@@ -20,7 +20,8 @@
       36,
       36,
       36,
-      36
+      36,
+      33
     ],
     "raw_data": {
       "articles": [
@@ -42,7 +43,7 @@
         {
           "title": "Has US achieved its war objectives in Iran?",
           "is_alert": true,
-          "escalation": 0.801
+          "escalation": 0.802
         },
         {
           "title": "Israeli strikes in Lebanon 'grave violation' of ceasefire, Iran minister tells BBC",
@@ -155,6 +156,16 @@
           "escalation": 0.055
         },
         {
+          "title": "Pakistan sets modest goal for US-Iran summit: A deal to keep talks going",
+          "is_alert": false,
+          "escalation": 0.0
+        },
+        {
+          "title": "Vance expects \u2018positive\u2019 Iran talks as he heads to Islamabad",
+          "is_alert": false,
+          "escalation": 0.001
+        },
+        {
           "title": "\u2018Closer to a break than ever\u2019: Can NATO survive if Trump pulls the US out?",
           "is_alert": true,
           "escalation": 0.046
@@ -168,43 +179,18 @@
           "title": "Iran war: What is happening on day 42 of US-Israeli attacks?",
           "is_alert": true,
           "escalation": 0.885
-        },
-        {
-          "title": "Kuwait blames Iran for drone strike, Iran denies responsibility",
-          "is_alert": true,
-          "escalation": 0.62
-        },
-        {
-          "title": "UK PM Keir Starmer visits Gulf to shore up \u2018fragile\u2019 US-Iran ceasefire",
-          "is_alert": false,
-          "escalation": 0.001
-        },
-        {
-          "title": "Shipping in Strait of Hormuz at a standstill despite US-Iran ceasefire",
-          "is_alert": false,
-          "escalation": 0.018
-        },
-        {
-          "title": "Iran war live: Israel attacks Lebanon again on eve of US-Iran truce talks",
-          "is_alert": true,
-          "escalation": 0.984
-        },
-        {
-          "title": "Iran\u2019s Supreme Leader Mojtaba Khamenei says \u2018we seek compensation, not war\u2019",
-          "is_alert": true,
-          "escalation": 0.086
         }
       ],
-      "total_count": 34,
-      "alert_count": 22,
-      "avg_escalation": 0.36,
+      "total_count": 31,
+      "alert_count": 19,
+      "avg_escalation": 0.34,
       "escalation_available": true,
-      "timestamp": "2026-04-10T13:17:26.362573"
+      "timestamp": "2026-04-10T14:36:23.748913"
     }
   },
   "flight": {
-    "risk": 92,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 93,
+    "detail": "2 aircraft over Iran",
     "history": [
       88,
       88,
@@ -223,14 +209,24 @@
       95,
       95,
       92,
-      92
+      92,
+      93
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 2,
+      "airline_count": 2,
+      "airlines": [
+        "SVR",
+        "GFA"
+      ],
+      "timestamp": "2026-04-10T14:36:25.874162"
+    }
   },
   "tanker": {
     "risk": 0,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "detail": "0 detected in region",
     "history": [
+      0,
       0,
       0,
       0,
@@ -251,39 +247,16 @@
       0
     ],
     "raw_data": {
-      "risk": 0,
-      "detail": "0 detected in region",
-      "history": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "raw_data": {
-        "tanker_count": 0,
-        "callsigns": [],
-        "timestamp": "2026-04-10T11:52:49.176905"
-      }
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-04-10T14:36:25.874162"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -324,12 +297,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -367,12 +342,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -406,12 +383,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100,
@@ -441,12 +420,14 @@
                     100,
                     100,
                     100,
+                    100,
                     100
                   ],
                   "raw_data": {
                     "risk": 100,
                     "detail": "clear",
                     "history": [
+                      100,
                       100,
                       100,
                       100,
@@ -472,12 +453,14 @@
                         100,
                         100,
                         100,
+                        100,
                         100
                       ],
                       "raw_data": {
                         "risk": 100,
                         "detail": "clear",
                         "history": [
+                          100,
                           100,
                           100,
                           100,
@@ -499,12 +482,14 @@
                             100,
                             100,
                             100,
+                            100,
                             100
                           ],
                           "raw_data": {
                             "risk": 100,
                             "detail": "clear",
                             "history": [
+                              100,
                               100,
                               100,
                               100,
@@ -522,12 +507,14 @@
                                 100,
                                 100,
                                 100,
+                                100,
                                 100
                               ],
                               "raw_data": {
                                 "risk": 100,
                                 "detail": "clear",
                                 "history": [
+                                  100,
                                   100,
                                   100,
                                   100,
@@ -541,12 +528,14 @@
                                     100,
                                     100,
                                     100,
+                                    100,
                                     100
                                   ],
                                   "raw_data": {
                                     "risk": 100,
                                     "detail": "clear",
                                     "history": [
+                                      100,
                                       100,
                                       100,
                                       100
@@ -556,9 +545,18 @@
                                       "detail": "clear",
                                       "history": [
                                         100,
+                                        100,
                                         100
                                       ],
-                                      "raw_data": {}
+                                      "raw_data": {
+                                        "risk": 100,
+                                        "detail": "clear",
+                                        "history": [
+                                          100,
+                                          100
+                                        ],
+                                        "raw_data": {}
+                                      }
                                     }
                                   }
                                 }
@@ -598,12 +596,13 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-04-10T13:16:29.370531"
+      "timestamp": "2026-04-10T14:35:40.396643"
     }
   },
   "pentagon": {
@@ -627,6 +626,7 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -636,15 +636,15 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 9,
-      "timestamp": "2026-04-10T13:16:29.272262",
+      "hour_et": 10,
+      "timestamp": "2026-04-10T14:35:40.056737",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 45,
-    "detail": "$95.35 (-2.1%)",
+    "detail": "$95.28 (-2.1%)",
     "history": [
       85,
       70,
@@ -663,13 +663,14 @@
       50,
       50,
       50,
+      45,
       45
     ],
     "raw_data": {
-      "current_price": 95.35,
-      "change_24h": -2.06,
+      "current_price": 95.28,
+      "change_24h": -2.14,
       "risk": 45,
-      "timestamp": "2026-04-10T13:17:26.512118"
+      "timestamp": "2026-04-10T14:36:24.038945"
     }
   },
   "trends": {
@@ -677,6 +678,7 @@
     "detail": "Awaiting data...",
     "history": [
       10,
+      5,
       5,
       5,
       5,
@@ -716,13 +718,15 @@
         5,
         5,
         5,
+        5,
         5
       ],
       "raw_data": {
         "risk": 5,
-        "detail": "Interest: 7, 'Iran war'",
+        "detail": "Awaiting data...",
         "history": [
           10,
+          5,
           5,
           5,
           5,
@@ -741,18 +745,41 @@
           5
         ],
         "raw_data": {
-          "current_interest": 7.2,
-          "avg_24h": 5.2,
-          "peak_keyword": "Iran war",
-          "peak_value": 30,
           "risk": 5,
-          "timestamp": "2026-04-10T10:36:35.363049"
+          "detail": "Interest: 7, 'Iran war'",
+          "history": [
+            10,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "raw_data": {
+            "current_interest": 7.2,
+            "avg_24h": 5.2,
+            "peak_keyword": "Iran war",
+            "peak_value": 30,
+            "risk": 5,
+            "timestamp": "2026-04-10T10:36:35.363049"
+          }
         }
       }
     }
   },
   "buildup": {
-    "risk": 72,
+    "risk": 73,
     "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
       72,
@@ -772,10 +799,11 @@
       73,
       71,
       71,
-      72
+      72,
+      73
     ],
     "raw_data": {
-      "risk": 72,
+      "risk": 73,
       "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 102.4,
@@ -797,18 +825,18 @@
       "air_presence": {
         "platforms": {
           "b-2": "Stealth Bomber",
-          "a-10": "Ground Attack",
+          "f-22": "Air Superiority Fighter",
           "f-35": "5th Gen Fighter",
           "b-52": "Strategic Bomber",
           "f-15e": "Strike Eagle",
           "b-1": "Bomber",
-          "f-22": "Air Superiority Fighter"
+          "a-10": "Ground Attack"
         },
         "bases": {
+          "fairford": 1,
+          "diego garcia": 5,
           "lakenheath": 1,
-          "diego garcia": 3,
-          "fairford": 2,
-          "al udeid": 1
+          "al udeid": 2
         },
         "categories_present": 4,
         "categories_active": [
@@ -820,30 +848,30 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 1,
-        "deployment_matches": 29,
+        "escalation_matches": 2,
+        "deployment_matches": 26,
         "sample_headlines": [
           "CENTCOM Commander Provides Update on Operation Epic Fury - centcom.mil",
+          "Don't fall for claim US Navy officer refused Trump's order to strike Iran - Snopes",
           "USS Gerald R. Ford aircraft carrier leaves Croatia, putting US fighter jets closer to Iran - Aerospace Global News",
           "MPV, deck carrier operators eye cargo demand surge from Iran war reconstruction - Journal of Commerce",
-          "After Iran ceasefire, US military role in Hormuz remains uncertain - Stars and Stripes",
-          "Another carrier strike group departs from San Diego, Navy says, as war in Iran continues - NBC 7 San Diego"
+          "After Iran ceasefire, US military role in Hormuz remains uncertain - Stars and Stripes"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-10T13:17:48.807227"
+      "timestamp": "2026-04-10T14:36:27.680294"
     }
   },
   "total_risk": {
     "risk": 47,
     "history": [
       {
-        "timestamp": 1775827068810,
+        "timestamp": 1775831787683,
         "risk": 47
       }
     ],
     "elevated_count": 4
   },
-  "last_updated": "2026-04-10T13:17:48.810383"
+  "last_updated": "2026-04-10T14:36:27.683286"
 }
