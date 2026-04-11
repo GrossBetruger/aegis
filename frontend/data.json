@@ -1,9 +1,8 @@
 {
   "news": {
     "risk": 27,
-    "detail": "34 articles, 18 critical, escalation: 0.29",
+    "detail": "36 articles, 19 critical, escalation: 0.29",
     "history": [
-      31,
       33,
       33,
       33,
@@ -22,6 +21,7 @@
       26,
       26,
       25,
+      27,
       27
     ],
     "raw_data": {
@@ -162,6 +162,21 @@
           "escalation": 0.055
         },
         {
+          "title": "Iran\u2019s deputy FM says Tehran has \u2018upper hand\u2019 in talks with US",
+          "is_alert": true,
+          "escalation": 0.001
+        },
+        {
+          "title": "US says two naval ships \u2018transited\u2019 Strait of Hormuz for mine-clearing",
+          "is_alert": false,
+          "escalation": 0.317
+        },
+        {
+          "title": "Pakistan sends fighter jets to Saudi Arabia amid fragile US-Iran ceasefire",
+          "is_alert": false,
+          "escalation": 0.108
+        },
+        {
           "title": "Iranian rabbi describes Israel\u2019s destruction of a Tehran synagogue",
           "is_alert": true,
           "escalation": 0.338
@@ -190,25 +205,19 @@
           "title": "Al Jazeera\u2019s Diplomatic Editor outlines key issues in US-Iran talks",
           "is_alert": false,
           "escalation": 0.003
-        },
-        {
-          "title": "Video: JD Vance meets with Pakistani PM ahead of Iran talks",
-          "is_alert": false,
-          "escalation": 0.001
         }
       ],
-      "total_count": 34,
-      "alert_count": 18,
-      "avg_escalation": 0.292,
+      "total_count": 36,
+      "alert_count": 19,
+      "avg_escalation": 0.288,
       "escalation_available": true,
-      "timestamp": "2026-04-11T19:38:22.252314"
+      "timestamp": "2026-04-11T20:38:39.938121"
     }
   },
   "flight": {
-    "risk": 91,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 93,
+    "detail": "2 aircraft over Iran",
     "history": [
-      93,
       95,
       93,
       91,
@@ -227,13 +236,22 @@
       90,
       93,
       91,
-      91
+      91,
+      93
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 2,
+      "airline_count": 2,
+      "airlines": [
+        "JZR",
+        "FAD"
+      ],
+      "timestamp": "2026-04-11T20:38:41.668147"
+    }
   },
   "tanker": {
     "risk": 0,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "detail": "0 detected in region",
     "history": [
       0,
       0,
@@ -257,36 +275,9 @@
       0
     ],
     "raw_data": {
-      "risk": 0,
-      "detail": "0 detected in region",
-      "history": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "raw_data": {
-        "tanker_count": 0,
-        "callsigns": [],
-        "timestamp": "2026-04-11T18:51:24.608986"
-      }
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-04-11T20:38:41.668147"
     }
   },
   "weather": {
@@ -961,12 +952,14 @@
                                                         100,
                                                         100,
                                                         100,
+                                                        100,
                                                         100
                                                       ],
                                                       "raw_data": {
                                                         "risk": 100,
                                                         "detail": "clear",
                                                         "history": [
+                                                          100,
                                                           100,
                                                           100,
                                                           100,
@@ -1008,12 +1001,14 @@
                                                             100,
                                                             100,
                                                             100,
+                                                            100,
                                                             100
                                                           ],
                                                           "raw_data": {
                                                             "risk": 100,
                                                             "detail": "clear",
                                                             "history": [
+                                                              100,
                                                               100,
                                                               100,
                                                               100,
@@ -1051,12 +1046,14 @@
                                                                 100,
                                                                 100,
                                                                 100,
+                                                                100,
                                                                 100
                                                               ],
                                                               "raw_data": {
                                                                 "risk": 100,
                                                                 "detail": "clear",
                                                                 "history": [
+                                                                  100,
                                                                   100,
                                                                   100,
                                                                   100,
@@ -1090,12 +1087,14 @@
                                                                     100,
                                                                     100,
                                                                     100,
+                                                                    100,
                                                                     100
                                                                   ],
                                                                   "raw_data": {
                                                                     "risk": 100,
                                                                     "detail": "clear",
                                                                     "history": [
+                                                                      100,
                                                                       100,
                                                                       100,
                                                                       100,
@@ -1125,12 +1124,14 @@
                                                                         100,
                                                                         100,
                                                                         100,
+                                                                        100,
                                                                         100
                                                                       ],
                                                                       "raw_data": {
                                                                         "risk": 100,
                                                                         "detail": "clear",
                                                                         "history": [
+                                                                          100,
                                                                           100,
                                                                           100,
                                                                           100,
@@ -1156,12 +1157,14 @@
                                                                             100,
                                                                             100,
                                                                             100,
+                                                                            100,
                                                                             100
                                                                           ],
                                                                           "raw_data": {
                                                                             "risk": 100,
                                                                             "detail": "clear",
                                                                             "history": [
+                                                                              100,
                                                                               100,
                                                                               100,
                                                                               100,
@@ -1183,12 +1186,14 @@
                                                                                 100,
                                                                                 100,
                                                                                 100,
+                                                                                100,
                                                                                 100
                                                                               ],
                                                                               "raw_data": {
                                                                                 "risk": 100,
                                                                                 "detail": "clear",
                                                                                 "history": [
+                                                                                  100,
                                                                                   100,
                                                                                   100,
                                                                                   100,
@@ -1206,12 +1211,14 @@
                                                                                     100,
                                                                                     100,
                                                                                     100,
+                                                                                    100,
                                                                                     100
                                                                                   ],
                                                                                   "raw_data": {
                                                                                     "risk": 100,
                                                                                     "detail": "clear",
                                                                                     "history": [
+                                                                                      100,
                                                                                       100,
                                                                                       100,
                                                                                       100,
@@ -1225,12 +1232,14 @@
                                                                                         100,
                                                                                         100,
                                                                                         100,
+                                                                                        100,
                                                                                         100
                                                                                       ],
                                                                                       "raw_data": {
                                                                                         "risk": 100,
                                                                                         "detail": "clear",
                                                                                         "history": [
+                                                                                          100,
                                                                                           100,
                                                                                           100,
                                                                                           100
@@ -1240,9 +1249,18 @@
                                                                                           "detail": "clear",
                                                                                           "history": [
                                                                                             100,
+                                                                                            100,
                                                                                             100
                                                                                           ],
-                                                                                          "raw_data": {}
+                                                                                          "raw_data": {
+                                                                                            "risk": 100,
+                                                                                            "detail": "clear",
+                                                                                            "history": [
+                                                                                              100,
+                                                                                              100
+                                                                                            ],
+                                                                                            "raw_data": {}
+                                                                                          }
                                                                                         }
                                                                                       }
                                                                                     }
@@ -1292,7 +1310,6 @@
     "detail": "Awaiting data...",
     "history": [
       10,
-      10,
       1,
       10,
       1,
@@ -1305,6 +1322,7 @@
       10,
       10,
       1,
+      10,
       10,
       10,
       10,
@@ -1315,14 +1333,13 @@
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-04-11T19:37:26.406418"
+      "timestamp": "2026-04-11T20:37:40.132836"
     }
   },
   "pentagon": {
-    "risk": 100,
-    "detail": "California Pizza Kitchen 96%, Extreme Pizza 100% (live)",
+    "risk": 86,
+    "detail": "California Pizza Kitchen 100%, Extreme Pizza 44% (live)",
     "history": [
-      80,
       50,
       96,
       84,
@@ -1341,20 +1358,21 @@
       44,
       89,
       43,
-      100
+      100,
+      86
     ],
     "raw_data": {
-      "score": 100,
-      "risk_contribution": 10.0,
+      "score": 86,
+      "risk_contribution": 8.6,
       "status": "High Activity",
-      "detail_text": "California Pizza Kitchen 96%, Extreme Pizza 100% (live)",
+      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 44% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 96,
-        "Extreme Pizza": 100
+        "California Pizza Kitchen": 100,
+        "Extreme Pizza": 44
       },
-      "hour_et": 15,
-      "timestamp": "2026-04-11T19:37:26.233916",
+      "hour_et": 16,
+      "timestamp": "2026-04-11T20:37:40.032806",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -1388,14 +1406,13 @@
       "current_price": 94.45,
       "change_24h": -2.99,
       "risk": 45,
-      "timestamp": "2026-04-11T19:38:22.569379"
+      "timestamp": "2026-04-11T20:38:40.087849"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Interest: 4, 'Iran war'",
+    "detail": "Interest: 3, 'Iran war'",
     "history": [
-      5,
       5,
       5,
       5,
@@ -1414,22 +1431,22 @@
       5,
       5,
       5,
+      5,
       5
     ],
     "raw_data": {
-      "current_interest": 3.6,
-      "avg_24h": 3.9,
+      "current_interest": 3.4,
+      "avg_24h": 3.8,
       "peak_keyword": "Iran war",
-      "peak_value": 15,
+      "peak_value": 14,
       "risk": 5,
-      "timestamp": "2026-04-11T19:38:23.525708"
+      "timestamp": "2026-04-11T20:38:41.219732"
     }
   },
   "buildup": {
     "risk": 75,
     "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
-      74,
       77,
       73,
       76,
@@ -1445,6 +1462,7 @@
       73,
       74,
       74,
+      75,
       75,
       75,
       75,
@@ -1472,12 +1490,12 @@
       "carrier_air_squadrons": 5,
       "air_presence": {
         "platforms": {
-          "b-52": "Strategic Bomber",
           "a-10": "Ground Attack",
           "f-22": "Air Superiority Fighter",
           "f-35": "5th Gen Fighter",
           "f-15e": "Strike Eagle",
           "b-2": "Stealth Bomber",
+          "b-52": "Strategic Bomber",
           "b-1": "Bomber"
         },
         "bases": {
@@ -1497,29 +1515,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 4,
-        "deployment_matches": 17,
+        "deployment_matches": 13,
         "sample_headlines": [
-          "US navy ships cross Strait of Hormuz for first time since Iran war: Axios reporter - Anadolu Ajans\u0131",
-          "Iran denies any US navy ships passed Hormuz, warns of attack | Daily Sabah - Daily Sabah",
-          "Two U.S. Warships Sail Through Strait of Hormuz to Establish New Route for Merchant Ships - USNI News",
           "Navy tests Hormuz blockade as expert says U.S. military prepares for round 2 against Iran - Fortune",
-          "Iran threatens to attack US Navy ships entering Strait of Hormuz after first American vessels moved through channel - New York Post"
+          "US clearing out Strait of Hormuz, Trump claims as Iran threatens to attack unauthorized ships - The Jerusalem Post",
+          "Two U.S. Warships Sail Through Strait of Hormuz to Establish New Route for Merchant Ships - USNI News",
+          "Iran threatens to attack US Navy ships entering Strait of Hormuz after first American vessels moved through channel - New York Post",
+          "US navy ships cross Strait of Hormuz for first time since Iran war: Axios reporter - Middle East Monitor"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-11T19:38:45.170012"
+      "timestamp": "2026-04-11T20:38:43.149535"
     }
   },
   "total_risk": {
     "risk": 50,
     "history": [
       {
-        "timestamp": 1775936325173,
+        "timestamp": 1775939923151,
         "risk": 50
       }
     ],
     "elevated_count": 4
   },
-  "last_updated": "2026-04-11T19:38:45.173183"
+  "last_updated": "2026-04-11T20:38:43.151877"
 }
