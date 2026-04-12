@@ -1,9 +1,8 @@
 {
   "news": {
-    "risk": 26,
-    "detail": "42 articles, 21 critical, escalation: 0.29",
+    "risk": 24,
+    "detail": "43 articles, 20 critical, escalation: 0.28",
     "history": [
-      29,
       29,
       29,
       29,
@@ -22,7 +21,8 @@
       28,
       28,
       28,
-      26
+      26,
+      24
     ],
     "raw_data": {
       "articles": [
@@ -172,6 +172,16 @@
           "escalation": 0.055
         },
         {
+          "title": "Pakistan urges US and Iran to uphold ceasefire after talks end",
+          "is_alert": false,
+          "escalation": 0.001
+        },
+        {
+          "title": "US and Iran fail to reach peace deal after marathon talks in Pakistan",
+          "is_alert": false,
+          "escalation": 0.001
+        },
+        {
           "title": "Oil tankers exit Strait of Hormuz amid fragile US-Iran ceasefire",
           "is_alert": false,
           "escalation": 0.003
@@ -230,25 +240,19 @@
           "title": "Pakistan sends fighter jets to Saudi Arabia amid fragile US-Iran ceasefire",
           "is_alert": false,
           "escalation": 0.108
-        },
-        {
-          "title": "Iranian rabbi describes Israel\u2019s destruction of a Tehran synagogue",
-          "is_alert": true,
-          "escalation": 0.338
         }
       ],
-      "total_count": 42,
-      "alert_count": 21,
-      "avg_escalation": 0.291,
+      "total_count": 43,
+      "alert_count": 20,
+      "avg_escalation": 0.276,
       "escalation_available": true,
-      "timestamp": "2026-04-12T05:28:06.648628"
+      "timestamp": "2026-04-12T06:55:53.521282"
     }
   },
   "flight": {
-    "risk": 89,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 85,
+    "detail": "13 aircraft over Iran",
     "history": [
-      93,
       93,
       94,
       94,
@@ -267,13 +271,29 @@
       93,
       91,
       89,
-      89
+      89,
+      85
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 13,
+      "airline_count": 9,
+      "airlines": [
+        "IGO",
+        "ABY",
+        "UAE",
+        "FDB",
+        "GFA",
+        "QTR",
+        "A7M",
+        "BAH",
+        "FAD"
+      ],
+      "timestamp": "2026-04-12T06:55:55.577773"
+    }
   },
   "tanker": {
     "risk": 0,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "detail": "0 detected in region",
     "history": [
       0,
       0,
@@ -297,36 +317,9 @@
       0
     ],
     "raw_data": {
-      "risk": 0,
-      "detail": "0 detected in region",
-      "history": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "raw_data": {
-        "tanker_count": 0,
-        "callsigns": [],
-        "timestamp": "2026-04-12T02:47:53.020130"
-      }
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-04-12T06:55:55.577773"
     }
   },
   "weather": {
@@ -1157,12 +1150,14 @@
                                                                     100,
                                                                     100,
                                                                     100,
+                                                                    100,
                                                                     100
                                                                   ],
                                                                   "raw_data": {
                                                                     "risk": 100,
                                                                     "detail": "clear",
                                                                     "history": [
+                                                                      100,
                                                                       100,
                                                                       100,
                                                                       100,
@@ -1204,12 +1199,14 @@
                                                                         100,
                                                                         100,
                                                                         100,
+                                                                        100,
                                                                         100
                                                                       ],
                                                                       "raw_data": {
                                                                         "risk": 100,
                                                                         "detail": "clear",
                                                                         "history": [
+                                                                          100,
                                                                           100,
                                                                           100,
                                                                           100,
@@ -1247,12 +1244,14 @@
                                                                             100,
                                                                             100,
                                                                             100,
+                                                                            100,
                                                                             100
                                                                           ],
                                                                           "raw_data": {
                                                                             "risk": 100,
                                                                             "detail": "clear",
                                                                             "history": [
+                                                                              100,
                                                                               100,
                                                                               100,
                                                                               100,
@@ -1286,12 +1285,14 @@
                                                                                 100,
                                                                                 100,
                                                                                 100,
+                                                                                100,
                                                                                 100
                                                                               ],
                                                                               "raw_data": {
                                                                                 "risk": 100,
                                                                                 "detail": "clear",
                                                                                 "history": [
+                                                                                  100,
                                                                                   100,
                                                                                   100,
                                                                                   100,
@@ -1321,12 +1322,14 @@
                                                                                     100,
                                                                                     100,
                                                                                     100,
+                                                                                    100,
                                                                                     100
                                                                                   ],
                                                                                   "raw_data": {
                                                                                     "risk": 100,
                                                                                     "detail": "clear",
                                                                                     "history": [
+                                                                                      100,
                                                                                       100,
                                                                                       100,
                                                                                       100,
@@ -1352,12 +1355,14 @@
                                                                                         100,
                                                                                         100,
                                                                                         100,
+                                                                                        100,
                                                                                         100
                                                                                       ],
                                                                                       "raw_data": {
                                                                                         "risk": 100,
                                                                                         "detail": "clear",
                                                                                         "history": [
+                                                                                          100,
                                                                                           100,
                                                                                           100,
                                                                                           100,
@@ -1379,12 +1384,14 @@
                                                                                             100,
                                                                                             100,
                                                                                             100,
+                                                                                            100,
                                                                                             100
                                                                                           ],
                                                                                           "raw_data": {
                                                                                             "risk": 100,
                                                                                             "detail": "clear",
                                                                                             "history": [
+                                                                                              100,
                                                                                               100,
                                                                                               100,
                                                                                               100,
@@ -1402,12 +1409,14 @@
                                                                                                 100,
                                                                                                 100,
                                                                                                 100,
+                                                                                                100,
                                                                                                 100
                                                                                               ],
                                                                                               "raw_data": {
                                                                                                 "risk": 100,
                                                                                                 "detail": "clear",
                                                                                                 "history": [
+                                                                                                  100,
                                                                                                   100,
                                                                                                   100,
                                                                                                   100,
@@ -1421,12 +1430,14 @@
                                                                                                     100,
                                                                                                     100,
                                                                                                     100,
+                                                                                                    100,
                                                                                                     100
                                                                                                   ],
                                                                                                   "raw_data": {
                                                                                                     "risk": 100,
                                                                                                     "detail": "clear",
                                                                                                     "history": [
+                                                                                                      100,
                                                                                                       100,
                                                                                                       100,
                                                                                                       100
@@ -1436,9 +1447,18 @@
                                                                                                       "detail": "clear",
                                                                                                       "history": [
                                                                                                         100,
+                                                                                                        100,
                                                                                                         100
                                                                                                       ],
-                                                                                                      "raw_data": {}
+                                                                                                      "raw_data": {
+                                                                                                        "risk": 100,
+                                                                                                        "detail": "clear",
+                                                                                                        "history": [
+                                                                                                          100,
+                                                                                                          100
+                                                                                                        ],
+                                                                                                        "raw_data": {}
+                                                                                                      }
                                                                                                     }
                                                                                                   }
                                                                                                 }
@@ -1499,8 +1519,8 @@
       10,
       10,
       10,
-      10,
       1,
+      10,
       10,
       10,
       10,
@@ -1517,14 +1537,13 @@
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-04-12T05:26:56.832518"
+      "timestamp": "2026-04-12T06:54:42.714796"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      0,
       0,
       0,
       0,
@@ -1543,6 +1562,7 @@
       89,
       97,
       30,
+      0,
       0
     ],
     "raw_data": {
@@ -1552,8 +1572,8 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 1,
-      "timestamp": "2026-04-12T05:26:56.662773",
+      "hour_et": 2,
+      "timestamp": "2026-04-12T06:54:42.486432",
       "is_late_night": true,
       "is_weekend": true
     }
@@ -1580,21 +1600,20 @@
       45,
       45,
       45,
-      45,
+      50,
       50
     ],
     "raw_data": {
       "current_price": 95.2,
       "change_24h": -1.51,
       "risk": 50,
-      "timestamp": "2026-04-12T05:28:06.819252"
+      "timestamp": "2026-04-12T06:55:53.791408"
     }
   },
   "trends": {
     "risk": 5,
     "detail": "Interest: 6, 'Iran war'",
     "history": [
-      5,
       5,
       5,
       5,
@@ -1613,22 +1632,22 @@
       5,
       5,
       5,
+      5,
       5
     ],
     "raw_data": {
-      "current_interest": 6.2,
-      "avg_24h": 4.4,
+      "current_interest": 6.4,
+      "avg_24h": 4.3,
       "peak_keyword": "Iran war",
       "peak_value": 24,
       "risk": 5,
-      "timestamp": "2026-04-12T05:28:07.727785"
+      "timestamp": "2026-04-12T06:55:54.940440"
     }
   },
   "buildup": {
-    "risk": 75,
+    "risk": 74,
     "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
-      72,
       72,
       73,
       77,
@@ -1647,10 +1666,11 @@
       75,
       75,
       71,
-      75
+      75,
+      74
     ],
     "raw_data": {
-      "risk": 75,
+      "risk": 74,
       "detail": "2 carriers, 16 destroyers near CENTCOM (102 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 102.4,
@@ -1695,30 +1715,30 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 4,
+        "escalation_matches": 3,
         "deployment_matches": 11,
         "sample_headlines": [
           "Vance participates in high-stakes talks with Iran as U.S. Navy ships cross the Strait of Hormuz - News On 6",
           "Iran threatens to attack US Navy ships entering Strait of Hormuz after first American vessels moved through channel - New York Post",
-          "Iran denies any US navy ships passed Hormuz, warns of attack | Daily Sabah - Daily Sabah",
           "U.S.-Iran Peace Talks Stretch Into Sunday\u2014As Iran Denies U.S. Navy Destroyers Passed Through Hormuz - Forbes",
-          "'This is the last warning.' Iran threatens U.S. warships after they throw down the gauntlet for winner-take-all Strait of Hormuz - Fortune"
+          "'This is the last warning.' Iran threatens U.S. warships after they throw down the gauntlet for winner-take-all Strait of Hormuz - Fortune",
+          "'Out-blockade Iran': Trump floats Hormuz naval blockade in post after Islamabad talks fail - The Jerusalem Post"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: April 6, 2026",
       "source_date": "Mon, 06 Apr 2026 20:00:02 +0000",
-      "timestamp": "2026-04-12T05:28:29.480503"
+      "timestamp": "2026-04-12T06:55:57.103056"
     }
   },
   "total_risk": {
-    "risk": 45,
+    "risk": 44,
     "history": [
       {
-        "timestamp": 1775971709483,
-        "risk": 45
+        "timestamp": 1775976957106,
+        "risk": 44
       }
     ],
     "elevated_count": 3
   },
-  "last_updated": "2026-04-12T05:28:29.483811"
+  "last_updated": "2026-04-12T06:55:57.106350"
 }
