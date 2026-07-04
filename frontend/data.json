@@ -1,9 +1,10 @@
 {
   "news": {
     "risk": 23,
-    "detail": "28 articles, 13 critical, escalation: 0.27",
+    "detail": "26 articles, 12 critical, escalation: 0.26",
     "history": [
       24,
+      23,
       23
     ],
     "raw_data": {
@@ -124,6 +125,11 @@
           "escalation": 0.001
         },
         {
+          "title": "Russia\u2019s Medvedev says Strait of Hormuz is Iran\u2019s \u2018nuclear weapon\u2019",
+          "is_alert": false,
+          "escalation": 0.356
+        },
+        {
           "title": "Turkiye\u2019s Erdogan says Israel must not be able to \u2018dynamite\u2019 US-Iran deal",
           "is_alert": false,
           "escalation": 0.016
@@ -131,54 +137,40 @@
         {
           "title": "Iran promotes message of continuity and revenge at Khamenei commemoration",
           "is_alert": false,
-          "escalation": 0.24
-        },
-        {
-          "title": "Millions mourn Iran\u2019s Ali Khamenei amid historic funeral procession",
-          "is_alert": false,
-          "escalation": 0.054
-        },
-        {
-          "title": "Thousands gather as Khamenei funeral ceremonies open in Tehran",
-          "is_alert": false,
-          "escalation": 0.077
-        },
-        {
-          "title": "Saudi-led coalition pledges \u2018unprecedented\u2019 force against Houthi threats",
-          "is_alert": true,
-          "escalation": 0.958
+          "escalation": 0.239
         }
       ],
-      "total_count": 28,
-      "alert_count": 13,
-      "avg_escalation": 0.267,
+      "total_count": 26,
+      "alert_count": 12,
+      "avg_escalation": 0.259,
       "escalation_available": true,
-      "timestamp": "2026-07-04T19:17:24.148302"
+      "timestamp": "2026-07-04T20:31:06.496914"
     }
   },
   "flight": {
-    "risk": 31,
-    "detail": "80 aircraft over Iran",
+    "risk": 34,
+    "detail": "76 aircraft over Iran",
     "history": [
       50,
-      31
+      31,
+      34
     ],
     "raw_data": {
-      "aircraft_count": 80,
-      "airline_count": 21,
+      "aircraft_count": 76,
+      "airline_count": 25,
       "airlines": [
-        "AXB",
         "IGO",
-        "IAW",
+        "AXJ",
+        "MNB",
         "UAE",
+        "AXB",
         "THY",
+        "ABY",
         "ETD",
         "FDB",
-        "ABY",
-        "UNI",
-        "GFA"
+        "UNI"
       ],
-      "timestamp": "2026-07-04T19:17:25.638058"
+      "timestamp": "2026-07-04T20:31:07.935174"
     }
   },
   "tanker": {
@@ -186,18 +178,20 @@
     "detail": "0 detected in region",
     "history": [
       5,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-07-04T19:17:25.638058"
+      "timestamp": "2026-07-04T20:31:07.935174"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100
     ],
@@ -206,9 +200,18 @@
       "detail": "clear",
       "history": [
         100,
+        100,
         100
       ],
-      "raw_data": {}
+      "raw_data": {
+        "risk": 100,
+        "detail": "clear",
+        "history": [
+          100,
+          100
+        ],
+        "raw_data": {}
+      }
     }
   },
   "polymarket": {
@@ -216,34 +219,36 @@
     "detail": "Awaiting data...",
     "history": [
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-07-04T19:16:36.150578"
+      "timestamp": "2026-07-04T20:30:20.532397"
     }
   },
   "pentagon": {
-    "risk": 49,
-    "detail": "California Pizza Kitchen 100%, Extreme Pizza 1%, We, The Pizza 46% (live)",
+    "risk": 15,
+    "detail": "California Pizza Kitchen 0%, Extreme Pizza 3%, We, The Pizza 41% (live)",
     "history": [
       37,
-      49
+      49,
+      15
     ],
     "raw_data": {
-      "score": 49,
-      "risk_contribution": 4.9,
-      "status": "Normal",
-      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 1%, We, The Pizza 46% (live)",
+      "score": 15,
+      "risk_contribution": 1.5,
+      "status": "Low Activity",
+      "detail_text": "California Pizza Kitchen 0%, Extreme Pizza 3%, We, The Pizza 41% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 100,
-        "Extreme Pizza": 1,
-        "We, The Pizza": 46
+        "California Pizza Kitchen": 0,
+        "Extreme Pizza": 3,
+        "We, The Pizza": 41
       },
-      "hour_et": 15,
-      "timestamp": "2026-07-04T19:16:36.062504",
+      "hour_et": 16,
+      "timestamp": "2026-07-04T20:30:20.443339",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -253,35 +258,38 @@
     "detail": "$72.13 (-1.4%)",
     "history": [
       30,
+      30,
       30
     ],
     "raw_data": {
       "current_price": 72.13,
       "change_24h": -1.45,
       "risk": 30,
-      "timestamp": "2026-07-04T19:17:24.317372"
+      "timestamp": "2026-07-04T20:31:06.654124"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Interest: 3, 'Iran war'",
+    "detail": "Interest: 5, 'Iran war'",
     "history": [
+      5,
       5,
       5
     ],
     "raw_data": {
-      "current_interest": 2.8,
-      "avg_24h": 4.2,
+      "current_interest": 4.6,
+      "avg_24h": 4.1,
       "peak_keyword": "Iran war",
-      "peak_value": 14,
+      "peak_value": 19,
       "risk": 5,
-      "timestamp": "2026-07-04T19:17:25.078084"
+      "timestamp": "2026-07-04T20:31:07.438784"
     }
   },
   "buildup": {
     "risk": 90,
     "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
     "history": [
+      90,
       90,
       90
     ],
@@ -308,13 +316,13 @@
       "air_presence": {
         "platforms": {
           "a-10": "Ground Attack",
-          "b-52": "Strategic Bomber",
-          "b-1": "Bomber",
           "f-35": "5th Gen Fighter",
-          "f-22": "Air Superiority Fighter",
+          "b-52": "Strategic Bomber",
           "b-2": "Stealth Bomber",
+          "f-22": "Air Superiority Fighter",
           "f-15e": "Strike Eagle",
-          "typhoon": "Allied Fighter"
+          "typhoon": "Allied Fighter",
+          "b-1": "Bomber"
         },
         "bases": {
           "lakenheath": 2,
@@ -335,29 +343,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 21,
+        "deployment_matches": 22,
         "sample_headlines": [
+          "Video - CENTCOM Commander Visits Aircraft Carrier in Arabian Sea - DVIDS",
           "French aircraft carrier sets sail for home \u2013 but tension and uncertainty remain in Strait of Hormuz - thenationalnews.com",
           "Another amphibious assault ship joins US naval buildup amid Iran talks - stripes.com",
           "U.S. Navy ends blockade of Iran's ports and coastal areas - CNBC",
-          "2 California warships arrive in Middle East to support Operation Epic Fury - The Mercury News",
-          "Iran War Supplemental Deepens FY27 Budget Uncertainty - Defense Security Monitor"
+          "U.S. Central Command Video Gallery - centcom.mil"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: June 29, 2026",
       "source_date": "Mon, 29 Jun 2026 17:00:52 +0000",
-      "timestamp": "2026-07-04T19:17:27.041282"
+      "timestamp": "2026-07-04T20:31:09.405653"
     }
   },
   "total_risk": {
     "risk": 29,
     "history": [
       {
-        "timestamp": 1783192647044,
+        "timestamp": 1783197069409,
         "risk": 29
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-07-04T19:17:27.044387"
+  "last_updated": "2026-07-04T20:31:09.408965"
 }
