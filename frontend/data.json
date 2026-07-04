@@ -1,9 +1,10 @@
 {
   "news": {
-    "risk": 24,
-    "detail": "27 articles, 13 critical, escalation: 0.28",
+    "risk": 23,
+    "detail": "28 articles, 13 critical, escalation: 0.27",
     "history": [
-      24
+      24,
+      23
     ],
     "raw_data": {
       "articles": [
@@ -123,6 +124,11 @@
           "escalation": 0.001
         },
         {
+          "title": "Turkiye\u2019s Erdogan says Israel must not be able to \u2018dynamite\u2019 US-Iran deal",
+          "is_alert": false,
+          "escalation": 0.016
+        },
+        {
           "title": "Iran promotes message of continuity and revenge at Khamenei commemoration",
           "is_alert": false,
           "escalation": 0.24
@@ -143,68 +149,101 @@
           "escalation": 0.958
         }
       ],
-      "total_count": 27,
+      "total_count": 28,
       "alert_count": 13,
-      "avg_escalation": 0.276,
+      "avg_escalation": 0.267,
       "escalation_available": true,
-      "timestamp": "2026-07-04T17:36:25.771573"
+      "timestamp": "2026-07-04T19:17:24.148302"
     }
   },
   "flight": {
-    "risk": 50,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 31,
+    "detail": "80 aircraft over Iran",
     "history": [
-      50
+      50,
+      31
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 80,
+      "airline_count": 21,
+      "airlines": [
+        "AXB",
+        "IGO",
+        "IAW",
+        "UAE",
+        "THY",
+        "ETD",
+        "FDB",
+        "ABY",
+        "UNI",
+        "GFA"
+      ],
+      "timestamp": "2026-07-04T19:17:25.638058"
+    }
   },
   "tanker": {
-    "risk": 5,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 0,
+    "detail": "0 detected in region",
     "history": [
-      5
+      5,
+      0
     ],
-    "raw_data": {}
+    "raw_data": {
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-07-04T19:17:25.638058"
+    }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100
     ],
-    "raw_data": {}
+    "raw_data": {
+      "risk": 100,
+      "detail": "clear",
+      "history": [
+        100,
+        100
+      ],
+      "raw_data": {}
+    }
   },
   "polymarket": {
     "risk": 10,
     "detail": "Awaiting data...",
     "history": [
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-07-04T17:35:40.008048"
+      "timestamp": "2026-07-04T19:16:36.150578"
     }
   },
   "pentagon": {
-    "risk": 37,
-    "detail": "California Pizza Kitchen 81%, Extreme Pizza 2%, We, The Pizza 28% (live)",
+    "risk": 49,
+    "detail": "California Pizza Kitchen 100%, Extreme Pizza 1%, We, The Pizza 46% (live)",
     "history": [
-      37
+      37,
+      49
     ],
     "raw_data": {
-      "score": 37,
-      "risk_contribution": 3.7,
+      "score": 49,
+      "risk_contribution": 4.9,
       "status": "Normal",
-      "detail_text": "California Pizza Kitchen 81%, Extreme Pizza 2%, We, The Pizza 28% (live)",
+      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 1%, We, The Pizza 46% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 81,
-        "Extreme Pizza": 2,
-        "We, The Pizza": 28
+        "California Pizza Kitchen": 100,
+        "Extreme Pizza": 1,
+        "We, The Pizza": 46
       },
-      "hour_et": 13,
-      "timestamp": "2026-07-04T17:35:39.864807",
+      "hour_et": 15,
+      "timestamp": "2026-07-04T19:16:36.062504",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -213,27 +252,37 @@
     "risk": 30,
     "detail": "$72.13 (-1.4%)",
     "history": [
+      30,
       30
     ],
     "raw_data": {
       "current_price": 72.13,
       "change_24h": -1.45,
       "risk": 30,
-      "timestamp": "2026-07-04T17:36:26.059494"
+      "timestamp": "2026-07-04T19:17:24.317372"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Awaiting data...",
+    "detail": "Interest: 3, 'Iran war'",
     "history": [
+      5,
       5
     ],
-    "raw_data": {}
+    "raw_data": {
+      "current_interest": 2.8,
+      "avg_24h": 4.2,
+      "peak_keyword": "Iran war",
+      "peak_value": 14,
+      "risk": 5,
+      "timestamp": "2026-07-04T19:17:25.078084"
+    }
   },
   "buildup": {
     "risk": 90,
     "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
     "history": [
+      90,
       90
     ],
     "raw_data": {
@@ -297,18 +346,18 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: June 29, 2026",
       "source_date": "Mon, 29 Jun 2026 17:00:52 +0000",
-      "timestamp": "2026-07-04T17:36:48.330152"
+      "timestamp": "2026-07-04T19:17:27.041282"
     }
   },
   "total_risk": {
-    "risk": 34,
+    "risk": 29,
     "history": [
       {
-        "timestamp": 1783186608332,
-        "risk": 34
+        "timestamp": 1783192647044,
+        "risk": 29
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-07-04T17:36:48.332906"
+  "last_updated": "2026-07-04T19:17:27.044387"
 }
