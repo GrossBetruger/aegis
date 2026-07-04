@@ -1,11 +1,12 @@
 {
   "news": {
-    "risk": 23,
-    "detail": "26 articles, 12 critical, escalation: 0.26",
+    "risk": 22,
+    "detail": "27 articles, 12 critical, escalation: 0.25",
     "history": [
       24,
       23,
-      23
+      23,
+      22
     ],
     "raw_data": {
       "articles": [
@@ -125,6 +126,11 @@
           "escalation": 0.001
         },
         {
+          "title": "Masses of Iranians defy heatwave on second day of Khamenei\u2019s funeral",
+          "is_alert": false,
+          "escalation": 0.08
+        },
+        {
           "title": "Russia\u2019s Medvedev says Strait of Hormuz is Iran\u2019s \u2018nuclear weapon\u2019",
           "is_alert": false,
           "escalation": 0.356
@@ -140,37 +146,38 @@
           "escalation": 0.239
         }
       ],
-      "total_count": 26,
+      "total_count": 27,
       "alert_count": 12,
-      "avg_escalation": 0.259,
+      "avg_escalation": 0.253,
       "escalation_available": true,
-      "timestamp": "2026-07-04T20:31:06.496914"
+      "timestamp": "2026-07-04T21:33:05.389472"
     }
   },
   "flight": {
-    "risk": 34,
-    "detail": "76 aircraft over Iran",
+    "risk": 69,
+    "detail": "33 aircraft over Iran",
     "history": [
       50,
       31,
-      34
+      34,
+      69
     ],
     "raw_data": {
-      "aircraft_count": 76,
-      "airline_count": 25,
+      "aircraft_count": 33,
+      "airline_count": 19,
       "airlines": [
         "IGO",
-        "AXJ",
-        "MNB",
-        "UAE",
+        "AIC",
         "AXB",
-        "THY",
-        "ABY",
-        "ETD",
+        "UAE",
+        "UNI",
+        "GTI",
         "FDB",
-        "UNI"
+        "ABY",
+        "HIM",
+        "RNA"
       ],
-      "timestamp": "2026-07-04T20:31:07.935174"
+      "timestamp": "2026-07-04T21:33:06.981963"
     }
   },
   "tanker": {
@@ -179,18 +186,20 @@
     "history": [
       5,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-07-04T20:31:07.935174"
+      "timestamp": "2026-07-04T21:33:06.981963"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100
@@ -201,6 +210,7 @@
       "history": [
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
@@ -208,9 +218,18 @@
         "detail": "clear",
         "history": [
           100,
+          100,
           100
         ],
-        "raw_data": {}
+        "raw_data": {
+          "risk": 100,
+          "detail": "clear",
+          "history": [
+            100,
+            100
+          ],
+          "raw_data": {}
+        }
       }
     }
   },
@@ -220,35 +239,37 @@
     "history": [
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-07-04T20:30:20.532397"
+      "timestamp": "2026-07-04T21:32:19.435942"
     }
   },
   "pentagon": {
-    "risk": 15,
-    "detail": "California Pizza Kitchen 0%, Extreme Pizza 3%, We, The Pizza 41% (live)",
+    "risk": 37,
+    "detail": "California Pizza Kitchen 0%, Extreme Pizza 62%, We, The Pizza 48% (live)",
     "history": [
       37,
       49,
-      15
+      15,
+      37
     ],
     "raw_data": {
-      "score": 15,
-      "risk_contribution": 1.5,
-      "status": "Low Activity",
-      "detail_text": "California Pizza Kitchen 0%, Extreme Pizza 3%, We, The Pizza 41% (live)",
+      "score": 37,
+      "risk_contribution": 3.7,
+      "status": "Normal",
+      "detail_text": "California Pizza Kitchen 0%, Extreme Pizza 62%, We, The Pizza 48% (live)",
       "source": "live",
       "live_scores": {
         "California Pizza Kitchen": 0,
-        "Extreme Pizza": 3,
-        "We, The Pizza": 41
+        "Extreme Pizza": 62,
+        "We, The Pizza": 48
       },
-      "hour_et": 16,
-      "timestamp": "2026-07-04T20:30:20.443339",
+      "hour_et": 17,
+      "timestamp": "2026-07-04T21:32:19.285486",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -259,13 +280,14 @@
     "history": [
       30,
       30,
+      30,
       30
     ],
     "raw_data": {
       "current_price": 72.13,
       "change_24h": -1.45,
       "risk": 30,
-      "timestamp": "2026-07-04T20:31:06.654124"
+      "timestamp": "2026-07-04T21:33:05.590477"
     }
   },
   "trends": {
@@ -274,21 +296,23 @@
     "history": [
       5,
       5,
+      5,
       5
     ],
     "raw_data": {
-      "current_interest": 4.6,
-      "avg_24h": 4.1,
+      "current_interest": 5.2,
+      "avg_24h": 4.6,
       "peak_keyword": "Iran war",
-      "peak_value": 19,
+      "peak_value": 22,
       "risk": 5,
-      "timestamp": "2026-07-04T20:31:07.438784"
+      "timestamp": "2026-07-04T21:33:06.498165"
     }
   },
   "buildup": {
     "risk": 90,
     "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
     "history": [
+      90,
       90,
       90,
       90
@@ -316,13 +340,13 @@
       "air_presence": {
         "platforms": {
           "a-10": "Ground Attack",
-          "f-35": "5th Gen Fighter",
           "b-52": "Strategic Bomber",
-          "b-2": "Stealth Bomber",
+          "b-1": "Bomber",
+          "f-35": "5th Gen Fighter",
           "f-22": "Air Superiority Fighter",
+          "b-2": "Stealth Bomber",
           "f-15e": "Strike Eagle",
-          "typhoon": "Allied Fighter",
-          "b-1": "Bomber"
+          "typhoon": "Allied Fighter"
         },
         "bases": {
           "lakenheath": 2,
@@ -345,27 +369,27 @@
         "escalation_matches": 1,
         "deployment_matches": 22,
         "sample_headlines": [
-          "Video - CENTCOM Commander Visits Aircraft Carrier in Arabian Sea - DVIDS",
           "French aircraft carrier sets sail for home \u2013 but tension and uncertainty remain in Strait of Hormuz - thenationalnews.com",
           "Another amphibious assault ship joins US naval buildup amid Iran talks - stripes.com",
           "U.S. Navy ends blockade of Iran's ports and coastal areas - CNBC",
-          "U.S. Central Command Video Gallery - centcom.mil"
+          "2 California warships arrive in Middle East to support Operation Epic Fury - The Mercury News",
+          "Aircraft carrier Charles de Gaulle returns to France from Middle East - Anadolu Ajans\u0131"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: June 29, 2026",
       "source_date": "Mon, 29 Jun 2026 17:00:52 +0000",
-      "timestamp": "2026-07-04T20:31:09.405653"
+      "timestamp": "2026-07-04T21:33:08.431869"
     }
   },
   "total_risk": {
-    "risk": 29,
+    "risk": 36,
     "history": [
       {
-        "timestamp": 1783197069409,
-        "risk": 29
+        "timestamp": 1783200788434,
+        "risk": 36
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-07-04T20:31:09.408965"
+  "last_updated": "2026-07-04T21:33:08.434814"
 }
