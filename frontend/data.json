@@ -7,6 +7,7 @@
       23,
       23,
       22,
+      22,
       22
     ],
     "raw_data": {
@@ -151,35 +152,36 @@
       "alert_count": 12,
       "avg_escalation": 0.253,
       "escalation_available": true,
-      "timestamp": "2026-07-04T23:00:30.901294"
+      "timestamp": "2026-07-05T00:10:55.158722"
     }
   },
   "flight": {
-    "risk": 39,
-    "detail": "70 aircraft over Iran",
+    "risk": 37,
+    "detail": "72 aircraft over Iran",
     "history": [
       50,
       31,
       34,
       69,
-      39
+      39,
+      37
     ],
     "raw_data": {
-      "aircraft_count": 70,
-      "airline_count": 25,
+      "aircraft_count": 72,
+      "airline_count": 20,
       "airlines": [
-        "T7A",
-        "PGT",
-        "FYC",
+        "MNB",
+        "IGO",
         "UAE",
         "AXB",
-        "ETD",
         "THY",
-        "ABY",
-        "RAM",
-        "FDB"
+        "ETD",
+        "FDB",
+        "UNI",
+        "ADY",
+        "ABY"
       ],
-      "timestamp": "2026-07-04T23:00:32.621977"
+      "timestamp": "2026-07-05T00:10:56.920966"
     }
   },
   "tanker": {
@@ -190,18 +192,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-07-04T23:00:32.621977"
+      "timestamp": "2026-07-05T00:10:56.920966"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -216,12 +220,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -233,6 +239,7 @@
           "history": [
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
@@ -240,9 +247,18 @@
             "detail": "clear",
             "history": [
               100,
+              100,
               100
             ],
-            "raw_data": {}
+            "raw_data": {
+              "risk": 100,
+              "detail": "clear",
+              "history": [
+                100,
+                100
+              ],
+              "raw_data": {}
+            }
           }
         }
       }
@@ -256,37 +272,39 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-07-04T22:59:44.102713"
+      "timestamp": "2026-07-05T00:10:07.690228"
     }
   },
   "pentagon": {
-    "risk": 72,
-    "detail": "California Pizza Kitchen 100%, Extreme Pizza 74%, We, The Pizza 6% (live)",
+    "risk": 36,
+    "detail": "California Pizza Kitchen 24%, Extreme Pizza 57%, We, The Pizza 27% (live)",
     "history": [
       37,
       49,
       15,
       37,
-      72
+      72,
+      36
     ],
     "raw_data": {
-      "score": 72,
-      "risk_contribution": 7.2,
-      "status": "High Activity",
-      "detail_text": "California Pizza Kitchen 100%, Extreme Pizza 74%, We, The Pizza 6% (live)",
+      "score": 36,
+      "risk_contribution": 3.6,
+      "status": "Normal",
+      "detail_text": "California Pizza Kitchen 24%, Extreme Pizza 57%, We, The Pizza 27% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 100,
-        "Extreme Pizza": 74,
-        "We, The Pizza": 6
+        "California Pizza Kitchen": 24,
+        "Extreme Pizza": 57,
+        "We, The Pizza": 27
       },
-      "hour_et": 18,
-      "timestamp": "2026-07-04T22:59:43.865163",
+      "hour_et": 20,
+      "timestamp": "2026-07-05T00:10:07.451030",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -299,13 +317,14 @@
       30,
       30,
       30,
+      30,
       30
     ],
     "raw_data": {
       "current_price": 72.13,
       "change_24h": -1.45,
       "risk": 30,
-      "timestamp": "2026-07-04T23:00:31.052344"
+      "timestamp": "2026-07-05T00:10:55.329004"
     }
   },
   "trends": {
@@ -316,21 +335,23 @@
       5,
       5,
       5,
+      5,
       5
     ],
     "raw_data": {
       "current_interest": 5.0,
-      "avg_24h": 4.6,
+      "avg_24h": 4.8,
       "peak_keyword": "Iran war",
-      "peak_value": 15,
+      "peak_value": 25,
       "risk": 5,
-      "timestamp": "2026-07-04T23:00:31.958555"
+      "timestamp": "2026-07-05T00:10:56.209542"
     }
   },
   "buildup": {
     "risk": 90,
     "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
     "history": [
+      90,
       90,
       90,
       90,
@@ -387,7 +408,7 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 22,
+        "deployment_matches": 23,
         "sample_headlines": [
           "French aircraft carrier sets sail for home \u2013 but tension and uncertainty remain in Strait of Hormuz - thenationalnews.com",
           "Another amphibious assault ship joins US naval buildup amid Iran talks - stripes.com",
@@ -398,18 +419,18 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: June 29, 2026",
       "source_date": "Mon, 29 Jun 2026 17:00:52 +0000",
-      "timestamp": "2026-07-04T23:00:34.030288"
+      "timestamp": "2026-07-05T00:10:58.218287"
     }
   },
   "total_risk": {
-    "risk": 32,
+    "risk": 30,
     "history": [
       {
-        "timestamp": 1783206034033,
-        "risk": 32
+        "timestamp": 1783210258221,
+        "risk": 30
       }
     ],
-    "elevated_count": 2
+    "elevated_count": 1
   },
-  "last_updated": "2026-07-04T23:00:34.033285"
+  "last_updated": "2026-07-05T00:10:58.221692"
 }
