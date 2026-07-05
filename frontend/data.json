@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 26,
-    "detail": "27 articles, 14 critical, escalation: 0.28",
+    "risk": 27,
+    "detail": "26 articles, 14 critical, escalation: 0.28",
     "history": [
       24,
       23,
@@ -11,7 +11,8 @@
       22,
       25,
       25,
-      26
+      26,
+      27
     ],
     "raw_data": {
       "articles": [
@@ -144,23 +145,18 @@
           "title": "Iran war live: Millions mourn Khamenei; Trump hints at Netanyahu meeting",
           "is_alert": true,
           "escalation": 0.854
-        },
-        {
-          "title": "Masses of Iranians defy heatwave on second day of Khamenei\u2019s funeral",
-          "is_alert": false,
-          "escalation": 0.08
         }
       ],
-      "total_count": 27,
+      "total_count": 26,
       "alert_count": 14,
-      "avg_escalation": 0.277,
+      "avg_escalation": 0.284,
       "escalation_available": true,
-      "timestamp": "2026-07-05T10:24:56.687517"
+      "timestamp": "2026-07-05T11:56:05.459757"
     }
   },
   "flight": {
     "risk": 51,
-    "detail": "55 aircraft over Iran",
+    "detail": "OpenSky API unavailable \u2014 using last known value",
     "history": [
       50,
       31,
@@ -170,31 +166,17 @@
       37,
       37,
       46,
+      51,
       51
     ],
-    "raw_data": {
-      "aircraft_count": 55,
-      "airline_count": 25,
-      "airlines": [
-        "T7Y",
-        "UAE",
-        "IGO",
-        "FVS",
-        "AIC",
-        "ABY",
-        "ETD",
-        "FDB",
-        "UNI",
-        "HDB"
-      ],
-      "timestamp": "2026-07-05T10:24:58.894272"
-    }
+    "raw_data": {}
   },
   "tanker": {
     "risk": 0,
-    "detail": "0 detected in region",
+    "detail": "OpenSky API unavailable \u2014 using last known value",
     "history": [
       5,
+      0,
       0,
       0,
       0,
@@ -205,15 +187,32 @@
       0
     ],
     "raw_data": {
-      "tanker_count": 0,
-      "callsigns": [],
-      "timestamp": "2026-07-05T10:24:58.894272"
+      "risk": 0,
+      "detail": "0 detected in region",
+      "history": [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "raw_data": {
+        "tanker_count": 0,
+        "callsigns": [],
+        "timestamp": "2026-07-05T10:24:58.894272"
+      }
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -236,12 +235,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -261,12 +262,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -282,12 +285,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100,
@@ -299,6 +304,7 @@
                   "history": [
                     100,
                     100,
+                    100,
                     100
                   ],
                   "raw_data": {
@@ -306,9 +312,18 @@
                     "detail": "clear",
                     "history": [
                       100,
+                      100,
                       100
                     ],
-                    "raw_data": {}
+                    "raw_data": {
+                      "risk": 100,
+                      "detail": "clear",
+                      "history": [
+                        100,
+                        100
+                      ],
+                      "raw_data": {}
+                    }
                   }
                 }
               }
@@ -330,12 +345,13 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-07-05T10:24:18.294512"
+      "timestamp": "2026-07-05T11:55:21.002446"
     }
   },
   "pentagon": {
@@ -350,6 +366,7 @@
       36,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -359,8 +376,8 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 6,
-      "timestamp": "2026-07-05T10:24:18.041691",
+      "hour_et": 7,
+      "timestamp": "2026-07-05T11:55:20.914678",
       "is_late_night": false,
       "is_weekend": true
     }
@@ -377,19 +394,21 @@
       30,
       50,
       50,
+      50,
       50
     ],
     "raw_data": {
       "current_price": 72.13,
       "change_24h": 1.73,
       "risk": 50,
-      "timestamp": "2026-07-05T10:24:56.968241"
+      "timestamp": "2026-07-05T11:56:05.607451"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Interest: 5, 'Iran war'",
+    "detail": "Interest: 7, 'Iran war'",
     "history": [
+      5,
       5,
       5,
       5,
@@ -401,18 +420,19 @@
       5
     ],
     "raw_data": {
-      "current_interest": 4.6,
-      "avg_24h": 4.5,
+      "current_interest": 7.2,
+      "avg_24h": 4.9,
       "peak_keyword": "Iran war",
-      "peak_value": 23,
+      "peak_value": 26,
       "risk": 5,
-      "timestamp": "2026-07-05T10:24:58.297525"
+      "timestamp": "2026-07-05T11:56:06.281408"
     }
   },
   "buildup": {
     "risk": 90,
     "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
     "history": [
+      90,
       90,
       90,
       90,
@@ -484,18 +504,18 @@
       },
       "source_article": "USNI News Fleet and Marine Tracker: June 29, 2026",
       "source_date": "Mon, 29 Jun 2026 17:00:52 +0000",
-      "timestamp": "2026-07-05T10:25:00.760188"
+      "timestamp": "2026-07-05T11:56:27.643549"
     }
   },
   "total_risk": {
     "risk": 34,
     "history": [
       {
-        "timestamp": 1783247100763,
+        "timestamp": 1783252587646,
         "risk": 34
       }
     ],
     "elevated_count": 2
   },
-  "last_updated": "2026-07-05T10:25:00.763395"
+  "last_updated": "2026-07-05T11:56:27.646451"
 }
