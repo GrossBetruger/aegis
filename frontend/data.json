@@ -1,9 +1,8 @@
 {
   "news": {
-    "risk": 25,
-    "detail": "26 articles, 13 critical, escalation: 0.28",
+    "risk": 17,
+    "detail": "29 articles, 11 critical, escalation: 0.21",
     "history": [
-      24,
       23,
       23,
       22,
@@ -22,10 +21,16 @@
       24,
       26,
       27,
-      25
+      25,
+      17
     ],
     "raw_data": {
       "articles": [
+        {
+          "title": "Huge crowds fill Tehran streets for Khamenei's funeral procession",
+          "is_alert": true,
+          "escalation": 0.088
+        },
         {
           "title": "Iran's supreme leader absent as senior officials attend ayatollah's funeral",
           "is_alert": true,
@@ -40,6 +45,11 @@
           "title": "How Iran's new regime is very different to what came before",
           "is_alert": false,
           "escalation": 0.137
+        },
+        {
+          "title": "On the Strait of Hormuz, BBC finds seized ships and shark fishermen as uneasy calm returns",
+          "is_alert": false,
+          "escalation": 0.237
         },
         {
           "title": "US envoys in Doha to meet mediators but not Iranians, Qatar says",
@@ -62,19 +72,9 @@
           "escalation": 0.536
         },
         {
-          "title": "Rainbow flags await Egypt and Iran at awkward Pride Match",
+          "title": "Iran nuclear and military damage revealed after restricted satellite images released ",
           "is_alert": true,
-          "escalation": 0.094
-        },
-        {
-          "title": "UN pauses Strait of Hormuz evacuation plan after cargo ship attacked",
-          "is_alert": true,
-          "escalation": 0.723
-        },
-        {
-          "title": "Thousands killed in US-Israeli war on Iran - but experts say true total may never be known",
-          "is_alert": true,
-          "escalation": 0.951
+          "escalation": 0.811
         },
         {
           "title": "What Iran and US get from deal and why both could struggle to keep it",
@@ -127,6 +127,21 @@
           "escalation": 0.001
         },
         {
+          "title": "Funeral of Iran's former supreme leader 'intensely political moment'",
+          "is_alert": false,
+          "escalation": 0.137
+        },
+        {
+          "title": "BBC in Tehran as mourners gather for former supreme leader's funeral",
+          "is_alert": false,
+          "escalation": 0.049
+        },
+        {
+          "title": "BBC reports from the Strait of Hormuz during fragile ceasefire",
+          "is_alert": false,
+          "escalation": 0.024
+        },
+        {
           "title": "Here's how Rubio's Mideast trip could affect the Iran deal",
           "is_alert": true,
           "escalation": 0.005
@@ -142,6 +157,11 @@
           "escalation": 0.001
         },
         {
+          "title": "Huge crowd joins funeral procession for Iran\u2019s Supreme Leader Khamenei",
+          "is_alert": false,
+          "escalation": 0.092
+        },
+        {
           "title": "Funeral procession for Iran\u2019s slain Supreme Leader Ali Khamenei under way",
           "is_alert": false,
           "escalation": 0.045
@@ -150,25 +170,19 @@
           "title": "Khamenei\u2019s funeral procession moves through Tehran",
           "is_alert": false,
           "escalation": 0.117
-        },
-        {
-          "title": "Iran war live: Huge crowd for Khamenei funeral procession in Tehran",
-          "is_alert": true,
-          "escalation": 0.832
         }
       ],
-      "total_count": 26,
-      "alert_count": 13,
-      "avg_escalation": 0.276,
+      "total_count": 29,
+      "alert_count": 11,
+      "avg_escalation": 0.208,
       "escalation_available": true,
-      "timestamp": "2026-07-06T09:02:15.649291"
+      "timestamp": "2026-07-06T12:57:56.302516"
     }
   },
   "flight": {
-    "risk": 62,
-    "detail": "41 aircraft over Iran",
+    "risk": 37,
+    "detail": "73 aircraft over Iran",
     "history": [
-      50,
       31,
       34,
       69,
@@ -187,31 +201,31 @@
       58,
       58,
       58,
-      62
+      62,
+      37
     ],
     "raw_data": {
-      "aircraft_count": 41,
-      "airline_count": 20,
+      "aircraft_count": 73,
+      "airline_count": 26,
       "airlines": [
-        "AXB",
-        "FYC",
+        "IGO",
         "IAW",
-        "ROJ",
+        "YAS",
         "UAE",
         "ABY",
         "FDB",
-        "UNI",
         "EFC",
-        "GFA"
+        "UNI",
+        "A6F",
+        "ADY"
       ],
-      "timestamp": "2026-07-06T09:02:17.184992"
+      "timestamp": "2026-07-06T12:57:57.533741"
     }
   },
   "tanker": {
-    "risk": 0,
-    "detail": "0 detected in region",
+    "risk": 10,
+    "detail": "1 detected in region",
     "history": [
-      5,
       0,
       0,
       0,
@@ -230,12 +244,15 @@
       0,
       0,
       0,
-      0
+      0,
+      10
     ],
     "raw_data": {
-      "tanker_count": 0,
-      "callsigns": [],
-      "timestamp": "2026-07-06T09:02:17.184992"
+      "tanker_count": 1,
+      "callsigns": [
+        "RRR6114"
+      ],
+      "timestamp": "2026-07-06T12:57:57.533741"
     }
   },
   "weather": {
@@ -286,12 +303,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -333,12 +352,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -376,12 +397,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100,
@@ -415,12 +438,14 @@
                     100,
                     100,
                     100,
+                    100,
                     100
                   ],
                   "raw_data": {
                     "risk": 100,
                     "detail": "clear",
                     "history": [
+                      100,
                       100,
                       100,
                       100,
@@ -450,12 +475,14 @@
                         100,
                         100,
                         100,
+                        100,
                         100
                       ],
                       "raw_data": {
                         "risk": 100,
                         "detail": "clear",
                         "history": [
+                          100,
                           100,
                           100,
                           100,
@@ -481,12 +508,14 @@
                             100,
                             100,
                             100,
+                            100,
                             100
                           ],
                           "raw_data": {
                             "risk": 100,
                             "detail": "clear",
                             "history": [
+                              100,
                               100,
                               100,
                               100,
@@ -508,12 +537,14 @@
                                 100,
                                 100,
                                 100,
+                                100,
                                 100
                               ],
                               "raw_data": {
                                 "risk": 100,
                                 "detail": "clear",
                                 "history": [
+                                  100,
                                   100,
                                   100,
                                   100,
@@ -531,12 +562,14 @@
                                     100,
                                     100,
                                     100,
+                                    100,
                                     100
                                   ],
                                   "raw_data": {
                                     "risk": 100,
                                     "detail": "clear",
                                     "history": [
+                                      100,
                                       100,
                                       100,
                                       100,
@@ -550,12 +583,14 @@
                                         100,
                                         100,
                                         100,
+                                        100,
                                         100
                                       ],
                                       "raw_data": {
                                         "risk": 100,
                                         "detail": "clear",
                                         "history": [
+                                          100,
                                           100,
                                           100,
                                           100
@@ -565,9 +600,18 @@
                                           "detail": "clear",
                                           "history": [
                                             100,
+                                            100,
                                             100
                                           ],
-                                          "raw_data": {}
+                                          "raw_data": {
+                                            "risk": 100,
+                                            "detail": "clear",
+                                            "history": [
+                                              100,
+                                              100
+                                            ],
+                                            "raw_data": {}
+                                          }
                                         }
                                       }
                                     }
@@ -616,14 +660,13 @@
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-07-06T09:01:30.770373"
+      "timestamp": "2026-07-06T12:57:17.048031"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      37,
       49,
       15,
       37,
@@ -642,6 +685,7 @@
       21,
       24,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -651,42 +695,42 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 5,
-      "timestamp": "2026-07-06T09:01:30.707160",
-      "is_late_night": true,
+      "hour_et": 8,
+      "timestamp": "2026-07-06T12:57:16.949521",
+      "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 30,
-    "detail": "$71.84 (+0.2%)",
+    "detail": "$71.76 (+0.1%)",
     "history": [
       30,
       30,
       30,
       30,
       30,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      40,
+      40,
       30,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50,
-      50,
-      40,
-      40,
       30,
       30
     ],
     "raw_data": {
-      "current_price": 71.84,
-      "change_24h": 0.24,
+      "current_price": 71.76,
+      "change_24h": 0.13,
       "risk": 30,
-      "timestamp": "2026-07-06T09:02:15.849380"
+      "timestamp": "2026-07-06T12:57:56.459879"
     }
   },
   "trends": {
@@ -716,8 +760,9 @@
     ],
     "raw_data": {
       "risk": 5,
-      "detail": "Interest: 9, 'Iran war'",
+      "detail": "Awaiting data...",
       "history": [
+        5,
         5,
         5,
         5,
@@ -740,20 +785,45 @@
         5
       ],
       "raw_data": {
-        "current_interest": 8.6,
-        "avg_24h": 8.3,
-        "peak_keyword": "Iran war",
-        "peak_value": 31,
         "risk": 5,
-        "timestamp": "2026-07-06T04:53:47.631455"
+        "detail": "Interest: 9, 'Iran war'",
+        "history": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "raw_data": {
+          "current_interest": 8.6,
+          "avg_24h": 8.3,
+          "peak_keyword": "Iran war",
+          "peak_value": 31,
+          "risk": 5,
+          "timestamp": "2026-07-06T04:53:47.631455"
+        }
       }
     }
   },
   "buildup": {
     "risk": 90,
-    "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
+    "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
     "history": [
-      90,
       90,
       90,
       90,
@@ -772,11 +842,12 @@
       89,
       90,
       90,
+      90,
       90
     ],
     "raw_data": {
       "risk": 90,
-      "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
+      "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
       "force_posture": {
         "total_weighted_points": 130.2,
         "force_risk": 100,
@@ -796,56 +867,57 @@
       "carrier_air_squadrons": 5,
       "air_presence": {
         "platforms": {
-          "f-35": "5th Gen Fighter",
           "a-10": "Ground Attack",
-          "f-22": "Air Superiority Fighter",
+          "f-35": "5th Gen Fighter",
           "b-52": "Strategic Bomber",
+          "f-22": "Air Superiority Fighter",
           "b-2": "Stealth Bomber",
           "f-15e": "Strike Eagle",
+          "typhoon": "Allied Fighter",
           "b-1": "Bomber"
         },
         "bases": {
           "lakenheath": 2,
           "fairford": 2,
-          "diego garcia": 3,
+          "diego garcia": 1,
           "qatar": 1,
-          "al udeid": 3,
-          "al dhafra": 2
+          "al udeid": 1
         },
-        "categories_present": 4,
+        "categories_present": 5,
         "categories_active": [
           "bombers",
           "air superiority",
           "strike fighters",
-          "ground attack"
+          "ground attack",
+          "allied"
         ]
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 3,
-        "deployment_matches": 29,
+        "escalation_matches": 1,
+        "deployment_matches": 25,
         "sample_headlines": [
           "Another Aircraft Carrier Is Set To Depart From The Middle East - Forbes",
           "US ends search for Navy pilot lost when helicopter crashed during Iran war - New York Post",
           "U.S. Navy ends blockade of Iran's ports and coastal areas - CNBC",
-          "US Navy calls off search for missing sailor following helicopter crash in Arabian Sea - The Jerusalem Post",
-          "Navy suspends active search for missing crew member after helicopter goes down in Arabian Sea - stripes.com"
+          "Navy suspends active search for missing crew member after helicopter goes down in Arabian Sea - stripes.com",
+          "US Navy calls off search for missing sailor following helicopter crash in Arabian Sea - The Jerusalem Post"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: June 29, 2026",
       "source_date": "Mon, 29 Jun 2026 17:00:52 +0000",
-      "timestamp": "2026-07-06T09:02:18.396628"
+      "timestamp": "2026-07-06T12:57:58.930251"
     }
   },
   "total_risk": {
-    "risk": 34,
+    "risk": 29,
     "history": [
       {
-        "timestamp": 1783328538399,
-        "risk": 34
+        "timestamp": 1783342678933,
+        "risk": 29
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-07-06T09:02:18.399789"
+  "last_updated": "2026-07-06T12:57:58.933587"
 }
