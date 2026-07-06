@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 27,
-    "detail": "24 articles, 13 critical, escalation: 0.29",
+    "risk": 25,
+    "detail": "26 articles, 13 critical, escalation: 0.28",
     "history": [
       24,
       23,
@@ -21,7 +21,8 @@
       24,
       24,
       26,
-      27
+      27,
+      25
     ],
     "raw_data": {
       "articles": [
@@ -141,21 +142,31 @@
           "escalation": 0.001
         },
         {
-          "title": "Iran war live: Khamenei\u2019s funeral procession under way in Tehran",
+          "title": "Funeral procession for Iran\u2019s slain Supreme Leader Ali Khamenei under way",
+          "is_alert": false,
+          "escalation": 0.045
+        },
+        {
+          "title": "Khamenei\u2019s funeral procession moves through Tehran",
+          "is_alert": false,
+          "escalation": 0.117
+        },
+        {
+          "title": "Iran war live: Huge crowd for Khamenei funeral procession in Tehran",
           "is_alert": true,
-          "escalation": 0.817
+          "escalation": 0.832
         }
       ],
-      "total_count": 24,
+      "total_count": 26,
       "alert_count": 13,
-      "avg_escalation": 0.292,
+      "avg_escalation": 0.276,
       "escalation_available": true,
-      "timestamp": "2026-07-06T04:53:46.198918"
+      "timestamp": "2026-07-06T09:02:15.649291"
     }
   },
   "flight": {
-    "risk": 58,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "risk": 62,
+    "detail": "41 aircraft over Iran",
     "history": [
       50,
       31,
@@ -175,15 +186,33 @@
       58,
       58,
       58,
-      58
+      58,
+      62
     ],
-    "raw_data": {}
+    "raw_data": {
+      "aircraft_count": 41,
+      "airline_count": 20,
+      "airlines": [
+        "AXB",
+        "FYC",
+        "IAW",
+        "ROJ",
+        "UAE",
+        "ABY",
+        "FDB",
+        "UNI",
+        "EFC",
+        "GFA"
+      ],
+      "timestamp": "2026-07-06T09:02:17.184992"
+    }
   },
   "tanker": {
     "risk": 0,
-    "detail": "OpenSky API unavailable \u2014 using last known value",
+    "detail": "0 detected in region",
     "history": [
       5,
+      0,
       0,
       0,
       0,
@@ -204,87 +233,16 @@
       0
     ],
     "raw_data": {
-      "risk": 0,
-      "detail": "OpenSky API unavailable \u2014 using last known value",
-      "history": [
-        5,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "raw_data": {
-        "risk": 0,
-        "detail": "OpenSky API unavailable \u2014 using last known value",
-        "history": [
-          5,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "raw_data": {
-          "risk": 0,
-          "detail": "0 detected in region",
-          "history": [
-            5,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "raw_data": {
-            "tanker_count": 0,
-            "callsigns": [],
-            "timestamp": "2026-07-05T21:03:50.401470"
-          }
-        }
-      }
+      "tanker_count": 0,
+      "callsigns": [],
+      "timestamp": "2026-07-06T09:02:17.184992"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -327,12 +285,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -372,12 +332,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -413,12 +375,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100,
@@ -450,12 +414,14 @@
                     100,
                     100,
                     100,
+                    100,
                     100
                   ],
                   "raw_data": {
                     "risk": 100,
                     "detail": "clear",
                     "history": [
+                      100,
                       100,
                       100,
                       100,
@@ -483,12 +449,14 @@
                         100,
                         100,
                         100,
+                        100,
                         100
                       ],
                       "raw_data": {
                         "risk": 100,
                         "detail": "clear",
                         "history": [
+                          100,
                           100,
                           100,
                           100,
@@ -512,12 +480,14 @@
                             100,
                             100,
                             100,
+                            100,
                             100
                           ],
                           "raw_data": {
                             "risk": 100,
                             "detail": "clear",
                             "history": [
+                              100,
                               100,
                               100,
                               100,
@@ -537,12 +507,14 @@
                                 100,
                                 100,
                                 100,
+                                100,
                                 100
                               ],
                               "raw_data": {
                                 "risk": 100,
                                 "detail": "clear",
                                 "history": [
+                                  100,
                                   100,
                                   100,
                                   100,
@@ -558,12 +530,14 @@
                                     100,
                                     100,
                                     100,
+                                    100,
                                     100
                                   ],
                                   "raw_data": {
                                     "risk": 100,
                                     "detail": "clear",
                                     "history": [
+                                      100,
                                       100,
                                       100,
                                       100,
@@ -575,6 +549,7 @@
                                       "history": [
                                         100,
                                         100,
+                                        100,
                                         100
                                       ],
                                       "raw_data": {
@@ -582,9 +557,18 @@
                                         "detail": "clear",
                                         "history": [
                                           100,
+                                          100,
                                           100
                                         ],
-                                        "raw_data": {}
+                                        "raw_data": {
+                                          "risk": 100,
+                                          "detail": "clear",
+                                          "history": [
+                                            100,
+                                            100
+                                          ],
+                                          "raw_data": {}
+                                        }
                                       }
                                     }
                                   }
@@ -626,12 +610,13 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-07-06T04:53:04.480885"
+      "timestamp": "2026-07-06T09:01:30.770373"
     }
   },
   "pentagon": {
@@ -656,6 +641,7 @@
       24,
       21,
       24,
+      0,
       0
     ],
     "raw_data": {
@@ -665,15 +651,15 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 0,
-      "timestamp": "2026-07-06T04:53:04.196423",
+      "hour_et": 5,
+      "timestamp": "2026-07-06T09:01:30.707160",
       "is_late_night": true,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 30,
-    "detail": "$71.89 (+0.3%)",
+    "detail": "$71.84 (+0.2%)",
     "history": [
       30,
       30,
@@ -693,19 +679,21 @@
       50,
       40,
       40,
+      30,
       30
     ],
     "raw_data": {
-      "current_price": 71.89,
-      "change_24h": 0.31,
+      "current_price": 71.84,
+      "change_24h": 0.24,
       "risk": 30,
-      "timestamp": "2026-07-06T04:53:46.357716"
+      "timestamp": "2026-07-06T09:02:15.849380"
     }
   },
   "trends": {
     "risk": 5,
-    "detail": "Interest: 9, 'Iran war'",
+    "detail": "Awaiting data...",
     "history": [
+      5,
       5,
       5,
       5,
@@ -727,17 +715,43 @@
       5
     ],
     "raw_data": {
-      "current_interest": 8.6,
-      "avg_24h": 8.3,
-      "peak_keyword": "Iran war",
-      "peak_value": 31,
       "risk": 5,
-      "timestamp": "2026-07-06T04:53:47.631455"
+      "detail": "Interest: 9, 'Iran war'",
+      "history": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "raw_data": {
+        "current_interest": 8.6,
+        "avg_24h": 8.3,
+        "peak_keyword": "Iran war",
+        "peak_value": 31,
+        "risk": 5,
+        "timestamp": "2026-07-06T04:53:47.631455"
+      }
     }
   },
   "buildup": {
     "risk": 90,
-    "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
+    "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
       90,
       90,
@@ -757,11 +771,12 @@
       86,
       89,
       90,
+      90,
       90
     ],
     "raw_data": {
       "risk": 90,
-      "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 8 land types, 5/6 categories (bombers, air superiority, strike fighters, ground attack, allied)",
+      "detail": "2 carriers, 16 destroyers near CENTCOM (130 pts) | Air: 5 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 130.2,
         "force_risk": 100,
@@ -781,57 +796,56 @@
       "carrier_air_squadrons": 5,
       "air_presence": {
         "platforms": {
-          "a-10": "Ground Attack",
           "f-35": "5th Gen Fighter",
-          "b-52": "Strategic Bomber",
+          "a-10": "Ground Attack",
           "f-22": "Air Superiority Fighter",
+          "b-52": "Strategic Bomber",
           "b-2": "Stealth Bomber",
           "f-15e": "Strike Eagle",
-          "typhoon": "Allied Fighter",
           "b-1": "Bomber"
         },
         "bases": {
           "lakenheath": 2,
           "fairford": 2,
-          "diego garcia": 1,
+          "diego garcia": 3,
           "qatar": 1,
-          "al udeid": 1
+          "al udeid": 3,
+          "al dhafra": 2
         },
-        "categories_present": 5,
+        "categories_present": 4,
         "categories_active": [
           "bombers",
           "air superiority",
           "strike fighters",
-          "ground attack",
-          "allied"
+          "ground attack"
         ]
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 1,
-        "deployment_matches": 25,
+        "escalation_matches": 3,
+        "deployment_matches": 29,
         "sample_headlines": [
           "Another Aircraft Carrier Is Set To Depart From The Middle East - Forbes",
           "US ends search for Navy pilot lost when helicopter crashed during Iran war - New York Post",
+          "U.S. Navy ends blockade of Iran's ports and coastal areas - CNBC",
           "US Navy calls off search for missing sailor following helicopter crash in Arabian Sea - The Jerusalem Post",
-          "Navy suspends active search for missing crew member after helicopter goes down in Arabian Sea - stripes.com",
-          "U.S. Navy ends blockade of Iran's ports and coastal areas - CNBC"
+          "Navy suspends active search for missing crew member after helicopter goes down in Arabian Sea - stripes.com"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: June 29, 2026",
       "source_date": "Mon, 29 Jun 2026 17:00:52 +0000",
-      "timestamp": "2026-07-06T04:54:09.090513"
+      "timestamp": "2026-07-06T09:02:18.396628"
     }
   },
   "total_risk": {
     "risk": 34,
     "history": [
       {
-        "timestamp": 1783313649093,
+        "timestamp": 1783328538399,
         "risk": 34
       }
     ],
     "elevated_count": 1
   },
-  "last_updated": "2026-07-06T04:54:09.093568"
+  "last_updated": "2026-07-06T09:02:18.399789"
 }
