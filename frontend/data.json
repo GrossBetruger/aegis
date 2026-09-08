@@ -1,9 +1,10 @@
 {
   "news": {
     "risk": 60,
-    "detail": "13 articles, 11 critical, escalation: 0.60",
+    "detail": "14 articles, 12 critical, escalation: 0.58",
     "history": [
       55,
+      60,
       60
     ],
     "raw_data": {
@@ -69,41 +70,47 @@
           "escalation": 0.069
         },
         {
+          "title": "What\u2019s happening in the Yemen war?",
+          "is_alert": true,
+          "escalation": 0.382
+        },
+        {
           "title": "China and Qatar are strengthening bilateral ties: What that really means",
           "is_alert": true,
           "escalation": 0.005
         }
       ],
-      "total_count": 13,
-      "alert_count": 11,
-      "avg_escalation": 0.6,
+      "total_count": 14,
+      "alert_count": 12,
+      "avg_escalation": 0.584,
       "escalation_available": true,
-      "timestamp": "2026-09-08T19:31:55.661954"
+      "timestamp": "2026-09-08T22:26:20.046013"
     }
   },
   "flight": {
-    "risk": 41,
-    "detail": "68 aircraft over Iran",
+    "risk": 71,
+    "detail": "30 aircraft over Iran",
     "history": [
       38,
-      41
+      41,
+      71
     ],
     "raw_data": {
-      "aircraft_count": 68,
-      "airline_count": 17,
+      "aircraft_count": 30,
+      "airline_count": 16,
       "airlines": [
-        "AXB",
-        "IGO",
-        "AIC",
-        "DUB",
         "UAE",
-        "FDB",
+        "IGO",
         "ABY",
+        "FDB",
         "UNI",
+        "ADY",
         "GFA",
-        "FJL"
+        "IRA",
+        "QTR",
+        "AXB"
       ],
-      "timestamp": "2026-09-08T19:31:57.773305"
+      "timestamp": "2026-09-08T22:26:21.651209"
     }
   },
   "tanker": {
@@ -111,18 +118,20 @@
     "detail": "0 detected in region",
     "history": [
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-09-08T19:31:57.773305"
+      "timestamp": "2026-09-08T22:26:21.651209"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100
     ],
@@ -131,9 +140,18 @@
       "detail": "clear",
       "history": [
         100,
+        100,
         100
       ],
-      "raw_data": {}
+      "raw_data": {
+        "risk": 100,
+        "detail": "clear",
+        "history": [
+          100,
+          100
+        ],
+        "raw_data": {}
+      }
     }
   },
   "polymarket": {
@@ -141,72 +159,77 @@
     "detail": "Awaiting data...",
     "history": [
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-09-08T19:31:37.804450"
+      "timestamp": "2026-09-08T22:26:01.633324"
     }
   },
   "pentagon": {
-    "risk": 5,
-    "detail": "California Pizza Kitchen 1%, Extreme Pizza 1%, We, The Pizza 14% (live)",
+    "risk": 47,
+    "detail": "California Pizza Kitchen 13%, Extreme Pizza 60%, We, The Pizza 67% (live)",
     "history": [
       63,
-      5
+      5,
+      47
     ],
     "raw_data": {
-      "score": 5,
-      "risk_contribution": 0.5,
-      "status": "Low Activity",
-      "detail_text": "California Pizza Kitchen 1%, Extreme Pizza 1%, We, The Pizza 14% (live)",
+      "score": 47,
+      "risk_contribution": 4.7,
+      "status": "Normal",
+      "detail_text": "California Pizza Kitchen 13%, Extreme Pizza 60%, We, The Pizza 67% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 1,
-        "Extreme Pizza": 1,
-        "We, The Pizza": 14
+        "California Pizza Kitchen": 13,
+        "Extreme Pizza": 60,
+        "We, The Pizza": 67
       },
-      "hour_et": 15,
-      "timestamp": "2026-09-08T19:31:37.502197",
+      "hour_et": 18,
+      "timestamp": "2026-09-08T22:26:01.475439",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 60,
-    "detail": "$98.63 (+1.0%)",
+    "risk": 70,
+    "detail": "$99.50 (+1.9%)",
     "history": [
       50,
-      60
+      60,
+      70
     ],
     "raw_data": {
-      "current_price": 98.63,
-      "change_24h": 0.97,
-      "risk": 60,
-      "timestamp": "2026-09-08T19:31:55.929167"
+      "current_price": 99.5,
+      "change_24h": 1.86,
+      "risk": 70,
+      "timestamp": "2026-09-08T22:26:20.180606"
     }
   },
   "trends": {
-    "risk": 5,
-    "detail": "Interest: 8, 'Iran war'",
+    "risk": 10,
+    "detail": "Interest: 10, 'Iran war'",
     "history": [
       10,
-      5
+      5,
+      10
     ],
     "raw_data": {
-      "current_interest": 7.6,
-      "avg_24h": 9.4,
+      "current_interest": 10.0,
+      "avg_24h": 10.7,
       "peak_keyword": "Iran war",
-      "peak_value": 34,
-      "risk": 5,
-      "timestamp": "2026-09-08T19:31:56.932452"
+      "peak_value": 40,
+      "risk": 10,
+      "timestamp": "2026-09-08T22:26:21.171061"
     }
   },
   "buildup": {
     "risk": 90,
     "detail": "2 carriers, 15 destroyers near CENTCOM (126 pts) | Air: 6 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
+      90,
       90,
       90
     ],
@@ -256,29 +279,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 3,
-        "deployment_matches": 23,
+        "deployment_matches": 22,
         "sample_headlines": [
+          "U.S. Strikes Iranian Oil Tankers in Response to Tehran\u2019s Attacks on Navy Ships - WSJ",
           "CENTCOM Destroys 3 IRGC Oil Tankers After Iran Targets 2 U.S. Navy Warships - centcom.mil",
-          "The US Navy Is Learning From Tough USS Abraham Lincoln Deployment - Business Insider",
-          "Iran war: Tehran\u2019s assertive rhetoric signals a new and dangerous phase in conflict - The Conversation",
-          "U.S. Strikes Three Iranian Ships After Missiles Fired at American Aircraft Carrier - WSJ",
-          "US forces hit three Iranian tankers after carrier attacked - Task & Purpose"
+          "US strikes more Iranian tankers in response to continued missile attacks against US vessels - Scripps News",
+          "U.S. forces reportedly struck Iranian tankers in response to Iran's attempts to attack U.S. Navy warships - CNBC",
+          "The US Navy Is Learning From Tough USS Abraham Lincoln Deployment - Business Insider"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Sept. 8, 2026",
       "source_date": "Tue, 08 Sep 2026 18:16:40 +0000",
-      "timestamp": "2026-09-08T19:31:59.529944"
+      "timestamp": "2026-09-08T22:26:23.334631"
     }
   },
   "total_risk": {
-    "risk": 46,
+    "risk": 56,
     "history": [
       {
-        "timestamp": 1788895919532,
-        "risk": 46
+        "timestamp": 1788906383337,
+        "risk": 56
       }
     ],
     "elevated_count": 3
   },
-  "last_updated": "2026-09-08T19:31:59.532898"
+  "last_updated": "2026-09-08T22:26:23.337631"
 }
