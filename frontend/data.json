@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 66,
-    "detail": "12 articles, 10 critical, escalation: 0.70",
+    "risk": 59,
+    "detail": "12 articles, 10 critical, escalation: 0.60",
     "history": [
       55,
       60,
@@ -10,7 +10,8 @@
       64,
       63,
       59,
-      66
+      66,
+      59
     ],
     "raw_data": {
       "articles": [
@@ -18,6 +19,11 @@
           "title": "Oil hits $100 a barrel for first time since July after US and Houthi strikes",
           "is_alert": true,
           "escalation": 0.734
+        },
+        {
+          "title": "Iran referred to UN Security Council for nuclear non-compliance",
+          "is_alert": true,
+          "escalation": 0.14
         },
         {
           "title": "Saudi Arabia vows to respond after Houthis attack cities and energy facilities",
@@ -65,26 +71,21 @@
           "escalation": 0.901
         },
         {
-          "title": "What is Jordan\u2019s Al-Azraq base and why is Iran targeting it?",
+          "title": "IAEA board refers Iran to UN Security Council over nuclear \u2018non-compliance\u2019",
           "is_alert": false,
-          "escalation": 0.614
-        },
-        {
-          "title": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks",
-          "is_alert": true,
-          "escalation": 0.937
+          "escalation": 0.157
         }
       ],
       "total_count": 12,
       "alert_count": 10,
-      "avg_escalation": 0.701,
+      "avg_escalation": 0.597,
       "escalation_available": true,
-      "timestamp": "2026-09-09T18:22:25.245476"
+      "timestamp": "2026-09-09T21:06:38.344702"
     }
   },
   "flight": {
-    "risk": 37,
-    "detail": "72 aircraft over Iran",
+    "risk": 50,
+    "detail": "56 aircraft over Iran",
     "history": [
       38,
       41,
@@ -93,24 +94,25 @@
       33,
       52,
       41,
-      37
+      37,
+      50
     ],
     "raw_data": {
-      "aircraft_count": 72,
-      "airline_count": 22,
+      "aircraft_count": 56,
+      "airline_count": 18,
       "airlines": [
-        "AXB",
         "AIC",
-        "IGO",
+        "IAW",
+        "BBC",
         "UAE",
         "FDB",
-        "ETD",
         "UNI",
         "ABY",
-        "RJA",
-        "HIM"
+        "ADY",
+        "HIM",
+        "GFA"
       ],
-      "timestamp": "2026-09-09T18:22:27.359070"
+      "timestamp": "2026-09-09T21:06:39.907713"
     }
   },
   "tanker": {
@@ -124,18 +126,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-09-09T18:22:27.359070"
+      "timestamp": "2026-09-09T21:06:39.907713"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -156,12 +160,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -179,12 +185,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -198,12 +206,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100
@@ -213,9 +223,18 @@
                   "detail": "clear",
                   "history": [
                     100,
+                    100,
                     100
                   ],
-                  "raw_data": {}
+                  "raw_data": {
+                    "risk": 100,
+                    "detail": "clear",
+                    "history": [
+                      100,
+                      100
+                    ],
+                    "raw_data": {}
+                  }
                 }
               }
             }
@@ -235,17 +254,18 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-09-09T18:22:03.859053"
+      "timestamp": "2026-09-09T21:06:13.825700"
     }
   },
   "pentagon": {
-    "risk": 42,
-    "detail": "California Pizza Kitchen 0%, Extreme Pizza 56%, We, The Pizza 69% (live)",
+    "risk": 0,
+    "detail": "No data available",
     "history": [
       63,
       5,
@@ -254,28 +274,25 @@
       0,
       0,
       0,
-      42
+      42,
+      0
     ],
     "raw_data": {
-      "score": 42,
-      "risk_contribution": 4.2,
-      "status": "Normal",
-      "detail_text": "California Pizza Kitchen 0%, Extreme Pizza 56%, We, The Pizza 69% (live)",
-      "source": "live",
-      "live_scores": {
-        "California Pizza Kitchen": 0,
-        "Extreme Pizza": 56,
-        "We, The Pizza": 69
-      },
-      "hour_et": 14,
-      "timestamp": "2026-09-09T18:22:03.763412",
+      "score": 0,
+      "risk_contribution": 0.0,
+      "status": "No Data",
+      "detail_text": "No data available",
+      "source": "none",
+      "live_scores": null,
+      "hour_et": 17,
+      "timestamp": "2026-09-09T21:06:13.763655",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 85,
-    "detail": "$101.37 (+3.8%)",
+    "detail": "$101.64 (+4.0%)",
     "history": [
       50,
       60,
@@ -284,18 +301,19 @@
       60,
       85,
       85,
+      85,
       85
     ],
     "raw_data": {
-      "current_price": 101.37,
-      "change_24h": 3.78,
+      "current_price": 101.64,
+      "change_24h": 4.05,
       "risk": 85,
-      "timestamp": "2026-09-09T18:22:25.391653"
+      "timestamp": "2026-09-09T21:06:38.508177"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 10, 'Iran war'",
+    "detail": "Interest: 11, 'Iran war'",
     "history": [
       10,
       5,
@@ -304,15 +322,16 @@
       10,
       20,
       20,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 10.0,
-      "avg_24h": 12.4,
+      "current_interest": 11.2,
+      "avg_24h": 13.4,
       "peak_keyword": "Iran war",
-      "peak_value": 42,
+      "peak_value": 50,
       "risk": 10,
-      "timestamp": "2026-09-09T18:22:26.501280"
+      "timestamp": "2026-09-09T21:06:39.341948"
     }
   },
   "buildup": {
@@ -326,6 +345,7 @@
       88,
       88,
       90,
+      91,
       91
     ],
     "raw_data": {
@@ -376,29 +396,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 9,
+        "deployment_matches": 8,
         "sample_headlines": [
           "U.S. Destroys 5 IRGC Tankers After Iran Targets Another American Warship - centcom.mil",
+          "US strikes oil tankers off coast of Iran - dw.com",
           "U.S. Strikes Iranian Oil Tankers in Response to Tehran\u2019s Attacks on Navy Ships - WSJ",
-          "US strikes oil tankers off coast of Iran - DW.com",
-          "Iran Attacks on US Navy Show Limits of Tanker-Sinking Reprisals - Bloomberg",
-          "Navy applies deployment lessons as Roosevelt prepares for Mideast - stripes.com"
+          "Oil hits $100 a barrel for first time since July after US and Houthi strikes - BBC",
+          "Iran Attacks on US Warships Show Limits of Tanker Reprisals - Bloomberg.com"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Sept. 8, 2026",
       "source_date": "Tue, 08 Sep 2026 18:16:40 +0000",
-      "timestamp": "2026-09-09T18:22:28.820489"
+      "timestamp": "2026-09-09T21:06:41.660641"
     }
   },
   "total_risk": {
-    "risk": 52,
+    "risk": 51,
     "history": [
       {
-        "timestamp": 1788978148824,
-        "risk": 52
+        "timestamp": 1788988001663,
+        "risk": 51
       }
     ],
     "elevated_count": 3
   },
-  "last_updated": "2026-09-09T18:22:28.823969"
+  "last_updated": "2026-09-09T21:06:41.663667"
 }
