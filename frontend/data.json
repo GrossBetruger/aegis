@@ -1,16 +1,22 @@
 {
   "news": {
-    "risk": 64,
-    "detail": "17 articles, 14 critical, escalation: 0.68",
+    "risk": 63,
+    "detail": "12 articles, 10 critical, escalation: 0.66",
     "history": [
       55,
       60,
       60,
       63,
-      64
+      64,
+      63
     ],
     "raw_data": {
       "articles": [
+        {
+          "title": "Oil hits $100 a barrel for first time since July after US and Houthi strikes",
+          "is_alert": true,
+          "escalation": 0.734
+        },
         {
           "title": "Saudi Arabia vows to respond after Houthis attack cities and energy facilities",
           "is_alert": true,
@@ -37,19 +43,14 @@
           "escalation": 0.942
         },
         {
-          "title": "Iranian attack on Saudi tanker killed two Filipino sailors, Saudi Arabia says",
+          "title": "How could US-Iran conflict end? Three experts give their views",
           "is_alert": true,
-          "escalation": 0.832
+          "escalation": 0.378
         },
         {
           "title": "What we know about reported strike on Iran wedding celebrations",
           "is_alert": true,
           "escalation": 0.932
-        },
-        {
-          "title": "How could US-Iran conflict end? Three experts give their views",
-          "is_alert": true,
-          "escalation": 0.377
         },
         {
           "title": "Trump hopes sanctions will topple Iran's regime - its leaders are betting otherwise",
@@ -62,74 +63,50 @@
           "escalation": 0.901
         },
         {
-          "title": "US and Iran trade strikes for first time in weeks",
-          "is_alert": true,
-          "escalation": 0.765
-        },
-        {
-          "title": "Watch: What are the US sanctions on Iran and who else will be affected?",
+          "title": "Medicine shortages grow in Iran as US tightens sanctions, blockade",
           "is_alert": false,
-          "escalation": 0.069
+          "escalation": 0.022
         },
         {
-          "title": "Jordanian air defences intercept Iranian missile barrage",
-          "is_alert": true,
-          "escalation": 0.729
-        },
-        {
-          "title": "US strikes 5 Iranian oil tankers; Tehran targets Jordan base, US warships",
-          "is_alert": true,
-          "escalation": 0.92
-        },
-        {
-          "title": "Iran war live: US, Iran attack oil tankers; crude heads to $100",
+          "title": "Why US-Iran war over Hormuz is threatening the Gulf\u2019s waters",
           "is_alert": true,
           "escalation": 0.988
-        },
-        {
-          "title": "US increases pressure on Iran with sanctions targeting aviation sector",
-          "is_alert": false,
-          "escalation": 0.116
-        },
-        {
-          "title": "US bombs five Iranian oil tankers after its navy is attacked",
-          "is_alert": true,
-          "escalation": 0.957
         }
       ],
-      "total_count": 17,
-      "alert_count": 14,
-      "avg_escalation": 0.677,
+      "total_count": 12,
+      "alert_count": 10,
+      "avg_escalation": 0.656,
       "escalation_available": true,
-      "timestamp": "2026-09-09T05:04:23.576254"
+      "timestamp": "2026-09-09T10:02:17.285223"
     }
   },
   "flight": {
-    "risk": 33,
-    "detail": "78 aircraft over Iran",
+    "risk": 52,
+    "detail": "54 aircraft over Iran",
     "history": [
       38,
       41,
       71,
       42,
-      33
+      33,
+      52
     ],
     "raw_data": {
-      "aircraft_count": 78,
-      "airline_count": 23,
+      "aircraft_count": 54,
+      "airline_count": 25,
       "airlines": [
+        "MEA",
         "AXB",
-        "IAW",
-        "SMB",
         "AIC",
-        "UAE",
-        "ETD",
+        "FVS",
+        "THY",
         "ABY",
-        "UNI",
+        "QSM",
         "FDB",
-        "A7G"
+        "UAE",
+        "ETD"
       ],
-      "timestamp": "2026-09-09T05:04:25.449381"
+      "timestamp": "2026-09-09T10:02:19.610980"
     }
   },
   "tanker": {
@@ -140,18 +117,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-09-09T05:04:25.449381"
+      "timestamp": "2026-09-09T10:02:19.610980"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -166,12 +145,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -183,6 +164,7 @@
           "history": [
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
@@ -190,9 +172,18 @@
             "detail": "clear",
             "history": [
               100,
+              100,
               100
             ],
-            "raw_data": {}
+            "raw_data": {
+              "risk": 100,
+              "detail": "clear",
+              "history": [
+                100,
+                100
+              ],
+              "raw_data": {}
+            }
           }
         }
       }
@@ -206,12 +197,13 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-09-09T05:03:49.827820"
+      "timestamp": "2026-09-09T10:01:52.232744"
     }
   },
   "pentagon": {
@@ -222,6 +214,7 @@
       5,
       47,
       8,
+      0,
       0
     ],
     "raw_data": {
@@ -231,46 +224,48 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 1,
-      "timestamp": "2026-09-09T05:03:49.723083",
-      "is_late_night": true,
+      "hour_et": 6,
+      "timestamp": "2026-09-09T10:01:52.067681",
+      "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 60,
-    "detail": "$99.11 (+1.5%)",
+    "risk": 85,
+    "detail": "$100.64 (+3.0%)",
     "history": [
       50,
       60,
       70,
       70,
-      60
+      60,
+      85
     ],
     "raw_data": {
-      "current_price": 99.11,
-      "change_24h": 1.46,
-      "risk": 60,
-      "timestamp": "2026-09-09T05:04:23.787072"
+      "current_price": 100.64,
+      "change_24h": 3.03,
+      "risk": 85,
+      "timestamp": "2026-09-09T10:02:17.509593"
     }
   },
   "trends": {
-    "risk": 10,
-    "detail": "Interest: 12, 'Iran war'",
+    "risk": 20,
+    "detail": "Interest: 18, 'Iran war'",
     "history": [
       10,
       5,
       10,
       5,
-      10
+      10,
+      20
     ],
     "raw_data": {
-      "current_interest": 11.6,
-      "avg_24h": 11.1,
+      "current_interest": 18.0,
+      "avg_24h": 11.8,
       "peak_keyword": "Iran war",
-      "peak_value": 58,
-      "risk": 10,
-      "timestamp": "2026-09-09T05:04:24.546156"
+      "peak_value": 81,
+      "risk": 20,
+      "timestamp": "2026-09-09T10:02:18.692080"
     }
   },
   "buildup": {
@@ -281,6 +276,7 @@
       90,
       90,
       89,
+      88,
       88
     ],
     "raw_data": {
@@ -315,7 +311,7 @@
         },
         "bases": {
           "lakenheath": 3,
-          "fairford": 1,
+          "fairford": 2,
           "diego garcia": 1
         },
         "categories_present": 4,
@@ -329,29 +325,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 10,
+        "deployment_matches": 9,
         "sample_headlines": [
           "U.S. Destroys 5 IRGC Tankers After Iran Targets Another American Warship - centcom.mil",
-          "U.S. Strikes Iranian Oil Tankers in Response to Tehran\u2019s Attacks on Navy Ships - wsj.com",
-          "U.S. strikes five Iranian tankers after attempted attacks on Navy warship, CENTCOM says - NBC News",
+          "U.S. Strikes Iranian Oil Tankers in Response to Tehran\u2019s Attacks on Navy Ships - WSJ",
+          "Iran attacks American warships and base after U.S. sinks five Iranian tankers - NBC News",
           "Iran attacks US base in Jordan, ships near Hormuz after tankers sunk - Reuters",
-          "U.S. says it destroyed Iranian tankers after US Navy ship targeted - spokesman.com"
+          "US strikes oil tankers off coast of Iran - DW.com"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Sept. 8, 2026",
       "source_date": "Tue, 08 Sep 2026 18:16:40 +0000",
-      "timestamp": "2026-09-09T05:04:26.943283"
+      "timestamp": "2026-09-09T10:02:21.527427"
     }
   },
   "total_risk": {
-    "risk": 45,
+    "risk": 52,
     "history": [
       {
-        "timestamp": 1788930266946,
-        "risk": 45
+        "timestamp": 1788948141530,
+        "risk": 52
       }
     ],
     "elevated_count": 3
   },
-  "last_updated": "2026-09-09T05:04:26.946334"
+  "last_updated": "2026-09-09T10:02:21.530650"
 }
