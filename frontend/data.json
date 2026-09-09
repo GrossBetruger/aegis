@@ -1,11 +1,12 @@
 {
   "news": {
-    "risk": 60,
-    "detail": "14 articles, 12 critical, escalation: 0.58",
+    "risk": 63,
+    "detail": "17 articles, 14 critical, escalation: 0.66",
     "history": [
       55,
       60,
-      60
+      60,
+      63
     ],
     "raw_data": {
       "articles": [
@@ -70,47 +71,63 @@
           "escalation": 0.069
         },
         {
-          "title": "What\u2019s happening in the Yemen war?",
+          "title": "US destroys five Iranian tankers, Iran retaliates with attacks on Jordan base",
           "is_alert": true,
-          "escalation": 0.382
+          "escalation": 0.993
         },
         {
-          "title": "China and Qatar are strengthening bilateral ties: What that really means",
+          "title": "Iran war live: US hits Iranian tankers, IRGC attacks US base in Jordan",
           "is_alert": true,
-          "escalation": 0.005
+          "escalation": 0.993
+        },
+        {
+          "title": "US increases pressure on Iran with sanctions targeting aviation sector",
+          "is_alert": false,
+          "escalation": 0.116
+        },
+        {
+          "title": "US bombs five Iranian oil tankers after its navy is attacked",
+          "is_alert": true,
+          "escalation": 0.957
+        },
+        {
+          "title": "What\u2019s happening in the Yemen war?",
+          "is_alert": true,
+          "escalation": 0.381
         }
       ],
-      "total_count": 14,
-      "alert_count": 12,
-      "avg_escalation": 0.584,
+      "total_count": 17,
+      "alert_count": 14,
+      "avg_escalation": 0.661,
       "escalation_available": true,
-      "timestamp": "2026-09-08T22:26:20.046013"
+      "timestamp": "2026-09-09T00:28:35.329663"
     }
   },
   "flight": {
-    "risk": 71,
-    "detail": "30 aircraft over Iran",
+    "risk": 42,
+    "detail": "66 aircraft over Iran",
     "history": [
       38,
       41,
-      71
+      71,
+      42
     ],
     "raw_data": {
-      "aircraft_count": 30,
-      "airline_count": 16,
+      "aircraft_count": 66,
+      "airline_count": 22,
       "airlines": [
+        "AIC",
         "UAE",
-        "IGO",
+        "THY",
+        "ETD",
         "ABY",
-        "FDB",
         "UNI",
+        "FDB",
         "ADY",
         "GFA",
-        "IRA",
-        "QTR",
-        "AXB"
+        "ETH"
       ],
-      "timestamp": "2026-09-08T22:26:21.651209"
+      "timestamp": "2026-09-09T00:28:37.519059"
     }
   },
   "tanker": {
@@ -119,18 +136,20 @@
     "history": [
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-09-08T22:26:21.651209"
+      "timestamp": "2026-09-09T00:28:37.519059"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100
@@ -141,6 +160,7 @@
       "history": [
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
@@ -148,9 +168,18 @@
         "detail": "clear",
         "history": [
           100,
+          100,
           100
         ],
-        "raw_data": {}
+        "raw_data": {
+          "risk": 100,
+          "detail": "clear",
+          "history": [
+            100,
+            100
+          ],
+          "raw_data": {}
+        }
       }
     }
   },
@@ -160,81 +189,86 @@
     "history": [
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-09-08T22:26:01.633324"
+      "timestamp": "2026-09-09T00:28:03.290363"
     }
   },
   "pentagon": {
-    "risk": 47,
-    "detail": "California Pizza Kitchen 13%, Extreme Pizza 60%, We, The Pizza 67% (live)",
+    "risk": 8,
+    "detail": "California Pizza Kitchen 0%, Extreme Pizza 23%, We, The Pizza 0% (live)",
     "history": [
       63,
       5,
-      47
+      47,
+      8
     ],
     "raw_data": {
-      "score": 47,
-      "risk_contribution": 4.7,
-      "status": "Normal",
-      "detail_text": "California Pizza Kitchen 13%, Extreme Pizza 60%, We, The Pizza 67% (live)",
+      "score": 8,
+      "risk_contribution": 0.8,
+      "status": "Low Activity",
+      "detail_text": "California Pizza Kitchen 0%, Extreme Pizza 23%, We, The Pizza 0% (live)",
       "source": "live",
       "live_scores": {
-        "California Pizza Kitchen": 13,
-        "Extreme Pizza": 60,
-        "We, The Pizza": 67
+        "California Pizza Kitchen": 0,
+        "Extreme Pizza": 23,
+        "We, The Pizza": 0
       },
-      "hour_et": 18,
-      "timestamp": "2026-09-08T22:26:01.475439",
+      "hour_et": 20,
+      "timestamp": "2026-09-09T00:28:02.960598",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
     "risk": 70,
-    "detail": "$99.50 (+1.9%)",
+    "detail": "$99.41 (+1.8%)",
     "history": [
       50,
       60,
+      70,
       70
     ],
     "raw_data": {
-      "current_price": 99.5,
-      "change_24h": 1.86,
+      "current_price": 99.41,
+      "change_24h": 1.77,
       "risk": 70,
-      "timestamp": "2026-09-08T22:26:20.180606"
+      "timestamp": "2026-09-09T00:28:35.481889"
     }
   },
   "trends": {
-    "risk": 10,
+    "risk": 5,
     "detail": "Interest: 10, 'Iran war'",
     "history": [
       10,
       5,
-      10
+      10,
+      5
     ],
     "raw_data": {
-      "current_interest": 10.0,
+      "current_interest": 9.6,
       "avg_24h": 10.7,
       "peak_keyword": "Iran war",
       "peak_value": 40,
-      "risk": 10,
-      "timestamp": "2026-09-08T22:26:21.171061"
+      "risk": 5,
+      "timestamp": "2026-09-09T00:28:36.725629"
     }
   },
   "buildup": {
-    "risk": 90,
+    "risk": 89,
     "detail": "2 carriers, 15 destroyers near CENTCOM (126 pts) | Air: 6 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
       90,
       90,
-      90
+      90,
+      89
     ],
     "raw_data": {
-      "risk": 90,
+      "risk": 89,
       "detail": "2 carriers, 15 destroyers near CENTCOM (126 pts) | Air: 6 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 126.2,
@@ -278,30 +312,30 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 3,
-        "deployment_matches": 22,
+        "escalation_matches": 2,
+        "deployment_matches": 12,
         "sample_headlines": [
+          "U.S. Destroys 5 IRGC Tankers After Iran Targets Another American Warship - centcom.mil",
           "U.S. Strikes Iranian Oil Tankers in Response to Tehran\u2019s Attacks on Navy Ships - WSJ",
-          "CENTCOM Destroys 3 IRGC Oil Tankers After Iran Targets 2 U.S. Navy Warships - centcom.mil",
+          "US forces destroyed 5 Iranian tankers after IRGC attacks on US Navy warship: CENTCOM - Anadolu Ajans\u0131",
           "US strikes more Iranian tankers in response to continued missile attacks against US vessels - Scripps News",
-          "U.S. forces reportedly struck Iranian tankers in response to Iran's attempts to attack U.S. Navy warships - CNBC",
-          "The US Navy Is Learning From Tough USS Abraham Lincoln Deployment - Business Insider"
+          "US Military Hit Targets Near Iran\u2019s Kharg Island, Fox News Says - Bloomberg.com"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Sept. 8, 2026",
       "source_date": "Tue, 08 Sep 2026 18:16:40 +0000",
-      "timestamp": "2026-09-08T22:26:23.334631"
+      "timestamp": "2026-09-09T00:28:39.276355"
     }
   },
   "total_risk": {
-    "risk": 56,
+    "risk": 48,
     "history": [
       {
-        "timestamp": 1788906383337,
-        "risk": 56
+        "timestamp": 1788913719279,
+        "risk": 48
       }
     ],
     "elevated_count": 3
   },
-  "last_updated": "2026-09-08T22:26:23.337631"
+  "last_updated": "2026-09-09T00:28:39.279444"
 }
