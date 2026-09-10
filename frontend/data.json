@@ -1,7 +1,7 @@
 {
   "news": {
-    "risk": 52,
-    "detail": "11 articles, 9 critical, escalation: 0.48",
+    "risk": 54,
+    "detail": "9 articles, 7 critical, escalation: 0.56",
     "history": [
       55,
       60,
@@ -15,10 +15,16 @@
       60,
       62,
       70,
-      52
+      52,
+      54
     ],
     "raw_data": {
       "articles": [
+        {
+          "title": "Yemen's Houthis reportedly seize strategic Red Sea port of Mokha",
+          "is_alert": false,
+          "escalation": 0.814
+        },
         {
           "title": "Iran war won't end until after crucial November elections, says Trump ",
           "is_alert": true,
@@ -33,16 +39,6 @@
           "title": "Oil hits $100 a barrel for first time since July after US and Houthi strikes",
           "is_alert": true,
           "escalation": 0.734
-        },
-        {
-          "title": "Saudi Arabia vows to respond after Houthis attack cities and energy facilities",
-          "is_alert": true,
-          "escalation": 0.178
-        },
-        {
-          "title": "Iran warns of 'faster, heavier, more painful response' to US attacks",
-          "is_alert": true,
-          "escalation": 0.927
         },
         {
           "title": "How could US-Iran conflict end? Three experts give their views",
@@ -65,26 +61,21 @@
           "escalation": 0.901
         },
         {
-          "title": "IAEA accuses Iran of \u2018noncompliance\u2019: Why, and what now?",
+          "title": "IAEA accuses Iran of \u2018noncompliance\u2019",
           "is_alert": true,
-          "escalation": 0.068
-        },
-        {
-          "title": "Qatar beat Iran in men\u2019s basketball as Asian Games begin in Japan",
-          "is_alert": false,
-          "escalation": 0.086
+          "escalation": 0.129
         }
       ],
-      "total_count": 11,
-      "alert_count": 9,
-      "avg_escalation": 0.485,
+      "total_count": 9,
+      "alert_count": 7,
+      "avg_escalation": 0.558,
       "escalation_available": true,
-      "timestamp": "2026-09-10T11:43:34.859100"
+      "timestamp": "2026-09-10T15:59:51.922767"
     }
   },
   "flight": {
-    "risk": 28,
-    "detail": "84 aircraft over Iran",
+    "risk": 29,
+    "detail": "83 aircraft over Iran",
     "history": [
       38,
       41,
@@ -98,24 +89,25 @@
       49,
       49,
       24,
-      28
+      28,
+      29
     ],
     "raw_data": {
-      "aircraft_count": 84,
+      "aircraft_count": 83,
       "airline_count": 28,
       "airlines": [
-        "VTK",
-        "AXB",
-        "FYC",
         "AIC",
+        "AXB",
         "IAW",
         "UAE",
-        "HYA",
-        "ETD",
-        "FVS",
-        "ABY"
+        "IGO",
+        "ABY",
+        "FDB",
+        "THY",
+        "UNI",
+        "ETD"
       ],
-      "timestamp": "2026-09-10T11:43:36.461020"
+      "timestamp": "2026-09-10T15:59:53.013122"
     }
   },
   "tanker": {
@@ -134,18 +126,20 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
       "tanker_count": 0,
       "callsigns": [],
-      "timestamp": "2026-09-10T11:43:36.461020"
+      "timestamp": "2026-09-10T15:59:53.013122"
     }
   },
   "weather": {
     "risk": 100,
     "detail": "clear",
     "history": [
+      100,
       100,
       100,
       100,
@@ -176,12 +170,14 @@
         100,
         100,
         100,
+        100,
         100
       ],
       "raw_data": {
         "risk": 100,
         "detail": "clear",
         "history": [
+          100,
           100,
           100,
           100,
@@ -209,12 +205,14 @@
             100,
             100,
             100,
+            100,
             100
           ],
           "raw_data": {
             "risk": 100,
             "detail": "clear",
             "history": [
+              100,
               100,
               100,
               100,
@@ -238,12 +236,14 @@
                 100,
                 100,
                 100,
+                100,
                 100
               ],
               "raw_data": {
                 "risk": 100,
                 "detail": "clear",
                 "history": [
+                  100,
                   100,
                   100,
                   100,
@@ -263,12 +263,14 @@
                     100,
                     100,
                     100,
+                    100,
                     100
                   ],
                   "raw_data": {
                     "risk": 100,
                     "detail": "clear",
                     "history": [
+                      100,
                       100,
                       100,
                       100,
@@ -284,12 +286,14 @@
                         100,
                         100,
                         100,
+                        100,
                         100
                       ],
                       "raw_data": {
                         "risk": 100,
                         "detail": "clear",
                         "history": [
+                          100,
                           100,
                           100,
                           100,
@@ -301,6 +305,7 @@
                           "history": [
                             100,
                             100,
+                            100,
                             100
                           ],
                           "raw_data": {
@@ -308,9 +313,18 @@
                             "detail": "clear",
                             "history": [
                               100,
+                              100,
                               100
                             ],
-                            "raw_data": {}
+                            "raw_data": {
+                              "risk": 100,
+                              "detail": "clear",
+                              "history": [
+                                100,
+                                100
+                              ],
+                              "raw_data": {}
+                            }
                           }
                         }
                       }
@@ -340,17 +354,18 @@
       10,
       10,
       10,
+      10,
       10
     ],
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-09-10T11:43:11.713541"
+      "timestamp": "2026-09-10T15:59:38.731419"
     }
   },
   "pentagon": {
-    "risk": 0,
-    "detail": "No data available",
+    "risk": 18,
+    "detail": "We, The Pizza 18% (live)",
     "history": [
       63,
       5,
@@ -364,24 +379,27 @@
       0,
       33,
       0,
-      0
+      0,
+      18
     ],
     "raw_data": {
-      "score": 0,
-      "risk_contribution": 0.0,
-      "status": "No Data",
-      "detail_text": "No data available",
-      "source": "none",
-      "live_scores": null,
-      "hour_et": 7,
-      "timestamp": "2026-09-10T11:43:11.645707",
+      "score": 18,
+      "risk_contribution": 1.8,
+      "status": "Low Activity",
+      "detail_text": "We, The Pizza 18% (live)",
+      "source": "live",
+      "live_scores": {
+        "We, The Pizza": 18
+      },
+      "hour_et": 11,
+      "timestamp": "2026-09-10T15:59:38.665016",
       "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 85,
-    "detail": "$102.04 (+3.0%)",
+    "risk": 100,
+    "detail": "$106.59 (+7.6%)",
     "history": [
       50,
       60,
@@ -395,18 +413,19 @@
       85,
       85,
       60,
-      85
+      85,
+      100
     ],
     "raw_data": {
-      "current_price": 102.04,
-      "change_24h": 3.01,
-      "risk": 85,
-      "timestamp": "2026-09-10T11:43:35.016440"
+      "current_price": 106.59,
+      "change_24h": 7.6,
+      "risk": 100,
+      "timestamp": "2026-09-10T15:59:52.064225"
     }
   },
   "trends": {
     "risk": 10,
-    "detail": "Interest: 15, 'Iran war'",
+    "detail": "Awaiting data...",
     "history": [
       10,
       5,
@@ -420,15 +439,36 @@
       10,
       5,
       5,
+      10,
       10
     ],
     "raw_data": {
-      "current_interest": 14.6,
-      "avg_24h": 10.7,
-      "peak_keyword": "Iran war",
-      "peak_value": 63,
       "risk": 10,
-      "timestamp": "2026-09-10T11:43:35.815041"
+      "detail": "Interest: 15, 'Iran war'",
+      "history": [
+        10,
+        5,
+        10,
+        5,
+        10,
+        20,
+        20,
+        10,
+        10,
+        10,
+        5,
+        5,
+        10,
+        10
+      ],
+      "raw_data": {
+        "current_interest": 14.6,
+        "avg_24h": 10.7,
+        "peak_keyword": "Iran war",
+        "peak_value": 63,
+        "risk": 10,
+        "timestamp": "2026-09-10T11:43:35.815041"
+      }
     }
   },
   "buildup": {
@@ -447,6 +487,7 @@
       90,
       90,
       90,
+      91,
       91
     ],
     "raw_data": {
@@ -476,13 +517,13 @@
           "a-10": "Ground Attack",
           "b-52": "Strategic Bomber",
           "f-22": "Air Superiority Fighter",
-          "b-2": "Stealth Bomber",
           "awacs": "Early Warning",
+          "b-2": "Stealth Bomber",
           "f-15e": "Strike Eagle"
         },
         "bases": {
           "lakenheath": 3,
-          "fairford": 1,
+          "fairford": 2,
           "diego garcia": 1
         },
         "categories_present": 5,
@@ -497,29 +538,29 @@
       "deployment_news": {
         "article_count": 50,
         "escalation_matches": 1,
-        "deployment_matches": 9,
+        "deployment_matches": 7,
         "sample_headlines": [
+          "Trump Is Preparing for a Long War - theatlantic.com",
           "U.S. Destroys 5 IRGC Tankers After Iran Targets Another American Warship - centcom.mil",
           "With Close Calls on U.S. Warships, Iran Shows New Appetite for Escalation - WSJ",
-          "U.S. denies claims Iran struck two American vessels in retaliation for earlier strikes - CNBC",
-          "Iran, U.S. attack tankers in biggest shipping strikes of war - Honolulu Star-Advertiser",
-          "How the US Navy could enforce a blockade of Iran's ports in the Strait of Hormuz - ABC News - Breaking News, Latest News and Videos"
+          "Iran\u2019s gamble: Tehran attacks US warships as blockade squeezes its economy - Ynetnews",
+          "Iran captured a Dive-LD: what the US Navy underwater drone was built to do - NavalToday"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Sept. 8, 2026",
       "source_date": "Tue, 08 Sep 2026 18:16:40 +0000",
-      "timestamp": "2026-09-10T11:43:38.276585"
+      "timestamp": "2026-09-10T15:59:54.587975"
     }
   },
   "total_risk": {
-    "risk": 44,
+    "risk": 48,
     "history": [
       {
-        "timestamp": 1789040618279,
-        "risk": 44
+        "timestamp": 1789055994590,
+        "risk": 48
       }
     ],
     "elevated_count": 3
   },
-  "last_updated": "2026-09-10T11:43:38.279850"
+  "last_updated": "2026-09-10T15:59:54.590938"
 }
