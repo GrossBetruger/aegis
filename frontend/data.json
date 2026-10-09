@@ -1,9 +1,8 @@
 {
   "news": {
-    "risk": 65,
-    "detail": "8 articles, 8 critical, escalation: 0.52",
+    "risk": 67,
+    "detail": "7 articles, 7 critical, escalation: 0.55",
     "history": [
-      39,
       47,
       51,
       46,
@@ -22,19 +21,25 @@
       53,
       61,
       62,
-      65
+      65,
+      67
     ],
     "raw_data": {
       "articles": [
         {
+          "title": "Three Saudi nationals killed in Houthi attacks on Riyadh airport",
+          "is_alert": true,
+          "escalation": 0.809
+        },
+        {
           "title": "White House defends Trump comment to let Iran 'take out' LA and San Diego",
           "is_alert": true,
-          "escalation": 0.296
+          "escalation": 0.297
         },
         {
           "title": "Three reasons Middle East oil supply is nearly back to pre-Iran war levels",
           "is_alert": true,
-          "escalation": 0.458
+          "escalation": 0.457
         },
         {
           "title": "Who are the Houthis and what do they want?",
@@ -52,33 +57,22 @@
           "escalation": 0.377
         },
         {
-          "title": "USS Lincoln returns to US after long deployment supporting war on Iran",
+          "title": "Is Trump signalling a return to war with Iran after the midterms?",
           "is_alert": true,
-          "escalation": 0.855
-        },
-        {
-          "title": "Iran war live: IRGC says it targets \u2018violating\u2019 ships nightly in Hormuz",
-          "is_alert": true,
-          "escalation": 0.98
-        },
-        {
-          "title": "Putin pledges Russia\u2019s support to end US-led war on Iran",
-          "is_alert": true,
-          "escalation": 0.017
+          "escalation": 0.772
         }
       ],
-      "total_count": 8,
-      "alert_count": 8,
-      "avg_escalation": 0.516,
+      "total_count": 7,
+      "alert_count": 7,
+      "avg_escalation": 0.551,
       "escalation_available": true,
-      "timestamp": "2026-10-09T06:31:44.023437"
+      "timestamp": "2026-10-09T14:12:22.638606"
     }
   },
   "flight": {
-    "risk": 9,
-    "detail": "108 aircraft over Iran",
+    "risk": 35,
+    "detail": "75 aircraft over Iran",
     "history": [
-      48,
       66,
       42,
       24,
@@ -97,31 +91,31 @@
       28,
       37,
       32,
-      9
+      9,
+      35
     ],
     "raw_data": {
-      "aircraft_count": 108,
+      "aircraft_count": 75,
       "airline_count": 30,
       "airlines": [
         "IGO",
-        "AXB",
+        "BBC",
+        "MNB",
         "MEA",
+        "AIC",
         "UAE",
+        "T7K",
+        "THY",
         "ABY",
-        "ETD",
-        "FDB",
-        "UNI",
-        "EFC",
-        "FAL"
+        "SHI"
       ],
-      "timestamp": "2026-10-09T06:31:45.818398"
+      "timestamp": "2026-10-09T14:12:24.157333"
     }
   },
   "tanker": {
-    "risk": 0,
-    "detail": "0 detected in region",
+    "risk": 10,
+    "detail": "1 detected in region",
     "history": [
-      0,
       10,
       0,
       0,
@@ -140,12 +134,15 @@
       0,
       10,
       0,
-      0
+      0,
+      10
     ],
     "raw_data": {
-      "tanker_count": 0,
-      "callsigns": [],
-      "timestamp": "2026-10-09T06:31:45.818398"
+      "tanker_count": 1,
+      "callsigns": [
+        "CNV5406"
+      ],
+      "timestamp": "2026-10-09T14:12:24.157333"
     }
   },
   "weather": {
@@ -4148,12 +4145,14 @@
                                                                                                                                                                                                                                                                                                                         100,
                                                                                                                                                                                                                                                                                                                         100,
                                                                                                                                                                                                                                                                                                                         100,
+                                                                                                                                                                                                                                                                                                                        100,
                                                                                                                                                                                                                                                                                                                         100
                                                                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                                                                       "raw_data": {
                                                                                                                                                                                                                                                                                                                         "risk": 100,
                                                                                                                                                                                                                                                                                                                         "detail": "clear",
                                                                                                                                                                                                                                                                                                                         "history": [
+                                                                                                                                                                                                                                                                                                                          100,
                                                                                                                                                                                                                                                                                                                           100,
                                                                                                                                                                                                                                                                                                                           100,
                                                                                                                                                                                                                                                                                                                           100,
@@ -4195,12 +4194,14 @@
                                                                                                                                                                                                                                                                                                                             100,
                                                                                                                                                                                                                                                                                                                             100,
                                                                                                                                                                                                                                                                                                                             100,
+                                                                                                                                                                                                                                                                                                                            100,
                                                                                                                                                                                                                                                                                                                             100
                                                                                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                                                                                           "raw_data": {
                                                                                                                                                                                                                                                                                                                             "risk": 100,
                                                                                                                                                                                                                                                                                                                             "detail": "clear",
                                                                                                                                                                                                                                                                                                                             "history": [
+                                                                                                                                                                                                                                                                                                                              100,
                                                                                                                                                                                                                                                                                                                               100,
                                                                                                                                                                                                                                                                                                                               100,
                                                                                                                                                                                                                                                                                                                               100,
@@ -4238,12 +4239,14 @@
                                                                                                                                                                                                                                                                                                                                 100,
                                                                                                                                                                                                                                                                                                                                 100,
                                                                                                                                                                                                                                                                                                                                 100,
+                                                                                                                                                                                                                                                                                                                                100,
                                                                                                                                                                                                                                                                                                                                 100
                                                                                                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                                                                                                               "raw_data": {
                                                                                                                                                                                                                                                                                                                                 "risk": 100,
                                                                                                                                                                                                                                                                                                                                 "detail": "clear",
                                                                                                                                                                                                                                                                                                                                 "history": [
+                                                                                                                                                                                                                                                                                                                                  100,
                                                                                                                                                                                                                                                                                                                                   100,
                                                                                                                                                                                                                                                                                                                                   100,
                                                                                                                                                                                                                                                                                                                                   100,
@@ -4277,12 +4280,14 @@
                                                                                                                                                                                                                                                                                                                                     100,
                                                                                                                                                                                                                                                                                                                                     100,
                                                                                                                                                                                                                                                                                                                                     100,
+                                                                                                                                                                                                                                                                                                                                    100,
                                                                                                                                                                                                                                                                                                                                     100
                                                                                                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                                                                                                   "raw_data": {
                                                                                                                                                                                                                                                                                                                                     "risk": 100,
                                                                                                                                                                                                                                                                                                                                     "detail": "clear",
                                                                                                                                                                                                                                                                                                                                     "history": [
+                                                                                                                                                                                                                                                                                                                                      100,
                                                                                                                                                                                                                                                                                                                                       100,
                                                                                                                                                                                                                                                                                                                                       100,
                                                                                                                                                                                                                                                                                                                                       100,
@@ -4312,12 +4317,14 @@
                                                                                                                                                                                                                                                                                                                                         100,
                                                                                                                                                                                                                                                                                                                                         100,
                                                                                                                                                                                                                                                                                                                                         100,
+                                                                                                                                                                                                                                                                                                                                        100,
                                                                                                                                                                                                                                                                                                                                         100
                                                                                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                                                                                       "raw_data": {
                                                                                                                                                                                                                                                                                                                                         "risk": 100,
                                                                                                                                                                                                                                                                                                                                         "detail": "clear",
                                                                                                                                                                                                                                                                                                                                         "history": [
+                                                                                                                                                                                                                                                                                                                                          100,
                                                                                                                                                                                                                                                                                                                                           100,
                                                                                                                                                                                                                                                                                                                                           100,
                                                                                                                                                                                                                                                                                                                                           100,
@@ -4343,12 +4350,14 @@
                                                                                                                                                                                                                                                                                                                                             100,
                                                                                                                                                                                                                                                                                                                                             100,
                                                                                                                                                                                                                                                                                                                                             100,
+                                                                                                                                                                                                                                                                                                                                            100,
                                                                                                                                                                                                                                                                                                                                             100
                                                                                                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                                                                                                           "raw_data": {
                                                                                                                                                                                                                                                                                                                                             "risk": 100,
                                                                                                                                                                                                                                                                                                                                             "detail": "clear",
                                                                                                                                                                                                                                                                                                                                             "history": [
+                                                                                                                                                                                                                                                                                                                                              100,
                                                                                                                                                                                                                                                                                                                                               100,
                                                                                                                                                                                                                                                                                                                                               100,
                                                                                                                                                                                                                                                                                                                                               100,
@@ -4370,12 +4379,14 @@
                                                                                                                                                                                                                                                                                                                                                 100,
                                                                                                                                                                                                                                                                                                                                                 100,
                                                                                                                                                                                                                                                                                                                                                 100,
+                                                                                                                                                                                                                                                                                                                                                100,
                                                                                                                                                                                                                                                                                                                                                 100
                                                                                                                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                                                                                                                               "raw_data": {
                                                                                                                                                                                                                                                                                                                                                 "risk": 100,
                                                                                                                                                                                                                                                                                                                                                 "detail": "clear",
                                                                                                                                                                                                                                                                                                                                                 "history": [
+                                                                                                                                                                                                                                                                                                                                                  100,
                                                                                                                                                                                                                                                                                                                                                   100,
                                                                                                                                                                                                                                                                                                                                                   100,
                                                                                                                                                                                                                                                                                                                                                   100,
@@ -4393,12 +4404,14 @@
                                                                                                                                                                                                                                                                                                                                                     100,
                                                                                                                                                                                                                                                                                                                                                     100,
                                                                                                                                                                                                                                                                                                                                                     100,
+                                                                                                                                                                                                                                                                                                                                                    100,
                                                                                                                                                                                                                                                                                                                                                     100
                                                                                                                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                                                                                                                   "raw_data": {
                                                                                                                                                                                                                                                                                                                                                     "risk": 100,
                                                                                                                                                                                                                                                                                                                                                     "detail": "clear",
                                                                                                                                                                                                                                                                                                                                                     "history": [
+                                                                                                                                                                                                                                                                                                                                                      100,
                                                                                                                                                                                                                                                                                                                                                       100,
                                                                                                                                                                                                                                                                                                                                                       100,
                                                                                                                                                                                                                                                                                                                                                       100,
@@ -4412,12 +4425,14 @@
                                                                                                                                                                                                                                                                                                                                                         100,
                                                                                                                                                                                                                                                                                                                                                         100,
                                                                                                                                                                                                                                                                                                                                                         100,
+                                                                                                                                                                                                                                                                                                                                                        100,
                                                                                                                                                                                                                                                                                                                                                         100
                                                                                                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                                                                                                       "raw_data": {
                                                                                                                                                                                                                                                                                                                                                         "risk": 100,
                                                                                                                                                                                                                                                                                                                                                         "detail": "clear",
                                                                                                                                                                                                                                                                                                                                                         "history": [
+                                                                                                                                                                                                                                                                                                                                                          100,
                                                                                                                                                                                                                                                                                                                                                           100,
                                                                                                                                                                                                                                                                                                                                                           100,
                                                                                                                                                                                                                                                                                                                                                           100
@@ -4427,9 +4442,18 @@
                                                                                                                                                                                                                                                                                                                                                           "detail": "clear",
                                                                                                                                                                                                                                                                                                                                                           "history": [
                                                                                                                                                                                                                                                                                                                                                             100,
+                                                                                                                                                                                                                                                                                                                                                            100,
                                                                                                                                                                                                                                                                                                                                                             100
                                                                                                                                                                                                                                                                                                                                                           ],
-                                                                                                                                                                                                                                                                                                                                                          "raw_data": {}
+                                                                                                                                                                                                                                                                                                                                                          "raw_data": {
+                                                                                                                                                                                                                                                                                                                                                            "risk": 100,
+                                                                                                                                                                                                                                                                                                                                                            "detail": "clear",
+                                                                                                                                                                                                                                                                                                                                                            "history": [
+                                                                                                                                                                                                                                                                                                                                                              100,
+                                                                                                                                                                                                                                                                                                                                                              100
+                                                                                                                                                                                                                                                                                                                                                            ],
+                                                                                                                                                                                                                                                                                                                                                            "raw_data": {}
+                                                                                                                                                                                                                                                                                                                                                          }
                                                                                                                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                                                                                                                       }
                                                                                                                                                                                                                                                                                                                                                     }
@@ -4630,14 +4654,13 @@
     "raw_data": {
       "odds": 0,
       "market": "",
-      "timestamp": "2026-10-09T06:31:34.296587"
+      "timestamp": "2026-10-09T14:12:06.248075"
     }
   },
   "pentagon": {
     "risk": 0,
     "detail": "No data available",
     "history": [
-      0,
       0,
       0,
       0,
@@ -4656,6 +4679,7 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "raw_data": {
@@ -4665,17 +4689,16 @@
       "detail_text": "No data available",
       "source": "none",
       "live_scores": null,
-      "hour_et": 2,
-      "timestamp": "2026-10-09T06:31:34.043064",
-      "is_late_night": true,
+      "hour_et": 10,
+      "timestamp": "2026-10-09T14:12:05.989238",
+      "is_late_night": false,
       "is_weekend": false
     }
   },
   "oil": {
-    "risk": 60,
-    "detail": "$103.23 (+0.8%)",
+    "risk": 70,
+    "detail": "$104.08 (+1.6%)",
     "history": [
-      50,
       50,
       50,
       50,
@@ -4694,13 +4717,14 @@
       85,
       70,
       70,
-      60
+      60,
+      70
     ],
     "raw_data": {
-      "current_price": 103.23,
-      "change_24h": 0.79,
-      "risk": 60,
-      "timestamp": "2026-10-09T06:31:44.315841"
+      "current_price": 104.08,
+      "change_24h": 1.62,
+      "risk": 70,
+      "timestamp": "2026-10-09T14:12:22.790235"
     }
   },
   "trends": {
@@ -4709,10 +4733,10 @@
     "history": [
       5,
       5,
-      5,
       10,
       10,
       5,
+      10,
       10,
       10,
       10,
@@ -4732,13 +4756,13 @@
       "risk": 10,
       "detail": "Awaiting data...",
       "history": [
-        10,
         5,
         5,
         5,
         10,
         10,
         5,
+        10,
         10,
         10,
         10,
@@ -4756,9 +4780,8 @@
       ],
       "raw_data": {
         "risk": 10,
-        "detail": "Interest: 11, 'Iran war'",
+        "detail": "Awaiting data...",
         "history": [
-          5,
           10,
           5,
           5,
@@ -4766,6 +4789,7 @@
           10,
           10,
           5,
+          10,
           10,
           10,
           10,
@@ -4781,21 +4805,47 @@
           10
         ],
         "raw_data": {
-          "current_interest": 10.6,
-          "avg_24h": 12.9,
-          "peak_keyword": "Iran war",
-          "peak_value": 41,
           "risk": 10,
-          "timestamp": "2026-10-08T19:43:38.150071"
+          "detail": "Interest: 11, 'Iran war'",
+          "history": [
+            5,
+            10,
+            5,
+            5,
+            5,
+            10,
+            10,
+            5,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "raw_data": {
+            "current_interest": 10.6,
+            "avg_24h": 12.9,
+            "peak_keyword": "Iran war",
+            "peak_value": 41,
+            "risk": 10,
+            "timestamp": "2026-10-08T19:43:38.150071"
+          }
         }
       }
     }
   },
   "buildup": {
-    "risk": 71,
+    "risk": 69,
     "detail": "1 carrier, 16 destroyers near CENTCOM (95 pts) | Air: 3 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
     "history": [
-      96,
       96,
       65,
       96,
@@ -4814,10 +4864,11 @@
       72,
       72,
       72,
-      71
+      71,
+      69
     ],
     "raw_data": {
-      "risk": 71,
+      "risk": 69,
       "detail": "1 carrier, 16 destroyers near CENTCOM (95 pts) | Air: 3 carrier sq, 7 land types, 4/6 categories (bombers, air superiority, strike fighters, ground attack)",
       "force_posture": {
         "total_weighted_points": 95.4,
@@ -4838,17 +4889,17 @@
       "carrier_air_squadrons": 3,
       "air_presence": {
         "platforms": {
-          "b-52": "Strategic Bomber",
           "b-1": "Bomber",
-          "f-35": "5th Gen Fighter",
           "f-22": "Air Superiority Fighter",
           "a-10": "Ground Attack",
+          "f-35": "5th Gen Fighter",
+          "b-52": "Strategic Bomber",
           "b-2": "Stealth Bomber",
           "f-15e": "Strike Eagle"
         },
         "bases": {
-          "fairford": 2,
           "lakenheath": 2,
+          "fairford": 2,
           "diego garcia": 1,
           "qatar": 1
         },
@@ -4862,30 +4913,30 @@
       },
       "deployment_news": {
         "article_count": 50,
-        "escalation_matches": 5,
-        "deployment_matches": 40,
+        "escalation_matches": 3,
+        "deployment_matches": 39,
         "sample_headlines": [
           "USS Lincoln returns to US after long deployment supporting war on Iran - Al Jazeera",
           "Abraham Lincoln Carrier Strike Group Returns to San Diego After Nearly 11 Months - USNI News",
+          "WATCH: Hegseth welcomes return of USS Lincoln after long, troubled deployment - PBS",
           "USS Abraham Lincoln (CVN 72) returns to San Diego after 10-month combat deployment - PACOM (.mil)",
-          "The aircraft carrier U.S.S. Abraham Lincoln returned to its home port of San Diego on Thursday after a near-record 322-day deployment in support of the war with Iran. https://nyti.ms/4yEyHiL - Facebook",
-          "WATCH: Hegseth welcomes return of USS Lincoln after long, troubled deployment - PBS"
+          "Iran Conflict Remains Deeply Unpopular as Many Americans Expect It To Go On for Months - Pew Research Center"
         ]
       },
       "source_article": "USNI News Fleet and Marine Tracker: Oct. 5, 2026",
       "source_date": "Mon, 05 Oct 2026 18:13:05 +0000",
-      "timestamp": "2026-10-09T06:31:47.971863"
+      "timestamp": "2026-10-09T14:12:25.974139"
     }
   },
   "total_risk": {
-    "risk": 37,
+    "risk": 45,
     "history": [
       {
-        "timestamp": 1791527507974,
-        "risk": 37
+        "timestamp": 1791555145977,
+        "risk": 45
       }
     ],
     "elevated_count": 3
   },
-  "last_updated": "2026-10-09T06:31:47.974600"
+  "last_updated": "2026-10-09T14:12:25.977209"
 }
